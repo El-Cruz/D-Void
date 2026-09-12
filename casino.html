@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<meta name="description" content="DVOID — Casino Night. Jueves 17 Sep. Toca las fichas, destapa los beneficios y arma tu pase VIP. Solo mujeres no pagan cover.">
+<title>DVOID · Casino Night — Jueves 17 Sep</title>
+<style>
+:root{
+  --bg0:#000000;--wine:#3D0F11;--crimson:#9E1B19;--red:#DC3A16;
+  --gold:#EDC677;--champagne:#F2E2BE;--text:#FCF8F0;--velvet:#1a0506;--ivory:#FCF8F0;
+  --muted-ivory:#6E675D;
+  --gold-16:rgba(237,198,119,.16);--gold-28:rgba(237,198,119,.28);--gold-40:rgba(237,198,119,.4);
+  --white-12:rgba(252,248,240,.12);--black-60:rgba(0,0,0,.6);--black-80:rgba(0,0,0,.82);
+  --drawer-bg:rgba(10,2,4,.82);--drawer-top:rgba(242,226,190,.15);
+  --font-body:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --spring:cubic-bezier(.175,.885,.32,1.2);
+  --sheet:cubic-bezier(.32,.72,0,1);
+  --tap-min:44px;
+  --card-gap:26px;
+  --pip-gap:12px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;font-optical-sizing:auto}
+body{margin:0;background:var(--bg0);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;overflow-x:hidden;-webkit-tap-highlight-color:transparent;min-height:100vh}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;color:inherit;background:none;border:0}
+p,h1,h2,h3{margin:0}
+.wrap{max-width:560px;margin-inline:auto;padding-inline:20px}
+[hidden]{display:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* Felt de casino */
+.felt{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(120% 96% at 50% -6%,#3D0F11 0%,#200709 44%,#12040a 72%,#050103 100%),
+    radial-gradient(62% 42% at 50% 58%,rgba(158,27,25,.26) 0%,transparent 70%),
+    var(--bg0);
+}
+.felt::after{content:"";position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity:.5}
+
+.topbar{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--gold-16);background:rgba(0,0,0,.38);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.topbar-inner{max-width:560px;margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;padding:env(safe-area-inset-top,0px) 20px 0}
+.back-link{display:inline-flex;align-items:center;gap:6px;min-height:var(--tap-min);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--champagne);font-weight:600;white-space:nowrap;touch-action:manipulation;transition:transform var(--ease)}
+.back-link:active{transform:scale(.97)}
+.back-link:focus-visible,.fan-close:focus-visible,.chip-btn:focus-visible,.frm-submit:focus-visible,.frm-back:focus-visible,.cf-back:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:4px}
+.badge{min-width:0;padding:8px 12px;border:1px solid rgba(220,58,22,.55);border-radius:999px;background:rgba(220,58,22,.14);color:var(--champagne);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
+
+/* Escena */
+.scene{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100dvh - 56px);padding:28px 20px calc(44px + env(safe-area-inset-bottom,0px))}
+.scene-center{position:relative;width:min(335px,calc(100vw - 40px))}
+.table-zone{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(1.09);width:100%;aspect-ratio:5/7;border:1px solid rgba(237,198,119,.13);border-radius:22px;pointer-events:none}
+.table-zone::before{content:"";position:absolute;inset:8px;border:1px dashed rgba(237,198,119,.1);border-radius:16px}
+
+/* Naipe premium — proporción real 2.5×3.5 (5/7) */
+.card-stage{perspective:1300px}
+.card-inner{position:relative;width:100%;aspect-ratio:5/7;transform-style:preserve-3d;transition:transform .7s var(--ease);will-change:transform}
+body.show-form .card-inner{transform:rotateY(180deg)}
+body.show-confirm .card-inner{transform:rotateY(360deg)}
+.card-face{position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;-webkit-transform-style:preserve-3d;transform-style:preserve-3d;overflow:hidden;border-radius:18px}
+.card-back{-webkit-transform:rotateY(180deg);transform:rotateY(180deg)}
+
+.card-front{background:radial-gradient(120% 110% at 50% 0%,#2b0a0e 0%,var(--velvet) 55%,#0d0203 100%);color:var(--champagne);border:1px solid var(--gold);box-shadow:
+  inset 0 1px 0 rgba(237,198,119,.25),
+  inset 0 0 0 1px rgba(237,198,119,.12),
+  inset 0 -26px 52px -36px rgba(0,0,0,.8),
+  0 38px 84px -30px rgba(0,0,0,.95),
+  0 18px 46px -22px rgba(0,0,0,.75),
+  0 6px 18px -8px rgba(0,0,0,.5)}
+.card-front::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(rgba(237,198,119,.4),rgba(237,198,119,.4)) left 86px top 26px/calc(100% - 112px) 1px no-repeat,
+    linear-gradient(rgba(237,198,119,.4),rgba(237,198,119,.4)) left 26px bottom 26px/calc(100% - 112px) 1px no-repeat,
+    linear-gradient(rgba(237,198,119,.4),rgba(237,198,119,.4)) left 26px top 86px/1px calc(100% - 112px) no-repeat,
+    linear-gradient(rgba(237,198,119,.4),rgba(237,198,119,.4)) right 26px top 26px/1px calc(100% - 112px) no-repeat}
+.cf-lattice{position:absolute;inset:0;opacity:.7;background-image:repeating-linear-gradient(45deg,rgba(237,198,119,.07) 0,rgba(237,198,119,.07) 1px,transparent 1px,transparent 19px),repeating-linear-gradient(-45deg,rgba(237,198,119,.07) 0,rgba(237,198,119,.07) 1px,transparent 1px,transparent 19px);pointer-events:none}
+.cf-corner{position:absolute;font-size:60px;line-height:1;color:var(--gold);-webkit-user-select:none;user-select:none;pointer-events:none;text-shadow:0 2px 0 rgba(0,0,0,.55),0 0 18px rgba(237,198,119,.25);z-index:2}
+.cf-corner.tl{top:var(--pip-gap);left:var(--pip-gap)}
+.cf-corner.br{bottom:var(--pip-gap);right:var(--pip-gap);transform:rotate(180deg)}
+.front-layer{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;text-align:center;padding:56px 26px 36px}
+.front-confirm{display:none}
+body.show-confirm .front-hero{display:none}
+body.show-confirm .front-confirm{display:flex}
+
+.cf-eyebrow{font-size:9px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.cf-title{font-family:var(--font-body);font-stretch:condensed;font-weight:900;line-height:.9;text-transform:uppercase;letter-spacing:.005em;font-size:clamp(34px,10vw,44px);color:var(--champagne);margin-top:14px;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.cf-title em{display:block;font-style:normal;font-size:.5em;letter-spacing:.16em;color:var(--gold);margin-top:10px;line-height:1.1}
+.cf-pip{margin-top:22px;font-size:118px;line-height:1;color:var(--gold);text-shadow:0 3px 0 rgba(0,0,0,.5),0 0 46px rgba(237,198,119,.28);-webkit-user-select:none;user-select:none}
+.cf-foot{margin-top:auto;font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,226,190,.72);line-height:1.9}
+.cf-foot b{color:var(--gold);font-weight:800}
+
+.cf-qr-name{font-family:var(--font-body);font-stretch:condensed;font-weight:900;text-transform:uppercase;line-height:1.04;font-size:30px;color:var(--champagne);margin-top:8px;letter-spacing:.01em;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.cf-qr{width:126px;height:126px;margin-top:16px;border-radius:10px;background:#fff;padding:5px;box-shadow:0 0 0 1px var(--gold-40),0 12px 26px -14px rgba(0,0,0,.7)}
+.cf-code{margin-top:10px;font-weight:900;font-size:12px;letter-spacing:.3em;color:var(--gold)}
+.cf-confirm-note{margin-top:10px;display:flex;flex-direction:column;gap:5px;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,226,190,.72);text-align:center}
+.cf-confirm-note p{margin:0}
+.cf-confirm-note .t{font-size:12px;font-weight:900;letter-spacing:.2em;color:var(--gold)}
+.cf-back{min-height:40px;margin-top:14px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;gap:6px;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(242,226,190,.65);background:transparent;border:1px solid rgba(242,226,190,.22);border-radius:999px;touch-action:manipulation;transition:transform var(--ease),border-color .2s ease,color .2s ease}
+.cf-back:active{transform:scale(.97)}
+
+/* Reverso del naipe — formulario */
+.card-back{background:radial-gradient(120% 110% at 50% 0%,#26080b 0%,var(--velvet) 55%,#0d0203 100%);border:1px solid var(--gold);box-shadow:
+  inset 0 1px 0 rgba(237,198,119,.22),
+  inset 0 -26px 52px -36px rgba(0,0,0,.8),
+  0 38px 84px -30px rgba(0,0,0,.95),
+  0 18px 46px -22px rgba(0,0,0,.75)}
+.cb-lattice{position:absolute;inset:0;opacity:.85;background-image:repeating-linear-gradient(45deg,rgba(237,198,119,.09) 0,rgba(237,198,119,.09) 1px,transparent 1px,transparent 19px),repeating-linear-gradient(-45deg,rgba(237,198,119,.09) 0,rgba(237,198,119,.09) 1px,transparent 1px,transparent 19px);pointer-events:none}
+.frm{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;padding:36px 30px 24px}
+.frm-eyebrow{font-size:9px;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);text-align:center}
+.frm-title{font-family:var(--font-body);font-stretch:condensed;font-weight:900;text-transform:uppercase;letter-spacing:.02em;line-height:1;color:var(--champagne);font-size:clamp(23px,7vw,29px);text-align:center;margin-top:6px}
+.fld{display:flex;flex-direction:column;gap:4px;margin-top:12px}
+.fld label{font-size:8.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,226,190,.72)}
+.fld input{width:100%;min-height:44px;height:44px;padding:0 12px;border-radius:10px;border:1px solid var(--gold-40);background:rgba(0,0,0,.32);color:var(--ivory);font-size:15px;touch-action:manipulation}
+.fld input[type="text"],.fld input[type="tel"]{-webkit-appearance:none;appearance:none}
+.fld input::placeholder{color:rgba(252,248,240,.4)}
+.date-wrap{position:relative}
+.date-wrap input[type="text"]{padding-right:52px}
+.date-cal-ic{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:32px;height:32px;display:grid;place-items:center;color:var(--gold);pointer-events:none}
+.date-cal-ic svg{width:20px;height:20px}
+.native-date{position:absolute;right:0;top:0;width:52px;height:100%;margin:0;opacity:0;cursor:pointer}
+.date-wrap:has(.native-date:focus-visible){outline:2px solid var(--gold);outline-offset:2px;border-radius:10px}
+.fld input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(237,198,119,.18)}
+.fld.invalid input{border-color:var(--red);box-shadow:0 0 0 3px rgba(220,58,22,.22)}
+.fld .fld-err{display:none;font-size:9.5px;color:#ff8f6b;letter-spacing:.03em}
+.fld.invalid .fld-err{display:block}
+.frm-submit{width:100%;min-height:44px;margin-top:14px;border-radius:10px;background:var(--red);color:#fff;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;box-shadow:0 16px 36px -14px rgba(220,58,22,.6),inset 0 1px 0 rgba(242,226,190,.3);touch-action:manipulation;transition:transform var(--ease),background .2s ease;will-change:transform}
+.frm-submit:active{transform:scale(.97)}
+.frm-back{margin-top:10px;align-self:center;min-height:44px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(242,226,190,.85);touch-action:manipulation;transition:transform var(--ease)}
+.frm-back:active{transform:scale(.97)}
+.frm-note{margin-top:auto;padding-top:10px;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,226,190,.5);text-align:center}
+
+/* Fichas de blackjack — 5 sueltas sobre el mat */
+.chips-row{position:relative;z-index:1;display:flex;justify-content:center;gap:10px;margin-top:34px;padding-bottom:4px}
+.chips-row::before{content:"";position:absolute;left:50%;bottom:-16px;width:230px;height:30px;transform:translateX(-50%);background:radial-gradient(50% 50% at 50% 50%,rgba(220,58,22,.4),transparent 72%);filter:blur(12px);pointer-events:none}
+.chip-btn{position:relative;display:flex;flex-direction:column;align-items:center;gap:9px;padding:0;min-height:var(--tap-min);--cs:52px;border-radius:14px;touch-action:manipulation;will-change:transform;transition:transform .42s var(--spring)}
+.chip-btn:active{transform:scale(.94);transition-duration:80ms;transition-timing-function:var(--ease)}
+.chip-btn:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.chip-btn.selected{transform:translateY(-14px) scale(1.05)}
+.chip-btn.selected:active{transform:translateY(-12px) scale(.94);transition-duration:80ms;transition-timing-function:var(--ease)}
+.chip-t{position:absolute;left:50%;top:0;transform:translateX(-50%);width:var(--cs,46px);height:var(--cs,46px);border-radius:50%;box-shadow:0 2px 4px rgba(0,0,0,.5);
+  --in:#C43024;--chip:#9E1B19;--chip-dk:#4a0b0d;--spot:#FCF8F0;
+  background:radial-gradient(circle at 50% 38%,var(--in) 0 52%,rgba(255,255,255,.55) 52.5% 53.5%,var(--chip) 54% 72%,var(--chip-dk) 74% 100%)}
+.chip-t::before{content:"";position:absolute;inset:0;border-radius:50%;
+  background:repeating-conic-gradient(var(--spot) 0deg 22.5deg,transparent 22.5deg 45deg);
+  -webkit-mask:radial-gradient(circle,transparent 58%,#000 59%,#000 86%,transparent 87%);
+  mask:radial-gradient(circle,transparent 58%,#000 59%,#000 86%,transparent 87%)}
+.chip-t::after{content:"\2660";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:46%;aspect-ratio:1/1;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 50% 38%,#FFFFFF 0 70%,#EFE7D3 100%);box-shadow:inset 0 0 0 1.5px var(--chip-dk),0 1px 2px rgba(0,0,0,.35);color:var(--chip-dk);font-size:calc(var(--cs,46px)*.26);line-height:1}
+.chip-t.gold{--in:#EFD9A2;--chip:#C0952F;--chip-dk:#6B5129;--spot:#FFFDF6}
+.chip-t.wine{--in:#C43024;--chip:#9E1B19;--chip-dk:#4a0b0d;--spot:#FCF8F0}
+.chip-t.black{--in:#3A3E44;--chip:#17191D;--chip-dk:#000000;--spot:#EDEAE2}
+.chip-t.cream{--in:#FFFDF6;--chip:#D8C9A8;--chip-dk:#8A6A35;--spot:#9E1B19}
+.chip-t.free{position:relative;left:auto;top:auto;transform:none}
+.chip-label{min-height:14px;font-size:8px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:rgba(242,226,190,.82)}
+.chips-hint{margin-top:16px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(242,226,190,.66);text-align:center}
+
+/* Entrada */
+@media (prefers-reduced-motion: no-preference){
+  @keyframes dealIn{0%{opacity:0;transform:translateY(-46px) rotate(-7deg) scale(.96)}60%{opacity:1;transform:translateY(7px) rotate(1.4deg)}100%{opacity:1;transform:none}}
+  @keyframes pop{0%{transform:scale(0)}78%{transform:scale(1.08)}100%{transform:scale(1)}}
+  .card-stage{animation:dealIn .9s var(--spring) .25s backwards}
+  .chip-btn{animation:pop .5s var(--spring) .8s backwards}
+  .chip-btn:nth-child(2){animation-delay:.86s}
+  .chip-btn:nth-child(3){animation-delay:.92s}
+  .chip-btn:nth-child(4){animation-delay:.98s}
+  .chip-btn:nth-child(5){animation-delay:1.04s}
+}
+
+/* Fan de promos — despliegue sobre blur */
+.fan{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:20px;pointer-events:none;visibility:hidden;transition:visibility 0s .45s}
+.fan.open{visibility:visible;pointer-events:auto;transition:visibility 0s}
+.fan-bg{position:absolute;inset:0;background:rgba(5,1,2,.55);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);opacity:0;transition:opacity .4s var(--sheet)}
+.fan.open .fan-bg{opacity:1}
+.fan-panel{position:relative;width:100%;max-width:420px;border-radius:22px;background:var(--drawer-bg);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);border:1px solid var(--drawer-top);box-shadow:0 -26px 64px -18px rgba(0,0,0,.75);padding:18px 14px 20px;transform:translateY(26px) scale(.96);opacity:0;transition:transform .45s var(--spring),opacity .3s ease}
+.fan.open .fan-panel{transform:none;opacity:1}
+.fan-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;padding:0 4px}
+.fan-head-l{min-width:0}
+.fan-kicker{font-size:11px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.fan-sub{margin-top:2px;font-size:11px;color:rgba(242,226,190,.7);letter-spacing:.04em}
+.fan-close{flex:0 0 44px;width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--gold-28);border-radius:50%;color:var(--champagne);font-size:17px;line-height:1;touch-action:manipulation;transition:transform var(--ease),background .2s ease}
+.fan-close:active{transform:scale(.94)}
+.fan-detail{display:flex;align-items:center;gap:18px;padding:8px 6px 4px;--cs:76px}
+.fan-detail-t{min-width:0;text-align:left}
+.fan-eye{font-size:9px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,226,190,.66)}
+.fan-val{margin-top:6px;font-family:var(--font-body);font-stretch:condensed;font-weight:900;font-size:32px;line-height:1;text-transform:uppercase;color:var(--gold)}
+.fan-sub2{margin-top:6px;font-size:11.5px;line-height:1.5;color:rgba(252,248,240,.85)}
+.promo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.promo-card{min-width:0;border:1px solid var(--gold-28);border-radius:8px;background:rgba(26,5,6,.5);padding:15px 14px 14px}
+.pc-eye{font-size:9px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,226,190,.66);margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pc-val{font-family:var(--font-body);font-stretch:condensed;font-weight:900;font-size:clamp(24px,7.5vw,30px);line-height:1;text-transform:uppercase;letter-spacing:.01em;color:var(--gold)}
+.pc-sub{margin-top:8px;font-size:10.5px;line-height:1.45;color:rgba(252,248,240,.85);letter-spacing:.04em}
+.statline{margin-top:22px;padding-top:18px;border-top:1px solid var(--gold-16);text-align:center;font-size:11px;line-height:1.8;letter-spacing:.08em;text-transform:uppercase;color:var(--champagne)}
+.statline b{color:var(--gold);font-weight:800;white-space:nowrap}
+
+@media (max-width:360px){
+  .wrap,.topbar-inner{padding-inline:16px}
+  .scene,.chips-row{padding-inline:16px}
+  .badge{max-width:46%}
+  .cf-corner{font-size:48px}
+  .cf-pip{font-size:96px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;scroll-behavior:auto!important}
+  .card-stage{perspective:none}
+  .card-inner{width:100%;aspect-ratio:auto;min-height:0;transform:none!important;transition:none}
+  .card-face{position:relative;inset:auto;-webkit-backface-visibility:visible;backface-visibility:visible;transform:none;overflow:visible;height:auto}
+  .card-front{margin-bottom:18px}
+  .front-layer{position:relative;inset:auto;height:auto;padding:30px 22px 36px}
+  .card-back{margin-top:18px}
+  .chip-btn,.chip-btn:active,.chip-btn.selected{transition:none;transform:none!important}
+  .back-link,.frm-submit,.frm-back,.cf-back,.fan-close{transition:none;transform:none!important}
+  .fan{transition:none}
+  .fan-bg,.fan-panel{transition:none}
+  .scene{min-height:0;padding-top:20px}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="back-link" href="/" aria-label="Volver al club">&#8592;&nbsp;Volver al club</a>
+    <span class="badge">Jueves 17 Sep&nbsp;&middot;&nbsp;Casino Night</span>
+  </div>
+</header>
+
+<main>
+  <h1 class="sr-only">DVOID Casino Night: jueves 17 de septiembre.</h1>
+
+  <div class="felt" aria-hidden="true"></div>
+
+  <section class="scene" aria-label="Naipe VIP de Casino Night">
+    <div class="scene-center">
+      <div class="table-zone" aria-hidden="true"></div>
+      <div class="card-stage" id="cardStage">
+        <div class="card-inner" id="naipe">
+
+          <article class="card-face card-front" id="faceFront" role="button" tabindex="0" aria-label="Tocar para reservar: abrir el formulario">
+            <div class="cf-lattice" aria-hidden="true"></div>
+            <span class="cf-corner tl" aria-hidden="true">&#9824;</span>
+            <span class="cf-corner br" aria-hidden="true">&#9824;</span>
+
+            <div class="front-layer front-hero" id="frontHero">
+              <p class="cf-eyebrow">DVOID Club</p>
+              <h2 class="cf-title">CASINO NIGHT<em>Jueves 17 Sep &middot; 23h00</em></h2>
+              <div class="cf-pip" aria-hidden="true">♠</div>
+              <p class="cf-foot"><b>Mujeres no pagan cover</b><br>Mayores de 21 a&#241;os</p>
+            </div>
+
+            <div class="front-layer front-confirm" id="frontConfirm" tabindex="-1">
+              <p class="cf-eyebrow">Reserva confirmada</p>
+              <p class="cf-qr-name" id="confirmName">—</p>
+              <canvas class="cf-qr" id="qrCanvas" width="125" height="125" aria-label="QR de tu pase" role="img"></canvas>
+              <p class="cf-code" id="confirmCode">DV-······</p>
+              <div class="cf-confirm-note">
+                <p>Jueves 17 Sep</p>
+                <p class="t">22:00</p>
+                <p>Presenta este naipe en la entrada</p>
+              </div>
+              <button class="cf-back" id="confirmBack" type="button">&#10484;&nbsp;Volver al inicio</button>
+            </div>
+          </article>
+
+          <article class="card-face card-back" id="faceBack">
+            <div class="cb-lattice" aria-hidden="true"></div>
+            <form class="frm" id="reservaForm" novalidate>
+              <p class="frm-eyebrow">Tu registro</p>
+              <h2 class="frm-title">Arma tu pase</h2>
+
+              <div class="fld" id="fldName">
+                <label for="fName">Nombre</label>
+                <input id="fName" name="nombre" type="text" autocomplete="name" placeholder="Tu nombre" aria-describedby="errName">
+                <p class="fld-err" id="errName" role="alert">Escribe tu nombre para armar el pase.</p>
+              </div>
+
+              <div class="fld" id="fldPhone">
+                <label for="fPhone">N&#250;mero / WhatsApp</label>
+                <input id="fPhone" name="numero" type="tel" inputmode="tel" autocomplete="tel" placeholder="+593 99 000 0000" aria-describedby="errPhone">
+                <p class="fld-err" id="errPhone" role="alert">Ingresa un n&#250;mero v&#225;lido para la lista.</p>
+              </div>
+
+              <div class="fld" id="fldBirth">
+                <label for="fBirth">Fecha de nacimiento</label>
+                <div class="date-wrap">
+                  <input id="fBirth" name="fecha" type="text" inputmode="numeric" autocomplete="bday" placeholder="DD/MM/AAAA" maxlength="10" aria-describedby="errBirth">
+                  <span class="date-cal-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg></span>
+                  <input class="native-date" id="fBirthNative" type="date" min="1940-01-01" aria-label="Elegir fecha del calendario" tabindex="0">
+                </div>
+                <p class="fld-err" id="errBirth" role="alert">Debes ser mayor de 21 a&#241;os para entrar.</p>
+              </div>
+
+              <button class="frm-submit" id="frmSubmit" type="submit">Confirmar asistencia</button>
+              <button class="frm-back" id="frmBack" type="button">&#8592;&nbsp;Volver</button>
+              <p class="frm-note">Solo mayores de 21. T&#250;s datos son solo para la lista de esa noche.</p>
+            </form>
+          </article>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="chips-row" id="chipsRow">
+      <button class="chip-btn" id="chipMujeres" type="button" data-promo="mujeres" aria-expanded="false" aria-controls="fan" aria-label="Ficha roja: promo para mujeres">
+        <span class="chip-t free wine" aria-hidden="true"></span>
+        <span class="chip-label">Mujeres</span>
+      </button>
+      <button class="chip-btn" id="chipHombres" type="button" data-promo="hombres" aria-expanded="false" aria-controls="fan" aria-label="Ficha negra: promo para hombres">
+        <span class="chip-t free black" aria-hidden="true"></span>
+        <span class="chip-label">Hombres</span>
+      </button>
+      <button class="chip-btn" id="chipCocteles" type="button" data-promo="cocteles" aria-expanded="false" aria-controls="fan" aria-label="Ficha dorada: promo de cócteles">
+        <span class="chip-t free gold" aria-hidden="true"></span>
+        <span class="chip-label">C&#243;cteles</span>
+      </button>
+      <button class="chip-btn" id="chipBotellas" type="button" data-promo="botellas" aria-expanded="false" aria-controls="fan" aria-label="Ficha crema: promo de botellas">
+        <span class="chip-t free cream" aria-hidden="true"></span>
+        <span class="chip-label">Botellas</span>
+      </button>
+      <button class="chip-btn" id="chipPremio" type="button" data-promo="premio" aria-expanded="false" aria-controls="fan" aria-label="Ficha roja: premio High Roller">
+        <span class="chip-t free wine" aria-hidden="true"></span>
+        <span class="chip-label">Premio</span>
+      </button>
+    </div>
+
+    <p class="chips-hint" role="status" aria-live="polite">Toca las fichas para ver las promos &middot; Toca la carta para reservar</p>
+  </section>
+</main>
+
+<div class="fan" id="fan" role="dialog" aria-modal="false" aria-labelledby="fanTitle" aria-hidden="true">
+  <div class="fan-bg" id="fanBg"></div>
+  <div class="fan-panel" id="fanPanel" tabindex="-1">
+    <div class="fan-head">
+      <div class="fan-head-l">
+        <h2 class="fan-kicker" id="fanTitle">Promo del d&#237;a</h2>
+        <p class="fan-sub">Toca otra ficha para ver m&#225;s</p>
+      </div>
+      <button class="fan-close" id="fanClose" type="button" aria-label="Cerrar promos">&#215;</button>
+    </div>
+    <div class="fan-detail">
+      <span class="chip-t free" id="fanDisc" aria-hidden="true"></span>
+      <div class="fan-detail-t">
+        <p class="fan-eye" id="fanEye">Mujeres</p>
+        <p class="fan-val" id="fanVal">No cover</p>
+        <p class="fan-sub2" id="fanSub">hasta 23h00 en lista</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<noscript>
+  <section class="wrap" style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(237,198,119,.22)">
+    <h2 style="font:inherit;font-size:10px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:#EDC677;margin-bottom:14px">Promos de la noche</h2>
+    <div class="promo-grid">
+      <article class="promo-card"><p class="pc-eye">Mujeres</p><p class="pc-val">NO COVER</p><p class="pc-sub">hasta 23h00 en lista</p></article>
+      <article class="promo-card"><p class="pc-eye">Hombres</p><p class="pc-val">COVER $10</p><p class="pc-sub">en lista</p></article>
+      <article class="promo-card"><p class="pc-eye">C&#243;cteles</p><p class="pc-val">2X1</p><p class="pc-sub">Paloma &amp; Moscow Mule</p></article>
+      <article class="promo-card"><p class="pc-eye">Botellas</p><p class="pc-val">2X1</p><p class="pc-sub">Black Owl &amp; Antioque&#241;o</p></article>
+    </div>
+    <p class="statline">Mujeres no pagan cover &middot; Jueves 17 Sep</p>
+    <p style="margin-top:20px;text-align:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--champagne)">
+      Reserva directa: <a href="/formulario-de-reservas?evento=casino" style="color:#EDC677">continuar</a>
+    </p>
+  </section>
+</noscript>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var body = document.body;
+  var fan = document.getElementById('fan');
+  var fanPanel = document.getElementById('fanPanel');
+  var fanBg = document.getElementById('fanBg');
+  var fanClose = document.getElementById('fanClose');
+  var fanDisc = document.getElementById('fanDisc');
+  var fanEye = document.getElementById('fanEye');
+  var fanVal = document.getElementById('fanVal');
+  var fanSub = document.getElementById('fanSub');
+  var faceFront = document.getElementById('faceFront');
+  var chipBtns = Array.prototype.slice.call(document.querySelectorAll('.chip-btn'));
+  var PROMOS = {
+    mujeres: { cls: 'wine', eye: 'Mujeres', val: 'No cover', sub: 'hasta 23h00 en lista' },
+    hombres: { cls: 'black', eye: 'Hombres', val: 'Cover $10', sub: 'en lista' },
+    cocteles: { cls: 'gold', eye: 'C\u00F3cteles', val: '2X1', sub: 'Paloma & Moscow Mule' },
+    botellas: { cls: 'cream', eye: 'Botellas', val: '2X1', sub: 'Black Owl & Antioque\u00F1o' },
+    premio: { cls: 'wine', eye: 'High Roller', val: 'Premio', sub: '$200 + $100 en efectivo' }
+  };
+  var fName = document.getElementById('fName');
+  var fPhone = document.getElementById('fPhone');
+  var fBirth = document.getElementById('fBirth');
+  var fBirthNative = document.getElementById('fBirthNative');
+  var frm = document.getElementById('reservaForm');
+  var frmBack = document.getElementById('frmBack');
+  var confirmBack = document.getElementById('confirmBack');
+  var confirmName = document.getElementById('confirmName');
+  var confirmCode = document.getElementById('confirmCode');
+  var qrCanvas = document.getElementById('qrCanvas');
+  var fanOpen = false;
+  var confirmed = false;
+
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+
+  function setBirthMax() {
+    var now = new Date();
+    var max = new Date(now.getFullYear() - 21, now.getMonth(), now.getDate());
+    fBirthNative.max = max.getFullYear() + '-' + pad2(max.getMonth() + 1) + '-' + pad2(max.getDate());
+  }
+
+  function parseDMY(s) {
+    var m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(s.trim());
+    if (!m) return null;
+    var d = +m[1], mo = +m[2], y = +m[3];
+    if (mo < 1 || mo > 12 || d < 1 || d > 31 || y < 1940 || y > new Date().getFullYear()) return null;
+    var dt = new Date(y, mo - 1, d);
+    if (dt.getFullYear() !== y || dt.getMonth() !== mo - 1 || dt.getDate() !== d) return null;
+    return dt;
+  }
+
+  function birthState() {
+    if (!fBirth.value.trim()) return 'empty';
+    var bd = parseDMY(fBirth.value);
+    if (!bd) return 'format';
+    var now = new Date();
+    var age = now.getFullYear() - bd.getFullYear();
+    var m = now.getMonth() - bd.getMonth();
+    if (m < 0 || (m === 0 && now.getDate() < bd.getDate())) age--;
+    return age >= 21 ? 'ok' : 'young';
+  }
+
+  fBirth.addEventListener('input', function () {
+    var d = fBirth.value.replace(/\D/g, '').slice(0, 8);
+    var out = d;
+    if (d.length > 4) out = d.slice(0, 2) + '/' + d.slice(2, 4) + '/' + d.slice(4);
+    else if (d.length > 2) out = d.slice(0, 2) + '/' + d.slice(2);
+    if (out !== fBirth.value) fBirth.value = out;
+  });
+
+  fBirthNative.addEventListener('change', function () {
+    if (!fBirthNative.value) return;
+    var p = fBirthNative.value.split('-');
+    fBirth.value = p[2] + '/' + p[1] + '/' + p[0];
+  });
+
+  function openFan(key, btn) {
+    var p = PROMOS[key];
+    if (!p) return;
+    fanDisc.className = 'chip-t free ' + p.cls;
+    fanEye.textContent = p.eye;
+    fanVal.textContent = p.val;
+    fanSub.textContent = p.sub;
+    chipBtns.forEach(function (b) {
+      var on = b === btn;
+      b.classList.toggle('selected', on);
+      b.setAttribute('aria-expanded', on ? 'true' : 'false');
+    });
+    if (!fanOpen) {
+      fanOpen = true;
+      fan.classList.add('open');
+      fan.setAttribute('aria-hidden', 'false');
+      setTimeout(function () { fanPanel.focus(); }, reduce ? 0 : 400);
+    }
+  }
+
+  function closeFan() {
+    if (!fanOpen) return;
+    fanOpen = false;
+    fan.classList.remove('open');
+    fan.setAttribute('aria-hidden', 'true');
+    var back = document.querySelector('.chip-btn.selected');
+    chipBtns.forEach(function (b) {
+      b.classList.remove('selected');
+      b.setAttribute('aria-expanded', 'false');
+    });
+    setTimeout(function () { if (back && document.contains(back)) back.focus(); }, reduce ? 0 : 400);
+  }
+
+  function syncCardA11y() {
+    var flipped = body.classList.contains('show-form') || body.classList.contains('show-confirm');
+    faceFront.tabIndex = flipped ? -1 : 0;
+  }
+
+  function goForm() {
+    body.classList.remove('show-confirm');
+    body.classList.add('show-form');
+    syncCardA11y();
+    setTimeout(function () { try { fName.focus(); } catch (e) {} }, reduce ? 0 : 780);
+  }
+
+  function goBack() {
+    body.classList.remove('show-form', 'show-confirm');
+    syncCardA11y();
+    setTimeout(function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); }, reduce ? 0 : 650);
+  }
+
+  function hashStr(s) {
+    var h = 2166136261;
+    for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return h >>> 0;
+  }
+
+  function drawFakeQR(canvas, seed) {
+    var N = 25, cell = canvas.width / N;
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    var seedNum = hashStr(seed) || 1;
+    function rng() { seedNum = (Math.imul(seedNum, 1103515245) + 12345) >>> 0; return seedNum / 4294967296; }
+    function inFinder(x, y) { return (x < 8 && y < 8) || (x >= N - 8 && y < 8) || (x < 8 && y >= N - 8); }
+    ctx.fillStyle = '#111111';
+    for (var y = 0; y < N; y++) {
+      for (var x = 0; x < N; x++) {
+        if (inFinder(x, y) || x === 6 || y === 6) continue;
+        if (rng() < 0.44) ctx.fillRect(x * cell, y * cell, cell + 0.5, cell + 0.5);
+      }
+    }
+    function finder(ox, oy) {
+      ctx.fillRect(ox * cell, oy * cell, 7 * cell, 7 * cell);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect((ox + 1) * cell, (oy + 1) * cell, 5 * cell, 5 * cell);
+      ctx.fillStyle = '#111111';
+      ctx.fillRect((ox + 2) * cell, (oy + 2) * cell, 3 * cell, 3 * cell);
+    }
+    finder(0, 0); finder(N - 7, 0); finder(0, N - 7);
+    ctx.fillStyle = '#111111';
+    for (var i = 8; i < N - 8; i++) {
+      if (i % 2 === 0) {
+        ctx.fillRect(i * cell, 6 * cell, cell + 0.5, cell + 0.5);
+        ctx.fillRect(6 * cell, i * cell, cell + 0.5, cell + 0.5);
+      }
+    }
+  }
+
+  function capitalize(s) {
+    return s.trim().replace(/\s+/g, ' ').split(' ').map(function (w) { return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(); }).join(' ');
+  }
+
+  function confirmReservation() {
+    if (confirmed) return;
+    confirmed = true;
+    var name = capitalize(fName.value);
+    var seed = name + '|' + fPhone.value + '|' + fBirth.value;
+    var code = 'DV-' + hashStr(seed).toString(36).toUpperCase().slice(0, 6).padStart(6, '0');
+    confirmName.textContent = name;
+    confirmCode.textContent = code;
+    drawFakeQR(qrCanvas, seed);
+    body.classList.remove('show-form');
+    body.classList.add('show-confirm');
+    setTimeout(function () { try { document.getElementById('frontConfirm').focus(); } catch (e) {} }, reduce ? 0 : 780);
+  }
+
+  function setInvalid(fld, invalid) {
+    fld.classList.toggle('invalid', invalid);
+    var input = fld.querySelector('input');
+    if (input) input.setAttribute('aria-invalid', invalid ? 'true' : 'false');
+  }
+
+  frm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var ok = true;
+    var nameOk = fName.value.trim().length >= 2;
+    setInvalid(document.getElementById('fldName'), !nameOk);
+    if (!nameOk) ok = false;
+    var digits = fPhone.value.replace(/\D/g, '');
+    var phoneOk = digits.length >= 7 && digits.length <= 15;
+    setInvalid(document.getElementById('fldPhone'), !phoneOk);
+    if (!phoneOk) ok = false;
+    var bs = birthState();
+    var yearOk = bs === 'ok';
+    setInvalid(document.getElementById('fldBirth'), !yearOk);
+    if (!yearOk) {
+      document.getElementById('errBirth').textContent = bs === 'empty'
+        ? 'Ingresa tu fecha de nacimiento para continuar.'
+        : bs === 'format'
+        ? 'Usa el formato día/mes/año (DD/MM/AAAA).'
+        : 'Debes ser mayor de 21 a\u00F1os para entrar.';
+    }
+    if (!yearOk) ok = false;
+    if (!ok) {
+      var first = document.querySelector('.fld.invalid input');
+      if (first) first.focus();
+      return;
+    }
+    confirmReservation();
+  });
+
+  frmBack.addEventListener('click', goBack);
+  confirmBack.addEventListener('click', goBack);
+  chipBtns.forEach(function (b) {
+    b.addEventListener('click', function () { openFan(b.getAttribute('data-promo'), b); });
+  });
+  fanClose.addEventListener('click', closeFan);
+  fanBg.addEventListener('click', closeFan);
+  faceFront.addEventListener('click', function (e) {
+    if (e.target.closest('button')) return;
+    if (!body.classList.contains('show-form') && !body.classList.contains('show-confirm')) goForm();
+  });
+  faceFront.addEventListener('keydown', function (e) {
+    if (e.target.closest('button')) return;
+    if ((e.key === 'Enter' || e.key === ' ') && !body.classList.contains('show-form') && !body.classList.contains('show-confirm')) {
+      e.preventDefault();
+      goForm();
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    if (fanOpen) { closeFan(); return; }
+    if (body.classList.contains('show-form') || body.classList.contains('show-confirm')) goBack();
+  });
+
+  syncCardA11y();
+  setBirthMax();
+})();
+</script>
+</body>
+</html>

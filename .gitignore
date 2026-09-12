@@ -1,0 +1,5 @@
+# AI / Agent config
+.agents/
+AGENTS.md
+skills-lock.json
+AUDIT_REPORT.md
