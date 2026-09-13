@@ -574,6 +574,11 @@ body.show-confirm .front-confirm{display:flex}
     body.classList.add('show-confirm');
     if (window.parent && window.parent !== window) {
       window.parent.postMessage({ tipo: 'dvoid:reserva-exitosa' }, '*');
+    } else {
+      if (window.sessionStorage) {
+        try { sessionStorage.setItem('dvoid:pase', code); } catch (e) {}
+      }
+      setTimeout(function () { window.location.href = 'survey.html'; }, 2600);
     }
     setTimeout(function () { try { document.getElementById('frontConfirm').focus(); } catch (e) {} }, reduce ? 0 : 780);
   }
