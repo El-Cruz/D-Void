@@ -1,0 +1,10 @@
+{
+  "cleanUrls": false,
+  "rewrites": [
+    { "source": "/", "destination": "/home_v2.html" },
+    { "source": "/casino", "destination": "/casino.html" },
+    { "source": "/formulario-de-reservas", "destination": "/reservas.html" },
+    { "source": "/menu", "destination": "/menu.html" },
+    { "source": "/ingreso", "destination": "/ingreso.html" }
+  ]
+}

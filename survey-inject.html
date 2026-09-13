@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DVOID — Encuesta post-reserva (bloque para implementar)</title>
+</head>
+<body>
+<p style="font:14px/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#333;max-width:640px;margin:24px auto">
+  <b>Instrucciones:</b> copia TODO el HTML entre los marcadores
+  <code style="background:#eee;padding:2px 6px;border-radius:4px">&lt;!-- DVOID:SURVEY:BEGIN --&gt;</code> y
+  <code style="background:#eee;padding:2px 6px;border-radius:4px">&lt;!-- DVOID:SURVEY:END --&gt;</code>
+  y pégalo dentro del <code style="background:#eee;padding:2px 6px;border-radius:4px">&lt;body&gt;</code> de
+  <code style="background:#eee;padding:2px 6px;border-radius:4px">reservas.html</code>, antes de cerrar el body.
+  Al confirmarse la reserva, la encuesta se muestra como <b>página completa</b> (cubre la pantalla, sin ventanas flotantes).
+  No requiere librerías ni CDNs. Se dispara con el evento
+  <code style="background:#eee;padding:2px 6px;border-radius:4px">dvoid:reserva-exitosa</code> del iframe de reservas.
+  Para probar sin backend: abre con <code style="background:#eee;padding:2px 6px;border-radius:4px">?preview=survey</code>.
+</p>
+
+<hr style="max-width:640px;margin:24px auto;border:none;border-top:2px dashed #999">
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- DVOID:SURVEY:BEGIN -->
+<style>
+  #dvoid-survey{--bg0:#000000;--wine:#3D0F11;--crimson:#9E1B19;--red:#DC3A16;
+    --gold:#EDC677;--champagne:#F2E2BE;--text:#FCF8F0;--velvet:#1a0506;--ivory:#FCF8F0;
+    --gold-16:rgba(237,198,119,.16);--gold-28:rgba(237,198,119,.28);--gold-40:rgba(237,198,119,.4);
+    --ease:cubic-bezier(.2,.8,.2,1);--tap-min:44px}
+  #dvoid-survey *,#dvoid-survey *::before,#dvoid-survey *::after{box-sizing:border-box}
+  #dvoid-survey{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+    font-size:15px;line-height:1.6;color:var(--text);-webkit-font-smoothing:antialiased;
+    background:
+      radial-gradient(120% 96% at 50% -6%,#3D0F11 0%,#200709 44%,#12040a 72%,#050103 100%),
+      radial-gradient(62% 42% at 50% 58%,rgba(158,27,25,.26) 0%,transparent 70%),
+      var(--bg0);
+    overflow:hidden;
+    opacity:0;visibility:hidden;transform:translateY(14px);
+    transition:opacity 380ms var(--ease),transform 380ms var(--ease),visibility 0s linear 380ms}
+  #dvoid-survey.is-open{opacity:1;visibility:visible;transform:none;transition:opacity 380ms var(--ease),transform 380ms var(--ease)}
+  #dvoid-survey .sv-top{flex:0 0 auto;border-bottom:1px solid var(--gold-16);background:rgba(0,0,0,.38);
+    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+  #dvoid-survey .sv-top-in{display:flex;align-items:center;gap:12px;min-height:52px;
+    padding:env(safe-area-inset-top,0px) clamp(16px,4vw,40px) 0;max-width:640px;margin-inline:auto}
+  #dvoid-survey .sv-tag{font-size:9px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+  #dvoid-survey .sv-fill{flex:1 1 auto;min-width:0;text-align:right;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,226,190,.66);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #dvoid-survey .sv-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;scrollbar-color:rgba(237,198,119,.3) transparent;
+    padding:calc(28px + env(safe-area-inset-top,0px)) 24px calc(28px + env(safe-area-inset-bottom,0px))}
+  #dvoid-survey .sv-cols{max-width:560px;margin-inline:auto;padding-bottom:18px}
+  #dvoid-survey .sv-kicker{margin:0;font-size:9.5px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+  #dvoid-survey .sv-title{margin:8px 0 0;font-weight:900;font-stretch:condensed;font-size:clamp(28px,7.5vw,38px);line-height:1.02;text-transform:uppercase;letter-spacing:.01em;color:var(--champagne)}
+  #dvoid-survey .sv-sub{margin:10px 0 0;font-size:13.5px;color:rgba(242,226,190,.72);letter-spacing:.02em}
+  #dvoid-survey .sv-rule{margin:26px 0 0;height:1px;border:0;background:linear-gradient(90deg,var(--gold-40),transparent)}
+  #dvoid-survey .sv-q{margin:30px 0 0}
+  #dvoid-survey .sv-qlabel{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;padding:0}
+  #dvoid-survey .sv-qtext{font-size:16px;font-weight:700;color:var(--champagne);line-height:1.35;margin:0}
+  #dvoid-survey fieldset.sv-q{margin:30px 0 0;padding:0;border:0;min-width:0}
+  #dvoid-survey .sv-qbub{margin-left:auto;flex:0 0 auto;min-width:44px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid var(--gold-28);border-radius:999px;background:rgba(237,198,119,.08);color:var(--gold);font-size:12px;font-weight:800;letter-spacing:.08em}
+  #dvoid-survey .sv-qsub{display:block;font-size:11px;font-weight:500;color:rgba(242,226,190,.62);letter-spacing:.05em;margin:0 0 14px}
+  #dvoid-survey .sv-slider{position:relative;padding:8px 0 0}
+  #dvoid-survey .sv-ticks{position:absolute;left:9px;right:9px;top:28px;height:6px;pointer-events:none}
+  #dvoid-survey .sv-ticks i{position:absolute;top:50%;width:2px;height:2px;border-radius:50%;background:rgba(242,226,190,.5);transform:translate(-50%,-50%)}
+  #dvoid-survey input.sv-range{-webkit-appearance:none;appearance:none;width:100%;height:var(--tap-min);margin:0;background:transparent;cursor:pointer;touch-action:manipulation;--pct:50%}
+  #dvoid-survey input.sv-range::-webkit-slider-runnable-track{height:6px;border-radius:999px;background:linear-gradient(90deg,var(--gold) 0 var(--pct),rgba(242,226,190,.18) var(--pct) 100%);box-shadow:inset 0 0 0 1px rgba(237,198,119,.28)}
+  #dvoid-survey input.sv-range::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;margin-top:-11px;border-radius:50%;background:radial-gradient(circle at 50% 38%,#FCF8F0 0 40%,#EDC677 100%);box-shadow:0 0 0 3px rgba(237,198,119,.28),0 4px 10px rgba(0,0,0,.5);border:1px solid rgba(0,0,0,.4)}
+  #dvoid-survey input.sv-range::-moz-range-track{height:6px;border-radius:999px;background:rgba(242,226,190,.18);box-shadow:inset 0 0 0 1px rgba(237,198,119,.28)}
+  #dvoid-survey input.sv-range::-moz-range-progress{height:6px;border-radius:999px;background:var(--gold)}
+  #dvoid-survey input.sv-range::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 50% 38%,#FCF8F0 0 40%,#EDC677 100%);box-shadow:0 0 0 3px rgba(237,198,119,.28),0 4px 10px rgba(0,0,0,.5);border:1px solid rgba(0,0,0,.4)}
+  #dvoid-survey input.sv-range:focus-visible{outline:2px solid var(--gold);outline-offset:6px;border-radius:8px}
+  #dvoid-survey .sv-slabels{display:flex;justify-content:space-between;gap:12px;margin-top:10px}
+  #dvoid-survey .sv-slabels .sl{padding:10px 0;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,226,190,.62);-webkit-user-select:none;user-select:none}
+  #dvoid-survey .sv-slabels .sl.r{text-align:right;margin-left:auto}
+  #dvoid-survey .sv-yn{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+  #dvoid-survey .sv-yn button{appearance:none;border:1px solid var(--gold-28);background:rgba(26,5,6,.5);color:var(--champagne);font:inherit;font-size:15px;font-weight:700;min-height:50px;border-radius:12px;cursor:pointer;transition:transform .2s cubic-bezier(.2,.8,.2,1),border-color .2s ease,background .2s ease,color .2s ease}
+  #dvoid-survey .sv-yn button:active{transform:scale(.94)}
+  #dvoid-survey .sv-yn button[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#2a0a05}
+  #dvoid-survey .sv-reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows 380ms cubic-bezier(.175,.885,.32,1.2);margin-top:0}
+  #dvoid-survey .sv-reveal.is-open{grid-template-rows:1fr;margin-top:16px}
+  #dvoid-survey .sv-reveal-inner{overflow:hidden}
+  #dvoid-survey .sv-field{width:100%;border:1px solid var(--gold-28);background:rgba(0,0,0,.32);border-radius:12px;color:var(--ivory);font:inherit;font-size:15px;line-height:1.5;padding:13px 14px;min-height:46px;resize:vertical}
+  #dvoid-survey .sv-field:focus{outline:2px solid var(--gold);outline-offset:2px;border-color:transparent}
+  #dvoid-survey .sv-field::placeholder{color:rgba(252,248,240,.4)}
+  #dvoid-survey .sv-flabel{display:block;font-size:9px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,226,190,.72);margin-bottom:8px}
+  #dvoid-survey .sv-flabel span{display:block;font-size:10px;font-weight:500;letter-spacing:.05em;text-transform:none;color:rgba(242,226,190,.55);margin-top:3px}
+  #dvoid-survey .sv-submit{margin-top:36px;display:flex;gap:12px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+  #dvoid-survey .sv-skip{appearance:none;border:1px solid var(--gold-28);background:transparent;cursor:pointer;color:rgba(242,226,190,.85);font:inherit;font-size:13px;font-weight:700;min-width:44px;min-height:44px;padding:0 14px;border-radius:12px;transition:transform .2s cubic-bezier(.2,.8,.2,1),color .2s ease}
+  #dvoid-survey .sv-skip:hover{color:var(--champagne)}
+  #dvoid-survey .sv-skip:active{transform:scale(.94)}
+  #dvoid-survey .sv-send{appearance:none;border:0;cursor:pointer;font:inherit;background:var(--red);color:#fff;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;min-height:52px;padding:0 26px;border-radius:12px;box-shadow:0 16px 36px -14px rgba(220,58,22,.6),inset 0 1px 0 rgba(242,226,190,.3);transition:transform .2s cubic-bezier(.2,.8,.2,1),opacity .2s,filter .2s}
+  #dvoid-survey .sv-send:active{transform:scale(.94)}
+  #dvoid-survey .sv-send:hover:not(:disabled){filter:brightness(1.08)}
+  #dvoid-survey .sv-send:disabled{opacity:.35;cursor:not-allowed;box-shadow:none}
+  #dvoid-survey .sv-send:focus-visible,#dvoid-survey .sv-skip:focus-visible,#dvoid-survey .sv-yn button:focus-visible,#dvoid-survey .sv-field:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  @media (prefers-reduced-motion: reduce){
+    #dvoid-survey,#dvoid-survey.is-open,#dvoid-survey *{transition-duration:.01ms!important}
+  }
+</style>
+
+<div id="dvoid-survey" aria-label="Encuesta post-reserva" role="main" aria-hidden="true">
+  <div class="sv-top">
+    <div class="sv-top-in">
+      <span class="sv-tag">DVOID · Encuesta</span>
+      <span class="sv-fill">Post-reserva · anónimo</span>
+    </div>
+  </div>
+  <div class="sv-scroll">
+    <div class="sv-cols">
+      <p class="sv-kicker">Tu reserva está confirmada</p>
+      <h1 class="sv-title" id="sv-title">2 segundos para mejorar</h1>
+      <p class="sv-sub">Es anónimo y no afecta tu pase.</p>
+      <div class="sv-rule"></div>
+
+      <div class="sv-q">
+        <div class="sv-qlabel"><p class="sv-qtext" id="sv-t1">¿Qué tan fácil fue realizar tu reserva hoy?</p><span class="sv-qbub" id="sv-b1" aria-hidden="true">–</span></div>
+        <p class="sv-qsub">Desliza para puntuar.</p>
+        <div class="sv-slider">
+          <div class="sv-ticks" aria-hidden="true"><i style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i style="left:100%"></i></div>
+          <input type="range" class="sv-range" id="sv-r1" min="1" max="5" step="1" value="3" aria-label="Qué tan fácil fue tu reserva hoy, del 1 al 5" aria-valuetext="3 de 5">
+        </div>
+        <div class="sv-slabels"><span class="sl">Muy difícil</span><span class="sl r">Muy fácil</span></div>
+      </div>
+
+      <div class="sv-q">
+        <div class="sv-qlabel"><p class="sv-qtext" id="sv-t2">¿Qué tan claro te pareció el proceso?</p><span class="sv-qbub" id="sv-b2" aria-hidden="true">–</span></div>
+        <p class="sv-qsub">Desliza para puntuar.</p>
+        <div class="sv-slider">
+          <div class="sv-ticks" aria-hidden="true"><i style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i style="left:100%"></i></div>
+          <input type="range" class="sv-range" id="sv-r2" min="1" max="5" step="1" value="3" aria-label="Qué tan claro te pareció el proceso, del 1 al 5" aria-valuetext="3 de 5">
+        </div>
+        <div class="sv-slabels"><span class="sl">Muy confuso</span><span class="sl r">Muy claro</span></div>
+      </div>
+
+      <fieldset class="sv-q">
+        <div class="sv-qlabel"><p class="sv-qtext" id="sv-t3">¿Hubo algo confuso o problemático?</p></div>
+        <div class="sv-yn" id="sv-q3" role="radiogroup" aria-labelledby="sv-t3">
+          <button type="button" data-val="true" aria-pressed="false">Sí</button>
+          <button type="button" data-val="false" aria-pressed="false">No</button>
+        </div>
+        <div class="sv-reveal" id="sv-q3reveal">
+          <div class="sv-reveal-inner">
+            <label class="sv-flabel" for="sv-q3detail">Cuéntanos qué pasó <span>Opcional</span></label>
+            <textarea class="sv-field" id="sv-q3detail" rows="3" placeholder="Describe brevemente qué te resultó confuso o problemático…"></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="sv-q">
+        <label class="sv-flabel" for="sv-q4">¿Alguna sugerencia para mejorar? <span>Opcional</span></label>
+        <textarea class="sv-field" id="sv-q4" rows="3" placeholder="Cuéntanos tu idea…"></textarea>
+      </div>
+
+      <div class="sv-submit">
+        <button class="sv-skip" type="button" id="sv-skip">Omitir</button>
+        <button class="sv-send" type="button" id="sv-send" disabled>Enviar respuesta</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var panel = $('dvoid-survey');
+  var sendBtn = $('sv-send'), skipBtn = $('sv-skip');
+  var r1 = $('sv-r1'), r2 = $('sv-r2'), b1 = $('sv-b1'), b2 = $('sv-b2');
+  var q3detail = $('sv-q3detail'), q4 = $('sv-q4');
+
+  var state = { facilidad: null, claridad: null, confuso: null, detalle: '', sugerencia: '' };
+
+  function open() {
+    panel.classList.add('is-open');
+    panel.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    var first = panel.querySelector('input[type="range"], button, textarea');
+    if (first && first.focus) setTimeout(function () { try { first.focus(); } catch (e) {} }, 120);
+  }
+  function resetSurvey() {
+    state = { facilidad: null, claridad: null, confuso: null, detalle: '', sugerencia: '' };
+    r1.value = 3; r2.value = 3; paintRange(r1); paintRange(r2); b1.textContent = '–'; b2.textContent = '–';
+    document.querySelectorAll('#sv-q3 button').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+    $('sv-q3reveal').classList.remove('is-open');
+    q3detail.value = ''; q4.value = '';
+    syncSend();
+  }
+  function finish() {
+    panel.classList.remove('is-open');
+    panel.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  function pct(v) { return (((v - 1) / 4) * 100) + '%'; }
+  function paintRange(input) {
+    input.style.setProperty('--pct', pct(input.value));
+    input.setAttribute('aria-valuetext', input.value + ' de 5');
+  }
+  function bindRange(input, bubble, key) {
+    paintRange(input);
+    input.addEventListener('input', function () {
+      paintRange(input);
+      state[key] = parseInt(input.value, 10);
+      if (bubble) bubble.textContent = input.value;
+      syncSend();
+    });
+  }
+  function setYN(val) {
+    document.querySelectorAll('#sv-q3 button').forEach(function (b) {
+      b.setAttribute('aria-pressed', (b.getAttribute('data-val') === val) ? 'true' : 'false');
+    });
+    state.confuso = val === 'true';
+    $('sv-q3reveal').classList.toggle('is-open', state.confuso);
+    syncSend();
+  }
+  function syncSend() {
+    sendBtn.disabled = (state.facilidad === null || state.claridad === null || state.confuso === null);
+  }
+  function submitSurvey() {
+    var payload = {
+      facilidad: state.facilidad,
+      claridad: state.claridad,
+      confuso: state.confuso,
+      detalle: state.confuso === true ? q3detail.value.trim() : '',
+      sugerencia: q4.value.trim()
+    };
+    console.log('Survey Payload:', payload);
+    finish();
+  }
+
+  bindRange(r1, b1, 'facilidad');
+  bindRange(r2, b2, 'claridad');
+  $('sv-q3').addEventListener('click', function (e) {
+    if (e.target.tagName === 'BUTTON') setYN(e.target.getAttribute('data-val'));
+  });
+  q3detail.addEventListener('input', function (e) { state.detalle = e.target.value; });
+  q4.addEventListener('input', function (e) { state.sugerencia = e.target.value; });
+  sendBtn.addEventListener('click', submitSurvey);
+  skipBtn.addEventListener('click', finish);
+
+  /* ══ DISPARO EN PRODUCCIÓN ══════════════════════════════════════════
+     La encuesta se muestra como página completa al recibir el evento
+     "reserva exitosa" del iframe de reservas. Coordinar este nombre con
+     el backend de Azure: el iframe debe hacer
+       parent.postMessage({ tipo: 'dvoid:reserva-exitosa' }, '*')
+     justo después de confirmar la reserva. */
+  window.addEventListener('message', function (e) {
+    if (!e.data || e.data.tipo !== 'dvoid:reserva-exitosa') return;
+    resetSurvey();
+    open();
+  });
+
+  /* Disparo demo (para probar sin el backend): ?preview=survey */
+  if (/[?&]preview=survey/.test(location.search)) {
+    setTimeout(function () { resetSurvey(); open(); }, 1200);
+  }
+})();
+</script>
+<!-- DVOID:SURVEY:END -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+</body>
+</html>

@@ -57,7 +57,7 @@ p,h1,h2,h3{margin:0}
 .table-zone::before{content:"";position:absolute;inset:8px;border:1px dashed rgba(237,198,119,.1);border-radius:16px}
 
 /* Naipe premium — proporción real 2.5×3.5 (5/7) */
-.card-stage{perspective:1300px}
+.card-stage{position:relative;perspective:1300px}
 .card-inner{position:relative;width:100%;aspect-ratio:5/7;transform-style:preserve-3d;transition:transform .7s var(--ease);will-change:transform}
 body.show-form .card-inner{transform:rotateY(180deg)}
 body.show-confirm .card-inner{transform:rotateY(360deg)}
@@ -89,7 +89,11 @@ body.show-confirm .front-confirm{display:flex}
 .cf-eyebrow{font-size:9px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
 .cf-title{font-family:var(--font-body);font-stretch:condensed;font-weight:900;line-height:.9;text-transform:uppercase;letter-spacing:.005em;font-size:clamp(34px,10vw,44px);color:var(--champagne);margin-top:14px;text-shadow:0 2px 12px rgba(0,0,0,.6)}
 .cf-title em{display:block;font-style:normal;font-size:.5em;letter-spacing:.16em;color:var(--gold);margin-top:10px;line-height:1.1}
+.cf-title .cf-when{display:block;font-size:.6em;letter-spacing:.3em;color:var(--champagne);margin-top:6px;font-weight:900;text-shadow:0 2px 12px rgba(0,0,0,.55)}
 .cf-pip{margin-top:22px;font-size:118px;line-height:1;color:var(--gold);text-shadow:0 3px 0 rgba(0,0,0,.5),0 0 46px rgba(237,198,119,.28);-webkit-user-select:none;user-select:none}
+.cf-cta{margin-top:20px;display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid var(--gold-40);border-radius:999px;background:rgba(237,198,119,.09);color:var(--gold);font-size:8.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;pointer-events:none}
+.cf-cta svg{width:13px;height:13px;flex:none}
+.cf-cta:hover{color:var(--gold)}
 .cf-foot{margin-top:auto;font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,226,190,.72);line-height:1.9}
 .cf-foot b{color:var(--gold);font-weight:800}
 
@@ -136,6 +140,7 @@ body.show-confirm .front-confirm{display:flex}
 /* Fichas de blackjack — 5 sueltas sobre el mat */
 .chips-row{position:relative;z-index:1;display:flex;justify-content:center;gap:10px;margin-top:34px;padding-bottom:4px}
 .chips-row::before{content:"";position:absolute;left:50%;bottom:-16px;width:230px;height:30px;transform:translateX(-50%);background:radial-gradient(50% 50% at 50% 50%,rgba(220,58,22,.4),transparent 72%);filter:blur(12px);pointer-events:none}
+.chips-row::after{content:"";position:absolute;left:50%;bottom:-16px;width:230px;height:30px;transform:translateX(-50%);background:radial-gradient(50% 50% at 50% 50%,rgba(237,198,119,.5),transparent 72%);filter:blur(12px);pointer-events:none;opacity:.5}
 .chip-btn{position:relative;display:flex;flex-direction:column;align-items:center;gap:9px;padding:0;min-height:var(--tap-min);--cs:52px;border-radius:14px;touch-action:manipulation;will-change:transform;transition:transform .42s var(--spring)}
 .chip-btn:active{transform:scale(.94);transition-duration:80ms;transition-timing-function:var(--ease)}
 .chip-btn:focus-visible{outline:2px solid var(--red);outline-offset:3px}
@@ -155,18 +160,28 @@ body.show-confirm .front-confirm{display:flex}
 .chip-t.cream{--in:#FFFDF6;--chip:#D8C9A8;--chip-dk:#8A6A35;--spot:#9E1B19}
 .chip-t.free{position:relative;left:auto;top:auto;transform:none}
 .chip-label{min-height:14px;font-size:8px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:rgba(242,226,190,.82)}
-.chips-hint{margin-top:16px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(242,226,190,.66);text-align:center}
+.chips-hint{margin-top:16px;display:inline-flex;align-items:center;justify-content:center;gap:7px;font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--champagne);text-align:center}
+.chips-hint svg{width:14px;height:14px;flex:none;color:var(--gold)}
 
 /* Entrada */
 @media (prefers-reduced-motion: no-preference){
   @keyframes dealIn{0%{opacity:0;transform:translateY(-46px) rotate(-7deg) scale(.96)}60%{opacity:1;transform:translateY(7px) rotate(1.4deg)}100%{opacity:1;transform:none}}
   @keyframes pop{0%{transform:scale(0)}78%{transform:scale(1.08)}100%{transform:scale(1)}}
-  .card-stage{animation:dealIn .9s var(--spring) .25s backwards}
+  @keyframes stageBreathe{0%,100%{transform:none}50%{transform:translateY(-4px)}}
+  @keyframes cardHalo{0%,100%{opacity:.45}50%{opacity:.85}}
+  @keyframes chipsGlow{0%,100%{opacity:.5}50%{opacity:1}}
+  .card-stage{animation:dealIn .9s var(--spring) .25s backwards,stageBreathe 4.4s ease-in-out 1.5s infinite}
+  .card-stage::before{content:"";position:absolute;inset:-26px;border-radius:34px;background:radial-gradient(50% 62% at 50% 45%,rgba(237,198,119,.3),transparent 70%);pointer-events:none;animation:cardHalo 4.4s ease-in-out 1.5s infinite}
   .chip-btn{animation:pop .5s var(--spring) .8s backwards}
   .chip-btn:nth-child(2){animation-delay:.86s}
   .chip-btn:nth-child(3){animation-delay:.92s}
   .chip-btn:nth-child(4){animation-delay:.98s}
   .chip-btn:nth-child(5){animation-delay:1.04s}
+  .chips-row::after{animation:chipsGlow 2.6s ease-in-out 1.7s infinite}
+  body.touched .card-stage{animation:dealIn .9s var(--spring) .25s backwards}
+  body.touched .card-stage::before{animation:none;opacity:.45}
+  body.touched .chips-row::after{animation:none;opacity:.5}
+  @media (hover:hover){.card-stage,.chip-btn{cursor:pointer}.chip-btn:hover{transform:translateY(-5px)}.chip-btn:hover:active{transform:translateY(-3px) scale(.94)}.chip-btn.selected:hover{transform:translateY(-14px) scale(1.05)}.chip-btn:hover .chip-label{color:var(--gold)}}
 }
 
 /* Fan de promos — despliegue sobre blur */
@@ -201,6 +216,11 @@ body.show-confirm .front-confirm{display:flex}
   .badge{max-width:46%}
   .cf-corner{font-size:48px}
   .cf-pip{font-size:96px}
+}
+
+@media (min-width:900px){
+  .wrap,.topbar-inner{max-width:720px}
+  .scene-center{width:min(390px,calc(100vw - 40px))}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -246,8 +266,9 @@ body.show-confirm .front-confirm{display:flex}
 
             <div class="front-layer front-hero" id="frontHero">
               <p class="cf-eyebrow">DVOID Club</p>
-              <h2 class="cf-title">CASINO NIGHT<em>Jueves 17 Sep &middot; 23h00</em></h2>
+              <h2 class="cf-title">CASINO NIGHT<em>Jueves 17 Sep<span class="cf-when">23h00</span></em></h2>
               <div class="cf-pip" aria-hidden="true">♠</div>
+              <p class="cf-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11.5V7.25a2.25 2.25 0 0 1 4.5 0v3.75M20 13l-.95-6.15A2 2 0 0 0 17.07 5H9.5a3 3 0 0 0-2.86 2.13L4 16"/><path d="M5 21h11a2 2 0 0 0 1.93-1.5L19 14"/></svg>Toca la carta para reservar</p>
               <p class="cf-foot"><b>Mujeres no pagan cover</b><br>Mayores de 21 a&#241;os</p>
             </div>
 
@@ -326,7 +347,7 @@ body.show-confirm .front-confirm{display:flex}
       </button>
     </div>
 
-    <p class="chips-hint" role="status" aria-live="polite">Toca las fichas para ver las promos &middot; Toca la carta para reservar</p>
+    <p class="chips-hint" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11.5V7.25a2.25 2.25 0 0 1 4.5 0v3.75M20 13l-.95-6.15A2 2 0 0 0 17.07 5H9.5a3 3 0 0 0-2.86 2.13L4 16"/><path d="M5 21h11a2 2 0 0 0 1.93-1.5L19 14"/></svg>Toca una ficha para ver la promo</p>
   </section>
 </main>
 
@@ -371,6 +392,9 @@ body.show-confirm .front-confirm{display:flex}
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var body = document.body;
+  var markTouched = function () { body.classList.add('touched'); };
+  body.addEventListener('pointerdown', markTouched, { passive: true });
+  body.addEventListener('keydown', markTouched, { passive: true });
   var fan = document.getElementById('fan');
   var fanPanel = document.getElementById('fanPanel');
   var fanBg = document.getElementById('fanBg');
@@ -548,6 +572,9 @@ body.show-confirm .front-confirm{display:flex}
     drawFakeQR(qrCanvas, seed);
     body.classList.remove('show-form');
     body.classList.add('show-confirm');
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ tipo: 'dvoid:reserva-exitosa' }, '*');
+    }
     setTimeout(function () { try { document.getElementById('frontConfirm').focus(); } catch (e) {} }, reduce ? 0 : 780);
   }
 
