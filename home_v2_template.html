@@ -144,11 +144,7 @@ h1,h2,h3,.display,h4{font-family:var(--font-display);font-weight:800;text-transf
 .nav-light .topnav{background:color-mix(in srgb,var(--bg-light) 85%,transparent);border-bottom-color:color-mix(in srgb,var(--fg-light) 12%,transparent)}
 .nav-light .topnav nav a{color:var(--muted-light)}
 .nav-light .topnav nav a:hover{color:var(--fg-light)}
-@media(max-width:720px){.topnav nav{display:none}}
-.topnav .nav-cta{font-family:var(--font-body);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:10px 16px;border:1px solid var(--accent);border-radius:0;color:var(--accent-bright);transition:all .2s var(--tach);touch-action:manipulation;min-height:44px}
-.topnav .nav-cta:hover{background:var(--accent);color:var(--white)}
-.topnav .nav-cta:active{transform:scale(.97)}
-.topnav .nav-cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:720px){.topnav-inner{flex-wrap:wrap}.topnav nav{display:flex;flex:1 0 100%;justify-content:space-between;gap:0;order:2;padding-top:10px;margin-top:10px;border-top:1px solid var(--white-12)}.topnav nav a{font-size:10px;letter-spacing:.1em}}
 .btn{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-body);font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:18px 30px;border:1px solid var(--border);position:relative;transition:background .25s ease,color .25s ease,border-color .25s ease,transform var(--tach);touch-action:manipulation;min-height:56px;will-change:transform}
 .btn:hover{transform:translateY(-2px)}
 .btn:active{transform:scale(.97)}
@@ -157,27 +153,42 @@ h1,h2,h3,.display,h4{font-family:var(--font-display);font-weight:800;text-transf
 .btn-red:hover{background:var(--white);border-color:var(--white);color:var(--black)}
 .btn-ghost{background:transparent;color:var(--fg);border-color:var(--white-40);box-shadow:inset 0 1px 0 rgba(242,226,190,.08)}
 .btn-ghost:hover{border-color:var(--accent);color:var(--fg)}
-.vault{background:var(--bg);display:grid;place-items:center;min-height:100vh;text-align:center;padding:120px var(--gutter) 88px;overflow:hidden;position:relative}
+.vault{background:var(--bg);display:grid;place-items:center;min-height:100vh;text-align:center;padding:120px var(--gutter) 92px;overflow:hidden;position:relative;z-index:0}
 .vault-bg{position:absolute;inset:0;background:url("ac7c9d11-3933-4fb8-8596-9386e73dbd90") center/cover no-repeat;opacity:.32}
-.vault-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.12) 40%,rgba(0,0,0,.14) 58%,rgba(0,0,0,.82) 100%);pointer-events:none}
-.vault-inner{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center}
-.hero-logo{margin-top:var(--gap-md);filter:drop-shadow(0 18px 60px var(--accent-50)) drop-shadow(0 2px 16px var(--accent-60))}
+.hero-bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
+.vault-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.80) 0%,rgba(0,0,0,.36) 34%,rgba(0,0,0,.48) 58%,rgba(0,0,0,.88) 100%);pointer-events:none}
+.vault-inner{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;width:100%;max-width:920px}
+.hero-kicker{font-family:var(--font-body);font-size:15px;line-height:1.6;color:var(--fg);font-weight:400;letter-spacing:.22em;text-transform:uppercase;margin:var(--gap-sm) auto 0}
+.hero-note{font-family:var(--font-body);font-size:15px;line-height:1.6;color:var(--fg);font-weight:400;margin:var(--gap-sm) auto 0}
+.vault-inner h1{font-family:var(--font-body);font-size:15px;line-height:1.6;color:var(--fg);font-weight:400;margin-top:var(--gap-sm);text-transform:none}
+.vault-cta{margin-top:var(--gap-2xl);display:flex;flex-direction:column;gap:var(--gap-md);align-items:center}
+.coords{font-family:var(--font-body);font-size:10px;letter-spacing:.2em;color:var(--fg);text-transform:uppercase}
+.coords-line{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.loc-link{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg);border-bottom:1px solid var(--white-40);display:inline-flex;align-items:center;min-height:44px;padding:0 2px;transition:opacity .2s,border-color .2s;touch-action:manipulation}
+.loc-link:hover{opacity:.7;border-color:var(--accent)}
+.loc-link:active{opacity:.5}
+.loc-link:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.void-acoustics{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg);margin-left:8px;animation:pulse-beat 1.8s ease-in-out infinite}
+.void-brand{display:flex;justify-content:center;margin-top:var(--gap-sm);opacity:0;transform:translateY(12px);animation:void-reveal 1.2s cubic-bezier(.2,.8,.2,1) .8s forwards}
+@keyframes void-reveal{to{opacity:1;transform:translateY(0)}}
+@keyframes pulse-beat{
+  0%{transform:scale(1);opacity:1}
+  15%{transform:scale(1.12);opacity:1}
+  30%{transform:scale(1);opacity:.85}
+  45%{transform:scale(1.08);opacity:1}
+  60%{transform:scale(1);opacity:.85}
+  100%{transform:scale(1);opacity:.85}
+}
+@media(prefers-reduced-motion:reduce){.void-brand{opacity:1;transform:none}.void-acoustics{animation:none}}
+.hero-logo{margin-top:var(--gap-lg);display:flex;align-items:center;justify-content:center;gap:12px}
 .hero-logo-img{width:min(460px,86vw);height:auto}
-.hook{font-family:var(--font-body);font-weight:400;font-size:12px;letter-spacing:.36em;text-transform:uppercase;color:var(--muted);margin:var(--gap-lg) auto 0;max-width:34ch}
-.hook em{font-style:normal;color:var(--fg)}
-.vault-cta{margin-top:var(--gap-xl);display:flex;flex-direction:column;gap:var(--gap-md);align-items:center}
-.coords{font-family:var(--font-body);font-size:10px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
-.statusbar{display:flex;gap:var(--gap-md);flex-wrap:wrap;justify-content:center;margin-top:var(--gap-lg)}
-.status{display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
-.status .dot{width:6px;height:6px;background:var(--accent);border-radius:50%;box-shadow:0 0 8px var(--accent);animation:blink 1.6s ease-in-out infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .curtain{position:relative;z-index:6;height:clamp(12px,4vw,34px);background:linear-gradient(180deg,rgba(61,15,17,.28) 0%,var(--dp) 20%,var(--accent) 54%,#F2E2BE 86%,rgba(252,248,240,.05) 100%);opacity:0;transform:scaleY(.28);transform-origin:center;transition:transform .85s cubic-bezier(.34,1.28,.4,1),opacity .55s ease;pointer-events:none}
 .curtain.in{opacity:1;transform:scaleY(1)}
 .manifesto{background:var(--bg-light);color:var(--fg-light);padding:clamp(92px,14vw,170px) 0;overflow:hidden}
 .light{background:var(--bg-light);color:var(--fg-light)}
 .light .lead{color:var(--muted-light)}
 .light .eyebrow{color:var(--accent)}
-.manifesto-head{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap-xl);align-items:end}
+.manifesto-head{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap-xl);align-items:start}
 .manifesto-head h2{max-width:18ch}
 .manifesto-head .lead{margin:0;max-width:52ch;font-size:16px;line-height:1.8}
 .manifesto-node{font-family:var(--font-body);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-light);margin-top:var(--gap-md)}
@@ -195,6 +206,9 @@ h1,h2,h3,.display,h4{font-family:var(--font-display);font-weight:800;text-transf
 .silhouette-head .fnum b{color:var(--accent);font-weight:700}
 .silhouette-scene{position:relative;height:clamp(320px,60vh,620px);border:1px solid var(--border-light);overflow:hidden;box-shadow:0 40px 80px -40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.5)}
 .silhouette-scene img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04) brightness(1.03)}
+.silhouette-scene video.scene-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#000;filter:grayscale(1) contrast(1.04) brightness(1.03)}
+.club-video-desktop{display:block}
+.club-video-mobile{display:none}
 .silhouette-scene::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,transparent 55%,color-mix(in oklch,var(--fg-light) 42%,transparent));pointer-events:none}
 .silhouette-scene figcaption{position:absolute;right:var(--gutter);bottom:var(--gap-md);z-index:2;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:color-mix(in oklch,var(--bg-light) 75%,transparent)}
 .cartelera{background:var(--bg);color:var(--fg);padding:clamp(92px,13vw,150px) 0;overflow:hidden}
@@ -275,8 +289,8 @@ h1,h2,h3,.display,h4{font-family:var(--font-display);font-weight:800;text-transf
 .footer ul a:hover{color:var(--fg)}
 .footer .credits{grid-column:1/-1;border-top:1px solid var(--border);margin-top:var(--gap-lg);padding-top:var(--gap-lg);display:flex;justify-content:space-between;gap:var(--gap-md);flex-wrap:wrap;font-size:10px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase}
 a[href]{touch-action:manipulation}
-@media(max-width:720px){body{font-size:13px}.hero{padding:100px 16px 60px}.topnav .nav-cta{padding:12px 16px}}
-@media(prefers-reduced-motion:reduce){.status .dot,.map-grid .reticule{animation:none}.tilt{transition:none}html{scroll-behavior:auto}.vault-bg{animation:none}.curtain{transition:none;opacity:1;transform:none}}
+@media(max-width:720px){body{font-size:13px}.hero{padding:100px 16px 60px}}
+@media(prefers-reduced-motion:reduce){.map-grid .reticule{animation:none}.tilt{transition:none}html{scroll-behavior:auto}.vault-bg{animation:none}.curtain{transition:none;opacity:1;transform:none}.hero-bg-video{display:none}}
 @media(prefers-reduced-transparency:reduce){.topnav{background:rgba(8,8,8,.96);-webkit-backdrop-filter:none;backdrop-filter:none}.btn-red{background:var(--accent)}.btn-ghost{background:var(--surface)}.poster,.map-block,.comment,.comments-live{background:var(--bg)}}
 /* ——— Glow in the Dark · bottom sheet (#glow) ——— */
 .gsheet{position:fixed;inset:0;z-index:100;display:grid;align-items:center;justify-items:center;visibility:hidden;pointer-events:none}
@@ -383,6 +397,55 @@ body.gs-lock{overflow:hidden}
 .gpanel .gs-dress{margin:12px 0 6px}
 @media(prefers-reduced-motion:reduce){.gspot-spk,.gseg-thumb,.gspot::after{animation:none!important;transition:none!important}.gspot::after{display:none}}
 @media(prefers-reduced-transparency:reduce){.gseg{background:#000;-webkit-backdrop-filter:none;backdrop-filter:none}}
+/* --- El Club: logo Void Acoustics + typewriter sobre Fig.01 --- */
+.void-logo{display:block;width:min(240px,58vw);height:auto}
+.scene-type{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;padding:24px;pointer-events:none}
+.scene-type-box{display:flex;flex-direction:column;align-items:center;gap:10px;max-width:100%}
+.type-line{display:block;width:fit-content;max-width:0;overflow:hidden;white-space:nowrap;color:var(--fg);font-family:var(--font-body);font-weight:700;font-size:clamp(16px,3.2vw,30px);letter-spacing:.12em;text-transform:uppercase;line-height:1.6;text-shadow:0 2px 18px rgba(0,0,0,.65);border-right:2px solid var(--fg);animation:typer 8s steps(52,end) infinite}
+@keyframes typer{
+  0%{max-width:0}
+  18%{max-width:100%}
+  62%{max-width:100%}
+  80%{max-width:0}
+  100%{max-width:0}
+}
+@keyframes caret-blink{0%,100%{border-color:var(--fg)}50%{border-color:transparent}}
+@media(max-width:720px){.scene-type{padding:16px}.void-logo{width:min(180px,56vw)}.type-line{font-size:clamp(8px,2.2vw,14px);letter-spacing:.06em}.club-video-desktop{display:none}.club-video-mobile{display:block}}
+@media(prefers-reduced-motion:reduce){.type-line{max-width:100%;animation:none;border-right-color:transparent}.silhouette-scene video.scene-media{display:none}}
+/* --- FASE 3: Cartelera spotlight + rail --- */
+.spot-card{position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(20px,4vw,44px);align-items:center;border-radius:24px;background:rgba(20,20,20,.6);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid var(--white-12);padding:clamp(20px,4vw,40px);overflow:hidden;transition:transform .3s ease;will-change:transform}
+.spot-art{position:relative;min-width:0}
+.spot-art .poster-link{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;border-radius:16px}
+.spot-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.age-badge{position:absolute;top:12px;left:12px;min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0 12px;border-radius:999px;background:rgba(0,0,0,.55);border:1px solid var(--white-40);color:var(--fg);font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:.1em;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.spot-info{min-width:0}
+.spot-info .btn{margin-top:4px}
+.promo-badges{list-style:none;margin:18px 0 22px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.promo-badges li{border:1px solid var(--white-12);border-radius:999px;padding:8px 14px;background:rgba(242,226,190,.06)}
+.promo-badges b{font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ch)}
+.promo-badges span{display:block;font-family:var(--font-body);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.rail{display:flex;gap:var(--gap-md);overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 4px 18px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.mini-card{flex:0 0 min(240px,74vw);scroll-snap-align:start;min-width:0;border:1px solid var(--border);border-radius:20px;background:var(--surface);padding:14px}
+.mini-in{display:flex;flex-direction:column;gap:10px;min-width:0}
+.mini-in .poster-link{position:relative;display:block;aspect-ratio:3/4;overflow:hidden;border-radius:12px}
+.mini-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.mini-card .cmeta{font-family:var(--font-body);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:2px 0 0}
+.mini-title{font-family:var(--font-display);font-weight:800;font-size:19px;line-height:1;text-transform:uppercase;letter-spacing:.02em;margin:0}
+.mini-card .btn{width:100%;justify-content:center;padding:14px 18px;margin-top:auto}
+@media(max-width:720px){.spot-card{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.spot-card{transition:none}}
+/* --- FASE 4: Ubicación + Reviews --- */
+.map-wrap{position:relative;aspect-ratio:16/9}
+.map-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.reviews-grid{display:grid;grid-template-columns:1fr;gap:var(--gap-md);margin-top:var(--gap-lg)}
+@media(min-width:920px){.reviews-grid{grid-template-columns:repeat(3,1fr)}}
+.review-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:12px}
+.review-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.review-head .cname{font-family:var(--font-body);font-weight:600;font-size:15px;color:var(--fg)}
+.stars{font-size:14px;line-height:1;letter-spacing:2px;color:var(--ch)}
+@media(max-width:920px){.reviews-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){}
 </style>
 </head>
 <body>
@@ -395,9 +458,9 @@ body.gs-lock{overflow:hidden}
       <a href="#club">El Club</a>
       <a href="#cartelera">Cartelera</a>
       <a href="#comentarios">Comentarios</a>
+      <a href="#reglas-casa">Dress Code</a>
       <a href="#ubicacion">Ubicación</a>
     </nav>
-    <a class="nav-cta" href="https://app-dvoid-prod-rdbpg.azurewebsites.net/reservar">Reservar</a>
   </div>
 </header>
 
@@ -405,35 +468,40 @@ body.gs-lock{overflow:hidden}
 
   <section id="vault" class="section vault">
     <div class="vault-bg"></div>
+    <video class="hero-bg-video" autoplay loop muted playsinline src="Resources/videos/hero-bg.mp4" aria-hidden="true"></video>
     <div class="vault-shade"></div>
     <div class="glow glow-logo" aria-hidden="true"></div>
     <div class="vault-inner">
-      <p class="eyebrow" style="text-align:center;">Acceso restringido · Solo invitación</p>
-      <div class="hero-logo"><img class="hero-logo-img" src="0ef0e234-c2d0-414f-a7a6-729598af8b15" alt="DVOID" width="700" height="262" fetchpriority="high" decoding="async"></div>
-      <p class="hook">Underground <em>sonidos</em> &amp; <em>experiencias</em> — acceso restringido</p>
-      <div class="vault-cta">
-        <a class="btn btn-red" href="https://app-dvoid-prod-rdbpg.azurewebsites.net/reservar" aria-label="Solicitar guestlist / pase — ir a reservas">Solicitar guestlist / pase</a>
-        <span class="coords">0.1675° S · 78.4760° O &nbsp;·&nbsp; SECTOR ACCESO</span>
-      </div>
-      <div class="statusbar">
-        <span class="status"><span class="dot"></span> Sector · La República</span>
-        <span class="status"><span class="dot"></span> Sonido · Void Acoustics</span>
-        <span class="status"><span class="dot"></span> Código · Casual chic</span>
+      <div class="hero-logo"><img class="hero-logo-img" src="0ef0e234-c2d0-414f-a7a6-729598af8b15" alt="DVOID" width="700" height="262" decoding="async"></div>
+      <p class="hero-kicker">Todo nace del silencio.</p>
+      <p class="hero-note">Antes del sonido, de la luz y del movimiento, existe un instante donde nada tiene forma...</p>
+      <h1>Ese instante se llama D-VOID.</h1>
+<div class="vault-cta">
+        <a class="btn btn-red" href="/casino.html" aria-label="Reservar — ir a reservas">Reservar</a>
+        <div class="coords-line">
+          <span class="coords num">0°12'11.4"S &nbsp;·&nbsp; 78°28'59.2"W</span>
+          <a class="loc-link" href="#ubicacion">Ubicación</a>
+        </div>
+        <div class="void-brand">
+          <span class="void-acoustics">Void Acoustics</span>
+        </div>
       </div>
     </div>
   </section>
 
   <div class="curtain" id="curtain" aria-hidden="true"></div>
 
-  <section id="club" class="section light manifesto">
+<section id="club" class="section light manifesto">
     <div class="container">
       <div class="manifesto-head">
         <div>
           <p class="eyebrow">El club · Manifiesto 002</p>
-          <h2>Cuatro paredes. Un sistema de sonido. La pista manda.</h2>
+          <img class="void-logo" src="/Resources/References/Pasted%20image.png" alt="Void Acoustics" width="500" height="118" decoding="async">
         </div>
         <div>
-          <p class="lead">Cuatro paredes de concreto donde la pista manda. El sonido corre por parlantes Void Acoustics y la noche va del house al perreo, del reguetón al pop sin soltar el ritmo. La puerta es estricta, cero poses: adentro la farra se arma sola.</p>
+          <p class="lead">D-VOID viene del inglés "The Void" — el vacío.</p>
+          <p>Pero aquí el vacío no es ausencia: es potencial.</p>
+          <p>Es el lugar donde todo puede suceder, donde la música, la luz y la emoción se mezclan para crear una experiencia que no se explica... se siente.</p>
           <p class="manifesto-node">Nodo 01 · La República <b>·</b> Acceso solo por invitación</p>
         </div>
       </div>
@@ -442,8 +510,15 @@ body.gs-lock{overflow:hidden}
           <span class="fnum"><b>Fig. 01</b> · Sistema de sonido — Void Acoustics</span>
           <span class="fnum">Archivo interno · D-VOID 2026</span>
         </div>
-        <figure class="silhouette-scene">
+<figure class="silhouette-scene">
           <img src="ac7c9d11-3933-4fb8-8596-9386e73dbd90" alt="Sistema de sonido Void Acoustics · DVOID" loading="lazy" decoding="async">
+          <video class="club-video-desktop scene-media" autoplay loop muted playsinline preload="metadata">
+            <source src="Resources/videos/the_club_horizontal.mp4" type="video/mp4">
+          </video>
+          <video class="club-video-mobile scene-media" autoplay loop muted playsinline preload="metadata">
+            <source src="Resources/videos/the_club_vertical.mp4" type="video/mp4">
+          </video>
+          <div class="scene-type"><div class="scene-type-box"><span class="type-line">cuatro paredes. un sistema de sonido. la pista manda</span></div></div>
           <figcaption>Void Acoustics · cabina principal</figcaption>
         </figure>
       </div>
@@ -460,43 +535,59 @@ body.gs-lock{overflow:hidden}
           <div class="val red num">1<span style="font-size:.5em;"> lugar</span></div>
           <div class="lbl">El mejor club</div>
         </div>
-      </div>
+</div>
     </div>
   </section>
 
   <section id="cartelera" class="section cartelera">
     <div class="container">
-      <section class="gspot" id="glow-spot" aria-labelledby="gspotTitle">
+      <p class="eyebrow" style="margin-bottom:var(--gap-sm);">Cartelera semanal · Registro en vivo</p>
+      <h2 style="margin-bottom:var(--gap-lg);">3 Noches - 3 frecuencias - 1 lugar</h2>
+      <section class="spot-card" id="glow-spot" aria-labelledby="gspotTitle">
         <span class="gspot-spk tl" aria-hidden="true">✦</span><span class="gspot-spk tr" aria-hidden="true">✦</span><span class="gspot-spk bl" aria-hidden="true">✦</span><span class="gspot-spk br" aria-hidden="true">✦</span>
-        <div class="gspot-in">
+        <div class="spot-art">
+          <a class="poster-link" href="/casino.html" aria-label="Casino Night, jueves 17 de septiembre — ver detalle">
+            <img class="spot-img" src="/Resources/References/DVOID%20POST%2017SEP.png" alt="Casino Night — jueves 17 de septiembre · Mujeres sin cover y 2x1 en cócteles" width="1080" height="1350" decoding="async" loading="lazy">
+          </a>
+          <span class="age-badge">+21</span>
+        </div>
+        <div class="spot-info">
           <p class="gspot-eyebrow">Este jueves 17 · Noche 02 · Spotlight</p>
           <h3 class="gspot-title" id="gspotTitle">Casino Night</h3>
           <p class="gspot-sub">Una noche de <b>naipe</b> y apuestas sobre la pista. <b>Mujeres no pagan cover</b> hasta las 23h00 y <b>2x1 en cócteles</b> para todos.</p>
-          <ul class="gspot-stats">
-            <li><b>SIN COVER</b><span>Mujeres hasta 23h00 en lista</span></li>
-            <li><b>2X1</b><span>Paloma &amp; Moscow Mule</span></li>
-            <li><b>$300</b><span>High Roller: $200 + $100 cash</span></li>
+          <ul class="promo-badges">
+            <li><b>Sin cover</b><span>Mujeres hasta 23h00</span></li>
+            <li><b>2x1</b><span>Paloma &amp; Moscow Mule</span></li>
+            <li><b>$300</b><span>High Roller</span></li>
           </ul>
-          <a class="btn btn-red" href="/casino">Jugar la carta · Reservar jueves 17</a>
+          <a class="btn btn-red" href="/casino.html" aria-label="Reservar Casino Night — ir a casino">Reservar</a>
         </div>
       </section>
-      <p class="eyebrow" style="margin-bottom:var(--gap-sm);">Cartelera semanal · Registro en vivo</p>
-      <h2 style="margin-bottom:var(--gap-lg);">Tres noches. Tres frecuencias.</h2>
-      <div class="grid-3">
-        <article class="tilt-wrap"><div class="tilt poster poster-bare">
-          <a class="poster-link" href="/casino" aria-label="Casino Night, jueves 17 de septiembre — reservar">
-            <img class="poster-art" src="/Resources/References/DVOID%20POST%2017SEP.png" alt="Casino Night — jueves 17 de septiembre · Mujeres sin cover y 2x1 en cócteles" width="1080" height="1350" decoding="async" loading="lazy">
+      <h3 class="subhead" style="margin-top:var(--gap-xl);"><span class="subhead-mark"></span> Próximos eventos</h3>
+      <div class="rail" role="list">
+        <article class="mini-card tilt-wrap" role="listitem"><div class="tilt mini-in">
+          <a class="poster-link" href="/casino.html" aria-label="Casino Night, jueves 17 de septiembre — ver detalle">
+            <img class="mini-img" src="/Resources/References/DVOID%20POST%2017SEP.png" alt="Casino Night — jueves 17 de septiembre" width="1080" height="1350" decoding="async" loading="lazy">
           </a>
+          <p class="cmeta">Jueves 17 · Spotlight</p>
+          <h4 class="mini-title">Casino Night</h4>
+          <a class="btn btn-ghost" href="/casino.html" aria-label="Reservar Casino Night — ir a casino">Reservar</a>
         </div></article>
-        <article class="tilt-wrap"><div class="tilt poster poster-bare">
+        <article class="mini-card tilt-wrap" role="listitem"><div class="tilt mini-in">
           <a class="poster-link" href="https://app-dvoid-prod-rdbpg.azurewebsites.net/reservar" aria-label="Ex Texted, viernes 11 de septiembre — reservar">
-            <img class="poster-art" src="5b38ab9a-cbc2-4da9-ac27-b8b79f62f333" alt="Ex Texted — viernes 11 de septiembre · ¿tu ex te escribió? no contestes" width="700" height="1244" decoding="async" loading="lazy">
+            <img class="mini-img" src="5b38ab9a-cbc2-4da9-ac27-b8b79f62f333" alt="Ex Texted — viernes 11 de septiembre · ¿tu ex te escribió? no contestes" width="700" height="1244" decoding="async" loading="lazy">
           </a>
+          <p class="cmeta">Viernes 11 · Perreo</p>
+          <h4 class="mini-title">Ex Texted</h4>
+          <a class="btn btn-ghost" href="https://app-dvoid-prod-rdbpg.azurewebsites.net/reservar" aria-label="Reservar Ex Texted — ir a reservas">Reservar</a>
         </div></article>
-        <article class="tilt-wrap"><div class="tilt poster poster-bare">
+        <article class="mini-card tilt-wrap" role="listitem"><div class="tilt mini-in">
           <a class="poster-link" href="https://app-dvoid-prod-rdbpg.azurewebsites.net/reservar" aria-label="Match My Energy, sábado 12 de septiembre — reservar">
-            <img class="poster-art" src="2c32175f-5537-481f-8e96-636d95bf15cd" alt="Match My Energy — sábado 12 de septiembre · ven con tu dúo, combinen sus outfits" width="700" height="1244" decoding="async" loading="lazy">
+            <img class="mini-img" src="2c32175f-5537-481f-8e96-636d95bf15cd" alt="Match My Energy — sábado 12 de septiembre · ven con tu dúo, combinen sus outfits" width="700" height="1244" decoding="async" loading="lazy">
           </a>
+          <p class="cmeta">Sábado 12 · Dúo</p>
+          <h4 class="mini-title">Match My Energy</h4>
+          <a class="btn btn-ghost" href="https://app-dvoid-prod-rdbpg.azurewebsites.net/reservar" aria-label="Reservar Match My Energy — ir a reservas">Reservar</a>
         </div></article>
       </div>
     </div>
@@ -506,34 +597,42 @@ body.gs-lock{overflow:hidden}
     <div class="container">
       <p class="eyebrow" style="margin-bottom:var(--gap-sm);">La gente habla · Voces de la casa</p>
       <h2 style="margin-bottom:var(--gap-lg);">La pista comenta.</h2>
-      <div class="comments-grid">
-        <div>
-          <h3 class="subhead"><span class="subhead-mark"></span> Destacados</h3>
-          <ul class="comment-list">
-            <li class="comment featured">
-              <div class="comment-head"><span class="cname">Valentina R.</span><span class="cmeta">Destacado · noche de house</span></div>
-              <p>La mejor noche de Quito. Entré sin expectativas y una hora después seguía en la pista sin querer salir. El sonido, otro nivel.</p>
-            </li>
-            <li class="comment featured">
-              <div class="comment-head"><span class="cname">Sebastián M.</span><span class="cmeta">Destacado · pista</span></div>
-              <p>El Air Motion despachando a todo volumen y la puerta sin humo. El casual chic tiene más sentido acá que en cualquier otro lado.</p>
-            </li>
-          </ul>
-        </div>
-        <div class="comments-live">
-          <h3 class="subhead"><span class="subhead-mark"></span> Deja el tuyo</h3>
-          <form id="commentForm" class="comment-form">
-            <label for="cName">Nombre</label>
-            <input id="cName" name="name" type="text" maxlength="40" placeholder="Tu nombre o alias" required>
-            <label for="cText">Comentario</label>
-            <textarea id="cText" name="text" rows="4" maxlength="280" placeholder="¿Qué te dejó la noche?" required></textarea>
-            <p class="form-msg" id="formMsg" role="status"><b>Comentario publicado</b> · gracias por la señal</p>
-            <div class="form-foot">
-              <span class="char-count">max 280</span>
-              <button type="submit" class="btn btn-red" data-dv="btn">Publicar comentario</button>
-            </div>
-          </form>
-        </div>
+      <div class="reviews-grid" role="list">
+        <article class="review-card" role="listitem">
+          <div class="review-head">
+            <span class="cname">Valentina R.</span>
+            <span class="stars" aria-label="5 de 5 estrellas">★★★★★</span>
+          </div>
+          <p>La mejor noche de Quito. Entré sin expectativas y una hora después seguía en la pista sin querer salir. El sonido, otro nivel.</p>
+        </article>
+        <article class="review-card" role="listitem">
+          <div class="review-head">
+            <span class="cname">Sebastián M.</span>
+            <span class="stars" aria-label="5 de 5 estrellas">★★★★★</span>
+          </div>
+          <p>El Air Motion despachando a todo volumen y la puerta sin humo. El casual chic tiene más sentido acá que en cualquier otro lado.</p>
+        </article>
+        <article class="review-card" role="listitem">
+          <div class="review-head">
+            <span class="cname">Isabela K.</span>
+            <span class="stars" aria-label="5 de 5 estrellas">★★★★★</span>
+          </div>
+          <p>El vacío se llena solo. Llegué sola y me fui con tres números de teléfono. La energía del bajo es otra cosa.</p>
+        </article>
+      </div>
+      <div class="comments-live" style="margin-top:var(--gap-xl);">
+        <h3 class="subhead"><span class="subhead-mark"></span> Deja el tuyo</h3>
+        <form id="commentForm" class="comment-form">
+          <label for="cName">Nombre</label>
+          <input id="cName" name="name" type="text" maxlength="40" placeholder="Tu nombre o alias" required>
+          <label for="cText">Comentario</label>
+          <textarea id="cText" name="text" rows="4" maxlength="280" placeholder="¿Qué te dejó la noche?" required></textarea>
+          <p class="form-msg" id="formMsg" role="status"><b>Comentario publicado</b> · gracias por la señal</p>
+          <div class="form-foot">
+            <span class="char-count">max 280</span>
+            <button type="submit" class="btn btn-red" data-dv="btn">Publicar comentario</button>
+          </div>
+        </form>
       </div>
     </div>
   </section>
@@ -541,7 +640,7 @@ body.gs-lock{overflow:hidden}
   <section id="ubicacion" class="section rules">
     <div class="container">
       <div class="rules-grid">
-        <div>
+        <div id="reglas-casa">
           <p class="eyebrow">Reglas de la casa</p>
           <h2 style="font-size:clamp(28px,4vw,44px); max-width:16ch;">Entrar es un privilegio.</h2>
           <ul class="rule-list" style="margin-top:var(--gap-lg);">
@@ -552,20 +651,20 @@ body.gs-lock{overflow:hidden}
         </div>
         <div>
           <p class="eyebrow">Ubicación</p>
-          <div class="map-block">
-            <div class="map-grid" aria-label="Mapa con coordenadas de DVOID">
+          <div class="map-block" style="border-radius:24px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,.5);position:relative;">
+            <div class="map-grid" aria-label="Mapa cyberpunk con coordenadas de DVOID" style="aspect-ratio:16/9;">
               <div class="reticule"></div>
               <div class="pin" aria-hidden="true">◎</div>
             </div>
             <div class="loc">
               <div>
                 <div class="city">La República · Quito</div>
-                <div class="street">Av. República y Av. Amazonas · Quito, Ecuador</div>
+                <div class="street">Av. de la República y La Pradera 170518 · Quito, Ecuador</div>
               </div>
               <div class="coords2 num">0.1675° S · 78.4760° O</div>
             </div>
             <div class="map-links">
-              <a class="btn btn-ghost" href="https://www.google.com/maps?q=av+republica+amazonas+quito+ecuador" target="_blank" rel="noopener">Ver en Google Maps</a>
+              <a class="btn btn-ghost" href="https://www.google.com/maps?q=Av.+de+la+Rep%C3%BAblica+y+La+Pradera+170518+Quito+Ecuador" target="_blank" rel="noopener">Ver en Google Maps</a>
               <a class="btn btn-ghost" href="https://m.uber.com/ul/?action=setPickup&pickup=my_location" target="_blank" rel="noopener">Pedir un Uber</a>
             </div>
           </div>
@@ -675,7 +774,7 @@ tiltWraps.forEach(function(wrap){var poster=wrap.querySelector('.tilt');
 wrap.addEventListener('mousemove',function(e){var r=wrap.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-.5;var y=(e.clientY-r.top)/r.height-.5;poster.style.transform='rotateY('+(x*9)+'deg) rotateX('+(-y*9)+'deg) translateZ(0)'});
 wrap.addEventListener('mouseleave',function(){poster.style.transform='rotateY(0) rotateX(0)'})})}
 
-function gotoId(id){var t=document.getElementById(id);if(!t)return;var y=t.getBoundingClientRect().top+window.scrollY-64;window.scrollTo({top:y,behavior:RM?'auto':'smooth'})}
+function gotoId(id){var t=document.getElementById(id);if(!t)return;var nav=document.getElementById('topnav');var off=(nav?nav.offsetHeight:0)+8;var y=t.getBoundingClientRect().top+window.scrollY-off;window.scrollTo({top:y,behavior:RM?'auto':'smooth'})}
 document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();gotoId(a.getAttribute('href').slice(1))})});
 document.querySelectorAll('[data-scroll]').forEach(function(el){el.addEventListener('click',function(){gotoId('cartelera')})});
 
