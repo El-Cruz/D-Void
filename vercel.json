@@ -5,6 +5,7 @@
     { "source": "/casino", "destination": "/casino.html" },
     { "source": "/formulario-de-reservas", "destination": "/reservas.html" },
     { "source": "/menu", "destination": "/menu.html" },
-    { "source": "/ingreso", "destination": "/ingreso.html" }
+    { "source": "/ingreso", "destination": "/ingreso.html" },
+    { "source": "/evento-udla", "destination": "/evento_udla.html" }
   ]
 }
