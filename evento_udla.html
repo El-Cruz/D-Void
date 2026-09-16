@@ -21,12 +21,12 @@
       --faint: #8f887e;
       /* Scrollytelling global: 0 = Sunset, 1 = Neon Noir */
       --scroll: 0;
-      --bg-base: color-mix(in srgb, #0a0808 calc(var(--scroll) * 100%), #2a1210);
-      --g1: color-mix(in srgb, #dc3a16 calc(var(--scroll) * 100%), #edc677);
-      --g2: color-mix(in srgb, #9e1b19 calc(var(--scroll) * 100%), #ff6a4d);
-      --glass-edge: color-mix(in srgb, rgba(220, 58, 22, 0.2) calc(var(--scroll) * 100%), rgba(237, 198, 119, 0.15));
-      --glass-wash: color-mix(in srgb, rgba(220, 58, 22, 0.05) calc(var(--scroll) * 100%), rgba(237, 198, 119, 0.04));
-      --cta-glow: color-mix(in srgb, rgba(220, 58, 22, 0.55) calc(var(--scroll) * 100%), rgba(237, 198, 119, 0.35));
+      --bg-base: color-mix(in srgb, #080707 calc(var(--scroll) * 100%), #221010);
+      --g1: color-mix(in srgb, #e63922 calc(var(--scroll) * 100%), #ff5533);
+      --g2: color-mix(in srgb, #7a1515 calc(var(--scroll) * 100%), #ff5533);
+      --glass-edge: color-mix(in srgb, rgba(220, 58, 22, 0.35) calc(var(--scroll) * 100%), rgba(237, 198, 119, 0.25));
+      --glass-wash: color-mix(in srgb, rgba(220, 58, 22, 0.07) calc(var(--scroll) * 100%), rgba(237, 198, 119, 0.07));
+      --cta-glow: color-mix(in srgb, rgba(230, 57, 34, 0.8) calc(var(--scroll) * 100%), rgba(237, 198, 119, 0.5));
     }
     html { scroll-behavior: smooth; }
     body {
@@ -203,6 +203,59 @@
       font-size: 13px;
       color: var(--faint);
     }
+    .flight-widget {
+      display: flex; flex-direction: column; align-items: center;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 24px;
+      margin: 0 auto 30px;
+      max-width: 400px;
+      text-decoration: none;
+      color: var(--text);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, background 0.2s ease;
+      will-change: transform, background;
+    }
+    .flight-widget:hover {
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .flight-widget:active { transform: scale(0.97); }
+    .flight-header {
+      font-size: 10px; font-weight: 800; letter-spacing: 0.2em;
+      color: var(--muted); margin-bottom: 16px;
+    }
+    .flight-route {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; gap: 16px; margin-bottom: 20px;
+    }
+    .city { font-size: 18px; font-weight: 800; color: var(--text); }
+    .flight-path {
+      flex-grow: 1; height: 2px;
+      border-top: 2px dashed rgba(255, 255, 255, 0.2);
+      position: relative; display: flex; align-items: center;
+    }
+    .plane {
+      position: absolute; font-size: 18px; top: -14px; left: 0%;
+      transform: translateX(-50%);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      transition: left 1s linear;
+    }
+    .flight-timer {
+      font-family: ui-monospace, monospace;
+      font-size: 22px; font-weight: 700;
+      color: var(--gold); margin-bottom: 16px;
+    }
+    .flight-cta {
+      font-size: 13px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: #fff; background: var(--neon-red);
+      padding: 8px 24px; border-radius: 999px;
+      box-shadow: 0 4px 16px rgba(220, 58, 22, 0.4);
+    }
 
     /* --- Secciones --- */
     section.block {
@@ -246,11 +299,11 @@
     }
     .entry-card {
       background: rgba(255, 255, 255, 0.03);
-      background-color: rgba(237, 198, 119, 0.04);
+      background-color: rgba(237, 198, 119, 0.05);
       background-color: var(--glass-wash);
       -webkit-backdrop-filter: blur(24px);
       backdrop-filter: blur(24px);
-      border: 1px solid rgba(237, 198, 119, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-color: var(--glass-edge);
       border-radius: 24px;
       padding: 30px 26px;
@@ -261,7 +314,7 @@
     .entry-card.is-selected {
       border-color: var(--neon-red);
       border-color: var(--g1);
-      box-shadow: 0 8px 32px rgba(220, 58, 22, 0.15);
+      box-shadow: 0 8px 32px rgba(220, 58, 22, 0.25);
     }
     .checkout-reveal {
       display: grid;
@@ -380,44 +433,6 @@
       gap: 14px;
     }
     .checkin .frow .field { margin-bottom: 0; }
-    .passes {
-      display: grid;
-      gap: 10px;
-    }
-    .pass {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-height: 56px;
-      padding: 10px 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      cursor: pointer;
-      transition: border-color 0.25s ease, background-color 0.25s ease;
-    }
-    .pass:has(input:checked) {
-      border-color: var(--neon-red);
-      border-color: var(--g1);
-      background: rgba(255, 255, 255, 0.05);
-    }
-    .pass input {
-      width: 20px;
-      height: 20px;
-      flex: none;
-      min-height: 0;
-      padding: 0;
-      accent-color: #dc3a16;
-    }
-    .pass-body strong {
-      display: block;
-      font-size: 15px;
-    }
-    .pass-body small {
-      display: block;
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 2px;
-    }
     .checkin .cta-block { width: 100%; max-width: 100%; }
     .checkin .micro {
       text-align: center;
@@ -525,11 +540,11 @@
     }
     .highlight {
       background: rgba(255, 255, 255, 0.03);
-      background-color: rgba(237, 198, 119, 0.04);
+      background-color: rgba(237, 198, 119, 0.05);
       background-color: var(--glass-wash);
       -webkit-backdrop-filter: blur(24px);
       backdrop-filter: blur(24px);
-      border: 1px solid rgba(237, 198, 119, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-color: var(--glass-edge);
       border-radius: 24px;
       padding: 30px 24px;
@@ -640,7 +655,20 @@
       <h1>IBIZA VIBES:<br>Inicio de <span class="accent">Semestre</span></h1>
       <p class="subtitle">Viernes 25 de septiembre &bull; 20h30 &bull; IBIZA</p>
       <p class="desc">El semestre recién empieza y ya tenemos plan. Arrancamos como se debe, barra libre, acceso VIP y una noche para reunir a toda la UDLA. La primera fiesta ya está aquí.</p>
-      <a class="cta-primary" href="#entradas">Quiero mi entrada</a>
+      <a href="#entradas" class="flight-widget reveal">
+        <div class="flight-header">BOARDING PASS</div>
+        <div class="flight-route">
+          <span class="city">IBIZA</span>
+          <div class="flight-path">
+            <span class="plane" id="flight-plane">&#9992;</span>
+          </div>
+          <span class="city">D-VOID</span>
+        </div>
+        <div class="flight-timer" id="countdown-timer">
+          <span id="cd-d">00</span>d : <span id="cd-h">00</span>h : <span id="cd-m">00</span>m : <span id="cd-s">00</span>s
+        </div>
+        <div class="flight-cta">Reserva tu spot</div>
+      </a>
       <p class="micro">Compra en preventa y entra por la Fila VIP con tu entrada digital.</p>
     </section>
 
@@ -741,24 +769,6 @@
           </div>
         </fieldset>
 
-        <fieldset>
-          <legend>Elige tu pase</legend>
-          <div class="passes" role="radiogroup" aria-label="Tipo de pase">
-            <label class="pass"><input type="radio" name="pase" value="primero" checked><span class="pass-body"><strong>Primer semestre · $10</strong><small>1 welcome drink · Ron Abuelo</small></span></label>
-            <label class="pass"><input type="radio" name="pase" value="otros"><span class="pass-body"><strong>Otros semestres · $15</strong><small>Barra libre 20h30–22h30</small></span></label>
-            <label class="pass"><input type="radio" name="pase" value="externo"><span class="pass-body"><strong>Otras U · $15</strong><small>1 welcome drink normal</small></span></label>
-            <label class="pass"><input type="radio" name="pase" value="grupo"><span class="pass-body"><strong>Mesa de 10 · $150</strong><small>1&frac12; botella de Antioqueño</small></span></label>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>Pago</legend>
-          <div class="passes" role="radiogroup" aria-label="Método de pago">
-            <label class="pass"><input type="radio" name="pago" value="transferencia" checked><span class="pass-body"><strong>Transferencia</strong><small>Te enviamos los datos al confirmar</small></span></label>
-            <label class="pass"><input type="radio" name="pago" value="tarjeta"><span class="pass-body"><strong>Tarjeta</strong><small>Crédito o débito · el fee lo asumes tú</small></span></label>
-          </div>
-        </fieldset>
-
         <button class="cta-primary cta-block" type="submit">Generar mi pase</button>
         <p class="micro">Sin filas: tu preventa entra directo por la Fila VIP.</p>
       </form>
@@ -768,7 +778,7 @@
           <span>IBIZA AIRLINES</span>
           <span>BOARDING PASS</span>
         </div>
-        <p class="bp-route">UIO <i>&rarr;</i> IBIZA</p>
+        <p class="bp-route">IBIZA <i>&rarr;</i> D-VOID</p>
         <dl class="bp-grid">
           <div><dt>Pasajero</dt><dd id="bp-nombre">—</dd></div>
           <div><dt>Vuelo</dt><dd>DV-0925 · 25 SEP · 20h30</dd></div>
@@ -910,12 +920,14 @@
         '  vec2 r = vec2(fbm(p * 1.4 + 2.0 * q + vec2(1.7, 9.2) + 0.15 * t),\n' +
         '               fbm(p * 1.4 + 2.0 * q + vec2(8.3, 2.8) - 0.12 * t));\n' +
         '  float f = fbm(p * 1.4 + 2.5 * r);\n' +
-        '  vec3 base = mix(vec3(0.165, 0.070, 0.063), vec3(0.039, 0.031, 0.031), u_scroll);\n' +
-        '  vec3 rojo = vec3(0.541, 0.051, 0.141);\n' +
+        '  vec3 base = mix(vec3(0.133, 0.063, 0.053), vec3(0.020, 0.016, 0.016), u_scroll);\n' +
+        '  vec3 rojo = vec3(0.90, 0.22, 0.13);\n' +
         '  vec3 brasa = vec3(0.290, 0.110, 0.051);\n' +
         '  float m1 = smoothstep(0.25, 0.9, f * (1.1 - 0.55 * uv.y) * (1.15 - 0.5 * uv.x));\n' +
         '  float m2 = smoothstep(0.3, 0.95, (1.0 - f) * (0.45 + 0.55 * uv.y) * (0.5 + 0.5 * uv.x));\n' +
-        '  vec3 col = base + rojo * m1 * mix(0.45, 0.7, u_scroll) + brasa * m2 * mix(0.65, 0.5, u_scroll);\n' +
+        '  vec3 col = base + rojo * m1 * mix(0.3, 0.85, u_scroll) + brasa * m2 * mix(0.55, 0.4, u_scroll);\n' +
+        '  float grain = fract(sin(dot(uv * 200.0 + u_time * 0.1, vec2(12.9898, 78.233))) * 43758.5453);\n' +
+        '  col += vec3(grain * 0.04 * u_scroll);\n' +
         '  gl_FragColor = vec4(col, 1.0);\n' +
         '}';
 
@@ -999,8 +1011,9 @@
         var max = document.body.scrollHeight - window.innerHeight;
         var p = max > 0 ? window.scrollY / max : 0;
         p = Math.min(1, Math.max(0, p));
-        root.style.setProperty('--scroll', p.toFixed(4));
-        window.__scrollP = p;
+        var e = Math.min(1, p * 2);
+        root.style.setProperty('--scroll', e.toFixed(4));
+        window.__scrollP = e;
       }
       function request() {
         if (!ticking) { ticking = true; requestAnimationFrame(update); }
@@ -1039,43 +1052,11 @@
 
     /* Check-in aerolínea: validación + pase de abordar */
     (function () {
-      var PASS = ['primero', 'otros', 'externo', 'grupo'];
-      var PASS_LABEL = {
-        primero: 'Primer semestre · $10',
-        otros: 'Otros semestres · $15',
-        externo: 'Otras U · $15',
-        grupo: 'Mesa de 10 · $150'
-      };
-      var PAGO_LABEL = { transferencia: 'Transferencia', tarjeta: 'Tarjeta' };
       var form = document.getElementById('checkin-form');
       if (!form) return;
       var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var bannerWrap = document.getElementById('banner-wrap');
       var banner = document.getElementById('res-banner');
       var pass = document.getElementById('boardingpass');
-
-      function paseValue() {
-        var r = form.querySelector('input[name="pase"]:checked');
-        return r ? r.value : 'primero';
-      }
-      function toggleBanner() {
-        var v = paseValue();
-        var show = v === 'primero' || v === 'otros';
-        bannerWrap.style.display = show ? '' : 'none';
-        banner.required = v === 'primero';
-        if (!show) { banner.value = ''; setErr('banner', false); }
-      }
-      form.querySelectorAll('input[name="pase"]').forEach(function (r) {
-        r.addEventListener('change', toggleBanner);
-      });
-      toggleBanner();
-
-      window.__choosePass = function (i) {
-        var v = PASS[i] || 'primero';
-        var r = form.querySelector('input[name="pase"][value="' + v + '"]');
-        if (r) { r.checked = true; toggleBanner(); }
-        document.getElementById('reserva').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
-      };
 
       function setErr(name, bad) {
         var input = document.getElementById('res-' + name);
@@ -1090,27 +1071,23 @@
         var cedula = document.getElementById('res-cedula').value.trim();
         var celular = document.getElementById('res-celular').value.replace(/[\s-]/g, '');
         var fecha = document.getElementById('res-fecha').value;
-        var bv = banner.value.trim();
-        var v = paseValue();
+        var bv = banner ? banner.value.trim() : '';
         var ok = true;
         ok = setErr('nombre', nombre.length < 3) && ok;
         ok = setErr('cedula', !/^\d{10}$/.test(cedula)) && ok;
         ok = setErr('celular', !/^\+?\d{7,15}$/.test(celular)) && ok;
         ok = setErr('fecha', !fecha) && ok;
-        if (v === 'primero') ok = setErr('banner', bv.length < 3) && ok;
+        if (banner && banner.required && bv.length < 3) ok = setErr('banner', true) && ok;
         if (!ok) {
           var firstBad = form.querySelector('[aria-invalid="true"]');
           if (firstBad) firstBad.focus();
           return;
         }
-        var pago = form.querySelector('input[name="pago"]:checked');
         document.getElementById('bp-nombre').textContent = nombre;
-        document.getElementById('bp-pase').textContent = PASS_LABEL[v];
-        document.getElementById('bp-pago').textContent = PAGO_LABEL[pago ? pago.value : 'transferencia'];
+        document.getElementById('bp-pase').textContent = 'Generado';
+        document.getElementById('bp-pago').textContent = 'Confirmado';
         document.getElementById('bp-folio').textContent = 'DV-' + Date.now().toString(36).toUpperCase().slice(-6);
-        document.getElementById('bp-status').textContent = v === 'primero'
-          ? 'Tu tarifa está en revisión: validamos tu ID Banner y te escribimos por WhatsApp para continuar al pago.'
-          : 'Pre check-in listo. Completa tu pago y recibe tu entrada digital para entrar por la Fila VIP.';
+        document.getElementById('bp-status').textContent = 'Pre check-in listo. Tu entrada digital está lista para entrar por la Fila VIP.';
         form.hidden = true;
         pass.hidden = false;
         pass.setAttribute('tabindex', '-1');
@@ -1122,6 +1099,45 @@
         form.hidden = false;
         document.getElementById('reserva').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
       });
+    })();
+
+    /* Cuenta regresiva del vuelo + animación del avión */
+    (function () {
+      var endDate = new Date('2026-09-25T20:30:00-05:00');
+      var startDate = new Date('2026-09-15T00:00:00-05:00');
+      var elD = document.getElementById('cd-d');
+      var elH = document.getElementById('cd-h');
+      var elM = document.getElementById('cd-m');
+      var elS = document.getElementById('cd-s');
+      var plane = document.getElementById('flight-plane');
+      var cdTimer = document.getElementById('countdown-timer');
+      if (!elD || !plane) return;
+
+      function tick() {
+        var now = new Date();
+        var remaining = endDate - now;
+        var progress = (now - startDate) / (endDate - startDate);
+        if (progress > 1) progress = 1;
+
+        if (remaining <= 0) {
+          elD.textContent = '00'; elH.textContent = '00';
+          elM.textContent = '00'; elS.textContent = '00';
+          plane.style.left = '100%';
+          if (cdTimer) cdTimer.style.color = 'var(--neon-red)';
+        } else {
+          var d = Math.floor(remaining / 86400000);
+          var h = Math.floor((remaining % 86400000) / 3600000);
+          var m = Math.floor((remaining % 3600000) / 60000);
+          var s = Math.floor((remaining % 60000) / 1000);
+          if (elD) elD.textContent = String(d).padStart(2, '0');
+          if (elH) elH.textContent = String(h).padStart(2, '0');
+          if (elM) elM.textContent = String(m).padStart(2, '0');
+          if (elS) elS.textContent = String(s).padStart(2, '0');
+          if (plane) plane.style.left = (progress * 100) + '%';
+        }
+      }
+      tick();
+      setInterval(tick, 1000);
     })();
   </script>
 
