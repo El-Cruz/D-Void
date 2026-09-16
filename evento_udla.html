@@ -370,6 +370,39 @@
       color: var(--g1);
       margin-right: 7px;
     }
+    .selected-pass-indicator {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 16px 24px;
+      margin: 20px auto 24px;
+      max-width: 480px;
+      background: linear-gradient(135deg, rgba(220, 58, 22, 0.15), rgba(237, 198, 119, 0.1));
+      border: 1px solid rgba(220, 58, 22, 0.3);
+      border-radius: 16px;
+      text-align: center;
+      animation: fadeInUp 0.4s ease;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .selected-pass-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .selected-pass-name {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: capitalize;
+    }
     .checkin.glass,
     .boardingpass.glass {
       background: rgba(255, 255, 255, 0.03);
@@ -679,7 +712,7 @@
     <section class="block" id="entradas">
       <p class="eyebrow">Entradas</p>
       <h2 class="section-title">Elige cómo vivir la noche</h2>
-      <p class="section-sub">Asegura tu spot. Elige tu pase y entra directo a la IBIZA con tu preventa.</p>
+      <p class="section-sub">Asegura tu spot. Elige tu pase y entra directo a IBIZA con tu preventa.</p>
       <div class="grid-2x2">
         <article class="entry-card reveal">
           <span class="tag">Primer semestre</span>
@@ -688,7 +721,7 @@
           <p class="features">Acceso general a IBIZA.</p>
           <div class="checkout-reveal">
             <div class="checkout-inner">
-              <button class="cta-secondary" type="button">Continuar Reserva</button>
+              <button class="cta-secondary" type="button" data-pass="primero">Continuar Reserva</button>
             </div>
           </div>
         </article>
@@ -699,7 +732,7 @@
           <p class="features">Margaritas, Daikiri y Cuba Libre, de 20h30 a 22h30.</p>
           <div class="checkout-reveal">
             <div class="checkout-inner">
-              <button class="cta-secondary" type="button">Continuar Reserva</button>
+              <button class="cta-secondary" type="button" data-pass="otros">Continuar Reserva</button>
             </div>
           </div>
         </article>
@@ -710,7 +743,7 @@
           <p class="features">Sin ID Banner.</p>
           <div class="checkout-reveal">
             <div class="checkout-inner">
-              <button class="cta-secondary" type="button">Continuar Reserva</button>
+              <button class="cta-secondary" type="button" data-pass="externo">Continuar Reserva</button>
             </div>
           </div>
         </article>
@@ -721,7 +754,7 @@
           <p class="features">1&frac12; botella de Antioqueño para arrancar la noche con tu mesa.</p>
           <div class="checkout-reveal">
             <div class="checkout-inner">
-              <button class="cta-secondary" type="button">Continuar Reserva</button>
+              <button class="cta-secondary" type="button" data-pass="grupo">Continuar Reserva</button>
             </div>
           </div>
         </article>
@@ -731,13 +764,18 @@
     <section class="block" id="reserva">
       <p class="eyebrow">Check-in</p>
       <h2 class="section-title">Tu pase de abordar</h2>
-      <p class="section-sub">Vuelo <strong>DV-0925</strong> &bull; UIO &rarr; La IBIZA &bull; 25 SEP &bull; 20h30</p>
+      <p class="section-sub">Vuelo <strong>DV-0925</strong> &bull; IBIZA &rarr; D-VOID &bull; 25 SEP &bull; 20h30</p>
 
       <ol class="check-steps" aria-label="Pasos del check-in">
-        <li><span>01</span>Datos</li>
-        <li><span>02</span>Pase</li>
-        <li><span>03</span>Pago</li>
+        <li>Selecciona pase</li>
+        <li>Datos</li>
+        <li>Pago</li>
       </ol>
+
+      <div class="selected-pass-indicator" id="selected-pass-indicator" hidden>
+        <span class="selected-pass-label">Pase seleccionado:</span>
+        <span class="selected-pass-name" id="selected-pass-name">—</span>
+      </div>
 
       <form id="checkin-form" class="checkin glass" novalidate>
         <fieldset>
@@ -817,28 +855,28 @@
 
     <section class="block">
       <p class="eyebrow">Cómo funciona</p>
-      <h2 class="section-title">De tu registro a IBIZA en 3 pasos</h2>
+      <h2 class="section-title">De tu registro a IBIZA llega a D-VOID en 3 pasos</h2>
       <p class="section-sub">Simple, guiado y sin filas si llegas con preventa.</p>
       <div class="steps">
         <div class="step reveal">
           <span class="step-num">1</span>
           <div>
-            <p class="title">Regístrate</p>
-            <p class="desc">Nombre, cédula y fecha de nacimiento.</p>
+            <p class="title">Selecciona pase</p>
+            <p class="desc">Primer semestre, otros semestres, otras U o mesa de 10.</p>
           </div>
         </div>
         <div class="step reveal">
           <span class="step-num">2</span>
           <div>
-            <p class="title">Pago</p>
-            <p class="desc">Transferencia o tarjeta.</p>
+            <p class="title">Datos</p>
+            <p class="desc">Nombre, cédula, fecha de nacimiento y celular.</p>
           </div>
         </div>
         <div class="step reveal">
           <span class="step-num">3</span>
           <div>
-            <p class="title">Entra por la Fila VIP</p>
-            <p class="desc">Con tu entrada digital.</p>
+            <p class="title">Pago</p>
+            <p class="desc">El pago se realiza con Payphone, su entrada se mostrará después de la compra.</p>
           </div>
         </div>
       </div>
@@ -1061,6 +1099,16 @@
       var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var banner = document.getElementById('res-banner');
       var pass = document.getElementById('boardingpass');
+      var indicator = document.getElementById('selected-pass-indicator');
+      var indicatorName = document.getElementById('selected-pass-name');
+      var selectedPass = 'primero'; // default
+
+      var PASS_LABELS = {
+        primero: 'Primer semestre · $10',
+        otros: 'Otros semestres · $15',
+        externo: 'Otras universidades · $15',
+        grupo: 'Grupo de 10 · $150'
+      };
 
       function setErr(name, bad) {
         var input = document.getElementById('res-' + name);
@@ -1069,6 +1117,42 @@
         if (err) err.hidden = !bad;
         return !bad;
       }
+
+      function updatePassIndicator(passType) {
+        var label = PASS_LABELS[passType] || 'Generado';
+        if (indicatorName) indicatorName.textContent = label;
+        if (indicator) indicator.hidden = false;
+      }
+
+      function showBoardingPass(nombre, passType) {
+        document.getElementById('bp-nombre').textContent = nombre;
+        document.getElementById('bp-pase').textContent = PASS_LABELS[passType] || 'Generado';
+        document.getElementById('bp-pago').textContent = 'Confirmado';
+        document.getElementById('bp-folio').textContent = 'DV-' + Date.now().toString(36).toUpperCase().slice(-6);
+        document.getElementById('bp-status').textContent = 'Pre check-in listo. Tu entrada digital está lista para entrar por la Fila VIP.';
+        form.hidden = true;
+        pass.hidden = false;
+        pass.setAttribute('tabindex', '-1');
+        pass.focus({ preventScroll: true });
+        pass.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      }
+
+      function selectPass(passType) {
+        selectedPass = passType;
+        updatePassIndicator(passType);
+      }
+
+      // Handle "Continuar Reserva" buttons from entry cards
+      document.querySelectorAll('.cta-secondary[data-pass]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var passType = this.getAttribute('data-pass') || 'primero';
+          selectPass(passType);
+          document.getElementById('reserva').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+        });
+      });
+
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         var nombre = document.getElementById('res-nombre').value.trim();
@@ -1087,22 +1171,21 @@
           if (firstBad) firstBad.focus();
           return;
         }
-        document.getElementById('bp-nombre').textContent = nombre;
-        document.getElementById('bp-pase').textContent = 'Generado';
-        document.getElementById('bp-pago').textContent = 'Confirmado';
-        document.getElementById('bp-folio').textContent = 'DV-' + Date.now().toString(36).toUpperCase().slice(-6);
-        document.getElementById('bp-status').textContent = 'Pre check-in listo. Tu entrada digital está lista para entrar por la Fila VIP.';
-        form.hidden = true;
-        pass.hidden = false;
-        pass.setAttribute('tabindex', '-1');
-        pass.focus({ preventScroll: true });
-        pass.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        showBoardingPass(nombre, selectedPass);
       });
+
       document.getElementById('bp-edit').addEventListener('click', function () {
         pass.hidden = true;
         form.hidden = false;
         document.getElementById('reserva').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
       });
+
+      // Expose for card selection compatibility
+      window.__choosePass = function (i) {
+        var passTypes = ['primero', 'otros', 'externo', 'grupo'];
+        selectPass(passTypes[i] || 'primero');
+        document.getElementById('reserva').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+      };
     })();
 
     /* Cuenta regresiva del vuelo + animación del avión */
