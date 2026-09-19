@@ -482,6 +482,13 @@
       line-height: 1.8; margin-bottom: 24px;
     }
     .guest-entry-detail strong { color: var(--smoke); }
+    .entry-type-badge {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--text);
+      background: var(--dusty-rose); padding: 6px 16px;
+      border-radius: 2px; margin-bottom: 12px;
+    }
     .guest-entry-qr {
       display: flex; justify-content: center;
       margin: 28px 0;
@@ -674,6 +681,13 @@
       line-height: 1.8; margin-bottom: 24px;
     }
     .guest-entry-detail strong { color: var(--smoke); }
+    .entry-type-badge {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--text);
+      background: var(--dusty-rose); padding: 6px 16px;
+      border-radius: 2px; margin-bottom: 12px;
+    }
     .guest-entry-qr {
       display: flex; justify-content: center;
       margin: 28px 0;
@@ -1101,9 +1115,11 @@
       var guestNameEl = document.getElementById('guestName');
       var guestDetailEl = document.getElementById('guestDetail');
       guestNameEl.textContent = nombre + ' ' + apellido;
-      var tipo = acompaniante ? (acompaniante.value === 'sola' ? 'Sola' : 'Con amigas') : '';
-      var detalle = tipo + (numAsistentes && tipo === 'Con amigas' ? ' · ' + numAsistentes + ' asistentes' : '');
-      guestDetailEl.innerHTML = 'Tipo: <strong>' + tipo + '</strong>' + (numAsistentes ? '<br>Asistentes: <strong>' + numAsistentes + '</strong>' : '');
+      if (acompaniante && acompaniante.value === 'sola') {
+        guestDetailEl.innerHTML = '<span class="entry-type-badge">ENTRADA UNICA</span>';
+      } else {
+        guestDetailEl.innerHTML = '<span class="entry-type-badge">ENTRADA GRUPAL</span>' + (numAsistentes ? ' · ' + numAsistentes + ' personas' : '');
+      }
       form.style.display = 'none';
       successMessage.classList.add('visible');
       window.scrollTo({ top: successMessage.offsetTop - 80, behavior: 'smooth' });
