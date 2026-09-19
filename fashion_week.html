@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>D-VOID Fashion Week</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-carbon: #110c0e;
+      --bg-carbon-light: #1a1416;
+      --dusty-rose: #c08a90;
+      --dusty-rose-dark: #a8767c;
+      --blush: #ebd5d8;
+      --blush-deep: #d4bfc2;
+      --smoke: #f0ecee;
+      --chrome: #b8b0ae;
+      --text-dark: #1a1416;
+      --text-smoke: #e8e2e0;
+      --text-muted: #9a908c;
+      --transition: cubic-bezier(0.16, 1, 0.3, 1);
+      --radius: 0px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+      background: var(--bg-carbon);
+      color: var(--text-smoke);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .serif { font-family: "Cormorant Garamond", Georgia, serif; }
+    .serif-i { font-family: "Cormorant Garamond", Georgia, serif; font-style: italic; }
+
+    ::selection { background: var(--dusty-rose); color: var(--text-dark); }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg-carbon); }
+    ::-webkit-scrollbar-thumb { background: var(--dusty-rose); border-radius: 2px; }
+
+    /* NAV */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      background: rgba(17, 12, 14, 0.82);
+      border-bottom: 1px solid rgba(192, 138, 144, 0.12);
+    }
+    .nav-logo {
+      display: flex; align-items: center;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 28px;
+      filter: saturate(1.4) hue-rotate(-10deg) brightness(1.1);
+      transition: filter 0.3s var(--transition);
+    }
+    .nav-logo:hover img {
+      filter: saturate(1.6) hue-rotate(-10deg) brightness(1.2);
+    }
+    .nav-logo-fallback {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 22px; font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--smoke);
+      text-decoration: none;
+      display: none;
+    }
+    .nav-cta {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-dark); background: var(--dusty-rose);
+      border: none; padding: 10px 26px;
+      cursor: pointer; transition: all 0.3s var(--transition);
+      font-family: inherit; text-decoration: none;
+    }
+    .nav-cta:hover { background: var(--dusty-rose-dark); transform: translateY(-1px); }
+    .nav-cta:active { transform: scale(0.97); }
+    .nav-cta:focus-visible { outline: 2px solid var(--chrome); outline-offset: 2px; }
+
+    @media (max-width: 768px) {
+      .nav { height: 56px; padding: 0 16px; }
+      .nav-logo { font-size: 18px; }
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 100dvh;
+      display: flex; flex-direction: column;
+      align-items: flex-start; justify-content: center;
+      padding: 80px 24px 40px 24px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 65% 25%, rgba(192, 138, 144, 0.1) 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg-carbon) 0%, var(--bg-carbon-light) 100%);
+    }
+    .hero-image-placeholder {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(135deg, rgba(192,138,144,0.08) 0%, rgba(184,176,174,0.04) 50%, transparent 100%);
+      background-size: cover; background-position: center;
+      filter: sepia(0.3) contrast(0.9);
+    }
+    .hero-image-placeholder::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(17,12,14,0.3) 0%, rgba(17,12,14,0.7) 100%);
+    }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      background: radial-gradient(ellipse at 50% 80%, rgba(17,12,14,0.6) 0%, transparent 50%);
+    }
+    .hero-content { position: relative; z-index: 3; max-width: 580px; }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--dusty-rose); margin-bottom: 24px;
+    }
+    .hero-headline {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(44px, 9vw, 88px);
+      font-weight: 700; line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--smoke); margin-bottom: 20px;
+    }
+    .hero-headline .rose { color: var(--dusty-rose); }
+    .hero-sub {
+      font-size: 15px; font-weight: 400;
+      line-height: 1.9; color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .hero-sub strong { color: var(--smoke); font-weight: 600; }
+    .hero-cta-wrap { margin-top: 40px; }
+    .hero-cta {
+      display: inline-block;
+      font-size: 13px; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-dark); background: var(--dusty-rose);
+      border: none; padding: 16px 40px;
+      cursor: pointer; transition: all 0.3s var(--transition);
+      font-family: inherit; text-decoration: none;
+    }
+    .hero-cta:hover { background: var(--dusty-rose-dark); transform: translateY(-2px); }
+    .hero-cta:active { transform: scale(0.97) translateY(0); }
+    .hero-cta:focus-visible { outline: 2px solid var(--chrome); outline-offset: 2px; }
+    .hero-micro {
+      margin-top: 16px;
+      font-size: 12px; letter-spacing: 0.08em;
+      color: var(--text-muted); font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .hero { padding: 72px 20px 32px 20px; align-items: center; }
+      .hero-content { text-align: center; max-width: 100%; }
+      .hero-eyebrow { margin-bottom: 16px; }
+      .hero-cta-wrap { display: flex; justify-content: center; }
+    }
+
+    /* MARQUEE */
+    .marquee-wrap {
+      position: relative;
+      background: var(--bg-carbon-light);
+      padding: 14px 0;
+      overflow: hidden;
+      border-top: 1px solid rgba(192, 138, 144, 0.1);
+      border-bottom: 1px solid rgba(192, 138, 144, 0.1);
+    }
+    .marquee-track {
+      display: flex; gap: 48px;
+      white-space: nowrap;
+      animation: marquee 30s linear infinite;
+      will-change: transform;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; display: flex; overflow-x: auto; }
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-item {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 15px; font-weight: 400; font-style: italic;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      display: inline-flex; align-items: center; gap: 16px;
+    }
+    .marquee-item::after { content: "\2022"; color: var(--dusty-rose); font-size: 12px; font-style: normal; }
+    .marquee-item:last-child::after { display: none; }
+
+    /* CONCEPTO */
+    .concepto {
+      padding: 120px 24px;
+      background: var(--blush);
+      color: var(--text-dark);
+    }
+    .concepto-inner { max-width: 680px; margin: 0 auto; }
+    .concepto-headline {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(38px, 8vw, 70px);
+      font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--text-dark); margin-bottom: 28px;
+    }
+    .concepto-body {
+      font-size: 15px; line-height: 1.9;
+      color: var(--text-dark); margin-bottom: 20px;
+      font-style: italic;
+      letter-spacing: 0.01em;
+    }
+    .concepto-body strong { font-weight: 700; font-style: normal; }
+    .concepto-highlight {
+      margin-top: 36px; padding: 28px 32px;
+      background: rgba(192, 138, 144, 0.1);
+      border-top: 1px solid var(--dusty-rose-dark);
+      border-bottom: 1px solid var(--dusty-rose-dark);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 18px; font-style: italic;
+      line-height: 1.6; color: var(--text-dark);
+    }
+    .concepto-highlight .label {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--dusty-rose); display: block;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .concepto { padding: 80px 20px; }
+      .concepto-highlight { padding: 20px; font-size: 17px; }
+    }
+
+    /* COMO FUNCIONA */
+    .como-funciona {
+      padding: 120px 24px;
+      background: var(--bg-carbon);
+      color: var(--text-smoke);
+    }
+    .como-inner { max-width: 760px; margin: 0 auto; }
+    .timeline { position: relative; }
+    .timeline::before {
+      content: ""; position: absolute;
+      left: 24px; top: 0; bottom: 0;
+      width: 1px; background: rgba(192, 138, 144, 0.15);
+    }
+    @media (max-width: 768px) {
+      .timeline::before { left: 16px; }
+    }
+    .timeline-item {
+      position: relative;
+      padding-left: 64px;
+      margin-bottom: 44px;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: all 0.8s var(--transition);
+    }
+    .timeline-item.revealed { opacity: 1; transform: translateY(0); }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: 17px; top: 8px;
+      width: 14px; height: 14px;
+      background: var(--dusty-rose);
+      border-radius: 50%;
+      border: 3px solid var(--bg-carbon);
+      z-index: 1;
+    }
+    @media (max-width: 768px) {
+      .timeline-dot { left: 11px; width: 12px; height: 12px; top: 6px; }
+    }
+    .timeline-block {
+      background: rgba(192, 138, 144, 0.06);
+      border: 1px solid rgba(192, 138, 144, 0.12);
+      padding: 28px 32px;
+      transition: border-color 0.3s var(--transition);
+    }
+    .timeline-block:hover { border-color: rgba(192, 138, 144, 0.35); }
+    .timeline-time {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 28px; font-weight: 700;
+      color: var(--dusty-rose); margin-bottom: 8px;
+    }
+    .timeline-title {
+      font-size: 15px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 6px; color: var(--smoke);
+    }
+    .timeline-detail {
+      font-size: 14px; color: var(--text-muted); line-height: 1.6;
+    }
+    .timeline-detail strong { color: var(--text-smoke); }
+
+    @media (max-width: 768px) {
+      .timeline-item { padding-left: 48px; }
+      .timeline-block { padding: 20px; }
+      .timeline-time { font-size: 22px; }
+    }
+
+    /* THE EXPERIENCE */
+    .experience {
+      padding: 120px 24px;
+      background: var(--bg-carbon-light);
+      color: var(--text-smoke);
+    }
+    .experience-inner { max-width: 1000px; margin: 0 auto; }
+    .experience-headline {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(34px, 7vw, 60px);
+      font-weight: 700; line-height: 1;
+      letter-spacing: -0.01em;
+      margin-bottom: 56px;
+      text-align: center;
+      color: var(--smoke);
+    }
+    .experience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .exp-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-carbon);
+      border: 1px solid rgba(192, 138, 144, 0.1);
+      aspect-ratio: 3/4;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: flex-end;
+      padding: 28px;
+      cursor: pointer;
+      transition: all 0.5s var(--transition);
+      opacity: 0;
+      transform: translateY(32px);
+    }
+    .exp-card.revealed { opacity: 1; transform: translateY(0); }
+    .exp-card:hover { transform: scale(1.02); }
+    .exp-card:active { transform: scale(0.98); }
+    .exp-card-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background-size: cover; background-position: center;
+      filter: sepia(0.25) contrast(0.85) brightness(0.6);
+      opacity: 0.4;
+      transition: opacity 0.5s var(--transition);
+    }
+    .exp-card:hover .exp-card-bg { opacity: 0.6; }
+    .exp-card-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to top, rgba(17,12,14,0.75) 0%, transparent 40%);
+    }
+    .exp-card-content { position: relative; z-index: 2; text-align: center; }
+    .exp-card-num {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 52px; font-weight: 700;
+      color: var(--dusty-rose); line-height: 1;
+      margin-bottom: 8px;
+    }
+    .exp-card-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--chrome);
+    }
+
+    @media (max-width: 768px) {
+      .experience { padding: 80px 20px; }
+      .experience-grid { grid-template-columns: 1fr; gap: 16px; }
+      .exp-card { aspect-ratio: 4/3; }
+      .exp-card-num { font-size: 40px; }
+    }
+
+    /* DRESS CODE */
+    .dress-code {
+      padding: 120px 24px;
+      background: var(--bg-carbon);
+      color: var(--text-smoke);
+    }
+    .dress-inner { max-width: 900px; margin: 0 auto; }
+    .dress-headline {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(30px, 7vw, 52px);
+      font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+      text-align: center;
+      color: var(--smoke);
+    }
+    .dress-headline .rose { color: var(--dusty-rose); }
+    .dress-body {
+      font-size: 15px; line-height: 1.8;
+      color: var(--text-muted); text-align: center;
+      max-width: 520px; margin: 0 auto 44px;
+    }
+    .moodboard {
+      display: flex; gap: 14px;
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 12px;
+      scrollbar-width: none;
+    }
+    .moodboard::-webkit-scrollbar { display: none; }
+    .moodboard-item {
+      flex-shrink: 0;
+      width: 250px; height: 330px;
+      scroll-snap-align: start;
+      background-size: cover; background-position: center;
+      position: relative;
+      border: 1px solid rgba(192, 138, 144, 0.12);
+      transition: transform 0.5s var(--transition);
+      filter: sepia(0.2) contrast(0.85) brightness(0.55);
+    }
+    .moodboard-item:hover { transform: scale(1.03); }
+    .moodboard-item::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(17,12,14,0.5) 0%, transparent 35%);
+    }
+
+    @media (max-width: 768px) {
+      .dress-code { padding: 80px 20px; }
+      .moodboard-item { width: 210px; height: 280px; }
+    }
+
+    /* REGISTRO */
+    .registro {
+      padding: 120px 24px;
+      background: var(--bg-carbon);
+      color: var(--text-smoke);
+    }
+    .registro-inner { max-width: 480px; margin: 0 auto; }
+    .registro-headline {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(34px, 7vw, 56px);
+      font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+      text-align: center;
+      color: var(--smoke);
+    }
+    .registro-sub {
+      font-size: 14px; color: var(--text-muted);
+      text-align: center; margin-bottom: 36px; line-height: 1.6;
+    }
+    .form-glass {
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      background: rgba(17, 12, 14, 0.6);
+      border: 1px solid rgba(192, 138, 144, 0.12);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-label {
+      display: block; font-size: 10px; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--dusty-rose); margin-bottom: 7px;
+    }
+    .form-input {
+      width: 100%;
+      font-size: 15px; font-family: inherit;
+      color: var(--smoke);
+      background: transparent;
+      border: none; border-bottom: 1px solid rgba(192, 138, 144, 0.2);
+      padding: 12px 0; outline: none;
+      transition: border-color 0.3s var(--transition);
+    }
+    .form-input:focus { border-bottom-color: var(--dusty-rose); }
+    .form-input::placeholder { color: rgba(192, 138, 144, 0.3); }
+    .form-input:invalid { border-bottom-color: rgba(192, 138, 144, 0.4); }
+    .form-select {
+      width: 100%;
+      font-size: 15px; font-family: inherit;
+      color: var(--smoke);
+      background: transparent;
+      border: none; border-bottom: 1px solid rgba(192, 138, 144, 0.2);
+      padding: 12px 0; outline: none;
+      appearance: none; -webkit-appearance: none;
+      cursor: pointer;
+      transition: border-color 0.3s var(--transition);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c08a90' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0 top 50%;
+    }
+    .form-select:focus { border-bottom-color: var(--dusty-rose); }
+    .form-select option { background: var(--bg-carbon); color: var(--smoke); }
+    .radio-group {
+      display: flex; gap: 12px;
+    }
+    .radio-label {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 14px; color: var(--smoke);
+      cursor: pointer; padding: 10px 18px;
+      border: 1px solid rgba(192, 138, 144, 0.2);
+      transition: all 0.3s var(--transition);
+      letter-spacing: 0.05em;
+    }
+    .radio-label:hover { border-color: var(--dusty-rose); }
+    .radio-label:has(input:checked) {
+      border-color: var(--dusty-rose); background: rgba(192, 138, 144, 0.1);
+    }
+    .radio-label input[type="radio"] {
+      appearance: none; -webkit-appearance: none;
+      width: 14px; height: 14px;
+      border: 1px solid var(--dusty-rose);
+      border-radius: 50%; cursor: pointer;
+      position: relative;
+    }
+    .radio-label input[type="radio"]:checked::after {
+      content: ""; position: absolute;
+      top: 2px; left: 2px; width: 8px; height: 8px;
+      background: var(--dusty-rose); border-radius: 50%;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 480px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+    .form-submit {
+      width: 100%; margin-top: 28px;
+      font-size: 13px; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-dark); background: var(--dusty-rose);
+      border: none; padding: 16px;
+      cursor: pointer; transition: all 0.3s var(--transition);
+      font-family: inherit;
+    }
+    .form-submit:hover { background: var(--dusty-rose-dark); transform: translateY(-1px); }
+    .form-submit:active { transform: scale(0.98) translateY(0); }
+    .form-submit:focus-visible { outline: 2px solid var(--chrome); outline-offset: 2px; }
+    .form-hint {
+      font-size: 11px; color: var(--text-muted);
+      margin-top: 4px; line-height: 1.5;
+    }
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 52px 28px;
+      background: rgba(192, 138, 144, 0.08);
+      border: 1px solid rgba(192, 138, 144, 0.15);
+    }
+    .success-message.visible { display: block; }
+    .success-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 32px; font-weight: 700;
+      color: var(--dusty-rose); margin-bottom: 14px;
+      letter-spacing: 0.05em;
+    }
+    .success-details {
+      font-size: 14px; line-height: 1.9;
+      color: var(--text-muted); margin-bottom: 28px;
+    }
+    .success-details strong { color: var(--smoke); }
+    .success-whatsapp {
+      display: inline-block;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--smoke); background: transparent;
+      border: 1px solid var(--dusty-rose); padding: 12px 28px;
+      text-decoration: none; transition: all 0.3s var(--transition);
+    }
+    .success-whatsapp:hover { background: var(--dusty-rose); color: var(--text-dark); }
+    .success-whatsapp:active { transform: scale(0.97); }
+
+    @media (max-width: 768px) {
+      .registro { padding: 80px 20px; }
+      .registro-headline { margin-bottom: 4px; }
+      .form-glass { padding: 24px 20px; }
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 36px 24px;
+      background: var(--bg-carbon);
+      border-top: 1px solid rgba(192, 138, 144, 0.08);
+      text-align: center;
+    }
+    .footer-text {
+      font-size: 10px; letter-spacing: 0.1em;
+      color: var(--text-muted); text-transform: uppercase;
+    }
+    .footer-accent { color: var(--dusty-rose); }
+
+    /* SCROLL REVEAL */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+    }
+    [data-reveal].revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* PREFERS REDUCED MOTION */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      [data-reveal] { opacity: 1; transform: none; }
+      .timeline-item { opacity: 1; transform: none; }
+      .exp-card { opacity: 1; transform: none; }
+    }
+
+    /* LOADER */
+    .loader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--bg-carbon);
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s var(--transition);
+    }
+    .loader.hidden { opacity: 0; pointer-events: none; }
+    .loader-text {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 22px; letter-spacing: 0.3em;
+      color: var(--dusty-rose);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader-text">DV</div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="#" class="nav-logo" aria-label="D-VOID home">
+      <img src="Resources/DVOID/dvoid-logo.png" alt="D-VOID" width="120" height="28" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+      <span class="nav-logo-fallback">D-<span style="color:var(--dusty-rose)">VOID</span></span>
+    </a>
+    <a href="#registro" class="nav-cta">GET ON THE LIST</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-image-placeholder" role="img" aria-label="Fashion editorial background"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">EVENTO · OCTUBRE</p>
+      <h1 class="hero-headline">D-VOID<br><span class="rose">FASHION WEEK</span></h1>
+      <p class="hero-sub"><strong>GIRLS ONLY UNTIL 11 PM</strong><br>JUEVES 15 OCT · 21H00 · D-VOID Av. República</p>
+      <div class="hero-cta-wrap">
+        <a href="#registro" class="hero-cta">GET ON THE LIST</a>
+      </div>
+      <p class="hero-micro">Dress to impress.</p>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track" id="marqueeTrack">
+      <span class="marquee-item">GET READY WITH US</span>
+      <span class="marquee-item">GIRLS TAKE OVER</span>
+      <span class="marquee-item">DRESS TO IMPRESS</span>
+      <span class="marquee-item">SEE YOU AT 9</span>
+      <span class="marquee-item">AFTER 11, EVERYONE'S INVITED</span>
+      <span class="marquee-item">GET READY WITH US</span>
+      <span class="marquee-item">GIRLS TAKE OVER</span>
+      <span class="marquee-item">DRESS TO IMPRESS</span>
+      <span class="marquee-item">SEE YOU AT 9</span>
+      <span class="marquee-item">AFTER 11, EVERYONE'S INVITED</span>
+    </div>
+  </div>
+
+  <!-- Concepto -->
+  <section class="concepto" id="concepto">
+    <div class="concepto-inner" data-reveal>
+      <h2 class="concepto-headline">THIS ONE'S FOR THE GIRLS.</h2>
+      <p class="concepto-body">
+        Una noche para sacar ese outfit que tienes guardado, venir con tus amigas o llegar sola y conocer nuevas.<br>
+        <strong>Fashion. Drinks. Music. New girls.</strong><br>
+        One night at D-VOID.
+      </p>
+      <div class="concepto-highlight">
+        <span class="label">Detalle</span>
+        Hasta las 23H00, Girls Only. Despu&eacute;s, la noche se abre para todos.
+      </div>
+    </div>
+  </section>
+
+  <!-- Como Funciona -->
+  <section class="como-funciona" id="como-funciona">
+    <div class="como-inner" data-reveal>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-block">
+            <p class="timeline-time">21H00</p>
+            <p class="timeline-title">THE GIRLS TAKE OVER</p>
+            <p class="timeline-detail">Hasta las 23H00 · Girls Only · Cover chicas: <strong>$10</strong></p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-block">
+            <p class="timeline-time">23H00</p>
+            <p class="timeline-title">LATE · EVERYONE'S INVITED</p>
+            <p class="timeline-detail">Open door · Cover general: <strong>$15</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Experience -->
+  <section class="experience" id="experience">
+    <div class="experience-inner" data-reveal>
+      <h2 class="experience-headline">THE EXPERIENCE</h2>
+      <div class="experience-grid">
+        <div class="exp-card">
+          <div class="exp-card-bg" style="background-image: url('https://picsum.photos/seed/dvoid-exp1/600/800.jpg');"></div>
+          <div class="exp-card-overlay"></div>
+          <div class="exp-card-content">
+            <p class="exp-card-num">01</p>
+            <p class="exp-card-label">BACKSTAGE VIBES</p>
+          </div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-card-bg" style="background-image: url('https://picsum.photos/seed/dvoid-exp2/600/800.jpg');"></div>
+          <div class="exp-card-overlay"></div>
+          <div class="exp-card-content">
+            <p class="exp-card-num">02</p>
+            <p class="exp-card-label">THE CROWD</p>
+          </div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-card-bg" style="background-image: url('https://picsum.photos/seed/dvoid-exp3/600/800.jpg');"></div>
+          <div class="exp-card-overlay"></div>
+          <div class="exp-card-content">
+            <p class="exp-card-num">03</p>
+            <p class="exp-card-label">MUSIC & DRINKS</p>
+          </div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-card-bg" style="background-image: url('https://picsum.photos/seed/dvoid-exp4/600/800.jpg');"></div>
+          <div class="exp-card-overlay"></div>
+          <div class="exp-card-content">
+            <p class="exp-card-num">04</p>
+            <p class="exp-card-label">AFTER PARTY</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dress Code -->
+  <section class="dress-code" id="dress-code">
+    <div class="dress-inner" data-reveal>
+      <h2 class="dress-headline">YOUR BEST LOOK HAS PLANS.<br><span class="rose">DRESS TO IMPRESS.</span></h2>
+      <p class="dress-body">
+        No necesitas venir de rosa. Solo queremos que saques ese outfit que estabas esperando una excusa para usar.
+      </p>
+      <div class="moodboard" role="list" aria-label="Dress code moodboard">
+        <div class="moodboard-item" style="background-image: url('https://picsum.photos/seed/dvoid-mood1/500/660.jpg');" role="listitem" aria-label="Outfit inspiration"></div>
+        <div class="moodboard-item" style="background-image: url('https://picsum.photos/seed/dvoid-mood2/500/660.jpg');" role="listitem" aria-label="Outfit inspiration"></div>
+        <div class="moodboard-item" style="background-image: url('https://picsum.photos/seed/dvoid-mood3/500/660.jpg');" role="listitem" aria-label="Outfit inspiration"></div>
+        <div class="moodboard-item" style="background-image: url('https://picsum.photos/seed/dvoid-mood4/500/660.jpg');" role="listitem" aria-label="Outfit inspiration"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Registro -->
+  <section class="registro" id="registro">
+    <div class="registro-inner" data-reveal>
+      <h2 class="registro-headline">YOU'RE ON THE LIST?</h2>
+      <p class="registro-sub">Regístrate para D-VOID Fashion Week.</p>
+
+      <div class="form-glass">
+        <form id="registroForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="nombre">Nombre</label>
+              <input class="form-input" type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="apellido">Apellido</label>
+              <input class="form-input" type="text" id="apellido" name="apellido" placeholder="Tu apellido" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="whatsapp">WhatsApp</label>
+            <input class="form-input" type="tel" id="whatsapp" name="whatsapp" placeholder="+1234567890" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="edad">Edad</label>
+              <input class="form-input" type="number" id="edad" name="edad" placeholder="Tu edad" min="18" max="100" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="instagram">Instagram</label>
+              <input class="form-input" type="text" id="instagram" name="instagram" placeholder="@tuhandle" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Vienes sola o con amigas</label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="acompaniante" value="sola" required>
+                <span>Sola</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="acompaniante" value="amigas" required>
+                <span>Con amigas</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group" id="grupoGroup" style="display:none;">
+            <label class="form-label" for="grupo">Cuántas personas vienen contigo</label>
+            <input class="form-input" type="number" id="grupo" name="grupo" placeholder="Número de asistentes" min="1" max="20" required>
+          </div>
+
+          <button type="submit" class="form-submit">I'M IN</button>
+          <p class="form-hint">Al registrarte confirmas tu asistencia. Cover aplica en puerta.</p>
+        </form>
+
+        <div class="success-message" id="successMessage">
+          <h3 class="success-title">SEE YOU AT FASHION WEEK.</h3>
+          <p class="success-details">
+            Jueves 15 de octubre · 21H00.<br>
+            D-VOID · Av. República.<br><br>
+            <a href="https://wa.me/" target="_blank" class="success-whatsapp" rel="noopener noreferrer">Reservas / Mesas</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="footer-text">D-<span class="footer-accent">VOID</span> Fashion Week · Jueves 15 Oct · 21H00</p>
+  </footer>
+
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loader').classList.add('hidden');
+      }, 600);
+    });
+
+    var revealElements = document.querySelectorAll('[data-reveal], .timeline-item, .exp-card');
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    revealElements.forEach(function(el) {
+      revealObserver.observe(el);
+    });
+
+    var timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach(function(item, i) {
+      item.style.transitionDelay = (i * 0.15) + 's';
+    });
+
+    var expCards = document.querySelectorAll('.exp-card');
+    expCards.forEach(function(card, i) {
+      card.style.transitionDelay = (i * 0.12) + 's';
+    });
+
+    var form = document.getElementById('registroForm');
+    var successMessage = document.getElementById('successMessage');
+    var grupoGroup = document.getElementById('grupoGroup');
+    var radioInputs = document.querySelectorAll('input[name="acompaniante"]');
+
+    radioInputs.forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        var grupoInput = grupoGroup.querySelector('input');
+        if (radio.value === 'amigas') {
+          grupoGroup.style.display = 'block';
+          grupoInput.setAttribute('required', 'required');
+        } else {
+          grupoGroup.style.display = 'none';
+          grupoInput.removeAttribute('required');
+          grupoInput.value = '';
+        }
+      });
+    });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      form.parentElement.style.display = 'none';
+      successMessage.classList.add('visible');
+      window.scrollTo({ top: successMessage.offsetTop - 80, behavior: 'smooth' });
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
