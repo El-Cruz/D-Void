@@ -431,7 +431,90 @@
       .moodboard-item { width: 210px; height: 280px; }
     }
 
-    /* REGISTRO */
+    /* GUEST ENTRY CARD */
+    .guest-entry {
+      display: none;
+      text-align: center;
+      padding: 40px 28px;
+    }
+    .guest-entry.visible { display: block; }
+    .guest-entry-badge {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--dusty-rose);
+      border: 1px solid var(--dusty-rose);
+      padding: 6px 18px;
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+    .guest-entry-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 36px; font-weight: 700;
+      color: var(--smoke); margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+    .guest-entry-subtitle {
+      font-size: 13px; color: var(--text-muted);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .guest-entry-card {
+      background: rgba(192, 138, 144, 0.06);
+      border: 1px solid rgba(192, 138, 144, 0.15);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .guest-entry-card::before {
+      content: ""; position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--dusty-rose), transparent);
+    }
+    .guest-entry-name {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 28px; font-weight: 700;
+      color: var(--dusty-rose); margin-bottom: 8px;
+    }
+    .guest-entry-detail {
+      font-size: 14px; color: var(--text-muted);
+      line-height: 1.8; margin-bottom: 24px;
+    }
+    .guest-entry-detail strong { color: var(--smoke); }
+    .guest-entry-qr {
+      display: flex; justify-content: center;
+      margin: 28px 0;
+    }
+    .guest-entry-qr svg {
+      width: 140px; height: 140px;
+      background: var(--smoke);
+      border-radius: 4px;
+    }
+    .guest-entry-instructions {
+      font-size: 12px; color: var(--text-muted);
+      line-height: 1.8; margin-top: 24px;
+      border-top: 1px solid rgba(192, 138, 144, 0.1);
+      padding-top: 20px;
+    }
+    .guest-entry-instructions strong { color: var(--smoke); }
+    .guest-entry-whatsapp {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--smoke); background: transparent;
+      border: 1px solid var(--dusty-rose); padding: 12px 28px;
+      text-decoration: none; transition: all 0.3s var(--transition);
+    }
+    .guest-entry-whatsapp:hover { background: var(--dusty-rose); color: var(--text-dark); }
+    .guest-entry-whatsapp:active { transform: scale(0.97); }
+
+    @media (max-width: 768px) {
+      .guest-entry { padding: 28px 20px; }
+      .guest-entry-title { font-size: 28px; }
+      .guest-entry-name { font-size: 22px; }
+    }
     .registro {
       padding: 120px 24px;
       background: var(--bg-carbon);
@@ -540,35 +623,90 @@
       font-size: 11px; color: var(--text-muted);
       margin-top: 4px; line-height: 1.5;
     }
-    .success-message {
+    /* GUEST ENTRY */
+    .guest-entry {
       display: none;
       text-align: center;
-      padding: 52px 28px;
-      background: rgba(192, 138, 144, 0.08);
-      border: 1px solid rgba(192, 138, 144, 0.15);
+      padding: 40px 28px;
     }
-    .success-message.visible { display: block; }
-    .success-title {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 32px; font-weight: 700;
-      color: var(--dusty-rose); margin-bottom: 14px;
-      letter-spacing: 0.05em;
-    }
-    .success-details {
-      font-size: 14px; line-height: 1.9;
-      color: var(--text-muted); margin-bottom: 28px;
-    }
-    .success-details strong { color: var(--smoke); }
-    .success-whatsapp {
+    .guest-entry.visible { display: block; }
+    .guest-entry-badge {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--dusty-rose);
+      border: 1px solid var(--dusty-rose);
+      padding: 6px 18px;
       display: inline-block;
+      margin-bottom: 24px;
+    }
+    .guest-entry-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 36px; font-weight: 700;
+      color: var(--smoke); margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+    .guest-entry-subtitle {
+      font-size: 13px; color: var(--text-muted);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .guest-entry-card {
+      background: rgba(192, 138, 144, 0.06);
+      border: 1px solid rgba(192, 138, 144, 0.15);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .guest-entry-card::before {
+      content: ""; position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--dusty-rose), transparent);
+    }
+    .guest-entry-name {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 28px; font-weight: 700;
+      color: var(--dusty-rose); margin-bottom: 8px;
+    }
+    .guest-entry-detail {
+      font-size: 14px; color: var(--text-muted);
+      line-height: 1.8; margin-bottom: 24px;
+    }
+    .guest-entry-detail strong { color: var(--smoke); }
+    .guest-entry-qr {
+      display: flex; justify-content: center;
+      margin: 28px 0;
+    }
+    .guest-entry-qr svg {
+      width: 140px; height: 140px;
+      background: var(--smoke);
+      border-radius: 4px;
+    }
+    .guest-entry-instructions {
+      font-size: 12px; color: var(--text-muted);
+      line-height: 1.8; margin-top: 24px;
+      border-top: 1px solid rgba(192, 138, 144, 0.1);
+      padding-top: 20px;
+    }
+    .guest-entry-instructions strong { color: var(--smoke); }
+    .guest-entry-whatsapp {
+      display: inline-block;
+      margin-top: 20px;
       font-size: 12px; font-weight: 600;
       letter-spacing: 0.15em; text-transform: uppercase;
       color: var(--smoke); background: transparent;
       border: 1px solid var(--dusty-rose); padding: 12px 28px;
       text-decoration: none; transition: all 0.3s var(--transition);
     }
-    .success-whatsapp:hover { background: var(--dusty-rose); color: var(--text-dark); }
-    .success-whatsapp:active { transform: scale(0.97); }
+    .guest-entry-whatsapp:hover { background: var(--dusty-rose); color: var(--text-dark); }
+    .guest-entry-whatsapp:active { transform: scale(0.97); }
+
+    @media (max-width: 768px) {
+      .guest-entry { padding: 28px 20px; }
+      .guest-entry-title { font-size: 28px; }
+      .guest-entry-name { font-size: 22px; }
+    }
 
     @media (max-width: 768px) {
       .registro { padding: 80px 20px; }
@@ -831,13 +969,68 @@
           <p class="form-hint">Al registrarte confirmas tu asistencia. Cover aplica en puerta.</p>
         </form>
 
-        <div class="success-message" id="successMessage">
-          <h3 class="success-title">SEE YOU AT FASHION WEEK.</h3>
-          <p class="success-details">
-            Jueves 15 de octubre · 21H00.<br>
-            D-VOID · Av. República.<br><br>
-            <a href="https://wa.me/" target="_blank" class="success-whatsapp" rel="noopener noreferrer">Reservas / Mesas</a>
-          </p>
+        <div class="guest-entry" id="successMessage">
+          <span class="guest-entry-badge">Special Guest</span>
+          <h2 class="guest-entry-title">ENTRADA CONFIRMADA</h2>
+          <p class="guest-entry-subtitle">Tu pase de revista</p>
+          <div class="guest-entry-card">
+            <p class="guest-entry-name" id="guestName"></p>
+            <p class="guest-entry-detail" id="guestDetail"></p>
+            <div class="guest-entry-qr">
+              <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+                <rect width="140" height="140" fill="#f0ecee"/>
+                <rect x="10" y="10" width="40" height="40" rx="3" fill="#1a1416"/>
+                <rect x="15" y="15" width="30" height="30" rx="2" fill="#f0ecee"/>
+                <rect x="20" y="20" width="20" height="20" rx="1" fill="#1a1416"/>
+                <rect x="90" y="10" width="40" height="40" rx="3" fill="#1a1416"/>
+                <rect x="95" y="15" width="30" height="30" rx="2" fill="#f0ecee"/>
+                <rect x="100" y="20" width="20" height="20" rx="1" fill="#1a1416"/>
+                <rect x="10" y="90" width="40" height="40" rx="3" fill="#1a1416"/>
+                <rect x="15" y="95" width="30" height="30" rx="2" fill="#f0ecee"/>
+                <rect x="20" y="100" width="20" height="20" rx="1" fill="#1a1416"/>
+                <rect x="55" y="10" width="10" height="10" fill="#1a1416"/>
+                <rect x="70" y="10" width="10" height="10" fill="#1a1416"/>
+                <rect x="55" y="25" width="10" height="10" fill="#1a1416"/>
+                <rect x="70" y="25" width="10" height="10" fill="#1a1416"/>
+                <rect x="55" y="40" width="10" height="10" fill="#1a1416"/>
+                <rect x="70" y="40" width="10" height="10" fill="#1a1416"/>
+                <rect x="55" y="55" width="10" height="10" fill="#1a1416"/>
+                <rect x="70" y="55" width="10" height="10" fill="#1a1416"/>
+                <rect x="90" y="55" width="10" height="10" fill="#1a1416"/>
+                <rect x="105" y="55" width="10" height="10" fill="#1a1416"/>
+                <rect x="90" y="70" width="10" height="10" fill="#1a1416"/>
+                <rect x="105" y="70" width="10" height="10" fill="#1a1416"/>
+                <rect x="120" y="10" width="10" height="10" fill="#1a1416"/>
+                <rect x="120" y="25" width="10" height="10" fill="#1a1416"/>
+                <rect x="120" y="40" width="10" height="10" fill="#1a1416"/>
+                <rect x="120" y="55" width="10" height="10" fill="#1a1416"/>
+                <rect x="120" y="70" width="10" height="10" fill="#1a1416"/>
+                <rect x="120" y="85" width="10" height="10" fill="#1a1416"/>
+                <rect x="120" y="100" width="10" height="10" fill="#1a1416"/>
+                <rect x="120" y="115" width="10" height="10" fill="#1a1416"/>
+                <rect x="120" y="125" width="10" height="5" fill="#1a1416"/>
+                <rect x="10" y="125" width="10" height="5" fill="#1a1416"/>
+                <rect x="55" y="125" width="10" height="5" fill="#1a1416"/>
+                <rect x="90" y="125" width="10" height="5" fill="#1a1416"/>
+                <rect x="125" y="125" width="5" height="10" fill="#1a1416"/>
+                <rect x="10" y="125" width="5" height="10" fill="#1a1416"/>
+                <rect x="55" y="125" width="5" height="10" fill="#1a1416"/>
+                <rect x="90" y="125" width="5" height="10" fill="#1a1416"/>
+                <rect x="75" y="90" width="30" height="30" rx="2" fill="#1a1416"/>
+                <rect x="80" y="95" width="20" height="20" rx="1" fill="#f0ecee"/>
+                <rect x="85" y="100" width="10" height="10" fill="#1a1416"/>
+                <rect x="110" y="90" width="10" height="10" fill="#1a1416"/>
+                <rect x="110" y="110" width="10" height="10" fill="#1a1416"/>
+                <rect x="110" y="125" width="10" height="10" fill="#1a1416"/>
+              </svg>
+            </div>
+            <p class="guest-entry-instructions">
+              Presenta tu entrada en puerta.<br>
+              <strong>Jueves 15 de octubre · 21H00</strong><br>
+              D-VOID · Av. República
+            </p>
+            <a href="https://wa.me/" target="_blank" class="guest-entry-whatsapp" rel="noopener noreferrer">Reservas / Mesas</a>
+          </div>
         </div>
       </div>
     </div>
@@ -900,6 +1093,17 @@
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
+      var nombre = document.getElementById('nombre').value;
+      var apellido = document.getElementById('apellido').value;
+      var acompaniante = document.querySelector('input[name="acompaniante"]:checked');
+      var grupoInput = document.getElementById('grupo');
+      var numAsistentes = grupoInput ? grupoInput.value : '';
+      var guestNameEl = document.getElementById('guestName');
+      var guestDetailEl = document.getElementById('guestDetail');
+      guestNameEl.textContent = nombre + ' ' + apellido;
+      var tipo = acompaniante ? (acompaniante.value === 'sola' ? 'Sola' : 'Con amigas') : '';
+      var detalle = tipo + (numAsistentes && tipo === 'Con amigas' ? ' · ' + numAsistentes + ' asistentes' : '');
+      guestDetailEl.innerHTML = 'Tipo: <strong>' + tipo + '</strong>' + (numAsistentes ? '<br>Asistentes: <strong>' + numAsistentes + '</strong>' : '');
       form.parentElement.style.display = 'none';
       successMessage.classList.add('visible');
       window.scrollTo({ top: successMessage.offsetTop - 80, behavior: 'smooth' });
