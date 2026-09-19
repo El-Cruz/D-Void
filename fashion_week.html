@@ -1054,8 +1054,7 @@
               <strong>Jueves 15 de octubre · 21H00</strong><br>
               D-VOID · Av. República
             </p>
-            <a href="https://wa.me/" target="_blank" class="guest-entry-whatsapp" rel="noopener noreferrer">Reservas / Mesas</a>
-            <button class="guest-entry-download" id="downloadEntry">Descarga tu entrada</button>
+                        <button class="guest-entry-download" id="downloadEntry">Descarga tu entrada</button>
           </div>
         </div>
       </div>
@@ -1148,11 +1147,14 @@
     });
 
     document.getElementById('downloadEntry').addEventListener('click', function() {
+      var btn = document.getElementById('downloadEntry');
+      btn.style.display = 'none';
       html2canvas(document.getElementById('successMessage'), {
         backgroundColor: '#110c0e',
         scale: 2,
         useCORS: true
       }).then(function(canvas) {
+        btn.style.display = 'inline-block';
         var link = document.createElement('a');
         link.download = 'dvoid-entrada.jpg';
         link.href = canvas.toDataURL('image/jpeg', 0.95);
