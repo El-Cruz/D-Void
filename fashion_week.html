@@ -1104,7 +1104,7 @@
       var tipo = acompaniante ? (acompaniante.value === 'sola' ? 'Sola' : 'Con amigas') : '';
       var detalle = tipo + (numAsistentes && tipo === 'Con amigas' ? ' · ' + numAsistentes + ' asistentes' : '');
       guestDetailEl.innerHTML = 'Tipo: <strong>' + tipo + '</strong>' + (numAsistentes ? '<br>Asistentes: <strong>' + numAsistentes + '</strong>' : '');
-      form.parentElement.style.display = 'none';
+      form.style.display = 'none';
       successMessage.classList.add('visible');
       window.scrollTo({ top: successMessage.offsetTop - 80, behavior: 'smooth' });
     });
