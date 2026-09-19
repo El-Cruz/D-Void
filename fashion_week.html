@@ -715,6 +715,17 @@
     }
     .guest-entry-whatsapp:hover { background: var(--dusty-rose); color: var(--text-dark); }
     .guest-entry-whatsapp:active { transform: scale(0.97); }
+    .guest-entry-download {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--text-dark); background: var(--smoke);
+      border: none; padding: 12px 28px;
+      cursor: pointer; transition: all 0.3s var(--transition);
+    }
+    .guest-entry-download:hover { background: var(--dusty-rose); color: var(--text); }
+    .guest-entry-download:active { transform: scale(0.97); }
 
     @media (max-width: 768px) {
       .guest-entry { padding: 28px 20px; }
@@ -1044,6 +1055,7 @@
               D-VOID · Av. República
             </p>
             <a href="https://wa.me/" target="_blank" class="guest-entry-whatsapp" rel="noopener noreferrer">Reservas / Mesas</a>
+            <button class="guest-entry-download" id="downloadEntry">Descarga tu entrada</button>
           </div>
         </div>
       </div>
@@ -1134,6 +1146,20 @@
         }
       });
     });
+
+    document.getElementById('downloadEntry').addEventListener('click', function() {
+      html2canvas(document.getElementById('successMessage'), {
+        backgroundColor: '#110c0e',
+        scale: 2,
+        useCORS: true
+      }).then(function(canvas) {
+        var link = document.createElement('a');
+        link.download = 'dvoid-entrada.jpg';
+        link.href = canvas.toDataURL('image/jpeg', 0.95);
+        link.click();
+      });
+    });
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
 </html>
