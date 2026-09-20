@@ -714,17 +714,7 @@
       <h2 class="section-title">Elige cómo vivir la noche</h2>
       <p class="section-sub">Asegura tu spot. Elige tu pase y entra directo a IBIZA con tu preventa.</p>
       <div class="grid-2x2">
-        <article class="entry-card reveal">
-          <span class="tag">Primer semestre</span>
-          <span class="price">$10</span>
-          <span class="per">1 welcome drink con Ron Abuelo</span>
-          <p class="features">Acceso general a IBIZA.</p>
-          <div class="checkout-reveal">
-            <div class="checkout-inner">
-              <button class="cta-secondary" type="button" data-pass="primero">Continuar Reserva</button>
-            </div>
-          </div>
-        </article>
+
         <article class="entry-card featured reveal">
           <span class="tag">Otros semestres</span>
           <span class="price">$15</span>
@@ -1101,10 +1091,9 @@
       var pass = document.getElementById('boardingpass');
       var indicator = document.getElementById('selected-pass-indicator');
       var indicatorName = document.getElementById('selected-pass-name');
-      var selectedPass = 'primero'; // default
+       var selectedPass = 'otros'; // default
 
       var PASS_LABELS = {
-        primero: 'Primer semestre · $10',
         otros: 'Otros semestres · $15',
         externo: 'Otras universidades · $15',
         grupo: 'Grupo de 10 · $150'
@@ -1182,8 +1171,8 @@
 
       // Expose for card selection compatibility
       window.__choosePass = function (i) {
-        var passTypes = ['primero', 'otros', 'externo', 'grupo'];
-        selectPass(passTypes[i] || 'primero');
+var passTypes = ['otros', 'externo', 'grupo'];
+         selectPass(passTypes[i] || 'otros');
         document.getElementById('reserva').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
       };
     })();
