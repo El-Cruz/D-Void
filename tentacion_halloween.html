@@ -89,9 +89,9 @@ p,h1,h2,h3{margin:0}
 .cemetery-desc{font-size:15px;color:var(--champagne);opacity:.7;text-align:center;margin-bottom:32px;max-width:380px;margin-inline:auto}
 .graveyard{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:12px;margin:0 -20px;position:relative}
 .graveyard::-webkit-scrollbar{display:none}
-.graveyard-slide{flex:0 0 260px;scroll-snap-align:start;padding:28px 20px;display:flex;flex-direction:column;gap:12px;touch-action:manipulation;transition:transform var(--ease)}
-.graveyard-slide:active{transform:scale(.97)}
-.graveyard-slide .grave-icon{font-size:28px;opacity:.5;line-height:1}
+.graveyard-slide{flex:0 0 260px;scroll-snap-align:start;padding:64px 24px 32px;display:flex;flex-direction:column;gap:14px;touch-action:manipulation;transition:all var(--ease);border-radius:120px 120px 16px 16px;box-shadow:inset 0 4px 20px rgba(255,255,255,.05),0 8px 32px rgba(0,0,0,.5);border:1px solid var(--glass-border);background:var(--glass-bg)}
+.graveyard-slide:active{box-shadow:inset 0 4px 20px rgba(217,4,41,.2),0 0 24px rgba(217,4,41,.4);border-color:var(--red);transform:translateY(-4px)}
+.graveyard-slide .rip{font-family:"STIX Two Text","Palatino Linotype","Book Antiqua",Palatino,serif;font-size:20px;font-weight:700;color:var(--red);opacity:.8;letter-spacing:.05em;text-align:center;line-height:1}
 .graveyard-slide .grave-text{font-size:13px;color:var(--champagne);opacity:.65;line-height:1.5;font-style:italic}
 .graveyard-slide .grave-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);font-weight:600}
 .graveyard-fade{position:absolute;top:0;bottom:0;width:40px;background:linear-gradient(90deg,var(--bg0),transparent);pointer-events:none;z-index:2}
@@ -103,7 +103,7 @@ p,h1,h2,h3{margin:0}
 .confesionario-sub{font-size:15px;color:var(--champagne);opacity:.7;text-align:center;margin-bottom:36px}
 
 /* ── Pill selector ── */
-.pill-selector{display:flex;gap:12px;margin-bottom:32px;position:relative}
+.pill-selector{display:flex;gap:12px;margin-bottom:32px;position:relative;transition:box-shadow var(--ease)}
 .pill-option{flex:1;position:relative}
 .pill-option input[type="radio"]{position:absolute;opacity:0;width:0;height:0}
 .pill-option label{display:flex;align-items:center;justify-content:center;min-height:var(--tap-min);padding:16px 12px;border-radius:16px;border:1.5px solid var(--glass-border);background:var(--glass-bg);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);font-size:13px;font-weight:600;letter-spacing:.04em;text-align:center;transition:all var(--ease);cursor:pointer;touch-action:manipulation;flex-direction:column;gap:4px}
@@ -113,6 +113,18 @@ p,h1,h2,h3{margin:0}
 .pill-option input[type="radio"]:checked+label .pill-name{color:var(--form-accent)}
 .pill-option label:active{transform:scale(.97)}
 .pill-option input[type="radio"]:focus-visible+label{outline:2px solid var(--gold);outline-offset:2px}
+
+/* ── Rituales ── */
+.rituales{padding:56px 0 64px;position:relative;z-index:1}
+.rituales h2{font-size:28px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;text-align:center}
+.rituales-desc{font-size:15px;color:var(--champagne);opacity:.7;text-align:center;margin-bottom:32px;max-width:380px;margin-inline:auto}
+.rituales-grid{display:grid;gap:16px}
+.ritual-card{display:flex;flex-direction:column;gap:8px;padding:28px 24px;border-radius:20px;background:var(--glass-bg);-webkit-backdrop-filter:blur(var(--glass-blur));backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);touch-action:manipulation}
+.ritual-card .ritual-title{font-size:12px;letter-spacing:.15em;text-transform:uppercase;font-weight:700;color:var(--gold)}
+.ritual-card .ritual-body{font-size:14px;color:var(--champagne);opacity:.7;line-height:1.6}
+.ritual-card .ritual-body strong{color:var(--gold);font-weight:700}
+.ritual-card .ritual-body .highlight{color:var(--red);font-weight:700;font-size:18px}
+.ritual-card .ritual-body .blue-highlight{color:var(--blue);font-weight:700;font-size:18px}
 
 /* ── Form ── */
 .confesionario-form{display:flex;flex-direction:column;gap:20px;max-width:400px;margin-inline:auto}
@@ -150,8 +162,9 @@ p,h1,h2,h3{margin:0}
   .hero h1{font-size:72px}
   .hero-sub{font-size:20px}
   .countdown-value{font-size:48px}
-  .cemetery h2,.confesionario h2{font-size:36px}
+  .cemetery h2,.confesionario h2,.rituales h2{font-size:36px}
   .graveyard-slide{flex:0 0 280px}
+  .rituales-grid{grid-template-columns:1fr 1fr;gap:20px}
 }
 </style>
 </head>
@@ -215,29 +228,54 @@ p,h1,h2,h3{margin:0}
 
       <div class="graveyard" id="graveyard" role="list">
         <div class="graveyard-slide" role="listitem">
-          <div class="grave-icon" aria-hidden="true">💀</div>
+          <div class="rip" aria-hidden="true">R.I.P.</div>
           <div class="grave-text">"Tú que siempre prometías llamar y nunca llegabas."</div>
           <div class="grave-label">El Fantasma</div>
         </div>
         <div class="graveyard-slide" role="listitem">
-          <div class="grave-icon" aria-hidden="true">🖤</div>
+          <div class="rip" aria-hidden="true">R.I.P.</div>
           <div class="grave-text">"Esos mensajes de madrugada que solo terminaban en silencio."</div>
           <div class="grave-label">La Nota Pendiente</div>
         </div>
         <div class="graveyard-slide" role="listitem">
-          <div class="grave-icon" aria-hidden="true">🩸</div>
+          <div class="rip" aria-hidden="true">R.I.P.</div>
           <div class="grave-text">"Tu mentira favorita que ya ni te creías ni te importaba."</div>
           <div class="grave-label">El Mito</div>
         </div>
         <div class="graveyard-slide" role="listitem">
-          <div class="grave-icon" aria-hidden="true">💔</div>
+          <div class="rip" aria-hidden="true">R.I.P.</div>
           <div class="grave-text">"La relación que te mantuvo en el limbo por un año entero."</div>
           <div class="grave-label">El Límite Roto</div>
         </div>
         <div class="graveyard-slide" role="listitem">
-          <div class="grave-icon" aria-hidden="true">👁️</div>
+          <div class="rip" aria-hidden="true">R.I.P.</div>
           <div class="grave-text">"El casi algo que te dejó más preguntas que respuestas."</div>
           <div class="grave-label">El Casi</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" role="separator"></div>
+
+  <!-- ═══ RITUALES ═══ -->
+  <section class="rituales" aria-label="Rituales y Dress Code">
+    <div class="wrap">
+      <h2>LOS RITUALES</h2>
+      <p class="rituales-desc">Las reglas de noche. Lo que debes saber antes de cruzar la puerta.</p>
+
+      <div class="rituales-grid">
+        <div class="ritual-card">
+          <div class="ritual-title">Dress Code: Villanos</div>
+          <div class="ritual-body">Disfraz obligatorio o viste de <strong>Rojo / Negro</strong>. Show us your dark side.</div>
+        </div>
+        <div class="ritual-card">
+          <div class="ritual-title">Los Pecados</div>
+          <div class="ritual-body">Shot en jeringa de bienvenida. <span class="highlight">2x1 Aguardiente</span> hasta 22H30. Grupos de 10: Botella + 2 Covers.</div>
+        </div>
+        <div class="ritual-card">
+          <div class="ritual-title">La Recompensa</div>
+          <div class="ritual-body">Mejor disfraz individual: <span class="highlight">$100 cash</span>. Pareja: <span class="blue-highlight">$50 cash + $100 consumo</span>. Grupal: <span class="highlight">$200 consumo</span>.</div>
         </div>
       </div>
     </div>
@@ -343,11 +381,15 @@ p,h1,h2,h3{margin:0}
     root.style.setProperty("--form-accent-rgb", rgb);
   }
 
+  var pillSelector = document.querySelector(".pill-selector");
+
   redPill.addEventListener("change", function(){
     setAccent("#d90429", "217,4,41");
+    pillSelector.style.boxShadow = "0 0 32px rgba(217,4,41,.25), inset 0 0 20px rgba(217,4,41,.08)";
   });
   bluePill.addEventListener("change", function(){
     setAccent("#0077b6", "0,119,182");
+    pillSelector.style.boxShadow = "0 0 32px rgba(0,119,182,.25), inset 0 0 20px rgba(0,119,182,.08)";
   });
 
   /* ── Form submission ── */
