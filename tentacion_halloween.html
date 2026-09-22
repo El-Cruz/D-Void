@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0a0808">
-<meta name="description" content="DVOID · LA TENTACIÓN — Pre-Halloween. Jueves 01 Oct. 21H30. Cover $10. Elige tu pulsera.">
+<meta name="description" content="DVOID · LA TENTACIÓN — Pre-Halloween. Jueves 01 Oct. 21H30. Cover $10.">
 <title>DVOID · LA TENTACIÓN — Pre-Halloween</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,13 +21,11 @@
   --font-body:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
   --font-display:"Cinzel","Palatino Linotype","Book Antiqua",Palatino,serif;
   --ease:cubic-bezier(.2,.8,.2,1);
-  --spring:cubic-bezier(.175,.885,.32,1.2);
   --tap-min:44px;
-  --section-gap:64px;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;font-optical-sizing:auto}
-body{margin:0;background:var(--bg0);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;overflow-x:hidden;-webkit-tap-highlight-color:transparent;min-height:100vh}
+body{margin:0;background:var(--bg0);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;-webkit-tap-highlight-color:transparent;min-height:100vh;position:relative}
 a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer;color:inherit;background:none;border:0}
 p,h1,h2,h3{margin:0}
@@ -48,24 +46,14 @@ p,h1,h2,h3{margin:0}
   80%{transform:translate(1%,-2%)}
   90%{transform:translate(-1%,4%)}
 }
-body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.04;
+.grain-layer{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.04;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
   background-repeat:repeat;background-size:300px 300px;
   animation:grain .15s infinite steps(3);
   mix-blend-mode:multiply;
 }
 @media(prefers-reduced-motion:reduce){
-  body::after{animation:none;opacity:0}
-}
-
-/* ── Halloween Ambient: Spider Webs ── */
-body::before{content:"";position:fixed;top:0;left:0;width:40%;height:50%;z-index:0;pointer-events:none;opacity:.15;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M100,10 C60,10 10,40 10,80 C10,120 50,160 100,180 C150,160 190,120 190,80 C190,40 140,10 100,10 Z M100,40 C70,40 45,60 45,80 C45,100 70,125 100,145 C130,125 155,100 155,80 C155,60 130,40 100,40 Z' fill='none' stroke='%23d90429' stroke-width='.5' opacity='.4'/%3E%3Cline x1='100' y1='50' x2='100' y2='170' stroke='%23d90429' stroke-width='.3' opacity='.3'/%3E%3Cline x1='60' y1='60' x2='140' y2='60' stroke='%23d90429' stroke-width='.3' opacity='.3'/%3E%3Cline x1='70' y1='90' x2='130' y2='90' stroke='%23d90429' stroke-width='.3' opacity='.3'/%3E%3Cline x1='80' y1='120' x2='120' y2='120' stroke='%23d90429' stroke-width='.3' opacity='.3'/%3E%3C/svg%3E");
-  background-repeat:repeat;background-size:200px 200px;
-}
-body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index:0;pointer-events:none;opacity:.12;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M100,10 C60,10 10,40 10,80 C10,120 50,160 100,180 C150,160 190,120 190,80 C190,40 140,10 100,10 Z M100,40 C70,40 45,60 45,80 C45,100 70,125 100,145 C130,125 155,100 155,80 C155,60 130,40 100,40 Z' fill='none' stroke='%230077b6' stroke-width='.5' opacity='.3'/%3E%3Cline x1='100' y1='50' x2='100' y2='170' stroke='%230077b6' stroke-width='.3' opacity='.2'/%3E%3Cline x1='60' y1='60' x2='140' y2='60' stroke='%230077b6' stroke-width='.3' opacity='.2'/%3E%3Cline x1='70' y1='90' x2='130' y2='90' stroke='%230077b6' stroke-width='.3' opacity='.2'/%3E%3Cline x1='80' y1='120' x2='120' y2='120' stroke='%230077b6' stroke-width='.3' opacity='.2'/%3E%3C/svg%3E");
-  background-repeat:repeat;background-size:200px 200px;
+  .grain-layer{animation:none;opacity:0}
 }
 
 /* ── Ambient ── */
@@ -76,6 +64,18 @@ body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index
     radial-gradient(48% 38% at 70% 80%,rgba(0,119,182,.08) 0%,transparent 60%),
     var(--bg0);
 }
+
+/* ── Spider Web Images ── */
+.web-img{position:absolute;pointer-events:none;opacity:.6;z-index:0}
+.web-img.top-left{top:0;left:0;width:30%;height:40%;object-fit:contain}
+.web-img.top-right{top:0;right:0;width:30%;height:40%;object-fit:contain}
+
+/* ── Spider Drop ── */
+@keyframes drop{
+  0%{top:-50px}
+  100%{top:20px}
+}
+.spider-drop{position:absolute;top:-50px;left:50%;transform:translateX(-50%);width:24px;height:24px;z-index:2;pointer-events:none;animation:drop 6s ease-in-out infinite alternate;opacity:.7}
 
 /* ── Glass card ── */
 .glass{background:var(--glass-bg);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);border-radius:20px}
@@ -147,13 +147,20 @@ body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index
 /* ── Divider ── */
 .section-divider{height:1px;background:linear-gradient(90deg,transparent,var(--glass-border),transparent);margin:0;position:relative;z-index:1}
 
+/* ── Scrollytelling backgrounds ── */
+.bg-layer{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .8s ease}
+.bg-layer.active{opacity:1}
+.bg-red{background:radial-gradient(ellipse at 50% 0%,rgba(217,4,41,.08) 0%,transparent 60%)}
+.bg-blue{background:radial-gradient(ellipse at 50% 0%,rgba(0,119,182,.06) 0%,transparent 60%)}
+.bg-deep{background:radial-gradient(ellipse at 50% 100%,rgba(26,5,22,.5) 0%,transparent 50%)}
+
 /* ── Cemetery ── */
-.cemetery{padding:56px 0 64px;position:relative;z-index:1;overflow:hidden}
+.cemetery{padding:56px 0 64px;position:relative;z-index:10;overflow:hidden}
 .cemetery h2{font-family:var(--font-display);font-size:28px;font-weight:900;letter-spacing:.06em;margin-bottom:8px;text-align:center}
 .cemetery-desc{font-size:15px;color:var(--champagne);opacity:.7;text-align:center;margin-bottom:32px;max-width:380px;margin-inline:auto}
-.graveyard{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:12px;margin:0 -20px;position:relative}
+.graveyard{display:flex;overflow-x:auto;gap:24px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:12px;position:relative;z-index:10}
 .graveyard::-webkit-scrollbar{display:none}
-.graveyard-slide{flex:0 0 260px;scroll-snap-align:start;padding:64px 24px 32px;display:flex;flex-direction:column;gap:14px;touch-action:manipulation;transition:all .8s cubic-bezier(.22,.68,.36,1);border-radius:150px 150px 4px 4px;border:1px solid rgba(255,255,255,.05);box-shadow:inset 0 4px 20px rgba(255,255,255,.05),0 8px 32px rgba(0,0,0,.5);background:linear-gradient(180deg,#050103 0%,#0a0808 40%,#1a0506 100%);opacity:0;transform:translateY(100vh) scale(.92);pointer-events:none;cursor:pointer}
+.graveyard-slide{flex:0 0 240px;scroll-snap-align:start;padding:64px 20px 28px;display:flex;flex-direction:column;gap:12px;touch-action:manipulation;transition:all .8s cubic-bezier(.22,.68,.36,1);border-radius:150px 150px 4px 4px;border:1px solid rgba(255,255,255,.05);box-shadow:inset 0 4px 20px rgba(0,0,0,.6),0 8px 32px rgba(0,0,0,.5);background-image:url('Resources/images/lapida.png');background-size:cover;background-position:center;background-color:#050103;opacity:0;transform:translateY(100vh) scale(.92);pointer-events:none;cursor:pointer;position:relative;z-index:10}
 .graveyard-slide.alive{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
 .graveyard-slide.alive:nth-child(1){transition-delay:.1s}
 .graveyard-slide.alive:nth-child(2){transition-delay:.3s}
@@ -164,10 +171,10 @@ body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index
 .graveyard-slide.alive .rip{animation:graveGlow 2s ease-in-out infinite alternate}
 .graveyard-slide:hover{border-color:var(--red);animation:shake .4s ease-in-out}
 .graveyard-slide:active{box-shadow:inset 0 4px 20px rgba(217,4,41,.3),0 0 24px rgba(217,4,41,.4);border-color:var(--red);animation:shake .3s ease-in-out}
-.graveyard-slide .rip{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--red);opacity:.8;letter-spacing:.1em;text-align:center;line-height:1}
-.graveyard-slide .grave-text{font-size:13px;color:var(--champagne);opacity:.65;line-height:1.5;font-style:italic}
+.graveyard-slide .rip{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--red);opacity:.8;letter-spacing:.1em;text-align:center;line-height:1;text-shadow:inset 1px 1px 2px black}
+.graveyard-slide .grave-text{font-size:13px;color:var(--champagne);opacity:.65;line-height:1.5;font-style:italic;text-shadow:inset 1px 1px 2px black}
 .graveyard-slide .grave-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);font-weight:600}
-@keyframes graveGlow{from{text-shadow:0 0 4px rgba(217,4,41,.2)}to{text-shadow:0 0 16px rgba(217,4,41,.6),0 0 32px rgba(217,4,41,.2)}}
+@keyframes graveGlow{from{text-shadow:inset 1px 1px 2px black,0 0 4px rgba(217,4,41,.2)}to{text-shadow:inset 1px 1px 2px black,0 0 16px rgba(217,4,41,.6),0 0 32px rgba(217,4,41,.2)}}
 @keyframes shake{
   0%,100%{transform:translateX(0) translateY(-4px)}
   10%{transform:translateX(-3px) translateY(-4px)}
@@ -183,8 +190,7 @@ body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index
 .graveyard-floor{position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,rgba(217,4,41,.06),transparent);pointer-events:none;z-index:3}
 .graveyard-floor::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(217,4,41,.3),transparent)}
 .graveyard-zombie{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:120px;height:60px;opacity:.2;pointer-events:none;z-index:4;
-  background:radial-gradient(ellipse at 50% 80%,rgba(20,60,20,.6) 0%,rgba(20,60,20,.3) 40%,transparent 70%);
-  border-radius:50% 50% 0 0;
+  background:radial-gradient(ellipse at 50% 80%,rgba(20,60,20,.6) 0%,rgba(20,60,20,.3) 40%,transparent 70%);border-radius:50% 50% 0 0;
 }
 .graveyard-zombie::before{content:"";position:absolute;bottom:0;left:10%;width:30%;height:40%;background:radial-gradient(ellipse,rgba(30,70,30,.5) 0%,transparent 70%);border-radius:50% 50% 0 0}
 .graveyard-zombie::after{content:"";position:absolute;bottom:5px;left:20%;width:60%;height:15px;background:radial-gradient(ellipse,rgba(40,80,40,.4) 0%,transparent 60%);border-radius:50%}
@@ -193,7 +199,7 @@ body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index
 .graveyard-fade.right{right:0;background:linear-gradient(270deg,var(--bg0),transparent)}
 
 /* ── Confesionario (Experience) ── */
-.confesionario{padding:56px 0 80px;position:relative;z-index:1}
+.confesionario{padding:56px 0 80px;position:relative;z-index:11}
 .confesionario h2{font-family:var(--font-display);font-size:28px;font-weight:900;letter-spacing:.06em;margin-bottom:4px;text-align:center}
 .confesionario-sub{font-size:15px;color:var(--champagne);opacity:.7;text-align:center;margin-bottom:36px}
 
@@ -216,7 +222,7 @@ body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index
 .bracelet-explain strong{color:var(--gold);font-weight:600}
 
 /* ── Rituales ── */
-.rituales{padding:56px 0 64px;position:relative;z-index:1}
+.rituales{padding:56px 0 64px;position:relative;z-index:12}
 .rituales h2{font-family:var(--font-display);font-size:28px;font-weight:900;letter-spacing:.06em;margin-bottom:8px;text-align:center}
 .rituales-desc{font-size:15px;color:var(--champagne);opacity:.7;text-align:center;margin-bottom:32px;max-width:380px;margin-inline:auto}
 .rituales-grid{display:grid;gap:16px}
@@ -227,22 +233,34 @@ body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index
 .ritual-card .ritual-body .highlight{color:var(--red);font-weight:700;font-size:18px}
 .ritual-card .ritual-body .blue-highlight{color:var(--blue);font-weight:700;font-size:18px}
 
-/* ── Reserva ── */
-.reserva-section{padding:56px 0 80px;position:relative;z-index:1}
+/* ── Reserva (Tombstone style) ── */
+.reserva-section{padding:56px 0 80px;position:relative;z-index:13}
 .reserva-section h2{font-family:var(--font-display);font-size:28px;font-weight:900;letter-spacing:.06em;margin-bottom:4px;text-align:center}
 .reserva-desc{font-size:15px;color:var(--champagne);opacity:.7;text-align:center;margin-bottom:36px}
-.reserva-form{display:flex;flex-direction:column;gap:20px;max-width:400px;margin-inline:auto}
-.reserva-form .form-group{position:relative}
-.reserva-form .form-group input{width:100%;background:transparent;border:none;border-bottom:1.5px solid var(--glass-border);padding:14px 0;color:var(--text);font-family:var(--font-body);font-size:16px;transition:border-color var(--ease);outline:none;-webkit-appearance:none}
-.reserva-form .form-group input::placeholder{color:var(--champagne);opacity:.4}
-.reserva-form .form-group input:focus{border-bottom-color:var(--form-accent)}
-.reserva-form .form-group label{position:absolute;top:14px;left:0;font-size:13px;color:var(--champagne);opacity:.5;transition:all var(--ease);pointer-events:none;letter-spacing:.04em}
-.reserva-form .form-group input:focus+label,.reserva-form .form-group input:not(:placeholder-shown)+label{top:-20px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--form-accent);opacity:.8}
-.reserva-form .form-group .field-error{font-size:12px;color:var(--red);margin-top:4px;display:none}
+.reserva-tombstone{position:relative;max-width:400px;margin-inline:auto;padding:40px 28px;border-radius:12px 12px 4px 4px;background-image:url('Resources/images/lapida.png');background-size:cover;background-position:center;background-color:#050103;border:1px solid rgba(0,0,0,.3);box-shadow:inset 0 4px 20px rgba(0,0,0,.6),0 8px 32px rgba(0,0,0,.5);overflow:hidden}
+.reserva-tombstone::before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(5,1,3,.85);pointer-events:none;z-index:0}
+.reserva-tombstone>*{position:relative;z-index:1}
+.reserva-tombstone .form-group{position:relative}
+.reserva-tombstone .form-group input{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(0,0,0,.5);padding:14px 0;color:#222;font-family:var(--font-body);font-size:16px;text-shadow:1px 1px 0px rgba(255,255,255,.1);transition:border-color var(--ease);outline:none;-webkit-appearance:none}
+.reserva-tombstone .form-group input::placeholder{color:#555;opacity:.6}
+.reserva-tombstone .form-group input:focus{border-bottom-color:var(--red)}
+.reserva-tombstone .form-group label{position:absolute;top:14px;left:0;font-size:13px;color:#333;opacity:.5;transition:all var(--ease);pointer-events:none;letter-spacing:.04em;text-shadow:1px 1px 0px rgba(255,255,255,.05)}
+.reserva-tombstone .form-group input:focus+label,.reserva-tombstone .form-group input:not(:placeholder-shown)+label{top:-20px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);opacity:.8}
+.reserva-tombstone .form-group .field-error{font-size:12px;color:var(--red);margin-top:4px;display:none}
 .reserva-submit{display:inline-flex;align-items:center;justify-content:center;min-height:var(--tap-min);padding:16px;border-radius:60px;background:var(--red);color:#fff;font-family:var(--font-body);font-size:15px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:all var(--ease);border:2px solid transparent;touch-action:manipulation;margin-top:8px;width:100%}
 .reserva-submit:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(var(--form-accent-rgb),.35)}
 .reserva-submit:active{transform:scale(.97)}
 .reserva-submit:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* ── Tombstone Ticket ── */
+.tombstone-ticket{display:none;text-align:center;padding:32px 24px;max-width:400px;margin-inline:auto;border-radius:12px 12px 4px 4px;background-image:url('Resources/images/lapida.png');background-size:cover;background-position:center;background-color:#050103;border:1px solid rgba(255,255,255,.05);box-shadow:inset 0 4px 20px rgba(0,0,0,.6),0 8px 32px rgba(0,0,0,.5);position:relative;overflow:hidden}
+.tombstone-ticket::before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(5,1,3,.9);pointer-events:none;z-index:0}
+.tombstone-ticket>*{position:relative;z-index:1}
+.tombstone-ticket .ticket-label{font-family:var(--font-display);font-size:16px;font-weight:700;letter-spacing:.2em;color:var(--red);margin-bottom:16px;text-shadow:0 0 8px rgba(217,4,41,.3)}
+.tombstone-ticket .ticket-name{font-family:var(--font-display);font-size:28px;font-weight:900;color:var(--gold);letter-spacing:.08em;margin-bottom:20px}
+.tombstone-ticket .ticket-qr{margin:20px auto;width:160px;height:160px;border:2px solid rgba(255,255,255,.1);border-radius:8px;overflow:hidden}
+.tombstone-ticket .ticket-qr img{width:100%;height:100%;object-fit:contain}
+.tombstone-ticket .ticket-footer{font-family:var(--font-display);font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--champagne);opacity:.7;margin-top:20px}
 
 /* ── Success ── */
 .success-message{display:none;text-align:center;padding:40px 20px;max-width:400px;margin-inline:auto}
@@ -266,7 +284,7 @@ body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index
 .audio-widget .audio-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--champagne);opacity:.5;font-family:var(--font-body)}
 
 /* ── Footer ── */
-.footer{padding:32px 20px;text-align:center;position:relative;z-index:1;border-top:1px solid var(--glass-border)}
+.footer{padding:32px 20px;text-align:center;position:relative;z-index:14;border-top:1px solid var(--glass-border)}
 .footer p{font-family:var(--font-display);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--champagne);opacity:.35}
 
 /* ── Reduced motion ── */
@@ -280,7 +298,7 @@ body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index
   .hero-sub{font-size:20px}
   .countdown-value{font-size:48px}
   .cemetery h2,.confesionario h2,.rituales h2,.reserva-section h2{font-size:36px}
-  .graveyard-slide{flex:0 0 280px}
+  .graveyard-slide{flex:0 0 260px}
   .rituales-grid{grid-template-columns:1fr 1fr;gap:20px}
   .bracelet-selector{gap:20px}
   .marquee-text{font-size:16px}
@@ -289,6 +307,14 @@ body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index
 </head>
 <body>
 <div class="ambient" aria-hidden="true"></div>
+<div class="grain-layer" aria-hidden="true"></div>
+
+<!-- Spider Web Images -->
+<img class="web-img top-left" src="Resources/images/telarana.png" alt="" aria-hidden="true">
+<img class="web-img top-right" src="Resources/images/telarana.png" alt="" aria-hidden="true">
+
+<!-- Spider Drop -->
+<img class="spider-drop" src="Resources/images/arana.png" alt="" aria-hidden="true">
 
 <!-- Audio Widget -->
 <div class="audio-widget" id="audioWidget" role="button" aria-label="Toggle ambient audio" tabindex="0">
@@ -298,6 +324,11 @@ body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index
   <span class="audio-label">Ambient</span>
 </div>
 
+<!-- Scrollytelling Background Layers -->
+<div class="bg-layer bg-deep" id="bgDeep" aria-hidden="true"></div>
+<div class="bg-layer bg-red" id="bgRed" aria-hidden="true"></div>
+<div class="bg-layer bg-blue" id="bgBlue" aria-hidden="true"></div>
+
 <header class="topbar" role="banner">
   <div class="topbar-inner wrap">
     <div class="brand">D<span>VOID</span> · La Tentación</div>
@@ -306,7 +337,7 @@ body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index
 
 <main>
   <!-- ═══ HERO ═══ -->
-  <section class="hero" aria-label="Invitación al evento">
+  <section class="hero" aria-label="Invitación al evento" style="z-index:1">
     <div class="wrap">
       <div class="hero-eyebrow">Pre-Halloween 2026</div>
       <h1>LA TENTACIÓN</h1>
@@ -356,7 +387,7 @@ body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index
   <div class="section-divider" role="separator"></div>
 
   <!-- ═══ CEMENTERIO DE LOS EX ═══ -->
-  <section class="cemetery" aria-label="Cementerio de los ex">
+  <section class="cemetery" aria-label="Cementerio de los ex" style="z-index:10">
     <div class="wrap">
       <h2>EL CEMENTERIO DE LOS EX</h2>
       <p class="cemetery-desc">Escribe qué relación, ex, casi algo o situación tóxica vas a enterrar esta noche.</p>
@@ -398,7 +429,7 @@ body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index
   <div class="section-divider" role="separator"></div>
 
   <!-- ═══ RITUALES ═══ -->
-  <section class="rituales" aria-label="Rituales y Dress Code">
+  <section class="rituales" aria-label="Rituales y Dress Code" style="z-index:12">
     <div class="wrap">
       <h2>LOS RITUALES</h2>
       <p class="rituales-desc">Las reglas de noche. Lo que debes saber antes de cruzar la puerta.</p>
@@ -423,7 +454,7 @@ body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index
   <div class="section-divider" role="separator"></div>
 
   <!-- ═══ EL CONFESIONARIO (Experiencia) ═══ -->
-  <section class="confesionario" id="confesionario" aria-label="Selección de pulsera">
+  <section class="confesionario" id="confesionario" aria-label="Selección de pulsera" style="z-index:11">
     <div class="wrap">
       <h2>EL CONFESIONARIO</h2>
       <p class="confesionario-sub">Una noche sin reglas. El mejor día para pecar.</p>
@@ -454,40 +485,45 @@ body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index
   <div class="section-divider" role="separator"></div>
 
   <!-- ═══ RESERVA ═══ -->
-  <section class="reserva-section" id="reserva" aria-label="Reserva tu entrada">
+  <section class="reserva-section" id="reserva" aria-label="Reserva tu entrada" style="z-index:13">
     <div class="wrap">
       <h2>ASEGURA TU ENTRADA</h2>
       <p class="reserva-desc">Cover $10. Regístrate en la lista oficial.</p>
 
-      <form class="reserva-form" id="reservaForm" novalidate>
-        <div class="form-group">
-          <input type="text" id="rname" placeholder=" " required autocomplete="given-name">
-          <label for="rname">Nombre</label>
-          <div class="field-error" id="rname-error">Ingresa tu nombre</div>
-        </div>
-        <div class="form-group">
-          <input type="text" id="rlname" placeholder=" " required autocomplete="family-name">
-          <label for="rlname">Apellido</label>
-          <div class="field-error" id="rlname-error">Ingresa tu apellido</div>
-        </div>
-        <div class="form-group">
-          <input type="tel" id="rwhatsapp" placeholder=" " required autocomplete="tel">
-          <label for="rwhatsapp">WhatsApp</label>
-          <div class="field-error" id="rwhatsapp-error">Ingresa tu WhatsApp</div>
-        </div>
-        <button type="submit" class="reserva-submit" id="reservaSubmit">RESERVAR AHORA</button>
-      </form>
+      <div class="reserva-tombstone">
+        <form class="reserva-form" id="reservaForm" novalidate>
+          <div class="form-group">
+            <input type="text" id="rname" placeholder=" " required autocomplete="given-name">
+            <label for="rname">Nombre</label>
+            <div class="field-error" id="rname-error">Ingresa tu nombre</div>
+          </div>
+          <div class="form-group">
+            <input type="text" id="rlname" placeholder=" " required autocomplete="family-name">
+            <label for="rlname">Apellido</label>
+            <div class="field-error" id="rlname-error">Ingresa tu apellido</div>
+          </div>
+          <div class="form-group">
+            <input type="tel" id="rwhatsapp" placeholder=" " required autocomplete="tel">
+            <label for="rwhatsapp">WhatsApp</label>
+            <div class="field-error" id="rwhatsapp-error">Ingresa tu WhatsApp</div>
+          </div>
+          <button type="submit" class="reserva-submit" id="reservaSubmit">ENTERRAME</button>
+        </form>
 
-      <div class="success-message" id="reservaSuccess" role="status" aria-live="polite">
-        <span class="check-icon" aria-hidden="true">💀</span>
-        <h3>ESTÁS EN LA LISTA</h3>
-        <p>Nos vemos en D-VOID.</p>
+        <div class="tombstone-ticket" id="tombstoneTicket" role="status" aria-live="polite">
+          <div class="ticket-label">AQUÍ YACE</div>
+          <div class="ticket-name" id="ticketName"></div>
+          <div class="ticket-qr">
+            <img src="Resources/images/qr-demo.png" alt="QR Code" loading="lazy">
+          </div>
+          <div class="ticket-footer">Nos vemos en el infierno... D-VOID 01.OCT</div>
+        </div>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="footer" role="contentinfo">
+<footer class="footer" role="contentinfo" style="z-index:14">
   <p>D-VOID · La Tentación · Pre-Halloween 2026</p>
 </footer>
 
@@ -524,6 +560,34 @@ body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
+  /* ── Scrollytelling Backgrounds via IntersectionObserver ── */
+  var bgRed = document.getElementById("bgRed");
+  var bgBlue = document.getElementById("bgBlue");
+  var bgDeep = document.getElementById("bgDeep");
+
+  var sectionObservers = [
+    {el: document.querySelector(".hero"), target: bgDeep},
+    {el: document.querySelector(".cemetery"), target: bgRed},
+    {el: document.querySelector(".confesionario"), target: bgBlue},
+    {el: document.querySelector(".reserva-section"), target: bgRed}
+  ];
+
+  sectionObservers.forEach(function(item){
+    if(item.el && item.target){
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            bgDeep.classList.remove("active");
+            bgRed.classList.remove("active");
+            bgBlue.classList.remove("active");
+            item.target.classList.add("active");
+          }
+        });
+      },{threshold:0.25});
+      obs.observe(item.el);
+    }
+  });
+
   /* ── Bracelet selector → CSS variable mutation + neon glow ── */
   var root = document.documentElement;
   var redBracelet = document.getElementById("red-bracelet");
@@ -559,9 +623,10 @@ body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index
     graveyardSlides.forEach(function(slide){graveObserver.observe(slide)});
   }
 
-  /* ── Form submission (Reserva) ── */
+  /* ── Form submission (Reserva - Tombstone Ticket) ── */
   var form = document.getElementById("reservaForm");
-  var successMsg = document.getElementById("reservaSuccess");
+  var ticket = document.getElementById("tombstoneTicket");
+  var ticketName = document.getElementById("ticketName");
 
   function validate(){
     var valid = true;
@@ -586,8 +651,12 @@ body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index
   form.addEventListener("submit", function(e){
     e.preventDefault();
     if(!validate()) return;
+    var nameInput = document.getElementById("rname");
+    var lastNameInput = document.getElementById("rlname");
+    var fullName = (nameInput.value.trim() + " " + lastNameInput.value.trim()).trim();
     form.style.display = "none";
-    successMsg.style.display = "block";
+    ticketName.textContent = fullName;
+    ticket.style.display = "block";
   });
 
   ["rname","rlname","rwhatsapp"].forEach(function(id){
