@@ -84,17 +84,29 @@ p,h1,h2,h3{margin:0}
 .section-divider{height:1px;background:linear-gradient(90deg,transparent,var(--glass-border),transparent);margin:0;position:relative;z-index:1}
 
 /* ── Cemetery ── */
-.cemetery{padding:56px 0 64px;position:relative;z-index:1}
+.cemetery{padding:56px 0 64px;position:relative;z-index:1;overflow:hidden}
 .cemetery h2{font-size:28px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;text-align:center}
 .cemetery-desc{font-size:15px;color:var(--champagne);opacity:.7;text-align:center;margin-bottom:32px;max-width:380px;margin-inline:auto}
 .graveyard{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:12px;margin:0 -20px;position:relative}
 .graveyard::-webkit-scrollbar{display:none}
-.graveyard-slide{flex:0 0 260px;scroll-snap-align:start;padding:64px 24px 32px;display:flex;flex-direction:column;gap:14px;touch-action:manipulation;transition:all var(--ease);border-radius:120px 120px 16px 16px;box-shadow:inset 0 4px 20px rgba(255,255,255,.05),0 8px 32px rgba(0,0,0,.5);border:1px solid var(--glass-border);background:var(--glass-bg)}
+.graveyard-slide{flex:0 0 260px;scroll-snap-align:start;padding:64px 24px 32px;display:flex;flex-direction:column;gap:14px;touch-action:manipulation;transition:all .8s cubic-bezier(.22,.68,.36,1);border-radius:120px 120px 16px 16px;box-shadow:inset 0 4px 20px rgba(255,255,255,.05),0 8px 32px rgba(0,0,0,.5);border:1px solid var(--glass-border);background:var(--glass-bg);opacity:0;transform:translateY(100vh) scale(.92);pointer-events:none}
+.graveyard-slide.alive{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+.graveyard-slide.alive:nth-child(1){transition-delay:.1s}
+.graveyard-slide.alive:nth-child(2){transition-delay:.3s}
+.graveyard-slide.alive:nth-child(3){transition-delay:.5s}
+.graveyard-slide.alive:nth-child(4){transition-delay:.7s}
+.graveyard-slide.alive:nth-child(5){transition-delay:.9s}
+.graveyard-slide.alive:nth-child(6){transition-delay:1.1s}
+.graveyard-slide.alive .rip{animation:graveGlow 2s ease-in-out infinite alternate}
 .graveyard-slide:active{box-shadow:inset 0 4px 20px rgba(217,4,41,.2),0 0 24px rgba(217,4,41,.4);border-color:var(--red);transform:translateY(-4px)}
-.graveyard-slide .rip{font-family:"STIX Two Text","Palatino Linotype","Book Antiqua",Palatino,serif;font-size:20px;font-weight:700;color:var(--red);opacity:.8;letter-spacing:.05em;text-align:center;line-height:1}
+.graveyard-slide .rip{font-family:"STIX Two Text","Palato Linotype","Book Antiqua",Palatino,serif;font-size:20px;font-weight:700;color:var(--red);opacity:.8;letter-spacing:.05em;text-align:center;line-height:1}
 .graveyard-slide .grave-text{font-size:13px;color:var(--champagne);opacity:.65;line-height:1.5;font-style:italic}
 .graveyard-slide .grave-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);font-weight:600}
+@keyframes graveGlow{from{text-shadow:0 0 4px rgba(217,4,41,.2)}to{text-shadow:0 0 16px rgba(217,4,41,.6),0 0 32px rgba(217,4,41,.2)}}
+.graveyard-floor{position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,rgba(217,4,41,.06),transparent);pointer-events:none;z-index:3}
+.graveyard-floor::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(217,4,41,.3),transparent)}
 .graveyard-fade{position:absolute;top:0;bottom:0;width:40px;background:linear-gradient(90deg,var(--bg0),transparent);pointer-events:none;z-index:2}
+.graveyard-fade.left{left:0;background:linear-gradient(270deg,var(--bg0),transparent)}
 .graveyard-fade.right{right:0;background:linear-gradient(270deg,var(--bg0),transparent)}
 
 /* ── Confesionario ── */
@@ -252,6 +264,9 @@ p,h1,h2,h3{margin:0}
           <div class="grave-text">"El casi algo que te dejó más preguntas que respuestas."</div>
           <div class="grave-label">El Casi</div>
         </div>
+        <div class="graveyard-floor" aria-hidden="true"></div>
+        <div class="graveyard-fade left" aria-hidden="true"></div>
+        <div class="graveyard-fade right" aria-hidden="true"></div>
       </div>
     </div>
   </section>
@@ -392,7 +407,22 @@ p,h1,h2,h3{margin:0}
     pillSelector.style.boxShadow = "0 0 32px rgba(0,119,182,.25), inset 0 0 20px rgba(0,119,182,.08)";
   });
 
-  /* ── Form submission ── */
+  /* ── Cemetery scroll emergence ── */
+var graveyardSlides = document.querySelectorAll(".graveyard-slide");
+var cemeterySection = document.querySelector(".cemetery");
+if(cemeterySection && graveyardSlides.length){
+  var graveObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add("alive");
+        graveObserver.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.15,rootMargin:"0px 0px -20% 0px"});
+  graveyardSlides.forEach(function(slide){graveObserver.observe(slide)});
+}
+
+/* ── Form submission ── */
   var form = document.getElementById("confesionarioForm");
   var successMsg = document.getElementById("successMessage");
   var submitBtn = document.getElementById("submitBtn");
