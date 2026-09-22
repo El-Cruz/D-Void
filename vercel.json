@@ -7,6 +7,7 @@
     { "source": "/menu", "destination": "/menu.html" },
     { "source": "/ingreso", "destination": "/ingreso.html" },
     { "source": "/evento-udla", "destination": "/evento_udla.html" },
-    { "source": "/fashion-week", "destination": "/fashion_week.html" }
+    { "source": "/fashion-week", "destination": "/fashion_week.html" },
+    { "source": "/la-tentacion", "destination": "/tentacion_halloween.html" }
   ]
 }
