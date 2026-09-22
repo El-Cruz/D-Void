@@ -197,6 +197,65 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
   *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
 }
 
+/* ═══ CSS CREATURES ═══ */
+.creature{position:fixed;pointer-events:auto;z-index:5;will-change:transform}
+
+/* ── Spider ── */
+.spider{width:24px;height:24px;border-radius:50% 50% 40% 40%;background:radial-gradient(ellipse at 50% 40%,#1a1a1a 0%,#0a0a0a 70%);position:relative}
+.spider::before,.spider::after{content:"";position:absolute;top:6px;width:16px;height:4px;border-radius:2px;background:radial-gradient(ellipse,#111 0%,#050505 100%)}
+.spider::before{left:-12px;box-shadow:-4px 4px 0 #0e0e0e,4px 4px 0 #0e0e0e,8px 0 0 #0e0e0e}
+.spider::after{right:-12px;box-shadow:-4px -4px 0 #0e0e0e,4px -4px 0 #0e0e0e,-8px 0 0 #0e0e0e}
+.spider .eye{position:absolute;top:3px;width:4px;height:4px;border-radius:50%;background:#333;box-shadow:6px 0 0 #333}
+.spider.animating{animation:spiderScuttle var(--dur,8s) linear infinite}
+@keyframes spiderScuttle{
+  0%{transform:translate(0,0) rotate(0deg)}
+  12%{transform:translate(var(--tx,300px),var(--ty,-80px)) rotate(5deg)}
+  25%{transform:translate(var(--tx2,100px),var(--ty2,120px)) rotate(-3deg)}
+  50%{transform:translate(var(--tx3,-200px),var(--ty3,-60px)) rotate(4deg)}
+  75%{transform:translate(var(--tx4,50px),var(--ty4,80px)) rotate(-2deg)}
+  100%{transform:translate(0,0) rotate(0deg)}
+}
+.spider:hover .eye{background:#d90429;box-shadow:6px 0 0 #d90429}
+.spider:hover{filter:drop-shadow(0 0 6px rgba(217,4,41,.5))}
+
+/* ── Zombie ── */
+.zombie{width:40px;height:56px;position:relative;transform-origin:center bottom}
+.zombie .z-head{position:absolute;top:0;left:50%;transform:translateX(-50%);width:22px;height:22px;border-radius:50% 50% 45% 45%;background:linear-gradient(180deg,#5a8a2a,#3d6b1e);border:1.5px solid #2a4a10}
+.zombie .z-head::before{content:"";position:absolute;top:4px;left:3px;width:5px;height:5px;border-radius:50%;background:#1a3a0a;box-shadow:9px 0 0 #1a3a0a}
+.zombie .z-head::after{content:"";position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:14px;height:8px;border-radius:0 0 50% 50%;background:linear-gradient(180deg,#3d6b1e,#2a4a10)}
+.zombie .z-body{position:absolute;top:18px;left:50%;transform:translateX(-50%);width:28px;height:28px;border-radius:8px 8px 4px 4px;background:linear-gradient(180deg,#3d6b1e,#2a4a10);border:1.5px solid #2a4a10}
+.zombie .z-arm{position:absolute;top:16px;width:8px;height:24px;border-radius:4px;background:linear-gradient(180deg,#3d6b1e,#2a4a10);border:1px solid #2a4a10}
+.zombie .z-arm.left{left:2px;transform-origin:top center;animation:armSwing 1.5s ease-in-out infinite alternate}
+.zombie .z-arm.right{right:2px;transform-origin:top center;animation:armSwing 1.5s ease-in-out infinite alternate-reverse}
+@keyframes armSwing{0%{transform:rotate(-20deg)}100%{transform:rotate(20deg)}}
+.zombie.animating{animation:zombieShamble var(--zdur,6s) ease-in-out infinite}
+@keyframes zombieShamble{
+  0%{transform:translate(0,0) rotate(0deg)}
+  20%{transform:translate(var(--zx,200px),var(--zy,-40px)) rotate(-3deg)}
+  40%{transform:translate(var(--zx2,-150px),var(--zy2,60px)) rotate(2deg)}
+  60%{transform:translate(var(--zx3,100px),var(--zy3,-80px)) rotate(-1deg)}
+  80%{transform:translate(var(--zx4,-80px),var(--zy4,40px)) rotate(2deg)}
+  100%{transform:translate(0,0) rotate(0deg)}
+}
+.zombie:hover{filter:drop-shadow(0 0 8px rgba(82,168,42,.4));animation:none}
+.zombie:hover .z-head{background:linear-gradient(180deg,#6a9a3a,#4d7b2e)}
+
+/* ── Creature interactions with UI ── */
+.spider-t1{top:8%;left:-30px;--dur:12s;--tx:280px;--ty:-100px;--tx2:100px;--ty2:80px;--tx3:-250px;--ty3:-60px;--tx4:40px;--ty4:120px}
+.spider-t2{top:40%;right:-30px;--dur:10s;--tx:-250px;--ty:-80px;--tx2:150px;--ty2:100px;--tx3:-100px;--ty3:140px;--tx4:-200px;--ty4:-40px;animation-delay:-4s}
+.spider-t3{bottom:12%;left:10%;--dur:14s;--tx:200px;--ty:-120px;--tx2:-150px;--ty2:60px;--tx3:280px;--ty3:-80px;--tx4:50px;--ty4:100px;animation-delay:-7s}
+.zombie-s1{top:15%;right:5%;--zdur:8s;--zx:180px;--zy:-60px;--zx2:-120px;--zy2:80px;--zx3:90px;--zy3:-100px;--zx4:-80px;--zy4:50px;animation-delay:-2s}
+.zombie-s2{bottom:8%;left:5%;--zdur:9s;--zx:-150px;--zy:50px;--zx2:120px;--zy2:-70px;--zx3:-90px;--zy3:90px;--zx4:100px;--zy4:-30px;animation-delay:-4s}
+
+.spider:hover{filter:drop-shadow(0 0 10px rgba(217,4,41,.7))}
+.zombie:hover{filter:drop-shadow(0 0 12px rgba(82,168,42,.5));animation-play-state:paused}
+.zombie:hover .z-head{background:linear-gradient(180deg,#6a9a3a,#4d7b2e)}
+
+@media(prefers-reduced-motion:reduce){
+  .spider.animating,.zombie.animating{animation:none}
+  .zombie .z-arm.left,.zombie .z-arm.right{animation:none}
+}
+
 /* ── Responsive ── */
 @media(min-width:768px){
   .hero h1{font-size:72px}
@@ -211,6 +270,13 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 </head>
 <body>
 <div class="web-corners" aria-hidden="true"></div>
+
+<!-- CSS Creatures -->
+<div class="creature spider spider-t1 animating" aria-hidden="true"><div class="eye"></div></div>
+<div class="creature spider spider-t2 animating" aria-hidden="true"><div class="eye"></div></div>
+<div class="creature spider spider-t3 animating" aria-hidden="true"><div class="eye"></div></div>
+<div class="creature zombie zombie-s1 animating" aria-hidden="true"><div class="z-head"></div><div class="z-body"></div><div class="z-arm left"></div><div class="z-arm right"></div></div>
+<div class="creature zombie zombie-s2 animating" aria-hidden="true"><div class="z-head"></div><div class="z-body"></div><div class="z-arm left"></div><div class="z-arm right"></div></div>
 
 <header class="topbar" role="banner">
   <div class="topbar-inner wrap">
@@ -501,6 +567,30 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
       if(input.value.trim()) err.style.display = "none";
     });
   });
+
+/* ── Creature ↔ UI Interaction ── */
+var creatures = document.querySelectorAll(".spider,.zombie");
+var tombstones = document.querySelectorAll(".pure-tombstone");
+var tombstoneForm = document.getElementById("tombstoneForm");
+
+creatures.forEach(function(c){
+  c.style.pointerEvents = "auto";
+  c.addEventListener("mouseenter", function(){
+    if(tombstones.length){
+      var target = tombstones[Math.floor(Math.random() * tombstones.length)];
+      target.style.animation = "shake .6s ease-in-out";
+      setTimeout(function(){target.style.animation = ""}, 600);
+    }
+    if(tombstoneForm){
+      tombstoneForm.style.boxShadow = "inset 0 2px 4px rgba(217,4,41,.2),inset 0 16px 32px rgba(0,0,0,.6),0 0 40px rgba(217,4,41,.3),0 2px 8px rgba(0,0,0,.4)";
+      tombstoneForm.style.borderColor = "rgba(217,4,41,.4)";
+      setTimeout(function(){
+        tombstoneForm.style.boxShadow = "";
+        tombstoneForm.style.borderColor = "";
+      }, 800);
+    }
+  });
+});
 
 })();
 </script>
