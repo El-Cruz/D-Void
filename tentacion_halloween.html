@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0a0808">
-<meta name="description" content="DVOID · LA TENTACIÓN — Pre-Halloween. Jueves 01 Oct. 21H30. Cover $10. Confiesa tus pecados.">
+<meta name="description" content="DVOID · LA TENTACIÓN — Pre-Halloween. Jueves 01 Oct. 21H30. Cover $10. Elige tu pulsera.">
 <title>DVOID · LA TENTACIÓN — Pre-Halloween</title>
 <style>
 :root{
@@ -30,6 +30,16 @@ p,h1,h2,h3{margin:0}
 [hidden]{display:none}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .wrap{max-width:560px;margin-inline:auto;padding-inline:20px}
+
+/* ── Halloween Ambient: Spider Webs ── */
+body::before{content:"";position:fixed;top:0;left:0;width:40%;height:50%;z-index:0;pointer-events:none;opacity:.15;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M100,10 C60,10 10,40 10,80 C10,120 50,160 100,180 C150,160 190,120 190,80 C190,40 140,10 100,10 Z M100,40 C70,40 45,60 45,80 C45,100 70,125 100,145 C130,125 155,100 155,80 C155,60 130,40 100,40 Z' fill='none' stroke='%23d90429' stroke-width='.5' opacity='.4'/%3E%3Cline x1='100' y1='50' x2='100' y2='170' stroke='%23d90429' stroke-width='.3' opacity='.3'/%3E%3Cline x1='60' y1='60' x2='140' y2='60' stroke='%23d90429' stroke-width='.3' opacity='.3'/%3E%3Cline x1='70' y1='90' x2='130' y2='90' stroke='%23d90429' stroke-width='.3' opacity='.3'/%3E%3Cline x1='80' y1='120' x2='120' y2='120' stroke='%23d90429' stroke-width='.3' opacity='.3'/%3E%3C/svg%3E");
+  background-repeat:repeat;background-size:200px 200px;
+}
+body::after{content:"";position:fixed;top:0;right:0;width:40%;height:50%;z-index:0;pointer-events:none;opacity:.12;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M100,10 C60,10 10,40 10,80 C10,120 50,160 100,180 C150,160 190,120 190,80 C190,40 140,10 100,10 Z M100,40 C70,40 45,60 45,80 C45,100 70,125 100,145 C130,125 155,100 155,80 C155,60 130,40 100,40 Z' fill='none' stroke='%230077b6' stroke-width='.5' opacity='.3'/%3E%3Cline x1='100' y1='50' x2='100' y2='170' stroke='%230077b6' stroke-width='.3' opacity='.2'/%3E%3Cline x1='60' y1='60' x2='140' y2='60' stroke='%230077b6' stroke-width='.3' opacity='.2'/%3E%3Cline x1='70' y1='90' x2='130' y2='90' stroke='%230077b6' stroke-width='.3' opacity='.2'/%3E%3Cline x1='80' y1='120' x2='120' y2='120' stroke='%230077b6' stroke-width='.3' opacity='.2'/%3E%3C/svg%3E");
+  background-repeat:repeat;background-size:200px 200px;
+}
 
 /* ── Ambient ── */
 .ambient{position:fixed;inset:0;z-index:0;pointer-events:none;
@@ -99,32 +109,44 @@ p,h1,h2,h3{margin:0}
 .graveyard-slide.alive:nth-child(6){transition-delay:1.1s}
 .graveyard-slide.alive .rip{animation:graveGlow 2s ease-in-out infinite alternate}
 .graveyard-slide:active{box-shadow:inset 0 4px 20px rgba(217,4,41,.2),0 0 24px rgba(217,4,41,.4);border-color:var(--red);transform:translateY(-4px)}
-.graveyard-slide .rip{font-family:"STIX Two Text","Palato Linotype","Book Antiqua",Palatino,serif;font-size:20px;font-weight:700;color:var(--red);opacity:.8;letter-spacing:.05em;text-align:center;line-height:1}
+.graveyard-slide .rip{font-family:"STIX Two Text","Palatino Linotype","Book Antiqua",Palatino,serif;font-size:20px;font-weight:700;color:var(--red);opacity:.8;letter-spacing:.05em;text-align:center;line-height:1}
 .graveyard-slide .grave-text{font-size:13px;color:var(--champagne);opacity:.65;line-height:1.5;font-style:italic}
 .graveyard-slide .grave-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);font-weight:600}
 @keyframes graveGlow{from{text-shadow:0 0 4px rgba(217,4,41,.2)}to{text-shadow:0 0 16px rgba(217,4,41,.6),0 0 32px rgba(217,4,41,.2)}}
 .graveyard-floor{position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,rgba(217,4,41,.06),transparent);pointer-events:none;z-index:3}
 .graveyard-floor::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(217,4,41,.3),transparent)}
+.graveyard-zombie{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:120px;height:60px;opacity:.2;pointer-events:none;z-index:4;
+  background:radial-gradient(ellipse at 50% 80%,rgba(20,60,20,.6) 0%,rgba(20,60,20,.3) 40%,transparent 70%);
+  border-radius:50% 50% 0 0;
+}
+.graveyard-zombie::before{content:"";position:absolute;bottom:0;left:10%;width:30%;height:40%;background:radial-gradient(ellipse,rgba(30,70,30,.5) 0%,transparent 70%);border-radius:50% 50% 0 0}
+.graveyard-zombie::after{content:"";position:absolute;bottom:5px;left:20%;width:60%;height:15px;background:radial-gradient(ellipse,rgba(40,80,40,.4) 0%,transparent 60%);border-radius:50%}
 .graveyard-fade{position:absolute;top:0;bottom:0;width:40px;background:linear-gradient(90deg,var(--bg0),transparent);pointer-events:none;z-index:2}
 .graveyard-fade.left{left:0;background:linear-gradient(270deg,var(--bg0),transparent)}
 .graveyard-fade.right{right:0;background:linear-gradient(270deg,var(--bg0),transparent)}
 
-/* ── Confesionario ── */
+/* ── Confesionario (Experience) ── */
 .confesionario{padding:56px 0 80px;position:relative;z-index:1}
 .confesionario h2{font-size:28px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px;text-align:center}
 .confesionario-sub{font-size:15px;color:var(--champagne);opacity:.7;text-align:center;margin-bottom:36px}
 
-/* ── Pill selector ── */
-.pill-selector{display:flex;gap:12px;margin-bottom:32px;position:relative;transition:box-shadow var(--ease)}
-.pill-option{flex:1;position:relative}
-.pill-option input[type="radio"]{position:absolute;opacity:0;width:0;height:0}
-.pill-option label{display:flex;align-items:center;justify-content:center;min-height:var(--tap-min);padding:16px 12px;border-radius:16px;border:1.5px solid var(--glass-border);background:var(--glass-bg);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);font-size:13px;font-weight:600;letter-spacing:.04em;text-align:center;transition:all var(--ease);cursor:pointer;touch-action:manipulation;flex-direction:column;gap:4px}
-.pill-option label .pill-name{font-size:14px;font-weight:800;letter-spacing:.08em}
-.pill-option label .pill-desc{font-size:11px;font-weight:400;opacity:.6;font-style:normal}
-.pill-option input[type="radio"]:checked+label{border-color:var(--form-accent);background:rgba(var(--form-accent-rgb),.12);color:var(--text);box-shadow:0 0 24px rgba(var(--form-accent-rgb),.15)}
-.pill-option input[type="radio"]:checked+label .pill-name{color:var(--form-accent)}
-.pill-option label:active{transform:scale(.97)}
-.pill-option input[type="radio"]:focus-visible+label{outline:2px solid var(--gold);outline-offset:2px}
+/* ── Bracelet selector ── */
+.bracelet-selector{display:flex;gap:16px;margin-bottom:28px;position:relative;transition:box-shadow var(--ease)}
+.bracelet-option{flex:1;position:relative}
+.bracelet-option input[type="radio"]{position:absolute;opacity:0;width:0;height:0}
+.bracelet-option label{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:var(--tap-min);padding:28px 16px;border-radius:20px;border:1.5px solid var(--glass-border);background:var(--glass-bg);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);cursor:pointer;touch-action:manipulation;transition:all var(--ease);text-align:center;gap:10px;position:relative;overflow:hidden}
+.bracelet-option label::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;border-radius:20px 20px 0 0;opacity:0;transition:opacity var(--ease)}
+.bracelet-option input[type="radio"]:checked+label{border-color:var(--form-accent);color:var(--text)}
+.bracelet-option input[type="radio"]:checked+label::before{opacity:1;background:var(--form-accent);box-shadow:0 0 16px var(--form-accent)}
+.bracelet-option input[type="radio"]:checked+label .bracelet-name{color:var(--form-accent)}
+.bracelet-option label .bracelet-icon{font-size:28px;line-height:1}
+.bracelet-option label .bracelet-name{font-size:14px;font-weight:800;letter-spacing:.08em}
+.bracelet-option label .bracelet-desc{font-size:12px;font-weight:400;opacity:.55;line-height:1.4}
+.bracelet-option label:active{transform:scale(.97)}
+.bracelet-option input[type="radio"]:focus-visible+label{outline:2px solid var(--gold);outline-offset:2px}
+
+.bracelet-explain{font-size:14px;color:var(--champagne);opacity:.6;text-align:center;line-height:1.6;max-width:380px;margin-inline:auto;margin-bottom:32px}
+.bracelet-explain strong{color:var(--gold);font-weight:600}
 
 /* ── Rituales ── */
 .rituales{padding:56px 0 64px;position:relative;z-index:1}
@@ -138,21 +160,22 @@ p,h1,h2,h3{margin:0}
 .ritual-card .ritual-body .highlight{color:var(--red);font-weight:700;font-size:18px}
 .ritual-card .ritual-body .blue-highlight{color:var(--blue);font-weight:700;font-size:18px}
 
-/* ── Form ── */
-.confesionario-form{display:flex;flex-direction:column;gap:20px;max-width:400px;margin-inline:auto}
-.form-group{position:relative}
-.form-group input{width:100%;background:transparent;border:none;border-bottom:1.5px solid var(--glass-border);padding:14px 0;color:var(--text);font-size:16px;font-family:var(--font-body);transition:border-color var(--ease);outline:none;-webkit-appearance:none}
-.form-group input::placeholder{color:var(--champagne);opacity:.4}
-.form-group input:focus{border-bottom-color:var(--form-accent)}
-.form-group label{position:absolute;top:14px;left:0;font-size:13px;color:var(--champagne);opacity:.5;transition:all var(--ease);pointer-events:none}
-.form-group input:focus+label,.form-group input:not(:placeholder-shown)+label{top:-20px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--form-accent);opacity:.8}
-.form-group .field-error{font-size:12px;color:var(--red);margin-top:4px;display:none}
-
-/* ── Submit ── */
-.frm-submit{display:inline-flex;align-items:center;justify-content:center;min-height:var(--tap-min);padding:16px;border-radius:60px;background:var(--form-accent);color:#fff;font-size:15px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:all var(--ease);border:2px solid transparent;touch-action:manipulation;margin-top:8px}
-.frm-submit:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(var(--form-accent-rgb),.35)}
-.frm-submit:active{transform:scale(.97)}
-.frm-submit:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+/* ── Reserva ── */
+.reserva-section{padding:56px 0 80px;position:relative;z-index:1}
+.reserva-section h2{font-size:28px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px;text-align:center}
+.reserva-desc{font-size:15px;color:var(--champagne);opacity:.7;text-align:center;margin-bottom:36px}
+.reserva-form{display:flex;flex-direction:column;gap:20px;max-width:400px;margin-inline:auto}
+.reserva-form .form-group{position:relative}
+.reserva-form .form-group input{width:100%;background:transparent;border:none;border-bottom:1.5px solid var(--glass-border);padding:14px 0;color:var(--text);font-size:16px;font-family:var(--font-body);transition:border-color var(--ease);outline:none;-webkit-appearance:none}
+.reserva-form .form-group input::placeholder{color:var(--champagne);opacity:.4}
+.reserva-form .form-group input:focus{border-bottom-color:var(--form-accent)}
+.reserva-form .form-group label{position:absolute;top:14px;left:0;font-size:13px;color:var(--champagne);opacity:.5;transition:all var(--ease);pointer-events:none}
+.reserva-form .form-group input:focus+label,.reserva-form .form-group input:not(:placeholder-shown)+label{top:-20px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--form-accent);opacity:.8}
+.reserva-form .form-group .field-error{font-size:12px;color:var(--red);margin-top:4px;display:none}
+.reserva-submit{display:inline-flex;align-items:center;justify-content:center;min-height:var(--tap-min);padding:16px;border-radius:60px;background:var(--red);color:#fff;font-size:15px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:all var(--ease);border:2px solid transparent;touch-action:manipulation;margin-top:8px;width:100%}
+.reserva-submit:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(var(--form-accent-rgb),.35)}
+.reserva-submit:active{transform:scale(.97)}
+.reserva-submit:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
 /* ── Success ── */
 .success-message{display:none;text-align:center;padding:40px 20px;max-width:400px;margin-inline:auto}
@@ -174,9 +197,10 @@ p,h1,h2,h3{margin:0}
   .hero h1{font-size:72px}
   .hero-sub{font-size:20px}
   .countdown-value{font-size:48px}
-  .cemetery h2,.confesionario h2,.rituales h2{font-size:36px}
+  .cemetery h2,.confesionario h2,.rituales h2,.reserva-section h2{font-size:36px}
   .graveyard-slide{flex:0 0 280px}
   .rituales-grid{grid-template-columns:1fr 1fr;gap:20px}
+  .bracelet-selector{gap:20px}
 }
 </style>
 </head>
@@ -265,6 +289,7 @@ p,h1,h2,h3{margin:0}
           <div class="grave-label">El Casi</div>
         </div>
         <div class="graveyard-floor" aria-hidden="true"></div>
+        <div class="graveyard-zombie" aria-hidden="true"></div>
         <div class="graveyard-fade left" aria-hidden="true"></div>
         <div class="graveyard-fade right" aria-hidden="true"></div>
       </div>
@@ -298,52 +323,66 @@ p,h1,h2,h3{margin:0}
 
   <div class="section-divider" role="separator"></div>
 
-  <!-- ═══ EL CONFESIONARIO ═══ -->
-  <section class="confesionario" id="confesionario" aria-label="Formulario de reserva">
+  <!-- ═══ EL CONFESIONARIO (Experiencia) ═══ -->
+  <section class="confesionario" id="confesionario" aria-label="Selección de pulsera">
     <div class="wrap">
       <h2>EL CONFESIONARIO</h2>
-      <p class="confesionario-sub">Reserva tu lugar. ¿Qué píldora eliges?</p>
+      <p class="confesionario-sub">Una noche sin reglas. El mejor día para pecar.</p>
 
-      <div class="pill-selector" role="radiogroup" aria-label="Selección de píldora">
-        <div class="pill-option">
-          <input type="radio" id="red-pill" name="pill" value="red" checked>
-          <label for="red-pill">
-            <span class="pill-name">RED PILL</span>
-            <span class="pill-desc">Soltero/a, disponible para vacilar</span>
+      <div class="bracelet-selector" role="radiogroup" aria-label="Selección de pulsera">
+        <div class="bracelet-option">
+          <input type="radio" id="red-bracelet" name="bracelet" value="red" checked>
+          <label for="red-bracelet">
+            <span class="bracelet-icon" aria-hidden="true">●</span>
+            <span class="bracelet-name">PULSERA ROJA</span>
+            <span class="bracelet-desc">Soltero/a. Disponible para vacilar.</span>
           </label>
         </div>
-        <div class="pill-option">
-          <input type="radio" id="blue-pill" name="pill" value="blue">
-          <label for="blue-pill">
-            <span class="pill-name">BLUE PILL</span>
-            <span class="pill-desc">No disponible, solo observo</span>
+        <div class="bracelet-option">
+          <input type="radio" id="blue-bracelet" name="bracelet" value="blue">
+          <label for="blue-bracelet">
+            <span class="bracelet-icon" aria-hidden="true">◆</span>
+            <span class="bracelet-name">PULSERA AZUL</span>
+            <span class="bracelet-desc">No disponible. Solo vengo a pecar con la mirada.</span>
           </label>
         </div>
       </div>
 
-      <form class="confesionario-form" id="confesionarioForm" novalidate>
+      <p class="bracelet-explain">Confiésate con nuestro Padre en la entrada y elige tu estado. ¿Te atreves a revelar la verdad?</p>
+    </div>
+  </section>
+
+  <div class="section-divider" role="separator"></div>
+
+  <!-- ═══ RESERVA ═══ -->
+  <section class="reserva-section" id="reserva" aria-label="Reserva tu entrada">
+    <div class="wrap">
+      <h2>ASEGURA TU ENTRADA</h2>
+      <p class="reserva-desc">Cover $10. Regístrate en la lista oficial.</p>
+
+      <form class="reserva-form" id="reservaForm" novalidate>
         <div class="form-group">
-          <input type="text" id="fname" placeholder=" " required autocomplete="given-name">
-          <label for="fname">Nombre</label>
-          <div class="field-error" id="fname-error">Ingresa tu nombre</div>
+          <input type="text" id="rname" placeholder=" " required autocomplete="given-name">
+          <label for="rname">Nombre</label>
+          <div class="field-error" id="rname-error">Ingresa tu nombre</div>
         </div>
         <div class="form-group">
-          <input type="text" id="lname" placeholder=" " required autocomplete="family-name">
-          <label for="lname">Apellido</label>
-          <div class="field-error" id="lname-error">Ingresa tu apellido</div>
+          <input type="text" id="rlname" placeholder=" " required autocomplete="family-name">
+          <label for="rlname">Apellido</label>
+          <div class="field-error" id="rlname-error">Ingresa tu apellido</div>
         </div>
         <div class="form-group">
-          <input type="tel" id="whatsapp" placeholder=" " required autocomplete="tel">
-          <label for="whatsapp">WhatsApp</label>
-          <div class="field-error" id="whatsapp-error">Ingresa tu WhatsApp</div>
+          <input type="tel" id="rwhatsapp" placeholder=" " required autocomplete="tel">
+          <label for="rwhatsapp">WhatsApp</label>
+          <div class="field-error" id="rwhatsapp-error">Ingresa tu WhatsApp</div>
         </div>
-        <button type="submit" class="frm-submit" id="submitBtn">Enviar Confesión</button>
+        <button type="submit" class="reserva-submit" id="reservaSubmit">RESERVAR AHORA</button>
       </form>
 
-      <div class="success-message" id="successMessage" role="status" aria-live="polite">
+      <div class="success-message" id="reservaSuccess" role="status" aria-live="polite">
         <span class="check-icon" aria-hidden="true">💀</span>
         <h3>ESTÁS EN LA LISTA</h3>
-        <p>Tu pecado ha sido registrado. Nos vemos en D-VOID.</p>
+        <p>Nos vemos en D-VOID.</p>
       </div>
     </div>
   </section>
@@ -386,53 +425,51 @@ p,h1,h2,h3{margin:0}
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  /* ── Pill selector → CSS variable mutation ── */
+  /* ── Bracelet selector → CSS variable mutation + neon glow ── */
   var root = document.documentElement;
-  var redPill = document.getElementById("red-pill");
-  var bluePill = document.getElementById("blue-pill");
+  var redBracelet = document.getElementById("red-bracelet");
+  var blueBracelet = document.getElementById("blue-bracelet");
+  var braceletSelector = document.querySelector(".bracelet-selector");
 
   function setAccent(color, rgb){
     root.style.setProperty("--form-accent", color);
     root.style.setProperty("--form-accent-rgb", rgb);
   }
 
-  var pillSelector = document.querySelector(".pill-selector");
-
-  redPill.addEventListener("change", function(){
+  redBracelet.addEventListener("change", function(){
     setAccent("#d90429", "217,4,41");
-    pillSelector.style.boxShadow = "0 0 32px rgba(217,4,41,.25), inset 0 0 20px rgba(217,4,41,.08)";
+    if(braceletSelector) braceletSelector.style.boxShadow = "0 0 32px rgba(217,4,41,.25), inset 0 0 20px rgba(217,4,41,.08)";
   });
-  bluePill.addEventListener("change", function(){
+  blueBracelet.addEventListener("change", function(){
     setAccent("#0077b6", "0,119,182");
-    pillSelector.style.boxShadow = "0 0 32px rgba(0,119,182,.25), inset 0 0 20px rgba(0,119,182,.08)";
+    if(braceletSelector) braceletSelector.style.boxShadow = "0 0 32px rgba(0,119,182,.25), inset 0 0 20px rgba(0,119,182,.08)";
   });
 
   /* ── Cemetery scroll emergence ── */
-var graveyardSlides = document.querySelectorAll(".graveyard-slide");
-var cemeterySection = document.querySelector(".cemetery");
-if(cemeterySection && graveyardSlides.length){
-  var graveObserver = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting){
-        entry.target.classList.add("alive");
-        graveObserver.unobserve(entry.target);
-      }
-    });
-  },{threshold:0.15,rootMargin:"0px 0px -20% 0px"});
-  graveyardSlides.forEach(function(slide){graveObserver.observe(slide)});
-}
+  var graveyardSlides = document.querySelectorAll(".graveyard-slide");
+  var cemeterySection = document.querySelector(".cemetery");
+  if(cemeterySection && graveyardSlides.length){
+    var graveObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add("alive");
+          graveObserver.unobserve(entry.target);
+        }
+      });
+    },{threshold:0.15,rootMargin:"0px 0px -20% 0px"});
+    graveyardSlides.forEach(function(slide){graveObserver.observe(slide)});
+  }
 
-/* ── Form submission ── */
-  var form = document.getElementById("confesionarioForm");
-  var successMsg = document.getElementById("successMessage");
-  var submitBtn = document.getElementById("submitBtn");
+  /* ── Form submission (Reserva) ── */
+  var form = document.getElementById("reservaForm");
+  var successMsg = document.getElementById("reservaSuccess");
 
   function validate(){
     var valid = true;
     var fields = [
-      {id:"fname", err:"fname-error"},
-      {id:"lname", err:"lname-error"},
-      {id:"whatsapp", err:"whatsapp-error"}
+      {id:"rname", err:"rname-error"},
+      {id:"rlname", err:"rlname-error"},
+      {id:"rwhatsapp", err:"rwhatsapp-error"}
     ];
     fields.forEach(function(f){
       var input = document.getElementById(f.id);
@@ -451,12 +488,11 @@ if(cemeterySection && graveyardSlides.length){
     e.preventDefault();
     if(!validate()) return;
     form.style.display = "none";
-    document.querySelector(".pill-selector").style.display = "none";
     successMsg.style.display = "block";
   });
 
   /* Clear errors on input */
-  ["fname","lname","whatsapp"].forEach(function(id){
+  ["rname","rlname","rwhatsapp"].forEach(function(id){
     var input = document.getElementById(id);
     var errId = id + "-error";
     var err = document.getElementById(errId);
