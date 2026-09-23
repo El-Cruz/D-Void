@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" style="--form-accent: #d90429; --form-accent-rgb: 217,4,41;">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0a0808">
 <meta name="description" content="DVOID · LA TENTACIÓN — Pre-Halloween. Jueves 01 Oct. 21H30. Cover $10.">
 <title>DVOID · LA TENTACIÓN — Pre-Halloween</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Creepster&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&display=swap');
 :root{
   --bg0:#0a0808;--wine:#3D0F11;--crimson:#9E1B19;--red:#d90429;--blue:#0077b6;
   --gold:#EDC677;--champagne:#F2E2BE;--text:#FCF8F0;--black:#000000;
@@ -18,19 +18,73 @@
   --glass-bg:rgba(255,255,255,.06);
   --glass-border:rgba(255,255,255,.1);
   --font-body:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
-  --font-display:'Cinzel',serif;
+  --font-display:'Creepster','Cinzel',cursive,serif;
   --ease:cubic-bezier(.2,.8,.2,1);
   --tap-min:44px;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;font-optical-sizing:auto}
-body{margin:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),radial-gradient(circle at 50% 10%,#1a0506 0%,#0a0808 50%,#000 100%);background-blend-mode:multiply;color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;-webkit-tap-highlight-color:transparent;min-height:100vh;position:relative}
+body{margin:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),radial-gradient(circle at 50% 10%,#1a0506 0%,#0a0808 50%,#000 100%);background-blend-mode:multiply;color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;-webkit-tap-highlight-color:transparent;min-height:100vh;position:relative;overflow-x:hidden;letter-spacing:0.01em}
 a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer;color:inherit;background:none;border:0}
 p,h1,h2,h3{margin:0}
 [hidden]{display:none}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .wrap{max-width:560px;margin-inline:auto;padding-inline:20px}
+
+/* ── Canvas de telarañas ── */
+#webCanvas{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:75}
+
+/* ── Corner cobwebs ── */
+.corner-web{position:fixed;pointer-events:none;z-index:90;width:160px;height:160px;opacity:0.65;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.8))}
+.corner-web.top-left{top:0;left:0}
+.corner-web.top-right{top:0;right:0;transform:scaleX(-1)}
+.corner-web.bottom-left{bottom:0;left:0;transform:scaleY(-1)}
+.corner-web.bottom-right{bottom:0;right:0;transform:scale(-1,-1)}
+
+/* ── Hanging Spiders ── */
+.web-hanger{position:absolute;z-index:95;display:flex;flex-direction:column;align-items:center;pointer-events:auto;cursor:pointer}
+.web-thread{width:1.5px;background:linear-gradient(to bottom,rgba(255,255,255,.7),rgba(217,4,41,.5));box-shadow:0 0 4px rgba(255,255,255,.7);transform-origin:top center}
+.spider-hanging{transform-origin:center top;animation:swingSpider 4s ease-in-out infinite alternate;filter:drop-shadow(0 10px 14px rgba(0,0,0,0.95));transition:transform .3s}
+@keyframes swingSpider{0%{transform:rotate(-14deg)}50%{transform:rotate(16deg)}100%{transform:rotate(-10deg)}}
+.web-hanger:hover .spider-hanging{animation:spiderScare .5s ease infinite alternate}
+@keyframes spiderScare{0%{transform:scale(1.25) translateY(-8px)}100%{transform:scale(1.35) translateY(12px)}}
+
+/* ── Crawling Spiders ── */
+.crawling-spider{position:absolute;z-index:115;width:52px;height:52px;pointer-events:auto;cursor:grab;filter:drop-shadow(0 12px 14px rgba(0,0,0,0.92)) drop-shadow(0 0 6px rgba(217,4,41,0.45));transition:transform .08s ease-out,filter .2s ease;user-select:none}
+.crawling-spider:active{cursor:grabbing;filter:drop-shadow(0 20px 24px rgba(0,0,0,0.95)) drop-shadow(0 0 14px rgba(217,4,41,0.85));transform:scale(1.35)!important}
+.crawling-spider svg{width:100%;height:100%;display:block;overflow:visible}
+.crawling-spider.moving svg .spider-leg-l1{animation:legWalkL .22s infinite alternate}
+.crawling-spider.moving svg .spider-leg-l2{animation:legWalkR .22s infinite alternate}
+.crawling-spider.moving svg .spider-leg-l3{animation:legWalkL .22s infinite alternate .08s}
+.crawling-spider.moving svg .spider-leg-l4{animation:legWalkR .22s infinite alternate .08s}
+.crawling-spider.moving svg .spider-leg-r1{animation:legWalkR .22s infinite alternate}
+.crawling-spider.moving svg .spider-leg-r2{animation:legWalkL .22s infinite alternate}
+.crawling-spider.moving svg .spider-leg-r3{animation:legWalkR .22s infinite alternate .08s}
+.crawling-spider.moving svg .spider-leg-r4{animation:legWalkL .22s infinite alternate .08s}
+@keyframes legWalkL{0%{transform:rotate(-6deg)}100%{transform:rotate(7deg)}}
+@keyframes legWalkR{0%{transform:rotate(7deg)}100%{transform:rotate(-7deg)}}
+
+/* ── Skeletal Hands ── */
+.skeletal-hand-container{position:absolute;pointer-events:none;z-index:30;overflow:visible}
+.skeletal-hand{width:110px;height:120px;transform-origin:bottom center;filter:drop-shadow(0 6px 16px rgba(0,0,0,0.95)) drop-shadow(0 0 10px rgba(217,4,41,0.6));opacity:0;transform:translateY(80px) scale(.6);transition:transform .45s cubic-bezier(0.18,0.89,0.32,1.28),opacity .35s ease}
+.claw-scratch{stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset .4s ease .2s}
+.tombstone-wrapper:hover .skeletal-hand,.tombstone-wrapper.possessed .skeletal-hand,.interactive-flip:hover .skeletal-hand,.interactive-flip.possessed .skeletal-hand{opacity:1;transform:translateY(0) scale(1)}
+.tombstone-wrapper:hover .claw-scratch,.interactive-flip.possessed .claw-scratch{stroke-dashoffset:0}
+
+/* ── Flip / Possession ── */
+.tombstone-wrapper{perspective:1100px;position:relative}
+.pure-tombstone{transition:transform .65s cubic-bezier(0.2,0.8,0.2,1),box-shadow .4s ease,border-color .4s ease;transform-style:preserve-3d}
+.tombstone-wrapper.flipping .pure-tombstone{transform:rotateY(180deg) scale(.96)}
+.tombstone-wrapper.possessed .pure-tombstone{animation:possessedShake .6s ease-in-out}
+@keyframes possessedShake{0%,100%{transform:rotate(0deg) translateY(-8px)}15%{transform:rotate(-4deg) translateY(-14px) scale(1.03);filter:hue-rotate(40deg) saturate(2)}35%{transform:rotate(5deg) translateY(-6px) scale(.97)}55%{transform:rotate(-6deg) translateY(-16px)}75%{transform:rotate(3deg) translateY(-8px)}}
+
+/* Tilt from spider weight */
+.spider-weighted{transition:transform .3s cubic-bezier(0.34,1.56,0.64,1);transform:rotate(1.8deg) translateY(3px)!important}
+
+/* Flip back for tombstones */
+.tomb-front,.tomb-back{backface-visibility:hidden;-webkit-backface-visibility:hidden;width:100%}
+.tomb-back{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 20px;border-radius:120px 120px 14px 14px;background:radial-gradient(circle,#2d070a 0%,#120406 100%);border:1.5px solid var(--red);transform:rotateY(180deg);box-shadow:inset 0 0 25px rgba(217,4,41,0.5)}
 
 /* ── Glass card ── */
 .glass{background:var(--glass-bg);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);border-radius:20px}
@@ -43,138 +97,133 @@ p,h1,h2,h3{margin:0}
 
 /* ── Hero ── */
 .hero{padding:120px 0 48px;text-align:center;position:relative;z-index:1;overflow:hidden}
-.hero-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--red);font-weight:600;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:8px}
+.hero-eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:8px}
 .hero-eyebrow::before,.hero-eyebrow::after{content:"";width:24px;height:1px;background:var(--red);opacity:.5}
-.hero h1{font-family:var(--font-display);font-size:56px;line-height:1.05;font-weight:900;letter-spacing:.08em;margin-bottom:12px;background:linear-gradient(135deg,var(--text) 0%,var(--champagne) 50%,var(--text) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:flicker 4s infinite;text-shadow:0 0 15px rgba(217,4,41,.6)}
-@keyframes flicker{
-  0%,19%,21%,23%,25%,54%,56%,100%{opacity:1;text-shadow:0 0 10px var(--red),0 0 20px rgba(217,4,41,.3)}
-  20%,24%,55%{opacity:0.08;text-shadow:none}
-}
+.hero h1{font-family:var(--font-display);font-size:clamp(48px,8vw,72px);line-height:1.05;font-weight:900;letter-spacing:.04em;margin-bottom:12px;color:var(--text);text-shadow:0 0 20px rgba(217,4,41,.5),0 0 40px rgba(217,4,41,.2);animation:flicker 4s infinite}
+@keyframes flicker{0%,19%,21%,23%,25%,54%,56%,100%{opacity:1;text-shadow:0 0 10px var(--red),0 0 20px rgba(217,4,41,.3)}20%,24%,55%{opacity:0.08;text-shadow:none}}
 .hero-sub{font-size:18px;color:var(--champagne);font-weight:400;margin-bottom:40px;opacity:.85}
 
 /* ── Fog ── */
-.fog{position:absolute;bottom:0;left:0;width:200%;height:80px;z-index:0;pointer-events:none;opacity:.3;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%' stop-color='%230a0808' stop-opacity='0'/%3E%3Cstop offset='50%' stop-color='%230a0808' stop-opacity='.3'/%3E%3Cstop offset='100%' stop-color='%230a0808' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0,40 C360,80 720,0 1080,40 S1440,60 1440,40 L1440,80 L0,80 Z' fill='url(%23g)'/%3E%3C/svg%3E");
-  background-repeat:repeat;background-size:1440px 80px;animation:fogDrift 20s linear infinite;
-}
+.fog{position:absolute;bottom:0;left:0;width:200%;height:80px;z-index:0;pointer-events:none;opacity:.3;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%' stop-color='%230a0808' stop-opacity='0'/%3E%3Cstop offset='50%' stop-color='%230a0808' stop-opacity='.3'/%3E%3Cstop offset='100%' stop-color='%230a0808' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0,40 C360,80 720,0 1080,40 S1440,60 1440,40 L1440,80 L0,80 Z' fill='url(%23g)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:1440px 80px;animation:fogDrift 20s linear infinite}
 @keyframes fogDrift{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.fog{animation:none}}
 
+/* ── Spooky Banner ── */
+.spooky-banner{background:linear-gradient(90deg,rgba(217,4,41,.18),rgba(158,27,25,.35),rgba(217,4,41,.18));border:1px solid rgba(217,4,41,.5);border-radius:14px;padding:12px 18px;margin-bottom:28px;display:flex;align-items:center;justify-content:center;gap:12px;font-size:13px;color:var(--champagne);cursor:pointer;transition:all .3s ease;position:relative}
+.spooky-banner:hover{border-color:var(--red);background:linear-gradient(90deg,rgba(217,4,41,.35),rgba(158,27,25,.5),rgba(217,4,41,.35));box-shadow:0 0 24px rgba(217,4,41,.45);transform:scale(1.02)}
+
 /* ── Marquee ── */
-.marquee-wrap{position:relative;z-index:1;margin-bottom:40px;overflow:hidden;border-top:1px solid rgba(217,4,41,.15);border-bottom:1px solid rgba(217,4,41,.15);padding:12px 0}
-.marquee-track{display:flex;gap:48px;white-space:nowrap;animation:marqueeScroll 25s linear infinite;width:max-content}
+.marquee-wrap{position:relative;z-index:1;margin:28px 0;overflow:hidden;border-top:1px dashed rgba(217,4,41,.4);border-bottom:1px dashed rgba(217,4,41,.4);background:rgba(20,5,8,0.5);padding:12px 0}
+.marquee-track{display:flex;gap:40px;white-space:nowrap;animation:marqueeScroll 24s linear infinite;width:max-content}
 @keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.marquee-text{font-family:var(--font-display);font-size:14px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--red);text-shadow:0 0 8px rgba(217,4,41,.4)}
+.marquee-text{font-family:var(--font-display);font-size:13px;font-weight:800;letter-spacing:.04em;color:var(--red);text-shadow:0 0 10px rgba(217,4,41,.6);display:flex;align-items:center;gap:12px}
 @media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
 
 /* ── Event info ── */
-.event-info{display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:36px;position:relative;z-index:1}
-.event-badge{font-size:13px;color:var(--champagne);opacity:.75}
-.event-badge strong{color:var(--gold);font-weight:600}
+.event-info{display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:34px;position:relative;z-index:5;background:rgba(20,10,12,0.85);border:1px solid rgba(217,4,41,.3);border-radius:40px;padding:10px 24px;box-shadow:0 4px 20px rgba(0,0,0,0.5),inset 0 0 15px rgba(217,4,41,0.1)}
+.event-badge{font-size:14px;color:var(--champagne);opacity:.9;letter-spacing:0.02em}
+.event-badge strong{color:var(--gold);font-weight:700}
 .event-divider{width:4px;height:4px;border-radius:50%;background:var(--red);opacity:.6}
 
 /* ── CTA ── */
-.cta-btn{display:inline-flex;align-items:center;justify-content:center;min-height:var(--tap-min);padding:16px 40px;border-radius:60px;background:var(--red);color:#fff;font-family:var(--font-body);font-size:16px;font-weight:700;letter-spacing:.06em;transition:all var(--ease);border:2px solid transparent;touch-action:manipulation;position:relative;z-index:1}
-.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(var(--form-accent-rgb),.35)}
+.cta-btn{display:inline-flex;align-items:center;justify-content:center;min-height:var(--tap-min);padding:16px 42px;border-radius:60px;background:linear-gradient(135deg,#d90429 0%,#800a12 100%);color:#fff;font-family:var(--font-body);font-size:16px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;transition:all var(--ease);border:1px solid rgba(255,255,255,0.25);touch-action:manipulation;position:relative;z-index:10;box-shadow:0 8px 28px rgba(217,4,41,.45),inset 0 1px 0 rgba(255,255,255,0.3)}
+.cta-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 12px 36px rgba(217,4,41,.65)}
 .cta-btn:active{transform:scale(.97)}
 .cta-btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-.cta-btn.blue{background:var(--blue)}
+.cta-btn.blue{background:linear-gradient(135deg,#0077b6 0%,#005580 100%)}
 .cta-btn.blue:hover{box-shadow:0 8px 32px rgba(0,119,182,.35)}
 
 /* ── Divider ── */
 .section-divider{height:1px;background:linear-gradient(90deg,transparent,var(--glass-border),transparent);margin:0;position:relative;z-index:1}
 
-/* ── Cemetery (CSS Grid) ── */
-.cemetery{padding:56px 0 64px;position:relative;z-index:1}
-.cemetery h2{font-family:var(--font-display);font-size:28px;font-weight:900;letter-spacing:.06em;margin-bottom:8px;text-align:center}
-.cemetery-desc{font-size:15px;color:var(--champagne);opacity:.7;text-align:center;margin-bottom:32px;max-width:380px;margin-inline:auto}
-.graveyard{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;position:relative;z-index:1}
-.pure-tombstone{border-radius:120px 120px 12px 12px;background:linear-gradient(180deg,#404040 0%,#2a2a2a 50%,#1e1e1e 100%);box-shadow:inset 0 2px 4px rgba(255,255,255,.06),inset 0 16px 32px rgba(0,0,0,.6),0 8px 32px rgba(0,0,0,.6),0 2px 8px rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.04);padding:48px 20px 24px;display:flex;flex-direction:column;gap:12px;touch-action:manipulation;transition:all .8s cubic-bezier(.22,.68,.36,1);cursor:pointer}
-.pure-tombstone:hover{border-color:var(--red);animation:shake .4s ease-in-out}
-.pure-tombstone:active{animation:shake .3s ease-in-out;box-shadow:inset 0 2px 4px rgba(217,4,41,.15),inset 0 16px 32px rgba(0,0,0,.6),0 0 24px rgba(217,4,41,.2)}
-.pure-tombstone .rip{font-family:var(--font-display);font-size:18px;font-weight:700;color:rgba(200,200,200,.6);letter-spacing:.1em;text-align:center;line-height:1;text-shadow:1px 1px 1px rgba(0,0,0,.8),-1px -1px 1px rgba(80,80,80,.4)}
-.pure-tombstone .grave-text{font-size:13px;color:rgba(200,200,200,.55);line-height:1.5;font-style:italic;text-shadow:1px 1px 1px rgba(0,0,0,.8),-1px -1px 1px rgba(80,80,80,.4)}
-.pure-tombstone .grave-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(217,4,41,.6);font-weight:600;text-shadow:0 0 4px rgba(217,4,41,.2)}
-@keyframes shake{
-  0%,100%{transform:translateX(0)}
-  10%{transform:translateX(-3px)}
-  20%{transform:translateX(3px)}
-  30%{transform:translateX(-2px)}
-  40%{transform:translateX(2px)}
-  50%{transform:translateX(-1px)}
-  60%{transform:translateX(1px)}
-  70%{transform:translateX(-1px)}
-  80%{transform:translateX(1px)}
-  90%{transform:translateX(0)}
-}
+/* ── Cemetery ── */
+.cemetery{padding:60px 0 64px;position:relative;z-index:5}
+.cemetery h2{font-family:var(--font-display);font-size:30px;font-weight:900;letter-spacing:.08em;margin-bottom:8px;text-align:center;color:var(--gold);text-shadow:0 0 16px rgba(237,198,119,0.3)}
+.cemetery-desc{font-size:15px;color:var(--champagne);opacity:.75;text-align:center;margin-bottom:34px;max-width:440px;margin-inline:auto;line-height:1.7}
+.graveyard{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px 24px;position:relative;z-index:2}
 
-/* ── Confesionario (Experience) ── */
-.confesionario{padding:56px 0 80px;position:relative;z-index:1}
-.confesionario h2{font-family:var(--font-display);font-size:28px;font-weight:900;letter-spacing:.06em;margin-bottom:4px;text-align:center}
-.confesionario-sub{font-size:15px;color:var(--champagne);opacity:.7;text-align:center;margin-bottom:36px}
-
-/* ── Bracelet selector ── */
-.bracelet-selector{display:flex;gap:16px;margin-bottom:28px;position:relative;transition:box-shadow var(--ease)}
-.bracelet-option{flex:1;position:relative}
-.bracelet-option input[type="radio"]{position:absolute;opacity:0;width:0;height:0}
-.bracelet-option label{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:var(--tap-min);padding:28px 16px;border-radius:20px;border:1.5px solid var(--glass-border);background:var(--glass-bg);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);cursor:pointer;touch-action:manipulation;transition:all var(--ease);text-align:center;gap:10px;position:relative;overflow:hidden}
-.bracelet-option label::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;border-radius:20px 20px 0 0;opacity:0;transition:opacity var(--ease)}
-.bracelet-option input[type="radio"]:checked+label{border-color:var(--form-accent);color:var(--text)}
-.bracelet-option input[type="radio"]:checked+label::before{opacity:1;background:var(--form-accent);box-shadow:0 0 16px var(--form-accent)}
-.bracelet-option input[type="radio"]:checked+label .bracelet-name{color:var(--form-accent)}
-.bracelet-option label .bracelet-icon{font-size:28px;line-height:1}
-.bracelet-option label .bracelet-name{font-family:var(--font-display);font-size:13px;font-weight:700;letter-spacing:.08em}
-.bracelet-option label .bracelet-desc{font-size:12px;font-weight:400;opacity:.55;line-height:1.4}
-.bracelet-option label:active{transform:scale(.97)}
-.bracelet-option input[type="radio"]:focus-visible+label{outline:2px solid var(--gold);outline-offset:2px}
-
-.bracelet-explain{font-size:14px;color:var(--champagne);opacity:.6;text-align:center;line-height:1.6;max-width:380px;margin-inline:auto;margin-bottom:32px}
-.bracelet-explain strong{color:var(--gold);font-weight:600}
+.pure-tombstone{border-radius:120px 120px 14px 14px;background:linear-gradient(180deg,#404040 0%,#2a2a2a 50%,#1e1e1e 100%);box-shadow:inset 0 2px 4px rgba(255,255,255,.06),inset 0 16px 32px rgba(0,0,0,.6),0 8px 32px rgba(0,0,0,.6),0 2px 8px rgba(0,0,0,.4);border:1px solid rgba(217,4,41,.25);padding:50px 22px 26px;display:flex;flex-direction:column;gap:12px;touch-action:manipulation;cursor:pointer;position:relative;min-height:220px}
+.pure-tombstone:hover{border-color:var(--red);box-shadow:inset 0 2px 4px rgba(217,4,41,.3),inset 0 16px 36px rgba(0,0,0,.8),0 15px 35px rgba(217,4,41,.35)}
+.pure-tombstone .rip{font-family:var(--font-display);font-size:20px;font-weight:900;color:rgba(240,230,230,.88);letter-spacing:.1em;text-align:center;line-height:1.3;text-shadow:1px 1px 2px rgba(0,0,0,.9),-1px -1px 2px rgba(100,50,50,.5)}
+.pure-tombstone .grave-text{font-size:14px;color:rgba(220,210,210,.8);line-height:1.7;font-style:italic;text-align:center;text-shadow:1px 1px 2px rgba(0,0,0,.9),-1px -1px 2px rgba(80,80,80,.4)}
+.pure-tombstone .grave-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);font-weight:700;text-align:center;text-shadow:0 0 6px rgba(217,4,41,.4)}
+.card-web-corner{position:absolute;top:0;right:0;width:85px;height:85px;pointer-events:none;opacity:0.45;z-index:2}
 
 /* ── Rituales ── */
-.rituales{padding:56px 0 64px;position:relative;z-index:1}
-.rituales h2{font-family:var(--font-display);font-size:28px;font-weight:900;letter-spacing:.06em;margin-bottom:8px;text-align:center}
-.rituales-desc{font-size:15px;color:var(--champagne);opacity:.7;text-align:center;margin-bottom:32px;max-width:380px;margin-inline:auto}
-.rituales-grid{display:grid;gap:16px}
-.ritual-card{display:flex;flex-direction:column;gap:8px;padding:28px 24px;border-radius:20px;background:var(--glass-bg);-webkit-backdrop-filter:blur(var(--glass-blur));backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);touch-action:manipulation}
-.ritual-card .ritual-title{font-family:var(--font-display);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--gold)}
-.ritual-card .ritual-body{font-size:14px;color:var(--champagne);opacity:.7;line-height:1.6}
+.rituales{padding:56px 0 64px;position:relative;z-index:5}
+.rituales h2{font-family:var(--font-display);font-size:30px;font-weight:900;letter-spacing:.08em;margin-bottom:8px;text-align:center;color:var(--gold)}
+.rituales-desc{font-size:15px;color:var(--champagne);opacity:.75;text-align:center;margin-bottom:34px}
+.rituales-grid{display:grid;gap:18px}
+.ritual-card{position:relative;display:flex;flex-direction:column;gap:10px;padding:28px 24px;border-radius:22px;background:rgba(24,12,15,0.78);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(217,4,41,0.25);transition:all .3s ease;overflow:visible;cursor:pointer}
+.ritual-card:hover{border-color:rgba(217,4,41,0.6);transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,0.6),0 0 20px rgba(217,4,41,0.25)}
+.ritual-card .ritual-title{font-family:var(--font-display);font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:var(--gold);display:flex;align-items:center;gap:10px}
+.ritual-card .ritual-body{font-size:14.5px;color:var(--champagne);opacity:.8;line-height:1.7}
 .ritual-card .ritual-body strong{color:var(--gold);font-weight:700}
-.ritual-card .ritual-body .highlight{color:var(--red);font-weight:700;font-size:18px}
-.ritual-card .ritual-body .blue-highlight{color:var(--blue);font-weight:700;font-size:18px}
+.ritual-card .ritual-body .highlight{color:var(--red);font-weight:800;font-size:17px;text-shadow:0 0 8px rgba(217,4,41,0.4)}
+.ritual-card .ritual-body .blue-highlight{color:var(--blue);font-weight:800;font-size:17px}
 
-/* ── Reserva (Tombstone Form) ── */
-.reserva-section{padding:56px 0 80px;position:relative;z-index:1}
-.reserva-section h2{font-family:var(--font-display);font-size:28px;font-weight:900;letter-spacing:.06em;margin-bottom:4px;text-align:center}
-.reserva-desc{font-size:15px;color:var(--champagne);opacity:.7;text-align:center;margin-bottom:36px}
-.tombstone-form{position:relative;max-width:400px;margin-inline:auto;padding:48px 32px;border-radius:120px 120px 12px 12px;background:linear-gradient(180deg,#404040 0%,#2a2a2a 50%,#1e1e1e 100%);box-shadow:inset 0 2px 4px rgba(255,255,255,.06),inset 0 16px 32px rgba(0,0,0,.6),0 8px 32px rgba(0,0,0,.6),0 2px 8px rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.04);overflow:hidden}
-.tombstone-form::before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(10,8,8,.85);pointer-events:none;z-index:0}
-.tombstone-form>*{position:relative;z-index:1}
-.tombstone-form .form-group{position:relative;margin-bottom:20px}
-.tombstone-form .form-group input{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.15);padding:14px 0;color:#ddd;font-family:var(--font-body);font-size:16px;transition:border-color var(--ease);outline:none;-webkit-appearance:none}
-.tombstone-form .form-group input::placeholder{color:rgba(255,255,255,.3);opacity:1}
-.tombstone-form .form-group input:focus{border-bottom-color:var(--red)}
-.tombstone-form .form-group label{position:absolute;top:14px;left:0;font-size:13px;color:rgba(255,255,255,.4);transition:all var(--ease);pointer-events:none;letter-spacing:.04em}
-.tombstone-form .form-group input:focus+label,.tombstone-form .form-group input:not(:placeholder-shown)+label{top:-20px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);opacity:.8}
+/* ── Confesionario ── */
+.confesionario{padding:60px 0 74px;position:relative;z-index:5}
+.confesionario h2{font-family:var(--font-display);font-size:30px;font-weight:900;letter-spacing:.08em;margin-bottom:6px;text-align:center;color:var(--gold)}
+.confesionario-sub{font-size:15px;color:var(--champagne);opacity:.75;text-align:center;margin-bottom:34px}
+.bracelet-selector{display:flex;gap:18px;margin-bottom:28px;position:relative;transition:box-shadow var(--ease)}
+.bracelet-option{flex:1;position:relative}
+.bracelet-option input[type="radio"]{position:absolute;opacity:0;width:0;height:0}
+.bracelet-option label{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:var(--tap-min);padding:26px 16px;border-radius:22px;border:1.5px solid rgba(255,255,255,0.12);background:rgba(20,10,12,0.7);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);cursor:pointer;touch-action:manipulation;transition:all var(--ease);text-align:center;gap:10px;position:relative;overflow:visible}
+.bracelet-option label::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;opacity:0;transition:opacity var(--ease)}
+.bracelet-option input[type="radio"]:checked+label{border-color:var(--form-accent);background:rgba(30,10,14,0.9)}
+.bracelet-option input[type="radio"]:checked+label::before{opacity:1;background:var(--form-accent);box-shadow:0 0 16px var(--form-accent)}
+.bracelet-option input[type="radio"]:checked+label .bracelet-name{color:var(--form-accent);text-shadow:0 0 10px rgba(var(--form-accent-rgb),0.5)}
+.bracelet-option label .bracelet-icon{font-size:24px;line-height:1}
+.bracelet-option label .bracelet-name{font-family:var(--font-display);font-size:13px;font-weight:800;letter-spacing:.12em}
+.bracelet-option label .bracelet-desc{font-size:12px;font-weight:400;opacity:.65;line-height:1.6}
+.bracelet-explain{font-size:14px;color:var(--champagne);opacity:.7;text-align:center;line-height:1.7;max-width:400px;margin-inline:auto}
+
+/* ── Reserva ── */
+.reserva-section{padding:56px 0 80px;position:relative;z-index:5}
+.reserva-section h2{font-family:var(--font-display);font-size:30px;font-weight:900;letter-spacing:.08em;margin-bottom:6px;text-align:center;color:var(--gold)}
+.reserva-desc{font-size:15px;color:var(--champagne);opacity:.75;text-align:center;margin-bottom:34px;line-height:1.7}
+.tombstone-form{position:relative;max-width:440px;margin-inline:auto;padding:54px 34px 44px;border-radius:130px 130px 16px 16px;background:linear-gradient(180deg,#3a3637 0%,#262022 45%,#151213 100%);box-shadow:inset 0 2px 5px rgba(255,255,255,.08),inset 0 16px 36px rgba(0,0,0,.8),0 12px 40px rgba(0,0,0,.7);border:1.5px solid rgba(217,4,41,.25);overflow:visible}
+.tombstone-form::before{content:"";position:absolute;inset:0;background:rgba(10,6,8,.85);border-radius:inherit;pointer-events:none;z-index:0}
+.tombstone-form>*{position:relative;z-index:2}
+.tombstone-form .form-group{position:relative;margin-bottom:22px}
+.tombstone-form .form-group input{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.2);padding:14px 0;color:#eee;font-family:var(--font-body);font-size:16px;transition:border-color var(--ease),background .3s ease;outline:none}
+.tombstone-form .form-group input:focus{border-bottom-color:var(--red);box-shadow:0 1px 0 var(--red)}
+.tombstone-form .form-group label{position:absolute;top:14px;left:0;font-size:13px;color:rgba(255,255,255,.45);transition:all var(--ease);pointer-events:none}
+.tombstone-form .form-group input:focus+label,.tombstone-form .form-group input:not(:placeholder-shown)+label{top:-18px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--red);opacity:.9}
 .tombstone-form .form-group .field-error{font-size:12px;color:var(--red);margin-top:4px;display:none}
-.tombstone-form .reserva-submit{display:inline-flex;align-items:center;justify-content:center;min-height:var(--tap-min);padding:16px;border-radius:60px;background:var(--red);color:#fff;font-family:var(--font-body);font-size:15px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:all var(--ease);border:2px solid transparent;touch-action:manipulation;margin-top:8px;width:100%}
-.tombstone-form .reserva-submit:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(var(--form-accent-rgb),.35)}
+.tombstone-form .reserva-submit{display:inline-flex;align-items:center;justify-content:center;min-height:var(--tap-min);padding:16px;border-radius:60px;background:linear-gradient(135deg,#d90429 0%,#7d0617 100%);color:#fff;font-family:var(--font-body);font-size:15px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;transition:all var(--ease);border:1px solid rgba(255,255,255,0.2);touch-action:manipulation;margin-top:10px;width:100%;cursor:pointer;box-shadow:0 6px 20px rgba(217,4,41,0.4);position:relative;overflow:visible}
+.tombstone-form .reserva-submit:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(var(--form-accent-rgb),.55)}
 .tombstone-form .reserva-submit:active{transform:scale(.97)}
 .tombstone-form .reserva-submit:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
-/* ── Success State (injected by JS) ── */
-.tombstone-success{display:none;text-align:center;padding:32px 20px}
-.tombstone-success .rip-label{font-family:var(--font-display);font-size:48px;font-weight:900;letter-spacing:.2em;color:var(--red);margin-bottom:8px;text-shadow:0 0 20px rgba(217,4,41,.5)}
-.tombstone-success .death-name{font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--gold);letter-spacing:.08em;margin-bottom:24px;text-shadow:0 1px 3px rgba(0,0,0,.5)}
-.tombstone-success .qr-placeholder{width:160px;height:160px;margin:20px auto;border:2px solid rgba(217,4,41,.4);border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(217,4,41,.08);box-shadow:0 0 24px rgba(217,4,41,.2);position:relative;overflow:hidden}
-.tombstone-success .qr-placeholder::after{content:"QR";position:absolute;font-family:var(--font-body);font-size:10px;color:rgba(217,4,41,.5);letter-spacing:.1em}
-.tombstone-success .ticket-footer{font-family:var(--font-display);font-size:13px;font-weight:700;letter-spacing:.12em;color:rgba(242,226,190,.75);margin-top:20px;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+/* Success State */
+.tombstone-success{display:none;text-align:center;padding:24px 10px}
+.tombstone-success .rip-label{font-family:var(--font-display);font-size:46px;font-weight:900;letter-spacing:.2em;color:var(--red);margin-bottom:8px;text-shadow:0 0 20px rgba(217,4,41,.6)}
+.tombstone-success .death-name{font-family:var(--font-display);font-size:24px;font-weight:800;color:var(--gold);letter-spacing:.08em;margin-bottom:20px}
+.tombstone-success .qr-placeholder{width:150px;height:150px;margin:20px auto;border:2px dashed rgba(217,4,41,.6);border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(217,4,41,.12);position:relative}
+.tombstone-success .ticket-footer{font-family:var(--font-display);font-size:13px;font-weight:700;letter-spacing:.08em;color:rgba(242,226,190,.8);margin-top:18px}
+
+/* ── Spider Spawner ── */
+.spider-spawner{position:fixed;bottom:20px;right:20px;z-index:120;background:rgba(20,5,8,0.85);border:1px solid rgba(217,4,41,0.5);border-radius:50px;padding:10px 18px;font-size:12px;font-family:var(--font-display);font-weight:700;color:var(--gold);letter-spacing:.08em;display:flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,0.6),0 0 15px rgba(217,4,41,0.25);cursor:pointer;transition:all .3s ease}
+.spider-spawner:hover{background:rgba(217,4,41,0.25);border-color:var(--red);transform:scale(1.05)}
+.spider-spawner:active{transform:scale(.97)}
+
+/* ── Blood Drip ── */
+.blood-drip{position:absolute;top:56px;left:0;width:100%;height:18px;pointer-events:none;z-index:99;opacity:0.85}
 
 /* ── Footer ── */
-.footer{padding:32px 20px;text-align:center;position:relative;z-index:1;border-top:1px solid var(--glass-border)}
-.footer p{font-family:var(--font-display);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--champagne);opacity:.35}
+.footer{padding:36px 20px;text-align:center;position:relative;z-index:5;border-top:1px solid rgba(217,4,41,0.2)}
+.footer p{font-family:var(--font-display);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--champagne);opacity:.4}
 
-/* ── Reduced motion ── */
+/* ── Countdown ── */
+.countdown-wrap{display:flex;gap:16px;justify-content:center;margin-bottom:32px;position:relative;z-index:1}
+.countdown-unit{display:flex;flex-direction:column;align-items:center;gap:4px}
+.countdown-value{font-family:'Cinzel',serif;font-size:clamp(28px,4vw,48px);font-weight:900;color:var(--text);text-shadow:0 0 12px rgba(217,4,41,.4);font-variant-numeric:tabular-nums;letter-spacing:.05em}
+.countdown-value.accent{color:var(--gold)}
+.countdown-label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--champagne);opacity:.6}
+
+/* ── Reduced Motion ── */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
 }
@@ -193,289 +242,726 @@ p,h1,h2,h3{margin:0}
 </head>
 <body>
 
+<!-- Canvas de telarañas dinámicas -->
+<canvas id="webCanvas" width="1280" height="3548"></canvas>
+
+<!-- ═══ FIXED CORNER COBWEBS (Vector SVG) ═══ -->
+<svg class="corner-web top-left" fill="none" stroke="rgba(240,240,240,0.6)" stroke-width="1.2" viewBox="0 0 100 100">
+<path d="M0,0 L100,0 M0,0 L0,100 M0,0 L90,40 M0,0 L75,75 M0,0 L40,90"></path>
+<path d="M20,0 Q18,8 0,20"></path>
+<path d="M40,0 Q35,16 28,28 Q16,35 0,40"></path>
+<path d="M60,0 Q53,24 42,42 Q24,53 0,60"></path>
+<path d="M80,0 Q71,32 56,56 Q32,71 0,80"></path>
+<path d="M100,0 Q89,40 70,70 Q40,89 0,100"></path>
+</svg>
+<svg class="corner-web top-right" fill="none" stroke="rgba(240,240,240,0.6)" stroke-width="1.2" viewBox="0 0 100 100">
+<path d="M0,0 L100,0 M0,0 L0,100 M0,0 L90,40 M0,0 L75,75 M0,0 L40,90"></path>
+<path d="M20,0 Q18,8 0,20"></path>
+<path d="M40,0 Q35,16 28,28 Q16,35 0,40"></path>
+<path d="M60,0 Q53,24 42,42 Q24,53 0,60"></path>
+<path d="M80,0 Q71,32 56,56 Q32,71 0,80"></path>
+<path d="M100,0 Q89,40 70,70 Q40,89 0,100"></path>
+</svg>
+
+<!-- ═══ BLOOD DRIP HEADER DECOR ═══ -->
+<svg class="blood-drip" fill="#9E1B19" preserveAspectRatio="none" viewBox="0 0 1000 24">
+<path d="M0,0 L1000,0 L1000,4 C950,4 940,16 935,16 C930,16 925,4 880,4 C840,4 835,22 828,22 C822,22 818,4 740,4 C700,4 695,14 690,14 C685,14 680,4 610,4 C570,4 565,24 558,24 C552,24 548,4 470,4 C430,4 425,18 420,18 C415,18 410,4 320,4 C280,4 275,15 270,15 C265,15 260,4 180,4 C140,4 135,22 128,22 C122,22 118,4 50,4 C20,4 10,12 0,12 Z"></path>
+</svg>
+
 <header class="topbar" role="banner">
-  <div class="topbar-inner wrap">
-    <div class="brand">D<span>VOID</span> · La Tentación</div>
-  </div>
+<div class="topbar-inner wrap">
+<div class="brand">
+<span class="brand-icon">🦇</span>
+      D<span class="">VOID</span> · La Tentación
+    </div>
+<div style="font-size:12px;color:var(--champagne);opacity:0.8;display:flex;align-items:center;gap:6px">
+<span class="">🕷️</span> <span style="letter-spacing:0.1em;font-weight:700;color:var(--gold)" class="">HALLOWEEN NIGHT</span>
+</div>
+</div>
 </header>
 
+<!-- ═══ HANGING SPIDERS ON SILK (Left & Right) ═══ -->
+<div class="web-hanger" id="hanger1" style="top:56px; left:6%;" title="¡Tócame para asustarme!">
+<div class="web-thread" id="thread1" style="height:115px"></div>
+<div class="spider-hanging">
+<svg height="48" viewBox="0 0 60 70" width="44">
+<defs><radialGradient cx="50%" cy="50%" id="bodyGlow1" r="50%"><stop offset="0%" stop-color="#3a0408"></stop><stop offset="60%" stop-color="#140204"></stop><stop offset="100%" stop-color="#020000"></stop></radialGradient></defs>
+<ellipse cx="30" cy="46" fill="url(#bodyGlow1)" rx="14" ry="19" stroke="#d90429" stroke-width="1.2"></ellipse>
+<path d="M26,39 L34,39 L30,46 L34,53 L26,53 L30,46 Z" fill="#ff002b" filter="drop-shadow(0 0 5px #ff002b)"></path>
+<ellipse cx="30" cy="24" fill="#120204" rx="9" ry="8" stroke="#ff2244" stroke-width="1"></ellipse>
+<path d="M27,15 Q26,9 24,12" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M33,15 Q34,9 36,12" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.8"></path>
+<circle cx="28" cy="21" fill="#ff0040" r="1.3"></circle>
+<circle cx="32" cy="21" fill="#ff0040" r="1.3"></circle>
+<circle cx="26" cy="23" fill="#ff4d6d" r="0.9"></circle>
+<circle cx="34" cy="23" fill="#ff4d6d" r="0.9"></circle>
+<g fill="none" stroke="#24070a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2">
+<path d="M24,22 Q12,12 4,18 Q-2,24 2,34"></path><path d="M23,26 Q8,20 2,30 Q-2,38 3,46"></path><path d="M24,29 Q9,35 4,45 Q0,54 6,62"></path><path d="M25,32 Q14,48 8,58 Q4,68 12,74"></path>
+<path d="M36,22 Q48,12 56,18 Q62,24 58,34"></path><path d="M37,26 Q52,20 58,30 Q62,38 57,46"></path><path d="M36,29 Q51,35 56,45 Q60,54 54,62"></path><path d="M35,32 Q46,48 52,58 Q56,68 48,74"></path>
+</g>
+</svg>
+</div>
+</div>
+<div class="web-hanger" id="hanger2" style="top:56px; right:7%;" title="¡Tócame para asustarme!">
+<div class="web-thread" id="thread2" style="height:155px"></div>
+<div class="spider-hanging" style="animation-duration:5.2s;animation-delay:-1.8s">
+<svg height="52" viewBox="0 0 60 70" width="48">
+<ellipse cx="30" cy="46" fill="#1b1206" rx="15" ry="18" stroke="#EDC677" stroke-width="1.3"></ellipse>
+<path d="M20,44 L16,42 M20,50 L15,50 M39,44 L44,42 M39,50 L45,50" stroke="#EDC677" stroke-width="1.2"></path>
+<ellipse cx="30" cy="24" fill="#120c04" rx="10" ry="9" stroke="#EDC677" stroke-width="1"></ellipse>
+<circle cx="28" cy="20" fill="#ffb703" r="1.4"></circle>
+<circle cx="32" cy="20" fill="#ffb703" r="1.4"></circle>
+<g fill="none" stroke="#3a2507" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6">
+<path d="M23,22 Q10,14 4,20 Q0,26 4,36"></path><path d="M22,26 Q6,22 1,32 Q-2,42 4,48"></path><path d="M23,30 Q8,37 3,47 Q1,56 7,64"></path><path d="M24,33 Q12,50 6,60 Q3,70 12,75"></path>
+<path d="M37,22 Q50,14 56,20 Q60,26 56,36"></path><path d="M38,26 Q54,22 59,32 Q62,42 56,48"></path><path d="M37,30 Q52,37 57,47 Q59,56 53,64"></path><path d="M36,33 Q48,50 54,60 Q57,70 48,75"></path>
+</g>
+</svg>
+</div>
+</div>
+
 <main>
-  <!-- ═══ HERO ═══ -->
-  <section class="hero" aria-label="Invitación al evento">
-    <div class="wrap">
-      <div class="hero-eyebrow">Pre-Halloween 2026</div>
-      <h1>LA TENTACIÓN</h1>
-      <div class="fog" aria-hidden="true"></div>
-      <p class="hero-sub">El mejor día para pecar.</p>
+<!-- ═══ HERO ═══ -->
+<section aria-label="Invitación al evento" class="hero">
+<div class="wrap">
+<!-- Spooky Banner -->
+<div class="spooky-banner" id="spiderSummonTrigger">
+<span class="">🕷️</span>
+<span class=""><strong>¡Cuidado con las arañas y manos de ultratumba!</strong> Haz clic para invocar o arrástralas por la pantalla.</span>
+<span class="">🕸️</span>
+</div>
+<div class="hero-eyebrow">🎃 Noche de Brujas &amp; Pecados 🎃</div>
+<!-- Título interactivo con mano esquelética oculta -->
+<div class="hero-title-container" id="heroTitleWrap" title="¡Cuidado con lo que despiertas!">
+<div class="skeletal-hand-container" style="top:-60px; left:40%;">
+<svg class="skeletal-hand" id="titleHand" viewBox="0 0 100 120">
+<path d="M40,120 L42,75 M60,120 L58,75" stroke="#9E1B19" stroke-linecap="round" stroke-width="7"></path>
+<path d="M38,120 L40,75 M56,120 L54,75" stroke="#d5c8be" stroke-linecap="round" stroke-width="4"></path>
+<ellipse cx="50" cy="65" fill="#201815" rx="14" ry="10" stroke="#e0d5cb" stroke-width="2.5"></ellipse>
+<path d="M38,68 Q24,62 16,50 Q12,42 8,46" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="2.8"></path>
+<path d="M42,58 Q34,36 30,20 Q28,12 24,14" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="2.8"></path>
+<path d="M49,56 Q48,30 46,12 Q45,2 40,4" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="3"></path>
+<path d="M57,58 Q64,36 68,22 Q70,14 74,16" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="2.8"></path>
+<path d="M63,65 Q76,50 82,38 Q86,32 90,36" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="2.4"></path>
+<path d="M8,46 L3,48 M24,14 L20,10 M40,4 L38,-4 M74,16 L78,11 M90,36 L96,33" stroke="#ff002b" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<h1 id="heroTitle" class="spider-weighted">LA TENTACIÓN</h1>
+</div>
+<p class="hero-sub">El mejor día para pecar · Especial de Noche de Halloween</p>
+<div aria-hidden="true" class="marquee-wrap">
+<div class="marquee-track">
+<span class="marquee-text">🕸️ NO HAY REGLAS 💀 CONFIESA TUS PECADOS 🕷️ ELIGE TU VENENO 🕸️ D-VOID HALLOWEEN 💀</span>
+<span class="marquee-text">🕸️ NO HAY REGLAS 💀 CONFIESA TUS PECADOS 🕷️ ELIGE TU VENENO 🕸️ D-VOID HALLOWEEN 💀</span>
+</div>
+</div>
+<div class="event-info">
+<span class="event-badge">📅 <strong>Jueves 01 OCT</strong></span>
+<span class="event-divider">✦</span>
+<span class="event-badge">⏰ <strong>21H30</strong></span>
+<span class="event-divider">✦</span>
+<span class="event-badge">Cover <strong>$10</strong></span>
+<span class="event-divider">✦</span>
+<span class="event-badge">📍 <strong>D-VOID CLUB</strong></span>
+</div>
+<div style="position:relative;display:inline-block;margin-top:10px">
+<div class="skeletal-hand-container" style="bottom:-15px; left:-25px; z-index:15;">
+<svg class="skeletal-hand" id="ctaHand" style="width:75px;height:75px;transform:rotate(-25deg)" viewBox="0 0 100 120">
+<path d="M45,120 L48,70" stroke="#251214" stroke-width="8"></path>
+<path d="M43,120 L46,70" stroke="#879774" stroke-width="5"></path>
+<path d="M48,65 Q30,40 18,30" fill="none" stroke="#a2b38d" stroke-linecap="round" stroke-width="4"></path>
+<path d="M50,60 Q52,30 48,15" fill="none" stroke="#a2b38d" stroke-linecap="round" stroke-width="4.2"></path>
+<path d="M55,62 Q70,35 80,24" fill="none" stroke="#a2b38d" stroke-linecap="round" stroke-width="4"></path>
+<path d="M18,30 L10,32 M48,15 L44,8 M80,24 L86,18" stroke="#120406" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+</div>
+<a class="cta-btn spider-weighted" href="#confesionario" id="heroCta">
+<span class="">Confiesa tus pecados 🕷️</span>
+</a>
+</div>
+</div>
+</section>
 
-      <div class="countdown-wrap" id="countdown" aria-label="Cuenta regresiva">
-        <div class="countdown-unit">
-          <div class="countdown-value" id="cd-days">--</div>
-          <div class="countdown-label">Días</div>
-        </div>
-        <div class="countdown-unit">
-          <div class="countdown-value accent" id="cd-hours">--</div>
-          <div class="countdown-label">Horas</div>
-        </div>
-        <div class="countdown-unit">
-          <div class="countdown-value accent" id="cd-mins">--</div>
-          <div class="countdown-label">Min</div>
-        </div>
-        <div class="countdown-unit">
-          <div class="countdown-value accent" id="cd-secs">--</div>
-          <div class="countdown-label">Seg</div>
-        </div>
-      </div>
+<div class="section-divider" role="separator"></div>
 
-      <div class="marquee-wrap" aria-hidden="true">
-        <div class="marquee-track">
-          <span class="marquee-text">NO HAY REGLAS 💀 CONFIESA TUS PECADOS 💀 ELIGE TU VENENO 💀</span>
-          <span class="marquee-text">NO HAY REGLAS 💀 CONFIESA TUS PECADOS 💀 ELIGE TU VENENO 💀</span>
-        </div>
-      </div>
+<!-- ═══ CEMENTERIO DE LOS EX ═══ -->
+<section aria-label="Cementerio de los ex" class="cemetery">
+<div class="wrap">
+<h2 class="">EL CEMENTERIO DE LOS EX</h2>
+<p class="cemetery-desc">Enterramos lo tóxico bajo telarañas centenarias. Haz clic en las lápidas para voltearlas y ver lo que ocultan.</p>
+<div class="graveyard" id="graveyardGrid">
+<!-- Tombstone 1 -->
+<div class="tombstone-wrapper" data-tomb="1">
+<div class="skeletal-hand-container" style="bottom:-24px; right:15px;">
+<svg class="skeletal-hand" viewBox="0 0 100 120">
+<path d="M50,120 L48,70" stroke="#3d0a0e" stroke-width="9"></path>
+<path d="M50,120 L48,70" stroke="#d5c8be" stroke-width="5"></path>
+<ellipse cx="48" cy="65" fill="#180e0c" rx="14" ry="10" stroke="#d5c8be" stroke-width="2"></ellipse>
+<path d="M38,62 Q20,44 14,28 Q10,18 6,22" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="3"></path>
+<path d="M46,55 Q42,28 38,12 Q36,2 30,5" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="3.2"></path>
+<path d="M55,56 Q66,32 72,18 Q74,8 80,12" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="3"></path>
+<path d="M62,64 Q78,48 86,36 Q90,28 94,33" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="2.6"></path>
+<path class="claw-scratch" d="M10,95 L40,82 M15,108 L50,96 M20,118 L55,110" stroke="#d90429" stroke-linecap="round" stroke-width="2.5"></path>
+</svg>
+</div>
+<div class="pure-tombstone spider-weighted" style="overflow:hidden;border-radius:120px 120px 14px 14px;">
+<div class="tomb-front" style="overflow:hidden;border-radius:120px 120px 14px 14px;position:relative;">
+<svg class="card-web-corner" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" viewBox="0 0 100 100">
+<path d="M100,0 L0,0 M100,0 L100,100 M100,0 L10,60 M100,0 L25,25 M100,0 L60,10"></path>
+<path d="M80,0 Q82,8 100,20"></path><path d="M60,0 Q65,16 72,28 Q84,35 100,40"></path><path d="M40,0 Q47,24 58,42 Q76,53 100,60"></path>
+</svg>
+<div class="rip">R.I.P.</div>
+<div class="grave-text">"Tú que siempre prometías llamar y nunca llegabas."</div>
+<div class="grave-label">🕷️ El Fantasma</div>
+</div>
+<div class="tomb-back">
+<div style="font-size:32px;margin-bottom:8px" class="">💀</div>
+<div style="font-family:var(--font-display);font-size:16px;font-weight:900;color:var(--gold);margin-bottom:6px" class="">¡DESPERTÓ!</div>
+<p style="font-size:12.5px;color:var(--champagne);line-height:1.7" class="">"Ni rezando mil noches vuelves a saber de mí."</p>
+<span style="font-size:12px;letter-spacing:0.08em" class="">TOCA PARA VOLVER</span>
+</div>
+</div>
+</div>
+<!-- Tombstone 2 -->
+<div class="tombstone-wrapper" data-tomb="2">
+<div class="skeletal-hand-container" style="bottom:-24px; left:15px;">
+<svg class="skeletal-hand" style="transform:scaleX(-1) translateY(80px)" viewBox="0 0 100 120">
+<path d="M50,120 L48,70" stroke="#3d0a0e" stroke-width="9"></path>
+<path d="M50,120 L48,70" stroke="#d5c8be" stroke-width="5"></path>
+<path d="M38,62 Q20,44 14,28" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="3"></path>
+<path d="M46,55 Q42,28 38,12" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="3.2"></path>
+<path d="M55,56 Q66,32 72,18" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="3"></path>
+<path d="M14,28 L8,32 M38,12 L34,4 M72,18 L76,12" stroke="#ff002b" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<div class="pure-tombstone" style="overflow:hidden;border-radius:120px 120px 14px 14px;">
+<div class="tomb-front" style="overflow:hidden;border-radius:120px 120px 14px 14px;position:relative;">
+<svg class="card-web-corner" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" viewBox="0 0 100 100">
+<path d="M100,0 L0,0 M100,0 L100,100 M100,0 L10,60 M100,0 L25,25 M100,0 L60,10"></path>
+<path d="M80,0 Q82,8 100,20"></path><path d="M60,0 Q65,16 72,28 Q84,35 100,40"></path><path d="M40,0 Q47,24 58,42 Q76,53 100,60"></path>
+</svg>
+<div class="rip">R.I.P.</div>
+<div class="grave-text">"Esos mensajes de medianoche que solo terminaban en silencio y veneno."</div>
+<div class="grave-label">🕸️ La Nota Tóxica</div>
+</div>
+<div class="tomb-back">
+<div style="font-size:32px;margin-bottom:8px" class="">🔥</div>
+<div style="font-family:var(--font-display);font-size:16px;font-weight:900;color:var(--gold);margin-bottom:6px" class="">VISTO Y BLOQUEADO</div>
+<p style="font-size:12.5px;color:var(--champagne);line-height:1.7" class="">"Las almas en pena no reciben respuesta."</p>
+<span style="font-size:12px;letter-spacing:0.08em" class="">TOCA PARA VOLVER</span>
+</div>
+</div>
+</div>
+<!-- Tombstone 3 -->
+<div class="tombstone-wrapper" data-tomb="3">
+<div class="skeletal-hand-container" style="top:-30px; right:35%;">
+<svg class="skeletal-hand" style="transform:rotate(180deg) translateY(80px)" viewBox="0 0 100 120">
+<path d="M50,120 L48,70" stroke="#3d0a0e" stroke-width="9"></path>
+<path d="M50,120 L48,70" stroke="#d5c8be" stroke-width="5"></path>
+<path d="M38,62 Q20,44 14,28" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="3"></path>
+<path d="M46,55 Q42,28 38,12" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="3.2"></path>
+<path d="M55,56 Q66,32 72,18" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="3"></path>
+<path d="M14,28 L8,32 M38,12 L34,4 M72,18 L76,12" stroke="#ff002b" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<div class="pure-tombstone spider-weighted" style="overflow:hidden;border-radius:120px 120px 14px 14px;">
+<div class="tomb-front" style="overflow:hidden;border-radius:120px 120px 14px 14px;position:relative;">
+<svg class="card-web-corner" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" viewBox="0 0 100 100">
+<path d="M100,0 L0,0 M100,0 L100,100 M100,0 L10,60 M100,0 L25,25 M100,0 L60,10"></path>
+<path d="M80,0 Q82,8 100,20"></path><path d="M60,0 Q65,16 72,28 Q84,35 100,40"></path><path d="M40,0 Q47,24 58,42 Q76,53 100,60"></path>
+</svg>
+<div class="rip">R.I.P.</div>
+<div class="grave-text">"Tu mentira favorita que ya ni tú te creías ni a nadie le importaba."</div>
+<div class="grave-label">🕷️ El Mito Caído</div>
+</div>
+<div class="tomb-back">
+<div style="font-size:32px;margin-bottom:8px" class="">⚰️</div>
+<div style="font-family:var(--font-display);font-size:16px;font-weight:900;color:var(--gold);margin-bottom:6px" class="">SEPULTADO EN CENIZAS</div>
+<p style="font-size:12.5px;color:var(--champagne);line-height:1.7" class="">"Ni el diablo te compra ese cuento otra vez."</p>
+<span style="font-size:12px;letter-spacing:0.08em" class="">TOCA PARA VOLVER</span>
+</div>
+</div>
+</div>
+<!-- Tombstone 4 -->
+<div class="tombstone-wrapper" data-tomb="4">
+<div class="skeletal-hand-container" style="bottom:-24px; right:20px;">
+<svg class="skeletal-hand" viewBox="0 0 100 120">
+<path d="M50,120 L48,70" stroke="#3d0a0e" stroke-width="9"></path>
+<path d="M50,120 L48,70" stroke="#d5c8be" stroke-width="5"></path>
+<path d="M38,62 Q20,44 14,28" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="3"></path>
+<path d="M46,55 Q42,28 38,12" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="3.2"></path>
+<path d="M55,56 Q66,32 72,18" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="3"></path>
+<path d="M14,28 L8,32 M38,12 L34,4 M72,18 L76,12" stroke="#ff002b" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<div class="pure-tombstone" style="overflow:hidden;border-radius:120px 120px 14px 14px;">
+<div class="tomb-front" style="overflow:hidden;border-radius:120px 120px 14px 14px;position:relative;">
+<svg class="card-web-corner" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" viewBox="0 0 100 100">
+<path d="M100,0 L0,0 M100,0 L100,100 M100,0 L10,60 M100,0 L25,25 M100,0 L60,10"></path>
+<path d="M80,0 Q82,8 100,20"></path><path d="M60,0 Q65,16 72,28 Q84,35 100,40"></path><path d="M40,0 Q47,24 58,42 Q76,53 100,60"></path>
+</svg>
+<div class="rip">R.I.P.</div>
+<div class="grave-text">"El casi algo que te dejó con más pesadillas que respuestas."</div>
+<div class="grave-label">🕸️ El Casi Insepulto</div>
+</div>
+<div class="tomb-back">
+<div style="font-size:32px;margin-bottom:8px" class="">🖤</div>
+<div style="font-family:var(--font-display);font-size:16px;font-weight:900;color:var(--gold);margin-bottom:6px" class="">CONDENADO AL OLVIDO</div>
+<p style="font-size:12.5px;color:var(--champagne);line-height:1.7" class="">"Esta noche solo bailamos con demonios nuevos."</p>
+<span style="font-size:12px;letter-spacing:0.08em" class="">TOCA PARA VOLVER</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-      <div class="event-info">
-        <span class="event-badge"><strong>Jueves 01 OCT</strong></span>
-        <span class="event-divider" aria-hidden="true"></span>
-        <span class="event-badge"><strong>21H30</strong></span>
-        <span class="event-divider" aria-hidden="true"></span>
-        <span class="event-badge">Cover <strong>$10</strong></span>
-        <span class="event-divider" aria-hidden="true"></span>
-        <span class="event-badge"><strong>D-VOID</strong></span>
-      </div>
+<div class="section-divider" role="separator"></div>
 
-      <a href="#confesionario" class="cta-btn">Confiesa tus pecados</a>
-    </div>
-  </section>
+<!-- ═══ RITUALES ═══ -->
+<section aria-label="Rituales y Dress Code" class="rituales">
+<div class="wrap">
+<h2 class="">LOS RITUALES DE LA NOCHE</h2>
+<p class="rituales-desc">Leyes oscuras para cruzar las puertas del purgatorio este Halloween.</p>
+<div class="rituales-grid">
+<div class="ritual-card interactive-flip" data-ritual="1">
+<div class="skeletal-hand-container" style="top:-30px; right:15px;">
+<svg class="skeletal-hand" style="width:75px;height:75px;transform:rotate(140deg) translateY(60px)" viewBox="0 0 100 120">
+<path d="M50,120 L48,70" stroke="#1c0709" stroke-width="8"></path>
+<path d="M50,120 L48,70" stroke="#c0b5ad" stroke-width="4"></path>
+<path d="M46,55 Q42,28 38,12" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="3"></path>
+<path d="M55,56 Q66,32 72,18" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="3"></path>
+<path d="M38,12 L34,4 M72,18 L76,12" stroke="#ff002b" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<svg class="card-web-corner" fill="none" stroke="rgba(240,240,240,0.35)" stroke-width="1.2" viewBox="0 0 100 100">
+<path d="M100,0 L0,0 M100,0 L100,100 M100,0 L10,60 M100,0 L25,25 M100,0 L60,10"></path>
+<path d="M80,0 Q82,8 100,20"></path><path d="M60,0 Q65,16 72,28 Q84,35 100,40"></path>
+</svg>
+<div class="ritual-title"><span class="">🎭</span> Dress Code: Criaturas &amp; Villanos</div>
+<div class="ritual-body">Disfraz tenebroso obligatorio o vestir de <strong>Rojo Sangre / Negro Profundo</strong>. Muéstranos tu lado más oscuro.</div>
+</div>
+<div class="ritual-card interactive-flip spider-weighted" data-ritual="2">
+<div class="skeletal-hand-container" style="top:-30px; right:15px;">
+<svg class="skeletal-hand" style="width:75px;height:75px;transform:rotate(140deg) translateY(60px)" viewBox="0 0 100 120">
+<path d="M50,120 L48,70" stroke="#1c0709" stroke-width="8"></path>
+<path d="M50,120 L48,70" stroke="#c0b5ad" stroke-width="4"></path>
+<path d="M46,55 Q42,28 38,12" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="3"></path>
+<path d="M55,56 Q66,32 72,18" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="3"></path>
+<path d="M38,12 L34,4 M72,18 L76,12" stroke="#ff002b" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<svg class="card-web-corner" fill="none" stroke="rgba(240,240,240,0.35)" stroke-width="1.2" viewBox="0 0 100 100">
+<path d="M100,0 L0,0 M100,0 L100,100 M100,0 L10,60 M100,0 L25,25 M100,0 L60,10"></path>
+<path d="M80,0 Q82,8 100,20"></path><path d="M60,0 Q65,16 72,28 Q84,35 100,40"></path>
+</svg>
+<div class="ritual-title"><span class="">💉</span> Pociones &amp; Venenos</div>
+<div class="ritual-body">Shot de bienvenida servido en jeringa médica. <span class="highlight">2x1 Aguardiente Maldito</span> hasta 22H30. Grupos de 10: Botella + 2 Covers gratis.</div>
+</div>
+<div class="ritual-card interactive-flip spider-weighted" data-ritual="3">
+<div class="skeletal-hand-container" style="top:-30px; right:15px;">
+<svg class="skeletal-hand" style="width:75px;height:75px;transform:rotate(140deg) translateY(60px)" viewBox="0 0 100 120">
+<path d="M50,120 L48,70" stroke="#1c0709" stroke-width="8"></path>
+<path d="M50,120 L48,70" stroke="#c0b5ad" stroke-width="4"></path>
+<path d="M46,55 Q42,28 38,12" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="3"></path>
+<path d="M55,56 Q66,32 72,18" fill="none" stroke="#e0d5cb" stroke-linecap="round" stroke-width="3"></path>
+<path d="M38,12 L34,4 M72,18 L76,12" stroke="#ff002b" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<svg class="card-web-corner" fill="none" stroke="rgba(240,240,240,0.35)" stroke-width="1.2" viewBox="0 0 100 100">
+<path d="M100,0 L0,0 M100,0 L100,100 M100,0 L10,60 M100,0 L25,25 M100,0 L60,10"></path>
+<path d="M80,0 Q82,8 100,20"></path><path d="M60,0 Q65,16 72,28 Q84,35 100,40"></path>
+</svg>
+<div class="ritual-title"><span class="">🏆</span> Concurso de Ultratumba</div>
+<div class="ritual-body">Mejor disfraz individual: <span class="highlight">$100 cash</span>. Pareja tenebrosa: <span class="blue-highlight">$50 cash + $100 consumo</span>. Disfraz grupal: <span class="highlight">$200 consumo</span>.</div>
+</div>
+</div>
+</div>
+</section>
 
-  <div class="section-divider" role="separator"></div>
+<div class="section-divider" role="separator"></div>
 
-  <!-- ═══ CEMENTERIO DE LOS EX ═══ -->
-  <section class="cemetery" aria-label="Cementerio de los ex">
-    <div class="wrap">
-      <h2>EL CEMENTERIO DE LOS EX</h2>
-      <p class="cemetery-desc">Escribe qué relación, ex, casi algo o situación tóxica vas a enterrar esta noche.</p>
+<!-- ═══ CONFESIONARIO ═══ -->
+<section aria-label="Selección de pulsera" class="confesionario" id="confesionario">
+<div class="wrap">
+<h2 class="">EL CONFESIONARIO</h2>
+<p class="confesionario-sub">Pecado consentido. Selecciona el brazalete con el que pactarás con la noche.</p>
+<div aria-label="Selección de pulsera" class="bracelet-selector" role="radiogroup">
+<div class="bracelet-option">
+<div class="skeletal-hand-container" id="handRed" style="top:-35px; left:10px;">
+<svg class="skeletal-hand" style="width:65px;height:65px;transform:rotate(-25deg) translateY(0px);opacity:1;" viewBox="0 0 100 120">
+<path d="M50,120 L48,70" stroke="#50080f" stroke-width="6"></path>
+<path d="M46,55 Q42,28 38,12" fill="none" stroke="#d5c8be" stroke-width="3"></path>
+<path d="M55,56 Q66,32 72,18" fill="none" stroke="#d5c8be" stroke-width="3"></path>
+<path d="M38,12 L34,4 M72,18 L76,12" stroke="#ff002b" stroke-width="3"></path>
+</svg>
+</div>
+<input checked="" id="red-bracelet" name="bracelet" type="radio" value="red">
+<label for="red-bracelet" id="labelRed" class="spider-weighted">
+<span aria-hidden="true" class="bracelet-icon">🔴</span>
+<span class="bracelet-name">PULSERA ROJA</span>
+<span class="bracelet-desc">Soltero/a sin piedad. Listo para morder y ser mordido.</span>
+</label>
+</div>
+<div class="bracelet-option">
+<div class="skeletal-hand-container" id="handBlue" style="top:-35px; right:10px;">
+<svg class="skeletal-hand" style="width:65px;height:65px;transform:rotate(30deg) translateY(50px);opacity:0;" viewBox="0 0 100 120">
+<path d="M50,120 L48,70" stroke="#003554" stroke-width="6"></path>
+<path d="M46,55 Q42,28 38,12" fill="none" stroke="#a9d6e5" stroke-width="3"></path>
+<path d="M55,56 Q66,32 72,18" fill="none" stroke="#a9d6e5" stroke-width="3"></path>
+<path d="M38,12 L34,4 M72,18 L76,12" stroke="#00b4d8" stroke-width="3"></path>
+</svg>
+</div>
+<input id="blue-bracelet" name="bracelet" type="radio" value="blue">
+<label for="blue-bracelet" id="labelBlue" class="spider-weighted">
+<span aria-hidden="true" class="bracelet-icon">🔵</span>
+<span class="bracelet-name">PULSERA AZUL</span>
+<span class="bracelet-desc">Prohibido tocar. Solo vengo a pecar con la mirada.</span>
+</label>
+</div>
+</div>
+<p class="bracelet-explain">Las arañas vigilan tu elección. Nuestro sacerdote de las sombras verificará tu pulsera en la entrada.</p>
+</div>
+</section>
 
-      <div class="graveyard">
-        <div class="pure-tombstone">
-          <div class="rip">R.I.P.</div>
-          <div class="grave-text">"Tú que siempre prometías llamar y nunca llegabas."</div>
-          <div class="grave-label">El Fantasma</div>
-        </div>
-        <div class="pure-tombstone">
-          <div class="rip">R.I.P.</div>
-          <div class="grave-text">"Esos mensajes de madrugada que solo terminaban en silencio."</div>
-          <div class="grave-label">La Nota Pendiente</div>
-        </div>
-        <div class="pure-tombstone">
-          <div class="rip">R.I.P.</div>
-          <div class="grave-text">"Tu mentira favorita que ya ni te creías ni te importaba."</div>
-          <div class="grave-label">El Mito</div>
-        </div>
-        <div class="pure-tombstone">
-          <div class="rip">R.I.P.</div>
-          <div class="grave-text">"La relación que te mantuvo en el limbo por un año entero."</div>
-          <div class="grave-label">El Límite Roto</div>
-        </div>
-        <div class="pure-tombstone">
-          <div class="rip">R.I.P.</div>
-          <div class="grave-text">"El casi algo que te dejó más preguntas que respuestas."</div>
-          <div class="grave-label">El Casi</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<div class="section-divider" role="separator"></div>
 
-  <div class="section-divider" role="separator"></div>
-
-  <!-- ═══ RITUALES ═══ -->
-  <section class="rituales" aria-label="Rituales y Dress Code">
-    <div class="wrap">
-      <h2>LOS RITUALES</h2>
-      <p class="rituales-desc">Las reglas de noche. Lo que debes saber antes de cruzar la puerta.</p>
-
-      <div class="rituales-grid">
-        <div class="ritual-card">
-          <div class="ritual-title">Dress Code: Villanos</div>
-          <div class="ritual-body">Disfraz obligatorio o viste de <strong>Rojo / Negro</strong>. Show us your dark side.</div>
-        </div>
-        <div class="ritual-card">
-          <div class="ritual-title">Los Pecados</div>
-          <div class="ritual-body">Shot en jeringa de bienvenida. <span class="highlight">2x1 Aguardiente</span> hasta 22H30. Grupos de 10: Botella + 2 Covers.</div>
-        </div>
-        <div class="ritual-card">
-          <div class="ritual-title">La Recompensa</div>
-          <div class="ritual-body">Mejor disfraz individual: <span class="highlight">$100 cash</span>. Pareja: <span class="blue-highlight">$50 cash + $100 consumo</span>. Grupal: <span class="highlight">$200 consumo</span>.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider" role="separator"></div>
-
-  <!-- ═══ EL CONFESIONARIO ═══ -->
-  <section class="confesionario" id="confesionario" aria-label="Selección de pulsera">
-    <div class="wrap">
-      <h2>EL CONFESIONARIO</h2>
-      <p class="confesionario-sub">Una noche sin reglas. El mejor día para pecar.</p>
-
-      <div class="bracelet-selector" role="radiogroup" aria-label="Selección de pulsera">
-        <div class="bracelet-option">
-          <input type="radio" id="red-bracelet" name="bracelet" value="red" checked>
-          <label for="red-bracelet">
-            <span class="bracelet-icon" aria-hidden="true">●</span>
-            <span class="bracelet-name">PULSERA ROJA</span>
-            <span class="bracelet-desc">Soltero/a. Disponible para vacilar.</span>
-          </label>
-        </div>
-        <div class="bracelet-option">
-          <input type="radio" id="blue-bracelet" name="bracelet" value="blue">
-          <label for="blue-bracelet">
-            <span class="bracelet-icon" aria-hidden="true">◆</span>
-            <span class="bracelet-name">PULSERA AZUL</span>
-            <span class="bracelet-desc">No disponible. Solo vengo a pecar con la mirada.</span>
-          </label>
-        </div>
-      </div>
-
-      <p class="bracelet-explain">Confiésate con nuestro Padre en la entrada y elige tu estado. ¿Te atreves a revelar la verdad?</p>
-    </div>
-  </section>
-
-  <div class="section-divider" role="separator"></div>
-
-  <!-- ═══ RESERVA ═══ -->
-  <section class="reserva-section" id="reserva" aria-label="Reserva tu entrada">
-    <div class="wrap">
-      <h2>ASEGURA TU ENTRADA</h2>
-      <p class="reserva-desc">Cover $10. Regístrate en la lista oficial.</p>
-
-      <div class="tombstone-form" id="tombstoneForm">
-        <form id="reservaForm" novalidate>
-          <div class="form-group">
-            <input type="text" id="rname" placeholder=" " required autocomplete="given-name">
-            <label for="rname">Nombre</label>
-            <div class="field-error" id="rname-error">Ingresa tu nombre</div>
-          </div>
-          <div class="form-group">
-            <input type="text" id="rlname" placeholder=" " required autocomplete="family-name">
-            <label for="rlname">Apellido</label>
-            <div class="field-error" id="rlname-error">Ingresa tu apellido</div>
-          </div>
-          <div class="form-group">
-            <input type="tel" id="rwhatsapp" placeholder=" " required autocomplete="tel">
-            <label for="rwhatsapp">WhatsApp</label>
-            <div class="field-error" id="rwhatsapp-error">Ingresa tu WhatsApp</div>
-          </div>
-          <button type="submit" class="reserva-submit" id="reservaSubmit">ENTERRAME</button>
-        </form>
-        <div class="tombstone-success" id="tombstoneSuccess" role="status" aria-live="polite">
-          <div class="rip-label">R.I.P.</div>
-          <div class="death-name" id="deathName"></div>
-          <div class="qr-placeholder" aria-hidden="true"></div>
-          <div class="ticket-footer">D-VOID 01.OCT. Tu alma está en la lista.</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- ═══ RESERVA ═══ -->
+<section aria-label="Reserva tu entrada" class="reserva-section" id="reserva">
+<div class="wrap">
+<h2 class="">ASEGURA TU CRIPTA</h2>
+<p class="reserva-desc">Cover $10. Inscríbete en el libro de almas condenadas.</p>
+<div class="tombstone-form" id="tombstoneForm" style="overflow:hidden;border-radius:130px 130px 16px 16px;">
+<div class="skeletal-hand-container" id="formHand" style="top:-38px; left:50%;transform:translateX(-50%);">
+<svg class="skeletal-hand" style="width:90px;height:90px;transform:rotate(180deg) translateY(70px)" viewBox="0 0 100 120">
+<path d="M45,120 L48,75 M55,120 L52,75" stroke="#2b0206" stroke-width="6"></path>
+<ellipse cx="50" cy="70" fill="#140204" rx="15" ry="9" stroke="#d5c8be" stroke-width="2"></ellipse>
+<path d="M36,65 Q25,40 18,22 Q15,14 10,18" fill="none" stroke="#d5c8be" stroke-linecap="round" stroke-width="3"></path>
+<path d="M44,60 Q38,32 32,15 Q30,5 24,8" fill="none" stroke="#d5c8be" stroke-linecap="round" stroke-width="3.2"></path>
+<path d="M52,58 Q56,30 58,12 Q60,2 54,4" fill="none" stroke="#d5c8be" stroke-linecap="round" stroke-width="3.2"></path>
+<path d="M60,60 Q68,34 74,20 Q76,10 82,14" fill="none" stroke="#d5c8be" stroke-linecap="round" stroke-width="3"></path>
+<path d="M10,18 L6,22 M24,8 L20,3 M54,4 L52,-2 M82,14 L86,9" stroke="#d90429" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<svg class="card-web-corner" viewBox="0 0 160 160" fill="none" stroke="rgba(240,230,230,0.55)" stroke-width="1" style="position:absolute;top:0px;right:0px;width:140px;height:140px;pointer-events:none;z-index:1;border-top-right-radius:130px;filter:drop-shadow(rgba(255,255,255,0.25) 0px 0px 4px);">
+<path d="M160,0 L0,0 M160,0 L160,160 M160,0 L10,35 M160,0 L28,70 M160,0 L55,108 M160,0 L92,138 M160,0 L130,152" stroke="rgba(255,255,255,0.45)"></path>
+<path d="M140,0 Q138,12 160,20"></path><path d="M118,0 Q112,24 135,38 Q148,46 160,48"></path>
+<path d="M94,0 Q84,36 108,60 Q128,74 160,78"></path><path d="M68,0 Q54,48 82,84 Q108,104 160,110"></path>
+<path d="M40,0 Q24,62 56,108 Q86,134 160,142"></path><path d="M12,0 Q-4,78 30,132 Q62,160 160,160"></path>
+</svg>
+<div style="text-align:center;margin-bottom:28px;position:relative;z-index:2;border-bottom:1px solid rgba(217,4,41,0.28);padding-bottom:18px;">
+<div style="font-family:var(--font-display);font-size:12px;letter-spacing:0.26em;text-transform:uppercase;color:var(--red);font-weight:900;text-shadow:0 0 10px rgba(217,4,41,0.6);margin-bottom:6px;display:flex;align-items:center;justify-content:center;gap:8px;">
+<span class="">🕸️</span> R.I.P. · LIBRO DE ALMAS CONDENADAS <span class="">🕸️</span>
+</div>
+<p style="font-family:var(--font-display);font-size:13px;line-height:1.6;color:var(--champagne);font-style:italic;opacity:0.85;max-width:340px;margin:0 auto;text-shadow:0 1px 3px rgba(0,0,0,0.9);">
+«Quien cruza este umbral deja atrás toda culpa. Inscribe tu nombre en piedra para entrar al inframundo.»
+</p>
+</div>
+<form id="reservaForm" novalidate="">
+<div class="form-group"><input autocomplete="given-name" id="rname" placeholder=" " required type="text" class="spider-weighted"><label for="rname">Nombre de pecador</label><div class="field-error" id="rname-error">Ingresa tu nombre</div></div>
+<div class="form-group"><input autocomplete="family-name" id="rlname" placeholder=" " required type="text"><label for="rlname">Apellido mortal</label><div class="field-error" id="rlname-error">Ingresa tu apellido mortal</div></div>
+<div class="form-group"><input autocomplete="tel" id="rwhatsapp" placeholder=" " required type="tel" class="spider-weighted"><label for="rwhatsapp">WhatsApp para tu pacto</label><div class="field-error" id="rwhatsapp-error">Ingresa tu WhatsApp</div></div>
+<button class="reserva-submit spider-weighted" id="reservaSubmit" type="submit"><span class="">🎃 CONDENAR MI ALMA 🕷️</span></button>
+</form>
+<div aria-live="polite" class="tombstone-success" id="tombstoneSuccess" role="status">
+<div class="rip-label">R.I.P.</div>
+<div class="death-name" id="deathName"></div>
+<p style="font-size:14px;color:var(--champagne);opacity:0.8;margin-bottom:12px">Tu pacto ha sido sellado con sangre.</p>
+<div class="qr-placeholder">
+<div style="text-align:center"><span style="font-size:32px;display:block" class="">🕷️</span><span style="font-size:11px;letter-spacing:0.08em;font-weight:700;color:var(--gold)">PASE DE PURGATORIO</span></div>
+</div>
+<div class="ticket-footer">D-VOID · 01 DE OCTUBRE · TU ALMA ESTÁ REGISTRADA</div>
+</div>
+</div>
+</div>
+</section>
 </main>
 
+<!-- Floating summon button for spiders -->
+<button aria-label="Soltar más arañas" class="spider-spawner" id="spawnSpiderBtn">
+<span class="">🕷️</span>
+<span class="">SOLTAR ARAÑA (+<span id="spiderCount">3</span>)</span>
+</button>
+
 <footer class="footer" role="contentinfo">
-  <p>D-VOID · La Tentación · Pre-Halloween 2026</p>
+<div class="wrap">
+<p class="">D-VOID · LA TENTACIÓN · HALLOWEEN SPECIAL EDITION</p>
+<p style="margin-top:6px;font-size:11px;opacity:0.4">Cuidado donde pisas · Las arañas son libres</p>
+</div>
 </footer>
 
+<!-- ═══ SCRIPT: MOTOR DE ARAÑAS, HILOS DE SEDA Y MANOS DE ULTRATUMBA ═══ -->
 <script>
 (function(){
-  "use strict";
+"use strict";
 
-  /* ── Countdown ── */
-  var eventDate = new Date("2026-10-01T21:30:00-05:00").getTime();
-  var cdDays = document.getElementById("cd-days");
-  var cdHours = document.getElementById("cd-hours");
-  var cdMins = document.getElementById("cd-mins");
-  var cdSecs = document.var cdDays = document.getElementById("cd-days");
-  var cdHours = document.getElementById("cd-hours");
-  var cdMins = document.getElementById("cd-mins");
-  var cdSecs = document.getElementById("cd-secs");
+/* ── Spider Templates ── */
+var spiderTemplates=[
+function(id){return'<svg viewBox="0 0 60 70"><defs><radialGradient id="grad_ab_'+id+'" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#4a040b"></stop><stop offset="60%" stop-color="#190204"></stop><stop offset="100%" stop-color="#050001"></stop></radialGradient></defs><ellipse cx="30" cy="46" rx="13" ry="17" fill="url(#grad_ab_'+id+')" stroke="#ff002b" stroke-width="1.3"/><path d="M26,40 L34,40 L30,46 L34,52 L26,52 L30,46 Z" fill="#ff002b" style="filter:drop-shadow(0 0 4px #ff002b)"/><ellipse cx="30" cy="24" rx="8" ry="7" fill="#140204" stroke="#ff2244" stroke-width="1"/><circle cx="28" cy="21" r="1.3" fill="#ff0040"/><circle cx="32" cy="21" r="1.3" fill="#ff0040"/><circle cx="26" cy="23" r="0.9" fill="#ff4d6d"/><circle cx="34" cy="23" r="0.9" fill="#ff4d6d"/><path d="M28,15 L26,11 L29,13" fill="#fff" stroke="#d90429" stroke-width="0.8"/><path d="M32,15 L34,11 L31,13" fill="#fff" stroke="#d90429" stroke-width="0.8"/><g stroke="#24070a" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" fill="none"><path class="spider-leg-l1" d="M23,22 Q12,12 4,18 Q-2,24 2,34"/><path class="spider-leg-l2" d="M22,26 Q8,20 2,30 Q-2,38 3,46"/><path class="spider-leg-l3" d="M23,29 Q9,35 4,45 Q0,54 6,62"/><path class="spider-leg-l4" d="M24,32 Q14,48 8,58 Q4,68 12,74"/><path class="spider-leg-r1" d="M37,22 Q48,12 56,18 Q62,24 58,34"/><path class="spider-leg-r2" d="M38,26 Q52,20 58,30 Q62,38 57,46"/><path class="spider-leg-r3" d="M37,29 Q51,35 56,45 Q60,54 54,62"/><path class="spider-leg-r4" d="M36,32 Q46,48 52,58 Q56,68 48,74"/></g></svg>'},
+function(id){return'<svg viewBox="0 0 60 70"><ellipse cx="30" cy="46" rx="15" ry="18" fill="#1b1206" stroke="#EDC677" stroke-width="1.3"/><path d="M19,43 L14,41 M19,49 L13,49 M41,43 L46,41 M41,49 L47,49" stroke="#EDC677" stroke-width="1.3"/><ellipse cx="30" cy="24" rx="10" ry="9" fill="#120c04" stroke="#EDC677" stroke-width="1.1"/><circle cx="28" cy="20" r="1.4" fill="#ffb703"/><circle cx="32" cy="20" r="1.4" fill="#ffb703"/><path d="M27,14 L25,9" stroke="#EDC677" stroke-width="1.6"/><path d="M33,14 L35,9" stroke="#EDC677" stroke-width="1.6"/><g stroke="#3a2507" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round" fill="none"><path class="spider-leg-l1" d="M23,22 Q10,14 4,20 Q0,26 4,36"/><path class="spider-leg-l2" d="M22,26 Q6,22 1,32 Q-2,42 4,48"/><path class="spider-leg-l3" d="M23,30 Q8,37 3,47 Q1,56 7,64"/><path class="spider-leg-l4" d="M24,33 Q12,50 6,60 Q3,70 12,75"/><path class="spider-leg-r1" d="M37,22 Q50,14 56,20 Q60,26 56,36"/><path class="spider-leg-r2" d="M38,26 Q54,22 59,32 Q62,42 56,48"/><path class="spider-leg-r3" d="M37,30 Q52,37 57,47 Q59,56 53,64"/><path class="spider-leg-r4" d="M36,33 Q48,50 54,60 Q57,70 48,75"/></g></svg>'},
+function(id){return'<svg viewBox="0 0 60 70"><ellipse cx="30" cy="46" rx="9" ry="14" fill="#0d0407" stroke="#ff2a4b" stroke-width="1.4"/><circle cx="30" cy="46" r="3.5" fill="#ff0033" style="filter:drop-shadow(0 0 6px #ff0033)"/><ellipse cx="30" cy="26" rx="6" ry="6" fill="#050102" stroke="#d90429" stroke-width="1"/><circle cx="29" cy="24" r="1" fill="#fff"/><circle cx="31" cy="24" r="1" fill="#fff"/><g stroke="#9E1B19" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"><path class="spider-leg-l1" d="M24,24 Q9,8 2,16 Q-6,26 0,40"/><path class="spider-leg-l2" d="M23,27 Q4,18 -1,30 Q-5,42 1,54"/><path class="spider-leg-l3" d="M24,30 Q6,36 1,48 Q-2,60 5,70"/><path class="spider-leg-l4" d="M25,32 Q10,52 4,64 Q0,76 10,82"/><path class="spider-leg-r1" d="M36,24 Q51,8 58,16 Q66,26 60,40"/><path class="spider-leg-r2" d="M37,27 Q56,18 61,30 Q65,42 59,54"/><path class="spider-leg-r3" d="M36,30 Q54,36 59,48 Q62,60 55,70"/><path class="spider-leg-r4" d="M35,32 Q50,52 56,64 Q60,76 50,82"/></g></svg>'}
+];
 
-  function updateCountdown(){
-    var now = Date.now();
-    var diff = eventDate - now;
-    if(diff <= 0){
-      cdDays.textContent = "00";
-      cdHours.textContent = "00";
-      cdMins.textContent = "00";
-      cdSecs.textContent = "00";
-      return;
-    }
-    var d = Math.floor(diff / 86400000);
-    var h = Math.floor((diff % 86400000) / 3600000);
-    var m = Math.floor((diff % 3600000) / 60000);
-    var s = Math.floor((diff % 60000) / 1000);
-    cdDays.textContent = String(d).padStart(2,"0");
-    cdHours.textContent = String(h).padStart(2,"0");
-    cdMins.textContent = String(m).padStart(2,"0");
-    cdSecs.textContent = String(s).padStart(2,"0");
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+/* ── Canvas Web Threads ── */
+var canvas=document.getElementById("webCanvas");
+var ctx=canvas.getContext("2d");
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+window.addEventListener("resize",resizeCanvas);
+resizeCanvas();
 
-  /* ── Bracelet selector → CSS variable mutation ── */
-  var root = document.documentElement;
-  var redBracelet = document.getElementById("red-bracelet");
-  var blueBracelet = document.getElementById("blue-bracelet");
-  var braceletSelector = document.querySelector(".bracelet-selector");
+/* ── Spider Engine ── */
+var activeSpiders=[];
+var spiderGlobalId=0;
 
-  function setAccent(color, rgb){
-    root.style.setProperty("--form-accent", color);
-    root.style.setProperty("--form-accent-rgb", rgb);
-  }
+function createSpider(x,y,targetEl){
+spiderGlobalId++;
+var el=document.createElement("div");
+el.className="crawling-spider";
+var typeIdx=Math.floor(Math.random()*spiderTemplates.length);
+el.innerHTML=spiderTemplates[typeIdx](spiderGlobalId);
+document.body.appendChild(el);
 
-  redBracelet.addEventListener("change", function(){
-    setAccent("#d90429", "217,4,41");
-    if(braceletSelector) braceletSelector.style.boxShadow = "0 0 32px rgba(217,4,41,.25), inset 0 0 20px rgba(217,4,41,.08)";
-  });
-  blueBracelet.addEventListener("change", function(){
-    setAccent("#0077b6", "0,119,182");
-    if(braceletSelector) braceletSelector.style.boxShadow = "0 0 32px rgba(0,119,182,.25), inset 0 0 20px rgba(0,119,182,.08)";
-  });
+var spider={
+id:spiderGlobalId,el:el,
+x:x||(window.innerWidth*Math.random()),
+y:y||(window.scrollY+(window.innerHeight*Math.random())),
+targetX:x,targetY:y,targetEl:targetEl||null,
+speed:1.8+Math.random()*2.2,rotation:0,scared:false,anchoredEl:null,
+silkThread:{active:true,startX:x,startY:(y||window.innerHeight)-80}
+};
 
-  /* ── Form submission (Tombstone Success) ── */
-  var form = document.getElementById("reservaForm");
-  var tombstoneForm = document.getElementById("tombstoneForm");
-  var tombstoneSuccess = document.getElementById("tombstoneSuccess");
-  var deathName = document.getElementById("deathName");
+el.addEventListener("click",function(e){e.stopPropagation();scareSpider(spider)});
 
-  function validate(){
-    var valid = true;
-    var fields = [
-      {id:"rname", err:"rname-error"},
-      {id:"rlname", err:"rlname-error"},
-      {id:"rwhatsapp", err:"rwhatsapp-error"}
-    ];
-    fields.forEach(function(f){
-      var input = document.getElementById(f.id);
-      var err = document.getElementById(f.err);
-      if(!input.value.trim()){
-        err.style.display = "block";
-        valid = false;
-      } else {
-        err.style.display = "none";
-      }
-    });
-    return valid;
-  }
+var isDragging=false;var prevMouseX=0;var prevMouseY=0;
+el.addEventListener("mousedown",function(e){isDragging=true;e.preventDefault();el.style.zIndex="130";prevMouseX=e.pageX;prevMouseY=e.pageY});
+window.addEventListener("mousemove",function(e){
+if(isDragging){spider.x=e.pageX-26;spider.y=e.pageY-26;spider.targetX=spider.x;spider.targetY=spider.y;spider.rotation=Math.atan2(e.pageY-prevMouseY,e.pageX-prevMouseX)*180/Math.PI+90;prevMouseX=e.pageX;prevMouseY=e.pageY;updateSpiderTransform(spider)}
+});
+window.addEventListener("mouseup",function(e){
+if(isDragging){isDragging=false;el.style.zIndex="115";var elemBelow=document.elementFromPoint(e.clientX,e.clientY);
+if(elemBelow){var targetHost=elemBelow.closest(".pure-tombstone,.cta-btn,.reserva-submit,.ritual-card,#heroTitle,input");
+if(targetHost){triggerSusto(targetHost);targetHost.classList.add("spider-weighted");spider.anchoredEl=targetHost;setTimeout(function(){if(targetHost)targetHost.classList.remove("spider-weighted")},2000)}}
+scareSpider(spider)}});
 
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    if(!validate()) return;
-    var nameInput = document.getElementById("rname");
-    var lastNameInput = document.getElementById("rlname");
-    var fullName = (nameInput.value.trim() + " " + lastNameInput.value.trim()).trim();
-    form.style.display = "none";
-    deathName.textContent = fullName;
-    tombstoneSuccess.style.display = "block";
-  });
+el.addEventListener("touchstart",function(e){isDragging=true;el.style.zIndex="130"},{passive:true});
+window.addEventListener("touchmove",function(e){if(isDragging&&e.touches[0]){spider.x=e.touches[0].pageX-26;spider.y=e.touches[0].pageY-26;spider.targetX=spider.x;spider.targetY=spider.y;updateSpiderTransform(spider)}},{passive:true});
+window.addEventListener("touchend",function(){if(isDragging){isDragging=false;el.style.zIndex="115";scareSpider(spider)}});
+
+activeSpiders.push(spider);updateSpiderTransform(spider);
+return spider;
+}
+
+function scareSpider(spider){
+spider.scared=true;spider.speed=6+Math.random()*4;
+var angle=Math.random()*Math.PI*2;var dist=140+Math.random()*200;
+spider.targetX=Math.max(30,Math.min(window.innerWidth-60,spider.x+Math.cos(angle)*dist));
+spider.targetY=Math.max(70,spider.y+Math.sin(angle)*dist);
+setTimeout(function(){spider.scared=false;spider.speed=1.6+Math.random()*2},1600);
+}
+
+function updateSpiderTransform(spider){
+spider.el.style.left=spider.x+"px";
+spider.el.style.top=spider.y+"px";
+spider.el.style.transform="rotate("+spider.rotation+"deg)";
+}
+
+function pickNewTarget(spider){
+var targets=[];
+var ids=["heroCta","tombstoneForm","reservaSubmit","heroTitle","labelRed","labelBlue","rname","rwhatsapp"];
+ids.forEach(function(id){var el=document.getElementById(id);if(el)targets.push(el)});
+document.querySelectorAll(".pure-tombstone,.ritual-card").forEach(function(t){targets.push(t)});
+var valid=targets.filter(function(t){return!!t});
+var chosen=valid[Math.floor(Math.random()*valid.length)];
+if(chosen){var rect=chosen.getBoundingClientRect();var scrollY=window.pageYOffset||document.documentElement.scrollTop;var scrollX=window.pageXOffset||document.documentElement.scrollLeft;
+spider.targetX=rect.left+scrollX+Math.random()*(rect.width-40);
+spider.targetY=rect.top+scrollY+Math.random()*(rect.height-40);
+spider.targetEl=chosen;}else{spider.targetX=Math.random()*(window.innerWidth-60);spider.targetY=window.scrollY+Math.random()*window.innerHeight}
+}
+
+/* ── Animation Loop ── */
+function loop(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+var scrollY=window.pageYOffset||document.documentElement.scrollTop;
+activeSpiders.forEach(function(sp){
+var dx=sp.targetX-sp.x;var dy=sp.targetY-sp.y;var dist=Math.sqrt(dx*dx+dy*dy);
+if(dist<10){
+sp.el.classList.remove("moving");
+if(sp.targetEl&&Math.random()<0.05){sp.targetEl.classList.add("spider-weighted");setTimeout(function(){if(sp.targetEl)sp.targetEl.classList.remove("spider-weighted")},1400)}
+if(Math.random()<0.015){pickNewTarget(sp)}
+}else{
+sp.el.classList.add("moving");
+var angle=Math.atan2(dy,dx);
+sp.x+=Math.cos(angle)*sp.speed;
+sp.y+=Math.sin(angle)*sp.speed;
+sp.rotation=(angle*180/Math.PI)+90;
+updateSpiderTransform(sp);
+}
+if(sp.silkThread.active){
+var screenX=sp.x+26;var screenY=sp.y-scrollY+10;var startScreenY=sp.silkThread.startY-scrollY;
+if(screenY>-50&&screenY<window.innerHeight+50){
+ctx.beginPath();ctx.moveTo(sp.silkThread.startX,startScreenY);
+ctx.quadraticCurveTo(sp.silkThread.startX+8,(startScreenY+screenY)/2,screenX,screenY);
+ctx.strokeStyle="rgba(255,255,255,0.45)";ctx.lineWidth=1;ctx.stroke();
+}}});
+requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+
+/* ── Possession/Shake Effects ── */
+function triggerSusto(elem){
+if(!elem)return;elem.classList.add("possessed");
+setTimeout(function(){elem.classList.remove("possessed")},700);
+}
+
+/* ── Hero Title Interaction ── */
+var heroTitleWrap=document.getElementById("heroTitleWrap");
+var heroTitle=document.getElementById("heroTitle");
+if(heroTitleWrap){
+heroTitleWrap.addEventListener("mouseenter",function(){
+heroTitle.classList.add("shaking");
+var hand=document.getElementById("titleHand");
+if(hand){hand.style.opacity="1";hand.style.transform="translateY(0) scale(1.1)"}
+});
+heroTitleWrap.addEventListener("mouseleave",function(){
+heroTitle.classList.remove("shaking");
+var hand=document.getElementById("titleHand");
+if(hand){hand.style.opacity="0";hand.style.transform="translateY(80px) scale(0.6)"}
+});
+heroTitleWrap.addEventListener("click",function(){
+heroTitle.classList.add("shaking");
+var rect=heroTitle.getBoundingClientRect();var scrollY=window.pageYOffset||document.documentElement.scrollTop;
+var s=createSpider(rect.left+rect.width/2,rect.top+scrollY);scareSpider(s);
+setTimeout(function(){heroTitle.classList.remove("shaking")},600);
+});
+}
+
+/* ── Tombstone Flip & Hands ── */
+var tombWrappers=document.querySelectorAll(".tombstone-wrapper");
+tombWrappers.forEach(function(wrapper){
+wrapper.addEventListener("click",function(){
+wrapper.classList.toggle("flipping");
+triggerSusto(wrapper);
+var rect=wrapper.getBoundingClientRect();var scrollY=window.pageYOffset||document.documentElement.scrollTop;
+var s=createSpider(rect.left+rect.width/2,rect.top+scrollY+rect.height/2);scareSpider(s);
+var countEl=document.getElementById("spiderCount");
+if(countEl)countEl.textContent=activeSpiders.length;
+});
+});
+
+/* ── Ritual Cards ── */
+var ritualCards=document.querySelectorAll(".ritual-card");
+ritualCards.forEach(function(card){
+card.addEventListener("click",function(){triggerSusto(card)});
+});
+
+/* ── Bracelet Hands ── */
+var handRed=document.getElementById("handRed");
+var handBlue=document.getElementById("handBlue");
+var redBracelet=document.getElementById("red-bracelet");
+var blueBracelet=document.getElementById("blue-bracelet");
+var root=document.documentElement;
+
+function updateBraceletHand(){
+if(redBracelet&&redBracelet.checked){
+if(handRed){var h=handRed.querySelector(".skeletal-hand");if(h){h.style.opacity="1";h.style.transform="rotate(-25deg) translateY(0)"}}
+if(handBlue){var hb=handBlue.querySelector(".skeletal-hand");if(hb){hb.style.opacity="0";hb.style.transform="rotate(30deg) translateY(50px)"}}
+root.style.setProperty("--form-accent","#d90429");root.style.setProperty("--form-accent-rgb","217,4,41");
+}else if(blueBracelet&&blueBracelet.checked){
+if(handBlue){var hb2=handBlue.querySelector(".skeletal-hand");if(hb2){hb2.style.opacity="1";hb2.style.transform="rotate(25deg) translateY(0)"}}
+if(handRed){var hr=handRed.querySelector(".skeletal-hand");if(hr){hr.style.opacity="0";hr.style.transform="rotate(-30deg) translateY(50px)"}}
+root.style.setProperty("--form-accent","#0077b6");root.style.setProperty("--form-accent-rgb","0,119,182");
+}
+}
+if(redBracelet)redBracelet.addEventListener("change",updateBraceletHand);
+if(blueBracelet)blueBracelet.addEventListener("change",updateBraceletHand);
+updateBraceletHand();
+
+/* ── Hanging Spider Hangers ── */
+function setupHanger(hangerId,threadId,baseH){
+var hanger=document.getElementById(hangerId);var thread=document.getElementById(threadId);
+if(!hanger||!thread)return;
+hanger.addEventListener("click",function(){
+thread.style.transition="height 0.4s cubic-bezier(0.18,0.89,0.32,1.28)";
+thread.style.height=(baseH+110)+"px";
+setTimeout(function(){thread.style.transition="height 0.75s cubic-bezier(0.68,-0.55,0.27,1.55)";thread.style.height=baseH+"px"},700);
+});
+}
+setupHanger("hanger1","thread1",115);
+setupHanger("hanger2","thread2",155);
+
+/* ── Spider Spawner & Banner ── */
+var countEl=document.getElementById("spiderCount");
+var spawnBtn=document.getElementById("spawnSpiderBtn");
+var bannerBtn=document.getElementById("spiderSummonTrigger");
+
+function spawnMore(){
+var scrollY=window.pageYOffset||document.documentElement.scrollTop;
+var s=createSpider(window.innerWidth*Math.random(),scrollY+window.innerHeight*0.3+(Math.random()*250));
+pickNewTarget(s);scareSpider(s);
+if(countEl)countEl.textContent=activeSpiders.length;
+}
+if(spawnBtn)spawnBtn.addEventListener("click",spawnMore);
+if(bannerBtn)bannerBtn.addEventListener("click",function(){for(var i=0;i<3;i++){setTimeout(spawnMore,i*220)}});
+
+/* ── Initial Spiders ── */
+window.addEventListener("DOMContentLoaded",function(){
+setTimeout(function(){
+var scrollY=window.pageYOffset||document.documentElement.scrollTop;
+var cta=document.getElementById("heroCta");
+if(cta){var rCta=cta.getBoundingClientRect();var s1=createSpider(rCta.right-15,rCta.top+scrollY-10);s1.targetEl=cta}
+var t1=document.querySelector(".pure-tombstone");
+if(t1){var rT1=t1.getBoundingClientRect();var s2=createSpider(rT1.left+30,rT1.top+scrollY+40);pickNewTarget(s2)}
+var formEl=document.getElementById("tombstoneForm");
+if(formEl){var rF=formEl.getBoundingClientRect();var s3=createSpider(rF.left+50,rF.top+scrollY+70);pickNewTarget(s3)}
+},500);
+});
+
+/* ── Form Submission ── */
+var form=document.getElementById("reservaForm");
+var tombstoneSuccess=document.getElementById("tombstoneSuccess");
+var deathName=document.getElementById("deathName");
+var formHand=document.getElementById("formHand");
+
+function validate(){
+var valid=true;
+var fields=[{id:"rname",err:"rname-error"},{id:"rlname",err:"rlname-error"},{id:"rwhatsapp",err:"rwhatsapp-error"}];
+fields.forEach(function(f){
+var input=document.getElementById(f.id);var err=document.getElementById(f.err);
+if(!input.value.trim()){err.style.display="block";valid=false}else{err.style.display="none"}
+});
+return valid;
+}
+
+if(form){
+form.addEventListener("submit",function(e){
+e.preventDefault();
+if(!validate())return;
+var nameInput=document.getElementById("rname");var lastNameInput=document.getElementById("rlname");
+var fullName=(nameInput.value.trim()+" "+lastNameInput.value.trim()).trim();
+if(formHand){var h=formHand.querySelector(".skeletal-hand");if(h){h.style.opacity="1";h.style.transform="rotate(180deg) translateY(0) scale(1.15)"}}
+form.style.display="none";
+if(deathName)deathName.textContent=fullName;
+if(tombstoneSuccess)tombstoneSuccess.style.display="block";
+var rect=tombstoneSuccess.getBoundingClientRect();var scrollY=window.pageYOffset||document.documentElement.scrollTop;
+for(var i=0;i<3;i++){var sp=createSpider(rect.left+50+(i*45),rect.top+scrollY+40);scareSpider(sp)}
+if(countEl)countEl.textContent=activeSpiders.length;
+});
+}
+
+/* ── Countdown (FIXED) ── */
+var eventDate=new Date("2026-10-01T21:30:00-05:00").getTime();
+var cdDays=document.getElementById("cd-days");
+var cdHours=document.getElementById("cd-hours");
+var cdMins=document.getElementById("cd-mins");
+var cdSecs=document.getElementById("cd-secs");
+
+function updateCountdown(){
+var now=Date.now();var diff=eventDate-now;
+if(diff<=0){cdDays.textContent="00";cdHours.textContent="00";cdMins.textContent="00";cdSecs.textContent="00";return}
+var d=Math.floor(diff/86400000);var h=Math.floor((diff%86400000)/3600000);var m=Math.floor((diff%3600000)/60000);var s=Math.floor((diff%60000)/1000);
+cdDays.textContent=String(d).padStart(2,"0");cdHours.textContent=String(h).padStart(2,"0");cdMins.textContent=String(m).padStart(2,"0");cdSecs.textContent=String(s).padStart(2,"0");
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
 
 })();
 </script>

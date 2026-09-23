@@ -4,3 +4,4 @@ AGENTS.md
 skills-lock.json
 AUDIT_REPORT.md
 .vercel
+.env*
