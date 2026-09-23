@@ -100,8 +100,7 @@ p,h1,h2,h3{margin:0}
 .hero{padding:120px 0 48px;text-align:center;position:relative;z-index:1;overflow:hidden}
 .hero-eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:8px}
 .hero-eyebrow::before,.hero-eyebrow::after{content:"";width:24px;height:1px;background:var(--red);opacity:.5}
-.hero h1{font-family:var(--font-title);font-style:italic;font-weight:700;font-size:clamp(48px,8vw,72px);line-height:1.05;letter-spacing:.04em;margin-bottom:12px;color:var(--text);text-shadow:0 0 20px rgba(217,4,41,.5),0 0 40px rgba(217,4,41,.2);animation:flicker 4s infinite}
-@keyframes flicker{0%,19%,21%,23%,25%,54%,56%,100%{opacity:1;text-shadow:0 0 10px var(--red),0 0 20px rgba(217,4,41,.3)}20%,24%,55%{opacity:0.08;text-shadow:none}}
+ .hero h1{font-family:var(--font-title);font-style:italic;font-weight:700;font-size:clamp(48px,8vw,72px);line-height:1.05;letter-spacing:.04em;margin-bottom:12px;color:var(--crimson)}
 .hero-sub{font-family:var(--font-subtitle);font-weight:400;font-size:18px;color:var(--champagne);margin-bottom:40px;opacity:.85}
 
 /* ── Fog ── */
@@ -117,7 +116,7 @@ p,h1,h2,h3{margin:0}
 .marquee-wrap{position:relative;z-index:1;margin:28px 0;overflow:hidden;border-top:1px dashed rgba(217,4,41,.4);border-bottom:1px dashed rgba(217,4,41,.4);background:rgba(20,5,8,0.5);padding:12px 0}
 .marquee-track{display:flex;gap:40px;white-space:nowrap;animation:marqueeScroll 24s linear infinite;width:max-content}
 @keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.marquee-text{font-family:var(--font-subtitle);font-size:13px;font-weight:400;letter-spacing:.04em;color:var(--red);text-shadow:0 0 10px rgba(217,4,41,.6);display:flex;align-items:center;gap:12px}
+.marquee-text{font-family:var(--font-subtitle);font-size:13px;font-weight:400;letter-spacing:.04em;color:var(--crimson);display:flex;align-items:center;gap:12px}
 @media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
 
 /* ── Event info ── */
@@ -139,7 +138,7 @@ p,h1,h2,h3{margin:0}
 
 /* ── Cemetery ── */
 .cemetery{padding:60px 0 64px;position:relative;z-index:5}
-.cemetery h2{font-family:var(--font-subtitle);font-weight:400;font-size:30px;letter-spacing:.08em;margin-bottom:8px;text-align:center;color:var(--gold);text-shadow:0 0 16px rgba(237,198,119,0.3)}
+.cemetery h2{font-family:var(--font-subtitle);font-weight:400;font-size:30px;letter-spacing:.08em;margin-bottom:8px;text-align:center;color:var(--crimson)}
 .cemetery-desc{font-size:15px;color:var(--champagne);opacity:.75;text-align:center;margin-bottom:34px;max-width:440px;margin-inline:auto;line-height:1.7}
 .graveyard{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px 24px;position:relative;z-index:2}
 
@@ -147,7 +146,7 @@ p,h1,h2,h3{margin:0}
 .pure-tombstone:hover{border-color:var(--red);box-shadow:inset 0 2px 4px rgba(217,4,41,.3),inset 0 16px 36px rgba(0,0,0,.8),0 15px 35px rgba(217,4,41,.35)}
 .pure-tombstone .rip{font-family:var(--font-subtitle);font-size:20px;font-weight:400;color:rgba(240,230,230,.88);letter-spacing:.1em;text-align:center;line-height:1.3;text-shadow:1px 1px 2px rgba(0,0,0,.9),-1px -1px 2px rgba(100,50,50,.5)}
 .pure-tombstone .grave-text{font-family:var(--font-body);font-size:14px;color:rgba(220,210,210,.8);line-height:1.7;font-style:italic;text-align:center;text-shadow:1px 1px 2px rgba(0,0,0,.9),-1px -1px 2px rgba(80,80,80,.4)}
-.pure-tombstone .grave-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);font-weight:700;text-align:center;text-shadow:0 0 6px rgba(217,4,41,.4)}
+.pure-tombstone .grave-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--crimson);font-weight:700;text-align:center}
 .card-web-corner{position:absolute;top:0;right:0;width:85px;height:85px;pointer-events:none;opacity:0.45;z-index:2}
 
 /* ── Rituales ── */
@@ -160,7 +159,7 @@ p,h1,h2,h3{margin:0}
 .ritual-card .ritual-title{font-family:var(--font-subtitle);font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:400;color:var(--gold);display:flex;align-items:center;gap:10px}
 .ritual-card .ritual-body{font-size:14.5px;color:var(--champagne);opacity:.8;line-height:1.7}
 .ritual-card .ritual-body strong{color:var(--gold);font-weight:700}
-.ritual-card .ritual-body .highlight{color:var(--red);font-weight:800;font-size:17px;text-shadow:0 0 8px rgba(217,4,41,0.4)}
+.ritual-card .ritual-body .highlight{color:var(--crimson);font-weight:800;font-size:17px}
 .ritual-card .ritual-body .blue-highlight{color:var(--blue);font-weight:800;font-size:17px}
 
 /* ── Confesionario ── */
@@ -174,7 +173,7 @@ p,h1,h2,h3{margin:0}
 .bracelet-option label::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;opacity:0;transition:opacity var(--ease)}
 .bracelet-option input[type="radio"]:checked+label{border-color:var(--form-accent);background:rgba(30,10,14,0.9)}
 .bracelet-option input[type="radio"]:checked+label::before{opacity:1;background:var(--form-accent);box-shadow:0 0 16px var(--form-accent)}
-.bracelet-option input[type="radio"]:checked+label .bracelet-name{color:var(--form-accent);text-shadow:0 0 10px rgba(var(--form-accent-rgb),0.5)}
+.bracelet-option input[type="radio"]:checked+label .bracelet-name{color:var(--crimson)}
 .bracelet-option label .bracelet-icon{font-size:24px;line-height:1}
 .bracelet-option label .bracelet-name{font-family:var(--font-subtitle);font-size:13px;font-weight:400;letter-spacing:.12em}
 .bracelet-option label .bracelet-desc{font-size:12px;font-weight:400;opacity:.65;line-height:1.6}
@@ -200,7 +199,7 @@ p,h1,h2,h3{margin:0}
 
 /* Success State */
 .tombstone-success{display:none;text-align:center;padding:24px 10px}
-.tombstone-success .rip-label{font-family:var(--font-title);font-style:italic;font-size:46px;font-weight:700;letter-spacing:.2em;color:var(--red);margin-bottom:8px;text-shadow:0 0 20px rgba(217,4,41,.6)}
+.tombstone-success .rip-label{font-family:var(--font-title);font-style:italic;font-size:46px;font-weight:700;letter-spacing:.2em;color:var(--crimson);margin-bottom:8px}
 .tombstone-success .death-name{font-family:var(--font-subtitle);font-weight:400;font-size:24px;letter-spacing:.08em;margin-bottom:20px}
 .tombstone-success .qr-placeholder{width:150px;height:150px;margin:20px auto;border:2px dashed rgba(217,4,41,.6);border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(217,4,41,.12);position:relative}
 .tombstone-success .ticket-footer{font-family:var(--font-body);font-size:13px;font-weight:400;letter-spacing:.08em;color:rgba(242,226,190,.8);margin-top:18px}
@@ -220,7 +219,7 @@ p,h1,h2,h3{margin:0}
 /* ── Countdown ── */
 .countdown-wrap{display:flex;gap:16px;justify-content:center;margin-bottom:32px;position:relative;z-index:1}
 .countdown-unit{display:flex;flex-direction:column;align-items:center;gap:4px}
-.countdown-value{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:clamp(28px,4vw,48px);font-weight:700;color:var(--text);text-shadow:0 0 12px rgba(217,4,41,.4);font-variant-numeric:tabular-nums;letter-spacing:.05em}
+.countdown-value{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:clamp(28px,4vw,48px);font-weight:700;color:var(--crimson);font-variant-numeric:tabular-nums;letter-spacing:.05em}
 .countdown-value.accent{color:var(--gold)}
 .countdown-label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--champagne);opacity:.6}
 
@@ -650,7 +649,7 @@ p,h1,h2,h3{margin:0}
 <path d="M40,0 Q24,62 56,108 Q86,134 160,142"></path><path d="M12,0 Q-4,78 30,132 Q62,160 160,160"></path>
 </svg>
 <div style="text-align:center;margin-bottom:20px;position:relative;z-index:2;border-bottom:1px solid rgba(217,4,41,0.28);padding-bottom:12px;">
-<div style="font-family:var(--font-subtitle);font-size:15px;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);font-weight:900;text-shadow:0 0 12px rgba(217,4,41,0.6);margin-bottom:4px;display:flex;align-items:center;justify-content:center;gap:8px;">
+<div style="font-family:var(--font-subtitle);font-size:15px;letter-spacing:0.22em;text-transform:uppercase;color:var(--crimson);font-weight:900;margin-bottom:4px;display:flex;align-items:center;justify-content:center;gap:8px;">
 <span class="">🕸️</span> LIBRO DE ALMAS CONDENADAS <span class="">🕸️</span>
 </div>
 </div>
