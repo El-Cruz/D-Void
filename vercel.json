@@ -1,13 +1,13 @@
 {
   "cleanUrls": false,
   "rewrites": [
-    { "source": "/", "destination": "/home_v2.html" },
-    { "source": "/casino", "destination": "/casino.html" },
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/casino", "destination": "/2026-09/17-casino.html" },
     { "source": "/formulario-de-reservas", "destination": "/reservas.html" },
     { "source": "/menu", "destination": "/menu.html" },
     { "source": "/ingreso", "destination": "/ingreso.html" },
-    { "source": "/evento-udla", "destination": "/evento_udla.html" },
-    { "source": "/fashion-week", "destination": "/fashion_week.html" },
-    { "source": "/la-tentacion", "destination": "/tentacion_halloween.html" }
+    { "source": "/evento-udla", "destination": "/2026-09/25-evento-udla.html" },
+    { "source": "/fashion-week", "destination": "/2026-10/15-fashion-week.html" },
+    { "source": "/la-tentacion", "destination": "/2026-10/01-la-tentacion.html" }
   ]
 }
