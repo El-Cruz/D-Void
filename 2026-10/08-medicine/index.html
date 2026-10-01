@@ -144,7 +144,11 @@
             box-shadow: 2px 5px 10px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.2);
             cursor: pointer;
             position: relative;
-            transition: transform 0.15s;
+            animation: dialSpin 10s linear infinite;
+        }
+
+        .dial:hover {
+            animation-play-state: paused;
         }
 
         .dial:active {
@@ -548,6 +552,11 @@
             100% { transform: translateX(-50%) translateY(60px) scale(0.5); opacity: 0; }
         }
 
+        @keyframes dialSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         @media (prefers-reduced-motion: reduce) {
             * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
         }
@@ -627,29 +636,28 @@
                 margin-bottom: 15px !important;
             }
 
-            .tv-control-panel {
-                flex: 0 0 100px !important;
-                flex-direction: row !important;
-                padding-bottom: 10px;
+            .tv-chassis {
+                flex-direction: column !important;
+                justify-content: space-between;
             }
 
-            .speaker-grill {
-                flex: 1.2 !important;
-                background: repeating-linear-gradient(to right, #1a1817, #1a1817 3px, #050505 3px, #050505 6px) !important;
+            .tv-control-panel {
+                flex: 0 0 auto !important;
+                width: 100%;
+                flex-direction: row !important;
+                padding-top: 15px;
             }
 
             .metal-plate {
-                flex: 1 !important;
+                flex: 1;
                 flex-direction: row !important;
-                align-items: center;
-                justify-content: space-around;
-                padding: 5px !important;
+                justify-content: space-evenly !important;
+                padding: 15px 5px !important;
             }
 
             .dial {
-                width: 50px !important;
-                height: 50px !important;
-                border-width: 2px !important;
+                width: 70px !important;
+                height: 70px !important;
             }
         }
     </style>
