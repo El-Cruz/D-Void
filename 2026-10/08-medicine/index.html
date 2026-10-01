@@ -928,16 +928,15 @@
             </div>
 
             <div id="ch-01" class="channel hidden">
-                <div class="hero-texts">
+                <div>
                     <h1>MEDICINE</h1>
                     <h2>After Dark</h2>
-                    <p class="ch01-date hero-date">JUE 08 OCTUBRE</p>
-                    <div class="hero-action">
-                        <button type="button" id="btn-suministrar" class="btn-blood">[ SUMINISTRAR DOSIS ]</button>
-                    </div>
+                    <p class="ch01-date">JUE 08 OCTUBRE</p>
+                    <button type="button" id="btn-suministrar" class="btn-blood">[ SUMINISTRAR DOSIS ]</button>
                 </div>
-                <div class="blood-bag-wrapper">
-                    <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg" class="blood-bag-svg">
+                <div>
+                    <div class="blood-bag-wrapper">
+                        <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg" class="blood-bag-svg">
                             <!-- Gancho Superior -->
                             <path d="M90 5 C90 -5, 110 -5, 110 5 L110 20 L90 20 Z" fill="none" stroke="#777" stroke-width="4"/>
                             <circle cx="100" cy="30" r="8" fill="#111" stroke="#777" stroke-width="3"/>
@@ -1056,8 +1055,13 @@
     let bootDone = false;
 
     function setChannel(id) {
-        document.querySelectorAll('.channel').forEach(ch => ch.classList.add('hidden'));
-        document.getElementById(id).classList.remove('hidden');
+        document.querySelectorAll('.channel').forEach(ch => {
+            ch.classList.add('hidden');
+            ch.classList.remove('active');
+        });
+        const target = document.getElementById(id);
+        target.classList.remove('hidden');
+        target.classList.add('active');
     }
 
     function updateOSD(id) {
