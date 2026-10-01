@@ -811,6 +811,75 @@
             }
             .blood-drop { bottom: -30px; }
 
+            /* --- CORRECCIÓN CRÍTICA CH-01 MÓVIL --- */
+            #ch-01 {
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: flex-start !important;
+                align-items: center !important;
+                padding: 40px 15px 15px 15px !important;
+                gap: 15px !important;
+            }
+
+            .hero-texts, .blood-bag-wrapper, .hero-action {
+                grid-column: auto !important;
+                grid-row: auto !important;
+                max-width: 100% !important;
+                width: 100% !important;
+                display: flex !important;
+                justify-content: center !important;
+            }
+
+            .hero-texts {
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center !important;
+                order: 1 !important;
+            }
+
+            #ch-01 h1 {
+                font-size: 15vw !important;
+                white-space: nowrap !important;
+                transform: scaleY(1.2) !important;
+                transform-origin: center center !important;
+                margin-bottom: 5px !important;
+            }
+
+            #ch-01 h2 {
+                font-size: 8vw !important;
+                margin: 5px 0 10px 0 !important;
+                white-space: nowrap !important;
+                transform: scaleY(1.2) !important;
+                transform-origin: center center !important;
+            }
+
+            .hero-date {
+                font-size: 1.2rem !important;
+                white-space: nowrap !important;
+            }
+
+            .blood-bag-wrapper {
+                order: 2 !important;
+                min-height: auto !important;
+            }
+
+            .blood-bag-svg {
+                height: 25vh !important;
+                max-height: 180px !important;
+            }
+
+            .hero-action {
+                order: 3 !important;
+                margin-top: 10px !important;
+            }
+
+            .btn-blood {
+                font-size: 1.1rem !important;
+                padding: 12px 20px !important;
+                white-space: nowrap !important;
+                width: auto !important;
+            }
+
             .dial-label {
                 font-size: 11px !important;
             }
