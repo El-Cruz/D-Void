@@ -658,6 +658,28 @@
             100% { transform: rotate(360deg); }
         }
 
+        .blood-bag-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .blood-bag-svg {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            filter: drop-shadow(0 0 20px rgba(217, 4, 41, 0.4));
+            transform-origin: top center;
+            animation: swingBag 6s ease-in-out infinite;
+        }
+
+        @keyframes swingBag {
+            0% { transform: rotate(-4deg); }
+            50% { transform: rotate(4deg); }
+            100% { transform: rotate(-4deg); }
+        }
+
         @media (prefers-reduced-motion: reduce) {
             * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
         }
@@ -780,6 +802,9 @@
                 margin-bottom: 8px !important;
             }
 
+            .blood-bag-svg { max-width: 180px; }
+            .blood-drop { bottom: -30px; }
+
             .dial-label {
                 font-size: 11px !important;
             }
@@ -809,7 +834,34 @@
                 </div>
                 <div>
                     <div class="blood-bag-wrapper">
-                        <img src="/Resources/images/bolsa.png" alt="Bolsa de Suero color sangre" width="280" height="350" loading="lazy">
+                        <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg" class="blood-bag-svg">
+                            <!-- Gancho Superior -->
+                            <path d="M90 5 C90 -5, 110 -5, 110 5 L110 20 L90 20 Z" fill="none" stroke="#777" stroke-width="4"/>
+                            <circle cx="100" cy="30" r="8" fill="#111" stroke="#777" stroke-width="3"/>
+                            
+                            <!-- Plástico de la Bolsa -->
+                            <rect x="40" y="40" width="120" height="190" rx="15" fill="rgba(255, 255, 255, 0.05)" stroke="#666" stroke-width="4"/>
+                            
+                            <!-- Sangre Líquida -->
+                            <path d="M44 110 L156 110 L156 215 Q156 226 145 226 L55 226 Q44 226 44 215 Z" fill="#D90429" opacity="0.95"/>
+                            
+                            <!-- Reflejo del líquido (Brillo plástico) -->
+                            <path d="M50 115 L65 115 L65 210 L50 210 Z" fill="rgba(255,255,255,0.1)"/>
+                            
+                            <!-- Etiqueta Médica -->
+                            <rect x="60" y="60" width="80" height="80" rx="5" fill="#EAE6DF"/>
+                            <rect x="65" y="65" width="70" height="15" fill="#111"/>
+                            <line x1="65" y1="90" x2="135" y2="90" stroke="#111" stroke-width="3"/>
+                            <line x1="65" y1="100" x2="110" y2="100" stroke="#111" stroke-width="3"/>
+                            <line x1="65" y1="110" x2="125" y2="110" stroke="#111" stroke-width="3"/>
+                            <text x="100" y="76" font-family="sans-serif" font-size="10" font-weight="bold" fill="#EAE6DF" text-anchor="middle">O - NEG</text>
+                            <text x="100" y="130" font-family="sans-serif" font-size="14" font-weight="900" fill="#D90429" text-anchor="middle">TÓXICO</text>
+
+                            <!-- Tubo y Válvula Inferior -->
+                            <rect x="90" y="230" width="20" height="15" fill="#555"/>
+                            <rect x="95" y="245" width="10" height="50" fill="rgba(255, 255, 255, 0.2)" stroke="#666" stroke-width="2"/>
+                            <path d="M96 250 L104 250 L104 290 L96 290 Z" fill="#D90429" opacity="0.8"/>
+                        </svg>
                         <div class="blood-drop"></div>
                     </div>
                 </div>
