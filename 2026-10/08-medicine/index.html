@@ -436,6 +436,28 @@
             line-height: 1.2;
         }
 
+        .covers-list {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .cover-item {
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 12px;
+            font-family: ui-monospace, 'Courier New', monospace;
+            color: #888;
+            font-size: 1.6rem;
+        }
+        .cover-name { white-space: nowrap; }
+        .cover-dots {
+            flex-grow: 1;
+            border-bottom: 3px dotted #444;
+            margin: 0 10px 6px 10px;
+            opacity: 0.5;
+        }
+        .cover-price { font-weight: bold; color: #A9A9A9; }
+
         .promo-row {
             font-family: system-ui, -apple-system, sans-serif;
             font-weight: 900;
@@ -739,13 +761,23 @@
             }
 
             .metal-plate {
-                padding: 5px !important;
+                flex: 1 !important;
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-evenly !important;
                 align-items: center !important;
+                padding: 5px !important;
             }
 
             .dial {
-                width: 60px !important;
-                height: 60px !important;
+                width: 55px !important;
+                height: 55px !important;
+                margin: 0 5px !important;
+            }
+
+            .cover-item {
+                font-size: 1.1rem !important;
+                margin-bottom: 8px !important;
             }
 
             .dial-label {
@@ -796,10 +828,22 @@
                         2 JAGGER + 4 REDBULL 'TILL 23H00 <span>$150</span><br>
                         2X1 ANTIOQUEÑO Y RON ABUELO 'TILL 23H00
                     </div>
-                    <div class="ch02-covers">
-                        COVER NORMAL ................. $10<br>
-                        COVER + BARRA LIBRE .......... $12<br>
-                        COVER EN PUERTA .............. $15
+                    <div class="covers-list" style="margin-top: 20px;">
+                        <div class="cover-item">
+                            <span class="cover-name">COVER NORMAL</span>
+                            <span class="cover-dots"></span>
+                            <span class="cover-price">$10</span>
+                        </div>
+                        <div class="cover-item">
+                            <span class="cover-name">COVER + BARRA LIBRE</span>
+                            <span class="cover-dots"></span>
+                            <span class="cover-price">$12</span>
+                        </div>
+                        <div class="cover-item">
+                            <span class="cover-name">COVER EN PUERTA</span>
+                            <span class="cover-dots"></span>
+                            <span class="cover-price">$15</span>
+                        </div>
                     </div>
                 </div>
             </div>
