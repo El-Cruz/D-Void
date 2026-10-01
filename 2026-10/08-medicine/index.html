@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEDICINE After Dark — CRT Medical Monitor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-void: #050505;
+            --crt-green: #00FF41;
+            --blood-red: #D90429;
+            --tv-plastic: #222;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            font-family: 'VT323', monospace;
+        }
+
+        .tv-chassis {
+            width: 90vw;
+            max-width: 1200px;
+            height: 80vh;
+            background: #3b3633;
+            border-radius: 12px;
+            box-shadow: inset 2px 2px 5px rgba(255,255,255,0.1), inset -5px -5px 15px rgba(0,0,0,0.6), 15px 25px 50px rgba(0,0,0,0.9);
+            border: 8px solid #221f1d;
+            border-bottom-color: #110f0e;
+            display: flex;
+            gap: 20px;
+            padding: 25px;
+            padding-bottom: 40px;
+            position: relative;
+        }
+
+        .tv-screen-wrapper {
+            flex: 3;
+            position: relative;
+            background: #1a1817;
+            padding: 25px;
+            border-radius: 40px;
+            box-shadow: inset 5px 5px 20px rgba(0,0,0,0.9), inset -2px -2px 5px rgba(255,255,255,0.05);
+            height: 100%;
+        }
+
+        .screen-tube {
+            width: 100%;
+            height: 100%;
+            border-radius: 50% / 10%;
+            background: #050505;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 0 60px rgba(0,0,0,1), inset 0 0 20px rgba(255,255,255,0.05);
+            transition: transform 0.15s ease-in;
+        }
+
+        .screen-tube::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 5%;
+            width: 90%;
+            height: 100%;
+            border-radius: 50% / 10%;
+            background: radial-gradient(ellipse at 50% 20%, rgba(255,255,255,0.1) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        .screen-tube.turn-off {
+            transform: scaleY(0.005);
+        }
+
+        .screen-tube::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.25) 2px,
+                rgba(0, 0, 0, 0.25) 4px
+            );
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .static-glitch {
+            animation: glitch-flash 0.3s step-end;
+        }
+
+        @keyframes glitch-flash {
+            0%   { background: #fff; }
+            20%  { background: var(--bg-void); }
+            40%  { background: #aaa; }
+            60%  { background: var(--bg-void); }
+            80%  { background: #666; }
+            100% { background: var(--bg-void); }
+        }
+
+        .tv-control-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .speaker-grill {
+            flex: 1.2;
+            border-radius: 5px;
+            background: repeating-linear-gradient(to bottom, #1a1817, #1a1817 4px, #050505 4px, #050505 8px);
+            box-shadow: inset 0 5px 15px rgba(0,0,0,0.8);
+            border: none;
+        }
+
+        .metal-plate {
+            flex: 1;
+            background: linear-gradient(105deg, #a8a8a8 0%, #d4d4d4 25%, #9e9e9e 50%, #c4c4c4 75%, #8a8a8a 100%);
+            border-radius: 4px;
+            box-shadow: inset 1px 1px 2px rgba(255,255,255,0.8), inset -1px -1px 3px rgba(0,0,0,0.4), 0 5px 10px rgba(0,0,0,0.6);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .dial {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #555, #111);
+            border: 4px solid #0a0a0a;
+            box-shadow: 2px 5px 10px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.2);
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.15s;
+        }
+
+        .dial:active {
+            transform: scale(0.92);
+        }
+
+        .dial::after {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 15px;
+            background: #fff;
+            border-radius: 2px;
+            box-shadow: 0 0 2px rgba(0,0,0,0.5);
+        }
+
+        .dial-label {
+            font-family: 'VT323', monospace;
+            font-size: 14px;
+            color: #222;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .tv-base {
+            position: absolute;
+            width: 102%;
+            height: 30px;
+            bottom: -10px;
+            left: -1%;
+            background: #1a1817;
+            border-top: 2px solid #444;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .channel {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            color: var(--crt-green);
+        }
+
+        .channel.active {
+            display: flex;
+        }
+
+        .hidden { display: none !important; }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        #osd {
+            position: absolute;
+            top: 35px;
+            right: 45px;
+            font-family: 'VT323', 'Courier New', monospace;
+            color: #00FF41;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px #00FF41, 0 0 20px #00FF41;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        #ch-boot {
+            text-align: center;
+        }
+
+        .ekg-line {
+            width: 300px;
+            height: 60px;
+            margin-bottom: 24px;
+        }
+
+        .ekg-path {
+            stroke: var(--blood-red);
+            stroke-width: 2.5;
+            fill: none;
+            stroke-dasharray: 600;
+            stroke-dashoffset: 600;
+            animation: ekg-draw 1.5s linear infinite;
+            filter: drop-shadow(0 0 6px var(--blood-red));
+        }
+
+        @keyframes ekg-draw {
+            0%   { stroke-dashoffset: 600; }
+            50%  { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: -600; }
+        }
+
+        .boot-text {
+            font-size: 32px;
+            color: var(--crt-green);
+            text-shadow: 0 0 10px var(--crt-green);
+            animation: blink 0.8s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+
+        #ch-01 {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 5%;
+            gap: 20px;
+            box-sizing: border-box;
+        }
+
+        #ch-01 > div:first-child {
+            flex: 1.2;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            z-index: 10;
+        }
+
+        #ch-01 > div:last-child {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 250px;
+        }
+
+        #ch-01 h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: 96px;
+            letter-spacing: 8px;
+            color: #F4F4F0;
+            text-shadow: 0 0 30px rgba(217, 4, 41, 0.8), 0 0 80px rgba(217, 4, 41, 0.4);
+            margin-bottom: 0;
+            line-height: 1;
+        }
+
+        #ch-01 h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: 48px;
+            letter-spacing: 12px;
+            color: #F4F4F0;
+            text-shadow: 0 0 20px rgba(217, 4, 41, 0.6);
+            margin-top: 8px;
+            margin-bottom: 30px;
+        }
+
+        .blood-bag-container {
+            animation: float 3s ease-in-out infinite;
+            margin-bottom: 30px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .blood-bag {
+            width: 180px;
+            height: auto;
+            filter: drop-shadow(0 0 20px #D90429);
+        }
+
+        .btn-blood {
+            font-family: 'Anton', sans-serif;
+            font-size: 22px;
+            letter-spacing: 3px;
+            padding: 15px 25px;
+            background: transparent;
+            color: #D90429;
+            border: 3px solid #D90429;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-blood:hover {
+            background: #D90429;
+            color: #000;
+        }
+
+        .btn-blood:active {
+            transform: scale(0.97);
+        }
+
+        #ch-02 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+            gap: 0;
+        }
+
+        .promo-row {
+            font-family: 'Anton', sans-serif;
+            width: 100%;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            line-height: 1.1;
+        }
+
+        .promo-small {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 14px;
+            letter-spacing: 4px;
+            color: #00FF41;
+            text-transform: uppercase;
+        }
+
+        .promo-large {
+            font-size: 52px;
+            letter-spacing: 2px;
+            color: #F4F4F0;
+        }
+
+        .promo-red {
+            font-size: 52px;
+            letter-spacing: 2px;
+            color: #D90429;
+        }
+
+        .promo-gray {
+            font-size: 36px;
+            letter-spacing: 3px;
+            color: #999;
+            border-bottom: none;
+        }
+
+        #ch-03 {
+            background: #000;
+        }
+
+        .medical-ticket {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-2deg);
+            background: #EAE6DF;
+            color: #111;
+            padding: 35px 30px;
+            border-radius: 2px;
+            width: 80%;
+            max-width: 420px;
+            box-shadow: 15px 20px 30px rgba(0,0,0,0.8), -2px -2px 5px rgba(255,255,255,0.1);
+            font-family: 'Courier New', Courier, monospace;
+            z-index: 200;
+            transition: all 0.3s ease;
+        }
+
+        .medical-ticket::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%) rotate(3deg);
+            width: 100px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .ticket-title {
+            border-bottom: 2px solid #111;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        #patient-form input[type="text"],
+        #patient-form input[type="tel"] {
+            background: transparent;
+            border: none;
+            border-bottom: 2px dashed #444;
+            font-family: inherit;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #111;
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 5px;
+        }
+
+        #patient-form input[type="text"]::placeholder,
+        #patient-form input[type="tel"]::placeholder { color: #888; }
+
+        #patient-form input:focus {
+            outline: 2px dashed #D90429;
+            outline-offset: 4px;
+            background: rgba(217, 4, 41, 0.05);
+        }
+
+        .treatment-selection {
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .treatment-selection label {
+            display: block;
+            margin-bottom: 6px;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .treatment-selection input[type="radio"] {
+            margin-right: 8px;
+            accent-color: #111;
+        }
+
+        .btn-typewriter {
+            background: #111;
+            color: #EAE6DF;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            font-family: inherit;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-typewriter:hover {
+            background: #D90429;
+            color: #fff;
+        }
+
+        .medical-ticket.blood-stain {
+            background: #4A0000;
+            color: #00FF41;
+            transform: rotate(1deg) scale(1.05);
+        }
+
+        .medical-ticket.blood-stain input,
+        .medical-ticket.blood-stain .btn-typewriter,
+        .medical-ticket.blood-stain .treatment-selection {
+            display: none;
+        }
+
+        .blood-drop {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 12px;
+            background: #D90429;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: drip 2.5s infinite ease-in;
+            opacity: 0;
+        }
+
+        @keyframes drip {
+            0% { transform: translateX(-50%) translateY(0) scale(0.5); opacity: 1; }
+            50% { transform: translateX(-50%) translateY(20px) scale(1); opacity: 1; }
+            100% { transform: translateX(-50%) translateY(60px) scale(0.5); opacity: 0; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+        }
+
+        @media (max-width: 768px) {
+            .tv-chassis {
+                flex-direction: column !important;
+                height: 95vh;
+                width: 95vw;
+                padding: 15px;
+                padding-bottom: 25px;
+            }
+
+            .tv-screen-wrapper {
+                flex: 1;
+                padding: 15px;
+            }
+
+            .tv-control-panel {
+                flex: 0 0 120px !important;
+                flex-direction: row !important;
+                gap: 15px;
+            }
+
+            .speaker-grill {
+                flex: 1.5;
+                background: repeating-linear-gradient(to right, #1a1817, #1a1817 4px, #050505 4px, #050505 8px) !important;
+            }
+
+            .metal-plate {
+                flex: 1;
+                flex-direction: row !important;
+                justify-content: space-around;
+                padding: 10px;
+            }
+
+            .dial {
+                width: 50px;
+                height: 50px;
+            }
+
+            #ch-01 {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                padding: 20px 10px;
+            }
+
+            #ch-01 > div:first-child {
+                align-items: center;
+                text-align: center;
+                flex: none;
+            }
+
+            #ch-01 > div:last-child {
+                flex: none;
+                margin-top: 20px;
+            }
+
+            .blood-bag-wrapper img {
+                max-height: 200px !important;
+            }
+
+            #osd {
+                top: 20px;
+                right: 25px;
+                font-size: 1.5rem;
+            }
+
+            .medical-ticket {
+                width: 95%;
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="tv-chassis">
+    <div class="tv-screen-wrapper">
+        <div class="screen-tube" id="screen">
+            <div id="osd">CH: --</div>
+
+            <div class="channel active" id="ch-boot">
+                <svg class="ekg-line" viewBox="0 0 300 60" xmlns="http://www.w3.org/2000/svg">
+                    <path class="ekg-path" d="M0,30 L40,30 L50,10 L60,50 L70,30 L110,30 L120,5 L130,55 L140,30 L180,30 L190,15 L200,45 L210,30 L250,30 L260,20 L270,40 L280,30 L300,30" />
+                </svg>
+                <p class="boot-text">&gt; INICIANDO SISTEMA...</p>
+            </div>
+
+            <div id="ch-01" class="channel hidden" style="display: flex; align-items: center; justify-content: space-between; height: 100%; padding: 0 8%; gap: 20px;">
+                <div style="flex: 1; text-align: left; display: flex; flex-direction: column; align-items: flex-start; z-index: 10;">
+                    <h1 style="font-family: 'Anton', sans-serif; font-size: clamp(3.5rem, 8vw, 7rem); color: #F4F4F0; margin: 0; line-height: 0.9; text-shadow: 0 0 15px rgba(217,4,41,0.5);">MEDICINE</h1>
+                    <h2 style="font-family: 'Anton', sans-serif; font-size: clamp(2rem, 4.5vw, 3.5rem); color: #D90429; margin: 0 0 15px 0;">After Dark</h2>
+                    <p style="color: #00FF41; font-family: 'VT323', monospace; font-size: 1.6rem; margin: 0 0 30px 0; letter-spacing: 1px;">JUE 08 OCTUBRE</p>
+                    <button type="button" id="btn-suministrar" class="btn-blood" style="background: transparent; border: 3px solid #D90429; color: #D90429; font-family: 'Anton', sans-serif; font-size: 1.4rem; padding: 12px 25px; cursor: pointer; transition: 0.2s;">[ SUMINISTRAR DOSIS ]</button>
+                </div>
+                <div style="flex: 1; display: flex; justify-content: flex-end; align-items: center; position: relative;">
+                    <div class="blood-bag-wrapper" style="position: relative;">
+                        <img src="Resources/images/bolsa.png" alt="Bolsa de Suero color sangre" width="280" style="max-height: 75vh; object-fit: contain; filter: drop-shadow(0 0 15px rgba(217,4,41,0.6));">
+                        <div class="blood-drop"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ch-02" class="channel hidden" style="display: flex; flex-direction: column; justify-content: center; height: 100%; padding: 0 40px; box-sizing: border-box; text-align: left; overflow-y: auto;">
+                <p style="color: #00FF41; font-family: 'VT323', monospace; font-size: 1.5rem; margin-bottom: 5px; border-bottom: 1px solid #00FF41; padding-bottom: 5px;">> ESTADO DEL PACIENTE:</p>
+                <div style="font-family: 'Anton', sans-serif; line-height: 1.1; text-transform: uppercase;">
+                    <div style="color: #F4F4F0; font-size: clamp(1.2rem, 3.5vw, 2.2rem); border-bottom: 2px dashed #333; padding-bottom: 15px; margin-bottom: 15px;">
+                        <span style="color:#D90429;">+</span> INGRESO DE EMERGENCIA<br>
+                        <span style="color:#D90429;">+</span> MURO DE LATIDOS<br>
+                        <span style="color:#D90429;">+</span> LABORATORIO DE SHOTS<br>
+                        <span style="color:#D90429;">+</span> CABINA MÉDICA
+                    </div>
+                    <div style="color: #D90429; font-size: clamp(1.2rem, 3.5vw, 2.2rem); border-bottom: 2px dashed #333; padding-bottom: 15px; margin-bottom: 15px;">
+                        2 JAGGER + 4 REDBULL 'TILL 23H00 <span style="color:#F4F4F0;">$150</span><br>
+                        2X1 ANTIOQUEÑO Y RON ABUELO 'TILL 23H00
+                    </div>
+                    <div style="color: #888; font-family: 'VT323', monospace; font-size: 1.8rem; line-height: 1.2;">
+                        COVER NORMAL ................. $10<br>
+                        COVER + BARRA LIBRE .......... $12<br>
+                        COVER EN PUERTA .............. $15
+                    </div>
+                </div>
+            </div>
+
+            <div id="ch-03" class="channel hidden" style="display: flex; justify-content: center; align-items: center; height: 100%; position: relative;">
+                <div class="medical-ticket" id="ticket-container">
+                    <h3 class="ticket-title">EXPEDIENTE MÉDICO / ADMISIÓN</h3>
+                    <form id="patient-form">
+                        <input type="text" id="fname" name="fname" placeholder="Nombre del Paciente" required>
+                        <input type="text" id="lname" name="lname" placeholder="Apellido" required>
+                        <input type="text" id="whatsapp" name="whatsapp" placeholder="Nro. de Emergencia (WhatsApp)" required>
+                        <div class="treatment-selection">
+                            <p>> TIPO DE TRATAMIENTO:</p>
+                            <label><input type="radio" name="cover" value="10" checked> Dosis Estándar ($10)</label><br>
+                            <label><input type="radio" name="cover" value="12"> Sobredosis - Barra Libre ($12)</label>
+                        </div>
+                        <button type="submit" id="btn-alta" class="btn-typewriter">[ FIRMAR ALTA VOLUNTARIA ]</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tv-control-panel">
+        <div class="speaker-grill"></div>
+        <div class="metal-plate">
+            <div>
+                <div class="dial" id="btn-up" role="button" aria-label="Canal arriba"></div>
+                <span class="dial-label">CH+</span>
+            </div>
+            <div>
+                <div class="dial" id="btn-down" role="button" aria-label="Canal abajo"></div>
+                <span class="dial-label">CH-</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="tv-base"></div>
+</div>
+
+<script>
+(function () {
+    const channels = ['ch-01', 'ch-02', 'ch-03'];
+    const osd = document.getElementById('osd');
+    const screen = document.getElementById('screen');
+    const btnUp = document.getElementById('btn-up');
+    const btnDown = document.getElementById('btn-down');
+    const btnSuministrar = document.getElementById('btn-suministrar');
+    const btnAlta = document.getElementById('btn-alta');
+    const ticket = document.getElementById('ticket-container');
+
+    let currentIndex = -1;
+
+    function setChannel(id) {
+        document.querySelectorAll('.channel').forEach(ch => ch.classList.add('hidden'));
+        document.getElementById(id).classList.remove('hidden');
+    }
+
+    function updateOSD(id) {
+        const num = id.replace('ch-0', '');
+        osd.textContent = 'CH: ' + num;
+    }
+
+    function triggerStatic() {
+        screen.classList.remove('static-glitch');
+        void screen.offsetWidth;
+        screen.classList.add('static-glitch');
+        setTimeout(() => screen.classList.remove('static-glitch'), 300);
+    }
+
+    function goToChannel(id) {
+        triggerStatic();
+        setTimeout(() => {
+            setChannel(id);
+            updateOSD(id);
+        }, 100);
+    }
+
+    function cycleUp() {
+        currentIndex = (currentIndex + 1) % channels.length;
+        goToChannel(channels[currentIndex]);
+    }
+
+    function cycleDown() {
+        currentIndex = (currentIndex - 1 + channels.length) % channels.length;
+        goToChannel(channels[currentIndex]);
+    }
+
+    btnUp.addEventListener('click', cycleUp);
+    btnDown.addEventListener('click', cycleDown);
+
+    btnSuministrar.addEventListener('click', () => {
+        currentIndex = 2;
+        goToChannel('ch-03');
+    });
+
+    btnAlta.addEventListener('click', function(e) {
+        e.preventDefault();
+        ticket.classList.add('blood-stain');
+        ticket.innerHTML = '<h3 style="border:none; text-align:center; margin-top:40px; font-size:1.5rem; text-shadow: 0 0 5px #00FF41;">> SÍNTOMAS CONFIRMADOS.<br><br>PACIENTE INGRESADO.<br>TUS LATIDOS NOS PERTENECEN.</h3>';
+    });
+
+    setTimeout(() => {
+        screen.classList.add('turn-off');
+        setTimeout(() => {
+            screen.classList.remove('turn-off');
+            currentIndex = 0;
+            setChannel('ch-01');
+            updateOSD('ch-01');
+        }, 300);
+    }, 3000);
+})();
+</script>
+
+</body>
+</html>
