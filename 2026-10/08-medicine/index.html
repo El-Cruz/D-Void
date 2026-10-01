@@ -494,15 +494,39 @@
         }
 
         .medical-ticket.blood-stain {
-            background: #4A0000;
-            color: #00FF41;
-            transform: rotate(1deg) scale(1.05);
+            background: #2a0000 !important;
+            color: #00FF41 !important;
+            transform: translate(-50%, -50%) rotate(1deg) scale(1.05) !important;
+            box-shadow: 0 0 30px rgba(217, 4, 41, 0.4) !important;
+        }
+
+        .medical-ticket.blood-stain::before {
+            background: rgba(217, 4, 41, 0.5) !important;
         }
 
         .medical-ticket.blood-stain input,
         .medical-ticket.blood-stain .btn-typewriter,
         .medical-ticket.blood-stain .treatment-selection {
             display: none;
+        }
+
+        .retro-qr-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .retro-qr {
+            width: 100px;
+            height: 100px;
+            background-color: #00FF41;
+            background-image:
+                repeating-linear-gradient(45deg, #2a0000 25%, transparent 25%, transparent 75%, #2a0000 75%, #2a0000),
+                repeating-linear-gradient(45deg, #2a0000 25%, #00FF41 25%, #00FF41 75%, #2a0000 75%, #2a0000);
+            background-position: 0 0, 10px 10px;
+            background-size: 20px 20px;
+            border: 4px solid #00FF41;
+            box-shadow: 0 0 10px #00FF41;
         }
 
         .blood-drop {
@@ -530,72 +554,102 @@
 
         @media (max-width: 768px) {
             .tv-chassis {
-                flex-direction: column !important;
-                height: 95vh;
-                width: 95vw;
-                padding: 15px;
-                padding-bottom: 25px;
+                width: 100vw !important;
+                height: 100vh !important;
+                border-radius: 0 !important;
+                padding: 10px !important;
+                gap: 10px !important;
+                box-sizing: border-box;
             }
 
             .tv-screen-wrapper {
-                flex: 1;
-                padding: 15px;
+                padding: 8px !important;
+                border-width: 6px !important;
+                border-radius: 15px !important;
             }
 
-            .tv-control-panel {
-                flex: 0 0 120px !important;
-                flex-direction: row !important;
-                gap: 15px;
+            .screen-tube {
+                border-radius: 15px !important;
+                box-shadow: inset 0 0 40px rgba(0,0,0,0.9), inset 0 0 10px rgba(255,255,255,0.05) !important;
             }
 
-            .speaker-grill {
-                flex: 1.5;
-                background: repeating-linear-gradient(to right, #1a1817, #1a1817 4px, #050505 4px, #050505 8px) !important;
-            }
-
-            .metal-plate {
-                flex: 1;
-                flex-direction: row !important;
-                justify-content: space-around;
-                padding: 10px;
-            }
-
-            .dial {
-                width: 50px;
-                height: 50px;
-            }
-
-            #ch-01 {
-                flex-direction: column;
-                justify-content: center;
-                text-align: center;
-                padding: 20px 10px;
-            }
-
-            #ch-01 > div:first-child {
-                align-items: center;
-                text-align: center;
-                flex: none;
-            }
-
-            #ch-01 > div:last-child {
-                flex: none;
-                margin-top: 20px;
-            }
-
-            .blood-bag-wrapper img {
-                max-height: 200px !important;
+            .screen-tube::before {
+                border-radius: 15px !important;
             }
 
             #osd {
-                top: 20px;
-                right: 25px;
-                font-size: 1.5rem;
+                top: 15px !important;
+                right: 20px !important;
+                font-size: 1.5rem !important;
+                text-shadow: 0 0 5px #00FF41 !important;
+            }
+
+            .channel {
+                padding: 60px 15px 20px 15px !important;
+                box-sizing: border-box;
+            }
+
+            #ch-01 h1 {
+                font-size: 4rem !important;
+                margin-top: 10px !important;
+            }
+
+            #ch-01 h2 {
+                font-size: 2rem !important;
+            }
+
+            .blood-bag-wrapper img {
+                max-height: 180px !important;
+            }
+
+            #ch-02 {
+                padding-top: 50px !important;
+                text-align: center !important;
+            }
+
+            #ch-02 > div > div {
+                font-size: 1.2rem !important;
             }
 
             .medical-ticket {
-                width: 95%;
-                padding: 20px 15px;
+                width: 90% !important;
+                padding: 25px 15px !important;
+                transform: translate(-50%, -50%) rotate(-2deg) scale(0.9) !important;
+            }
+
+            .ticket-title {
+                font-size: 1.1rem !important;
+            }
+
+            #patient-form input[type="text"],
+            #patient-form input[type="tel"] {
+                font-size: 1rem !important;
+                margin-bottom: 15px !important;
+            }
+
+            .tv-control-panel {
+                flex: 0 0 100px !important;
+                flex-direction: row !important;
+                padding-bottom: 10px;
+            }
+
+            .speaker-grill {
+                flex: 1.2 !important;
+                background: repeating-linear-gradient(to right, #1a1817, #1a1817 3px, #050505 3px, #050505 6px) !important;
+            }
+
+            .metal-plate {
+                flex: 1 !important;
+                flex-direction: row !important;
+                align-items: center;
+                justify-content: space-around;
+                padding: 5px !important;
+            }
+
+            .dial {
+                width: 50px !important;
+                height: 50px !important;
+                border-width: 2px !important;
             }
         }
     </style>
@@ -742,10 +796,28 @@
         goToChannel('ch-03');
     });
 
-    btnAlta.addEventListener('click', function(e) {
+    document.getElementById('patient-form').addEventListener('submit', function(e) {
         e.preventDefault();
+
+        const nombreInput = document.getElementById('fname').value.toUpperCase();
+        const apellidoInput = document.getElementById('lname').value.toUpperCase();
+        const pacienteNombre = (nombreInput || "DESCONOCIDO") + " " + (apellidoInput || "");
+        const idAleatorio = Math.floor(Math.random() * 900000) + 100000;
+
+        const ticket = document.getElementById('ticket-container');
         ticket.classList.add('blood-stain');
-        ticket.innerHTML = '<h3 style="border:none; text-align:center; margin-top:40px; font-size:1.5rem; text-shadow: 0 0 5px #00FF41;">> SÍNTOMAS CONFIRMADOS.<br><br>PACIENTE INGRESADO.<br>TUS LATIDOS NOS PERTENECEN.</h3>';
+
+        ticket.innerHTML = `
+            <div style="text-align: center; font-family: 'VT323', monospace;">
+                <h3 style="margin: 0; font-size: 2rem; border-bottom: 2px dashed #00FF41; padding-bottom: 10px;">> ACCESO CONCEDIDO</h3>
+                <div class="retro-qr-container">
+                    <div class="retro-qr"></div>
+                </div>
+                <p style="font-size: 1.2rem; margin: 5px 0;"><strong>PACIENTE:</strong> ${pacienteNombre}</p>
+                <p style="font-size: 1.2rem; margin: 5px 0;"><strong>ID INGRESO:</strong> #${idAleatorio}</p>
+                <h4 style="margin-top: 20px; font-size: 1.5rem; text-shadow: 0 0 8px #00FF41;">TUS LATIDOS NOS PERTENECEN.</h4>
+            </div>
+        `;
     });
 
     setTimeout(() => {
