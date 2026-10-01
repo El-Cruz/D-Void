@@ -564,14 +564,18 @@
         @media (max-width: 768px) {
             .tv-chassis {
                 width: 100vw !important;
-                height: 100vh !important;
+                min-height: 100vh !important;
+                height: auto !important;
                 border-radius: 0 !important;
                 padding: 10px !important;
-                gap: 10px !important;
+                gap: 8px !important;
                 box-sizing: border-box;
+                flex-direction: column !important;
             }
 
             .tv-screen-wrapper {
+                flex: 1 1 auto !important;
+                min-height: 0 !important;
                 padding: 8px !important;
                 border-width: 6px !important;
                 border-radius: 15px !important;
@@ -594,70 +598,77 @@
             }
 
             .channel {
-                padding: 60px 15px 20px 15px !important;
+                padding: 50px 10px 20px 10px !important;
                 box-sizing: border-box;
             }
 
             #ch-01 h1 {
-                font-size: 4rem !important;
-                margin-top: 10px !important;
+                font-size: 3.5rem !important;
+                margin-top: 5px !important;
             }
 
             #ch-01 h2 {
-                font-size: 2rem !important;
+                font-size: 1.8rem !important;
             }
 
             .blood-bag-wrapper img {
-                max-height: 180px !important;
+                max-height: 160px !important;
             }
 
             #ch-02 {
-                padding-top: 50px !important;
+                padding-top: 40px !important;
                 text-align: center !important;
             }
 
             #ch-02 > div > div {
-                font-size: 1.2rem !important;
+                font-size: 1.1rem !important;
             }
 
             .medical-ticket {
-                width: 90% !important;
-                padding: 25px 15px !important;
-                transform: translate(-50%, -50%) rotate(-2deg) scale(0.9) !important;
+                width: 95% !important;
+                padding: 20px 12px !important;
+                transform: translate(-50%, -50%) rotate(-2deg) scale(0.85) !important;
             }
 
             .ticket-title {
-                font-size: 1.1rem !important;
+                font-size: 1rem !important;
             }
 
             #patient-form input[type="text"],
             #patient-form input[type="tel"] {
-                font-size: 1rem !important;
-                margin-bottom: 15px !important;
-            }
-
-            .tv-chassis {
-                flex-direction: column !important;
-                justify-content: space-between;
+                font-size: 0.95rem !important;
+                margin-bottom: 12px !important;
             }
 
             .tv-control-panel {
                 flex: 0 0 auto !important;
                 width: 100%;
                 flex-direction: row !important;
-                padding-top: 15px;
+                padding: 12px 8px 8px 8px !important;
+                gap: 12px !important;
+            }
+
+            .speaker-grill {
+                flex: 1 !important;
+                min-width: 0 !important;
             }
 
             .metal-plate {
-                flex: 1;
+                flex: 1 !important;
                 flex-direction: row !important;
                 justify-content: space-evenly !important;
-                padding: 15px 5px !important;
+                padding: 10px 4px !important;
+                min-width: 0 !important;
             }
 
             .dial {
-                width: 70px !important;
-                height: 70px !important;
+                width: 64px !important;
+                height: 64px !important;
+                flex-shrink: 0 !important;
+            }
+
+            .dial-label {
+                font-size: 11px !important;
             }
         }
     </style>
