@@ -312,15 +312,15 @@
         #ch-01 h1 {
             font-family: system-ui, -apple-system, sans-serif;
             font-weight: 900;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(2rem, 4.5vw, 4.2rem);
             color: #F4F4F0;
             margin: 0;
             line-height: 0.9;
             text-shadow: 0 0 15px rgba(217,4,41,0.5);
             transform: scaleY(1.2);
             transform-origin: left center;
-            white-space: normal;
-            word-break: break-word;
+            white-space: nowrap !important;
+            overflow: visible;
         }
 
         #ch-01 h2 {
@@ -367,16 +367,16 @@
         }
 
         .btn-blood {
+            background: transparent;
+            border: 3px solid #D90429;
+            color: #D90429;
             font-family: system-ui, -apple-system, sans-serif;
             font-weight: 900;
-            font-size: 1.4rem;
-            letter-spacing: 3px;
-            padding: 12px 25px;
-            background: transparent;
-            color: var(--blood-red-text);
-            border: 3px solid var(--blood-red-text);
+            font-size: clamp(1rem, 1.8vw, 1.4rem);
+            padding: clamp(8px, 1.5vw, 12px) clamp(15px, 2.5vw, 25px);
             cursor: pointer;
-            transition: all 0.2s;
+            transition: 0.2s;
+            white-space: nowrap !important;
         }
 
         .btn-blood:hover {
