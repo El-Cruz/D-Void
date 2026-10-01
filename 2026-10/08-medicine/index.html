@@ -2,34 +2,41 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>MEDICINE After Dark — CRT Medical Monitor</title>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=VT323&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-void: #050505;
             --crt-green: #00FF41;
             --blood-red: #D90429;
+            --blood-red-text: #E63946;
             --tv-plastic: #222;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100dvh;
             background: #111;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
             overflow: hidden;
-            font-family: 'VT323', monospace;
+            font-family: ui-monospace, 'Courier New', monospace;
+        }
+
+        :focus-visible {
+            outline: 3px dashed #E63946;
+            outline-offset: 4px;
         }
 
         .tv-chassis {
             width: 90vw;
             max-width: 1200px;
-            height: 80vh;
+            height: 80dvh;
             background: #3b3633;
             border-radius: 12px;
             box-shadow: inset 2px 2px 5px rgba(255,255,255,0.1), inset -5px -5px 15px rgba(0,0,0,0.6), 15px 25px 50px rgba(0,0,0,0.9);
@@ -38,6 +45,7 @@
             display: flex;
             gap: 20px;
             padding: 25px;
+            padding-top: calc(20px + env(safe-area-inset-top));
             padding-bottom: 40px;
             position: relative;
         }
@@ -47,6 +55,7 @@
             position: relative;
             background: #1a1817;
             padding: 25px;
+            padding-top: calc(20px + env(safe-area-inset-top));
             border-radius: 40px;
             box-shadow: inset 5px 5px 20px rgba(0,0,0,0.9), inset -2px -2px 5px rgba(255,255,255,0.05);
             height: 100%;
@@ -169,7 +178,7 @@
         }
 
         .dial-label {
-            font-family: 'VT323', monospace;
+            font-family: ui-monospace, 'Courier New', monospace;
             font-size: 14px;
             color: #222;
             text-transform: uppercase;
@@ -222,7 +231,7 @@
             position: absolute;
             top: 35px;
             right: 45px;
-            font-family: 'VT323', 'Courier New', monospace;
+            font-family: ui-monospace, 'Courier New', monospace;
             color: #00FF41;
             font-size: 2.5rem;
             font-weight: bold;
@@ -275,13 +284,13 @@
             align-items: center;
             justify-content: space-between;
             height: 100%;
-            padding: 0 5%;
+            padding: 0 8%;
             gap: 20px;
             box-sizing: border-box;
         }
 
         #ch-01 > div:first-child {
-            flex: 1.2;
+            flex: 1;
             text-align: left;
             display: flex;
             flex-direction: column;
@@ -290,32 +299,57 @@
         }
 
         #ch-01 > div:last-child {
-            flex: 0.8;
+            flex: 1;
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
             align-items: center;
             position: relative;
-            min-height: 250px;
         }
 
         #ch-01 h1 {
-            font-family: 'Anton', sans-serif;
-            font-size: 96px;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-weight: 900;
+            transform: scaleY(1.2);
+            font-size: clamp(3.5rem, 8vw, 7rem);
             letter-spacing: 8px;
             color: #F4F4F0;
-            text-shadow: 0 0 30px rgba(217, 4, 41, 0.8), 0 0 80px rgba(217, 4, 41, 0.4);
-            margin-bottom: 0;
-            line-height: 1;
+            text-shadow: 0 0 15px rgba(217,4,41,0.5);
+            margin: 0;
+            line-height: 0.9;
         }
 
         #ch-01 h2 {
-            font-family: 'Anton', sans-serif;
-            font-size: 48px;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-weight: 900;
+            transform: scaleY(1.2);
+            font-size: clamp(2rem, 4.5vw, 3.5rem);
             letter-spacing: 12px;
-            color: #F4F4F0;
+            color: var(--blood-red-text);
             text-shadow: 0 0 20px rgba(217, 4, 41, 0.6);
-            margin-top: 8px;
-            margin-bottom: 30px;
+            margin: 0 0 15px 0;
+        }
+
+        .blood-bag-wrapper {
+            position: relative;
+        }
+
+        .blood-bag-wrapper img {
+            width: 280px;
+            height: 350px;
+            max-height: 75vh;
+            object-fit: contain;
+            background: #4A0000;
+            border-radius: 10px;
+            color: transparent;
+            filter: drop-shadow(0 0 15px rgba(217,4,41,0.6));
+        }
+
+        .ch01-date {
+            color: #00FF41;
+            font-family: ui-monospace, 'Courier New', monospace;
+            font-size: 1.6rem;
+            margin: 0 0 30px 0;
+            letter-spacing: 1px;
         }
 
         .blood-bag-container {
@@ -328,26 +362,21 @@
             50% { transform: translateY(-12px); }
         }
 
-        .blood-bag {
-            width: 180px;
-            height: auto;
-            filter: drop-shadow(0 0 20px #D90429);
-        }
-
         .btn-blood {
-            font-family: 'Anton', sans-serif;
-            font-size: 22px;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-weight: 900;
+            font-size: 1.4rem;
             letter-spacing: 3px;
-            padding: 15px 25px;
+            padding: 12px 25px;
             background: transparent;
-            color: #D90429;
-            border: 3px solid #D90429;
+            color: var(--blood-red-text);
+            border: 3px solid var(--blood-red-text);
             cursor: pointer;
             transition: all 0.2s;
         }
 
         .btn-blood:hover {
-            background: #D90429;
+            background: var(--blood-red-text);
             color: #000;
         }
 
@@ -359,12 +388,57 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 20px;
-            gap: 0;
+            height: 100%;
+            padding: 0 40px;
+            box-sizing: border-box;
+            text-align: left;
+            overflow-y: auto;
+        }
+
+        .ch02-header {
+            color: #00FF41;
+            font-family: ui-monospace, 'Courier New', monospace;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            border-bottom: 1px solid #00FF41;
+            padding-bottom: 5px;
+        }
+
+        .ch02-block {
+            font-family: system-ui, -apple-system, sans-serif;
+            font-weight: 900;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .ch02-features {
+            color: #F4F4F0;
+            font-size: clamp(1.2rem, 3.5vw, 2.2rem);
+            border-bottom: 2px dashed #333;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .ch02-promos {
+            color: var(--blood-red-text);
+            font-size: clamp(1.2rem, 3.5vw, 2.2rem);
+            border-bottom: 2px dashed #333;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .ch02-promos span { color: #F4F4F0; }
+
+        .ch02-covers {
+            color: #999;
+            font-family: ui-monospace, 'Courier New', monospace;
+            font-size: 1.8rem;
+            line-height: 1.2;
         }
 
         .promo-row {
-            font-family: 'Anton', sans-serif;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-weight: 900;
             width: 100%;
             padding: 12px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -372,7 +446,7 @@
         }
 
         .promo-small {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: ui-monospace, 'Courier New', monospace;
             font-size: 14px;
             letter-spacing: 4px;
             color: #00FF41;
@@ -388,7 +462,7 @@
         .promo-red {
             font-size: 52px;
             letter-spacing: 2px;
-            color: #D90429;
+            color: var(--blood-red-text);
         }
 
         .promo-gray {
@@ -400,6 +474,11 @@
 
         #ch-03 {
             background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            position: relative;
         }
 
         .medical-ticket {
@@ -470,7 +549,7 @@
 
         .treatment-selection label {
             display: block;
-            margin-bottom: 6px;
+            padding: 10px 0;
             cursor: pointer;
             font-weight: normal;
         }
@@ -564,21 +643,26 @@
         @media (max-width: 768px) {
             .tv-chassis {
                 width: 100vw !important;
-                min-height: 100vh !important;
-                height: auto !important;
-                border-radius: 0 !important;
+                height: 100dvh !important;
+                margin: 0 !important;
                 padding: 10px !important;
-                gap: 8px !important;
-                box-sizing: border-box;
+                border: none !important;
+                border-radius: 0 !important;
+                box-sizing: border-box !important;
+                display: flex !important;
                 flex-direction: column !important;
+                gap: 10px !important;
+                overflow: hidden !important;
             }
 
             .tv-screen-wrapper {
                 flex: 1 1 auto !important;
                 min-height: 0 !important;
+                height: auto !important;
                 padding: 8px !important;
-                border-width: 6px !important;
-                border-radius: 15px !important;
+                border-width: 5px !important;
+                box-sizing: border-box !important;
+                overflow: hidden !important;
             }
 
             .screen-tube {
@@ -620,7 +704,7 @@
                 text-align: center !important;
             }
 
-            #ch-02 > div > div {
+            #ch-02 > div {
                 font-size: 1.1rem !important;
             }
 
@@ -641,11 +725,12 @@
             }
 
             .tv-control-panel {
-                flex: 0 0 auto !important;
-                width: 100%;
+                flex: 0 0 90px !important;
+                width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                box-sizing: border-box !important;
                 flex-direction: row !important;
-                padding: 12px 8px 8px 8px !important;
-                gap: 12px !important;
             }
 
             .speaker-grill {
@@ -654,17 +739,13 @@
             }
 
             .metal-plate {
-                flex: 1 !important;
-                flex-direction: row !important;
-                justify-content: space-evenly !important;
-                padding: 10px 4px !important;
-                min-width: 0 !important;
+                padding: 5px !important;
+                align-items: center !important;
             }
 
             .dial {
-                width: 64px !important;
-                height: 64px !important;
-                flex-shrink: 0 !important;
+                width: 60px !important;
+                height: 60px !important;
             }
 
             .dial-label {
@@ -678,7 +759,7 @@
 <div class="tv-chassis">
     <div class="tv-screen-wrapper">
         <div class="screen-tube" id="screen">
-            <div id="osd">CH: --</div>
+            <div id="osd" aria-live="polite">CH: --</div>
 
             <div class="channel active" id="ch-boot">
                 <svg class="ekg-line" viewBox="0 0 300 60" xmlns="http://www.w3.org/2000/svg">
@@ -687,35 +768,35 @@
                 <p class="boot-text">&gt; INICIANDO SISTEMA...</p>
             </div>
 
-            <div id="ch-01" class="channel hidden" style="display: flex; align-items: center; justify-content: space-between; height: 100%; padding: 0 8%; gap: 20px;">
-                <div style="flex: 1; text-align: left; display: flex; flex-direction: column; align-items: flex-start; z-index: 10;">
-                    <h1 style="font-family: 'Anton', sans-serif; font-size: clamp(3.5rem, 8vw, 7rem); color: #F4F4F0; margin: 0; line-height: 0.9; text-shadow: 0 0 15px rgba(217,4,41,0.5);">MEDICINE</h1>
-                    <h2 style="font-family: 'Anton', sans-serif; font-size: clamp(2rem, 4.5vw, 3.5rem); color: #D90429; margin: 0 0 15px 0;">After Dark</h2>
-                    <p style="color: #00FF41; font-family: 'VT323', monospace; font-size: 1.6rem; margin: 0 0 30px 0; letter-spacing: 1px;">JUE 08 OCTUBRE</p>
-                    <button type="button" id="btn-suministrar" class="btn-blood" style="background: transparent; border: 3px solid #D90429; color: #D90429; font-family: 'Anton', sans-serif; font-size: 1.4rem; padding: 12px 25px; cursor: pointer; transition: 0.2s;">[ SUMINISTRAR DOSIS ]</button>
+            <div id="ch-01" class="channel hidden">
+                <div>
+                    <h1>MEDICINE</h1>
+                    <h2>After Dark</h2>
+                    <p class="ch01-date">JUE 08 OCTUBRE</p>
+                    <button type="button" id="btn-suministrar" class="btn-blood">[ SUMINISTRAR DOSIS ]</button>
                 </div>
-                <div style="flex: 1; display: flex; justify-content: flex-end; align-items: center; position: relative;">
-                    <div class="blood-bag-wrapper" style="position: relative;">
-                        <img src="Resources/images/bolsa.png" alt="Bolsa de Suero color sangre" width="280" style="max-height: 75vh; object-fit: contain; filter: drop-shadow(0 0 15px rgba(217,4,41,0.6));">
+                <div>
+                    <div class="blood-bag-wrapper">
+                        <img src="/Resources/images/bolsa.png" alt="Bolsa de Suero color sangre" width="280" height="350" loading="lazy">
                         <div class="blood-drop"></div>
                     </div>
                 </div>
             </div>
 
-            <div id="ch-02" class="channel hidden" style="display: flex; flex-direction: column; justify-content: center; height: 100%; padding: 0 40px; box-sizing: border-box; text-align: left; overflow-y: auto;">
-                <p style="color: #00FF41; font-family: 'VT323', monospace; font-size: 1.5rem; margin-bottom: 5px; border-bottom: 1px solid #00FF41; padding-bottom: 5px;">> ESTADO DEL PACIENTE:</p>
-                <div style="font-family: 'Anton', sans-serif; line-height: 1.1; text-transform: uppercase;">
-                    <div style="color: #F4F4F0; font-size: clamp(1.2rem, 3.5vw, 2.2rem); border-bottom: 2px dashed #333; padding-bottom: 15px; margin-bottom: 15px;">
-                        <span style="color:#D90429;">+</span> INGRESO DE EMERGENCIA<br>
-                        <span style="color:#D90429;">+</span> MURO DE LATIDOS<br>
-                        <span style="color:#D90429;">+</span> LABORATORIO DE SHOTS<br>
-                        <span style="color:#D90429;">+</span> CABINA MÉDICA
+            <div id="ch-02" class="channel hidden">
+                <p class="ch02-header">&gt; ESTADO DEL PACIENTE:</p>
+                <div class="ch02-block">
+                    <div class="ch02-features">
+                        <span style="color:#E63946;">+</span> INGRESO DE EMERGENCIA<br>
+                        <span style="color:#E63946;">+</span> MURO DE LATIDOS<br>
+                        <span style="color:#E63946;">+</span> LABORATORIO DE SHOTS<br>
+                        <span style="color:#E63946;">+</span> CABINA MÉDICA
                     </div>
-                    <div style="color: #D90429; font-size: clamp(1.2rem, 3.5vw, 2.2rem); border-bottom: 2px dashed #333; padding-bottom: 15px; margin-bottom: 15px;">
-                        2 JAGGER + 4 REDBULL 'TILL 23H00 <span style="color:#F4F4F0;">$150</span><br>
+                    <div class="ch02-promos">
+                        2 JAGGER + 4 REDBULL 'TILL 23H00 <span>$150</span><br>
                         2X1 ANTIOQUEÑO Y RON ABUELO 'TILL 23H00
                     </div>
-                    <div style="color: #888; font-family: 'VT323', monospace; font-size: 1.8rem; line-height: 1.2;">
+                    <div class="ch02-covers">
                         COVER NORMAL ................. $10<br>
                         COVER + BARRA LIBRE .......... $12<br>
                         COVER EN PUERTA .............. $15
@@ -723,16 +804,19 @@
                 </div>
             </div>
 
-            <div id="ch-03" class="channel hidden" style="display: flex; justify-content: center; align-items: center; height: 100%; position: relative;">
+            <div id="ch-03" class="channel hidden">
                 <div class="medical-ticket" id="ticket-container">
                     <h3 class="ticket-title">EXPEDIENTE MÉDICO / ADMISIÓN</h3>
                     <form id="patient-form">
+                        <label class="sr-only" for="fname">Nombre del Paciente</label>
                         <input type="text" id="fname" name="fname" placeholder="Nombre del Paciente" required>
+                        <label class="sr-only" for="lname">Apellido</label>
                         <input type="text" id="lname" name="lname" placeholder="Apellido" required>
-                        <input type="text" id="whatsapp" name="whatsapp" placeholder="Nro. de Emergencia (WhatsApp)" required>
+                        <label class="sr-only" for="whatsapp">Nro. de Emergencia (WhatsApp)</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" placeholder="Nro. de Emergencia (WhatsApp)" inputmode="tel" pattern="[0-9]*" required>
                         <div class="treatment-selection">
-                            <p>> TIPO DE TRATAMIENTO:</p>
-                            <label><input type="radio" name="cover" value="10" checked> Dosis Estándar ($10)</label><br>
+                            <p>&gt; TIPO DE TRATAMIENTO:</p>
+                            <label><input type="radio" name="cover" value="10" checked> Dosis Estándar ($10)</label>
                             <label><input type="radio" name="cover" value="12"> Sobredosis - Barra Libre ($12)</label>
                         </div>
                         <button type="submit" id="btn-alta" class="btn-typewriter">[ FIRMAR ALTA VOLUNTARIA ]</button>
@@ -767,10 +851,10 @@
     const btnUp = document.getElementById('btn-up');
     const btnDown = document.getElementById('btn-down');
     const btnSuministrar = document.getElementById('btn-suministrar');
-    const btnAlta = document.getElementById('btn-alta');
     const ticket = document.getElementById('ticket-container');
 
     let currentIndex = -1;
+    let bootDone = false;
 
     function setChannel(id) {
         document.querySelectorAll('.channel').forEach(ch => ch.classList.add('hidden'));
@@ -807,8 +891,18 @@
         goToChannel(channels[currentIndex]);
     }
 
-    btnUp.addEventListener('click', cycleUp);
-    btnDown.addEventListener('click', cycleDown);
+    function wireDial(el, fn) {
+        el.addEventListener('click', fn);
+        el.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                fn();
+            }
+        });
+    }
+
+    wireDial(btnUp, cycleUp);
+    wireDial(btnDown, cycleDown);
 
     btnSuministrar.addEventListener('click', () => {
         currentIndex = 2;
@@ -827,8 +921,8 @@
         ticket.classList.add('blood-stain');
 
         ticket.innerHTML = `
-            <div style="text-align: center; font-family: 'VT323', monospace;">
-                <h3 style="margin: 0; font-size: 2rem; border-bottom: 2px dashed #00FF41; padding-bottom: 10px;">> ACCESO CONCEDIDO</h3>
+            <div style="text-align: center; font-family: ui-monospace, 'Courier New', monospace;">
+                <h3 id="acceso-concedido" tabindex="-1" style="margin: 0; font-size: 2rem; border-bottom: 2px dashed #00FF41; padding-bottom: 10px;">&gt; ACCESO CONCEDIDO</h3>
                 <div class="retro-qr-container">
                     <div class="retro-qr"></div>
                 </div>
@@ -837,17 +931,37 @@
                 <h4 style="margin-top: 20px; font-size: 1.5rem; text-shadow: 0 0 8px #00FF41;">TUS LATIDOS NOS PERTENECEN.</h4>
             </div>
         `;
+        document.getElementById('acceso-concedido').focus();
     });
 
-    setTimeout(() => {
+    let offTimeout = null;
+
+    const bootTimeout = setTimeout(() => {
         screen.classList.add('turn-off');
-        setTimeout(() => {
+        offTimeout = setTimeout(() => {
+            bootDone = true;
             screen.classList.remove('turn-off');
             currentIndex = 0;
             setChannel('ch-01');
             updateOSD('ch-01');
         }, 300);
     }, 3000);
+
+    function skipBoot() {
+        if (bootDone) return;
+        bootDone = true;
+        clearTimeout(bootTimeout);
+        if (offTimeout) clearTimeout(offTimeout);
+        screen.classList.remove('turn-off', 'static-glitch');
+        currentIndex = 0;
+        setChannel('ch-01');
+        updateOSD('ch-01');
+        window.removeEventListener('click', skipBoot, true);
+        window.removeEventListener('keydown', skipBoot, true);
+    }
+
+    window.addEventListener('click', skipBoot, true);
+    window.addEventListener('keydown', skipBoot, true);
 })();
 </script>
 
