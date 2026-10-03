@@ -1,0 +1,50 @@
+/* Satin Bow stage 2: layout only; no changes to form behavior. */
+.satin-bow{--paper:#fff9f7;--line:#dec3cf;background:var(--paper)}
+.satin-bow .fw-nav{background:rgb(255 249 247 / .95)}
+.satin-bow .fw-brand{background:#291b28;padding:.5rem .65rem;min-height:44px}
+.satin-bow .fw-brand img{width:5.8rem;height:auto}
+.satin-bow .fw-hero{background:var(--paper);padding:1.2rem 1.2rem 3.5rem}
+.satin-bow .fw-hero-art{width:11.5rem;margin:0 auto -4.5rem;min-height:0;z-index:2;pointer-events:none;user-select:none}
+.satin-bow .fw-hero-art img{width:100%;height:auto;max-height:none;mix-blend-mode:normal}
+.satin-bow .fw-hero-copy{max-width:44rem;padding:6rem 1.5rem 2.5rem;background:var(--paper);border-color:#cda6b6;outline-color:#dec3cf}
+.satin-bow .fw-title{font-size:clamp(3.9rem,16vw,5.4rem);letter-spacing:-.065em;margin-inline:auto;max-width:100%}
+.satin-bow .fw-title em{display:inline-block;padding-right:.08em}
+.satin-bow .fw-meta{gap:.4rem 1rem;font-size:.9rem;margin-top:1.6rem}
+.satin-bow .fw-lede{max-width:29ch;line-height:1.6;font-size:1rem}
+.satin-bow .fw-cta{margin-top:1.4rem;padding:.8rem 1.2rem}
+.satin-bow .fw-section{padding:3.2rem 1.5rem}
+.satin-bow .fw-section h2{font-size:clamp(2.3rem,7vw,4.5rem);line-height:1.06}
+.satin-bow .fw-section p{line-height:1.65;text-wrap:pretty}
+.satin-bow .fw-section.fw-bow-concept{max-width:72rem;display:grid;gap:2rem;text-align:center;padding-top:1.5rem;padding-bottom:3rem;align-items:center}
+.satin-bow .fw-bow-concept-copy{max-width:34rem;margin-inline:auto}
+.satin-bow .fw-bow-concept-copy p{max-width:40ch;margin-inline:auto}
+.satin-bow .fw-bow-still{display:block;width:min(100%,21rem);height:auto;margin:0 auto;background:none;border:0;border-radius:0;pointer-events:none;user-select:none}
+.satin-bow .fw-info{max-width:72rem;margin:auto;background:var(--paper);padding-top:2rem}
+.satin-bow .fw-info .fw-grid{gap:0;margin-top:2rem}
+.satin-bow .fw-fact{background:transparent;border-top:1px solid var(--line);padding:1.4rem 1rem}
+.satin-bow .fw-fact b{font-size:2.6rem;margin-bottom:.5rem}
+.satin-bow .fw-form-section{background:var(--paper);max-width:58rem;padding-top:3rem}
+.satin-bow .fw-form-card{margin-top:1.6rem;padding:1.5rem;background:#fbedf2;border:0;border-top:1px solid #cda6b6}
+.satin-bow .fw-field input{background:#fff9f7;border:1px solid #a27e8e;min-height:50px}
+.satin-bow .fw-demo{background:transparent;padding:.7rem 0;border-top:0}
+.satin-bow .fw-form-intro{margin-bottom:0}
+.satin-bow .fw-form-intro p{max-width:38ch}
+.satin-bow .fw-foot{text-align:center;border-top:1px solid var(--line);margin-top:1.5rem}
+@media(min-width:700px){
+.satin-bow .fw-hero{padding-top:1.8rem;padding-bottom:4rem}
+.satin-bow .fw-hero-art{width:16rem;margin-bottom:-6.5rem}
+.satin-bow .fw-hero-copy{padding:8rem 3rem 3rem}
+.satin-bow .fw-title{font-size:clamp(5.4rem,8vw,7rem)}
+.satin-bow .fw-meta{font-size:1rem}
+.satin-bow .fw-lede{max-width:36ch}
+.satin-bow .fw-section{padding-inline:3rem}
+.satin-bow .fw-section.fw-bow-concept{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem;text-align:left;padding-block:3rem 4rem}
+.satin-bow .fw-bow-concept-copy h2,.satin-bow .fw-bow-concept-copy p{margin-inline:0}
+.satin-bow .fw-bow-still{width:100%;max-width:27rem}
+.satin-bow .fw-info .fw-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}
+.satin-bow .fw-form-card{padding:2rem 2.5rem}
+}
+@media(min-width:700px){
+.satin-bow .fw-section.fw-bow-concept .fw-bow-concept-copy h2,
+.satin-bow .fw-section.fw-bow-concept .fw-bow-concept-copy p{margin-inline:0}
+}

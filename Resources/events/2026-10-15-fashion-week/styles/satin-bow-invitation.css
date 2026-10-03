@@ -1,0 +1,59 @@
+/* Scoped refinement: white navigation, editorial inspiration, unfolding registration. */
+.satin-bow .fw-nav{background:#fff;backdrop-filter:none;padding-inline:max(1.2rem,env(safe-area-inset-left));gap:1rem}
+.satin-bow .fw-brand{padding:.4rem .65rem;flex-shrink:0}
+.satin-bow .fw-brand img{width:6rem}
+.satin-bow .fw-nav-link{min-width:5rem;min-height:44px}
+.satin-bow .fw-dress{max-width:72rem;margin:auto;display:grid;gap:1.6rem;border-top:1px solid #c98aa4;border-bottom:1px solid #c98aa4;text-align:left}
+.satin-bow .fw-dress h2{max-width:18ch;font-size:clamp(2.6rem,6vw,4.8rem);line-height:1.08;margin:0;letter-spacing:-.04em}
+.satin-bow .fw-dress h2 em{color:#86264f;font-weight:400}
+.satin-bow .fw-dress-copy{max-width:34ch;align-self:end}
+.satin-bow .fw-dress-copy p{margin:0;font-size:1.1rem}
+.satin-bow .fw-dress-copy .fw-ui-rule{margin:0 0 1.4rem;transform-origin:left}
+.satin-bow .fw-form-card{position:relative;background:#fff8f2;border:1px solid #c98aa4;outline:1px solid #dec3cf;outline-offset:-9px;isolation:isolate}
+.satin-bow .fw-invitation-fold{display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:0 0 1.5rem;margin-bottom:1.5rem;border-bottom:1px solid #c98aa4;pointer-events:none;transform-origin:center top}
+.satin-bow .fw-invitation-fold span:first-child{font:italic 1.8rem/1 Georgia,serif;color:#86264f}
+.satin-bow .fw-invitation-fold span:last-child{font-size:.75rem;letter-spacing:.1em;font-variant-numeric:tabular-nums}
+.satin-bow .fw-invitation-open{display:flex;margin:1rem auto;max-width:100%}
+.satin-bow [hidden]{display:none!important}
+.satin-bow .fw-form-card.is-invitation-open{background:#fff8f2}
+.satin-bow .fw-form-card.is-invitation-closed{background:#fae9ef;padding-block:2.5rem}
+.satin-bow .fw-form-card:focus-within{border-color:#86264f}
+.satin-bow #bow-form-panel{scroll-margin-top:6rem}
+@media(min-width:700px){.satin-bow .fw-nav{padding-inline:clamp(2rem,7vw,7rem)}.satin-bow .fw-brand img{width:7.2rem}.satin-bow .fw-dress{grid-template-columns:1.3fr 1fr;gap:4rem;padding-block:4rem}.satin-bow .fw-dress-copy{padding-bottom:.5rem}}
+@media(max-width:399px){.satin-bow .fw-invitation-fold{gap:.5rem}.satin-bow .fw-invitation-fold span:first-child{font-size:1.5rem}.satin-bow .fw-invitation-fold span:last-child{font-size:.65rem}}
+
+.satin-bow .fw-form-card{scroll-margin-top:6rem}
+
+/* Black derivative authorized by the user; original geometry and alpha preserved. */
+.satin-bow .fw-brand{background:transparent;padding:0;min-height:44px}
+.satin-bow .fw-brand img{width:7rem;height:auto}
+@media(min-width:700px){.satin-bow .fw-brand img{width:8rem}}
+.satin-bow .fw-company{grid-column:1/-1;min-width:0;margin:0;padding:0;border:0}
+.satin-bow .fw-company legend{font-weight:750;margin-bottom:.7rem}
+.satin-bow .fw-company-option{margin-bottom:.65rem}
+.satin-bow .fw-radio-label{display:flex;align-items:center;gap:.7rem;padding:.8rem 1rem;border:1px solid #986479;cursor:pointer;min-height:52px;transition:background .18s,border-color .18s}
+.satin-bow .fw-radio-label:has(:checked){background:#f2c9d8;border:2px solid #86264f;padding:calc(.8rem - 1px) calc(1rem - 1px)}
+.satin-bow .fw-radio-label:focus-within{outline:3px solid #762044;outline-offset:3px}
+.satin-bow .fw-radio-label input{accent-color:#86264f;width:1.15rem;height:1.15rem;min-height:0;flex-shrink:0}
+.satin-bow .fw-companions{padding:1rem;background:#fae9ef;border:1px solid #c98aa4;border-top:0}
+.satin-bow .fw-companions input{max-width:9rem}
+.satin-bow .fw-pass{text-align:center;padding:1rem 0 .2rem}
+.satin-bow .fw-pass-top{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.satin-bow .fw-pass-top img{width:6rem;height:auto}
+.satin-bow .fw-preview-label{font-size:.75rem;letter-spacing:.08em;color:#682b47;border:1px solid #986479;padding:.35rem .5rem}
+.satin-bow .fw-pass-event{font:italic clamp(2rem,5vw,3rem)/1.1 Georgia,serif;color:#86264f;margin:2rem auto 1rem}
+.satin-bow .fw-pass h3{font:clamp(2.1rem,6vw,4.5rem)/1.08 Georgia,serif;letter-spacing:-.035em;overflow-wrap:anywhere;text-wrap:balance;margin:1.5rem 0 1rem}
+.satin-bow .fw-pass-company{font-weight:700;margin-inline:auto}
+.satin-bow .fw-pass-date{margin:1.4rem auto 2rem;font-size:.95rem}
+.satin-bow .fw-pass-cut{position:relative;border-top:1px dashed #986479;padding-top:1.8rem;margin-top:2rem;display:grid;justify-items:center;gap:.5rem}
+.satin-bow .fw-pass-cut:before,.satin-bow .fw-pass-cut:after{content:'';position:absolute;top:-.5rem;width:1rem;height:1rem;background:#fff8f2;border:1px solid #c98aa4;border-radius:50%;pointer-events:none}
+.satin-bow .fw-pass-cut:before{left:-2rem}.satin-bow .fw-pass-cut:after{right:-2rem}
+.satin-bow .fw-pass-qr svg{display:block;width:164px;max-width:100%;height:auto;shape-rendering:crispEdges}
+.satin-bow .fw-pass-cut p{font-size:.8rem;margin:.4rem 0 1rem;line-height:1.4}
+.satin-bow .fw-pass-cut p span{color:#682b47}
+.satin-bow .fw-edit{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:.6rem 1rem;background:transparent;border:1px solid #86264f;color:#86264f;font:inherit;font-weight:700;cursor:pointer;transition:background .18s}
+.satin-bow .fw-edit:hover{background:#f2c9d8}
+.fw-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+@media(min-width:700px){.satin-bow .fw-pass-cut:before{left:-3rem}.satin-bow .fw-pass-cut:after{right:-3rem}}
+
+.satin-bow .fw-companions{overflow:hidden}

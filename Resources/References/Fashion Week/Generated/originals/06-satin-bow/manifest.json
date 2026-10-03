@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-03",
+  "tool": "built-in image_gen",
+  "source_directory": "/home/nicocruz_04/.codex/generated_images/01a10266-c92c-75e3-a2b2-b529a4d7274e",
+  "accepted": {
+    "bow": "bow-v2.png",
+    "cocktail-shoes": "cocktail-shoes-v1.png"
+  },
+  "web_export": {
+    "resize": "1000x1000 preserve aspect, no crop",
+    "transparent_padding": 24,
+    "webp_quality": 88,
+    "alpha_quality": 100
+  },
+  "files": [
+    {
+      "path": "work/fashion-week-2026-10-15/assets/originals/06-satin-bow/bow-v1.png",
+      "width": 1312,
+      "height": 1199,
+      "channels": "srgba 4.0",
+      "alpha_min_max_mean": "0 1 0.416549",
+      "top_edge_alpha_max": "0",
+      "bytes": 1800605,
+      "sha256": "cda0c75825407936da384208ac8c22e4dc726069c96b134bcbfae39f8ba29ede"
+    },
+    {
+      "path": "work/fashion-week-2026-10-15/assets/originals/06-satin-bow/bow-v2.png",
+      "width": 1312,
+      "height": 1199,
+      "channels": "srgba 4.0",
+      "alpha_min_max_mean": "0 1 0.427313",
+      "top_edge_alpha_max": "0",
+      "bytes": 1588730,
+      "sha256": "0c3da0075626f485e5f1d8b6e0f092572913df0129fe07b55d5afe6b49cd2f60"
+    },
+    {
+      "path": "work/fashion-week-2026-10-15/assets/originals/06-satin-bow/cocktail-shoes-v1.png",
+      "width": 1312,
+      "height": 1199,
+      "channels": "srgba 4.0",
+      "alpha_min_max_mean": "0 1 0.365647",
+      "top_edge_alpha_max": "0",
+      "bytes": 1391592,
+      "sha256": "88c94e3298f2b9603cdfc9474544c331be01f849c2f0e1156bc5c504563c567d"
+    },
+    {
+      "path": "work/fashion-week-2026-10-15/assets/publish/06-satin-bow/bow.webp",
+      "width": 1048,
+      "height": 962,
+      "channels": "srgba 4.0",
+      "alpha_min_max_mean": "0 1 0.387395",
+      "top_edge_alpha_max": "0",
+      "bytes": 126474,
+      "sha256": "675fbe06da2810fb9c3e516b96683ef55d835fbf79db9116369d59032fe6b8c7"
+    },
+    {
+      "path": "work/fashion-week-2026-10-15/assets/publish/06-satin-bow/cocktail-shoes.webp",
+      "width": 1048,
+      "height": 962,
+      "channels": "srgba 4.0",
+      "alpha_min_max_mean": "0 1 0.331492",
+      "top_edge_alpha_max": "0",
+      "bytes": 141572,
+      "sha256": "a93ac0ca594f9864c28626033ffa63c1e9fa627ae22a6a06970292ce8058e193"
+    }
+  ]
+}

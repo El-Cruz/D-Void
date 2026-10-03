@@ -1,0 +1,51 @@
+:root{color-scheme:light;--ink:#292326;--paper:#f7f4f1;--pink:#e88eb9;--deep:#9e285d;--line:rgba(41,35,38,.18);--focus:#6d1746}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+img{display:block;max-width:100%}
+a,button,input{min-height:44px}
+.fw-skip{position:fixed;z-index:20;left:1rem;top:.7rem;padding:.7rem 1rem;background:var(--ink);color:#fff;transform:translateY(-180%)}
+.fw-skip:focus{transform:none}
+.fw-nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:max(.7rem,env(safe-area-inset-top)) max(1rem,env(safe-area-inset-right)) .7rem max(1rem,env(safe-area-inset-left));background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.fw-brand img{width:4.5rem;height:auto}
+.fw-nav-link,.fw-cta{display:inline-flex;align-items:center;justify-content:center;padding:.65rem 1rem;border:1px solid var(--deep);color:var(--deep);font-weight:750;text-decoration:none}
+.fw-cta{margin-top:1.6rem;border:0;background:var(--deep);color:#fff;cursor:pointer}
+.fw-nav-link:focus-visible,.fw-cta:focus-visible,.fw-submit:focus-visible,input:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.fw-hero{position:relative;display:grid;gap:1.4rem;min-height:calc(100dvh - 4.6rem);padding:clamp(2rem,6vw,5rem) max(1.2rem,env(safe-area-inset-right)) 3rem max(1.2rem,env(safe-area-inset-left));align-items:center}
+.fw-hero-copy{position:relative;z-index:1;max-width:38rem}
+.fw-kicker{margin:0 0 .9rem;text-transform:uppercase;font-size:.75rem;letter-spacing:.18em;font-weight:800}
+.fw-title{margin:0;font:clamp(3.3rem,13vw,8.8rem)/.85 Georgia,"Times New Roman",serif;letter-spacing:-.07em}
+.fw-title em{color:var(--deep);font-weight:400}
+.fw-meta{display:flex;flex-wrap:wrap;gap:.55rem 1.1rem;margin:1.5rem 0 0;font-weight:700}
+.fw-lede{max-width:32rem;margin:1rem 0 0;font-size:clamp(1rem,2vw,1.2rem)}
+.fw-hero-art{position:relative;min-height:17rem;display:flex;align-items:center;justify-content:center}
+.fw-hero-art img{width:100%;height:auto;max-height:31rem;object-fit:contain}
+.fw-section{padding:4.5rem max(1.2rem,env(safe-area-inset-right)) 4.5rem max(1.2rem,env(safe-area-inset-left))}
+.fw-section h2{margin:0 0 1rem;font:clamp(2.2rem,7vw,5rem)/.95 Georgia,"Times New Roman",serif;letter-spacing:-.04em}
+.fw-section p{max-width:60ch}
+.fw-grid{display:grid;gap:1rem}
+.fw-info{background:var(--ink);color:#fff}
+.fw-info .fw-grid{margin-top:2rem}
+.fw-fact{padding:1.2rem;border-top:1px solid rgba(255,255,255,.25)}
+.fw-fact b{display:block;font:2.4rem/1 Georgia,serif;color:var(--pink)}
+.fw-form-section{background:#fff}
+.fw-form-card{max-width:38rem;padding:clamp(1.2rem,4vw,2.5rem);border:1px solid var(--line);background:#fff}
+.fw-demo{margin:0 0 1.4rem;padding:.7rem .8rem;background:#fff1f7;border-left:4px solid var(--deep);font-size:.9rem}
+.fw-form{display:grid;gap:1rem}
+.fw-field{display:grid;gap:.35rem}
+.fw-field label{font-weight:750}
+.fw-field input{width:100%;min-height:48px;padding:.75rem;border:1px solid #8b7b84;background:#fff;color:var(--ink)}
+.fw-error{min-height:1.25em;margin:0;color:#9f1746;font-size:.875rem}
+.fw-submit{min-height:50px;border:0;background:var(--ink);color:#fff;font-weight:800;cursor:pointer}
+.fw-foot{padding:1.4rem max(1.2rem,env(safe-area-inset-right)) max(2rem,env(safe-area-inset-bottom)) max(1.2rem);font-size:.9rem}
+@media(min-width:760px){.fw-hero{grid-template-columns:minmax(0,5fr) minmax(20rem,7fr);padding-inline:clamp(2rem,7vw,7rem)}
+.fw-hero-art{order:0;min-height:28rem}
+.fw-section{padding-inline:clamp(2rem,7vw,7rem)}
+.fw-info .fw-grid{grid-template-columns:repeat(3,1fr)}
+.fw-form-section .fw-grid{grid-template-columns:1fr 1fr;align-items:start}
+.fw-form-card{grid-column:2}
+.fw-form-intro{padding-top:1rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media(max-width:759px){.fw-nav-link{font-size:.82rem}
+.fw-hero{padding-top:2.4rem}
+.fw-section{padding-top:3.2rem;padding-bottom:3.2rem}}

@@ -1,0 +1,243 @@
+{
+  "date": "2026-10-02",
+  "mode": "image_gen integrado; no CLI ni nuevas instalaciones",
+  "assets": [
+    {
+      "id": "perla",
+      "variant": "01-editorial-perla",
+      "tool": "built-in image_gen",
+      "source": "/home/nicocruz_04/.codex/generated_images/01a0ff2a-112d-7de2-94ac-f79465d545b4/exec-f6df26ae-7f38-4291-9643-bb32fa945ee5.png",
+      "prompt_file": "work/fashion-week-2026-10-15/assets/originals/01-editorial-perla/prompt-v1.txt",
+      "master": {
+        "path": "work/fashion-week-2026-10-15/assets/originals/01-editorial-perla/master-v1.png",
+        "width": 1536,
+        "height": 1024,
+        "alpha": false,
+        "bytes": 1753655,
+        "sha256": "5123e803b108ea9d43d667e3d6351dc04e9f792508192033174255de3bd257b3"
+      },
+      "exports": [
+        {
+          "path": "work/fashion-week-2026-10-15/assets/publish/01-editorial-perla/hero-desktop.webp",
+          "quality": 82,
+          "operations": [],
+          "use": "Hero escritorio con espacio de texto",
+          "width": 1536,
+          "height": 1024,
+          "alpha": false,
+          "bytes": 41170,
+          "sha256": "9ffa5fd97d95e4bcf610d5f621886f8ab24c72d0932143e23acd209a6f2eb2fb"
+        },
+        {
+          "path": "work/fashion-week-2026-10-15/assets/publish/01-editorial-perla/hero-mobile.webp",
+          "quality": 82,
+          "operations": [
+            "-crop",
+            "900x1024+600+0",
+            "+repage"
+          ],
+          "use": "Móvil: imagen debajo del título/CTA; no forzar cover ni recortar más",
+          "width": 900,
+          "height": 1024,
+          "alpha": false,
+          "bytes": 38296,
+          "sha256": "08b5245d6c9b5f70804ea88bdf7c00d893e12a956fae47f1a373d8af25b83ed0"
+        },
+        {
+          "path": "work/fashion-week-2026-10-15/assets/publish/01-editorial-perla/detail-glass.webp",
+          "quality": 82,
+          "operations": [
+            "-crop",
+            "420x480+620+140",
+            "+repage"
+          ],
+          "use": "Detalle editorial de cristal reutilizado del master",
+          "width": 420,
+          "height": 480,
+          "alpha": false,
+          "bytes": 15606,
+          "sha256": "bf80dc05ebd1ae1cd388fa0fa588e55267bb9f41900a6cf25f97b126d9e6ce77"
+        }
+      ]
+    },
+    {
+      "id": "backstage",
+      "variant": "02-pink-backstage",
+      "tool": "built-in image_gen",
+      "source": "/home/nicocruz_04/.codex/generated_images/01a0ff2a-112d-7de2-94ac-f79465d545b4/exec-15aafc9b-8c44-4991-a5d7-b080d2c1ef9b.png",
+      "prompt_file": "work/fashion-week-2026-10-15/assets/originals/02-pink-backstage/prompt-v1.txt",
+      "master": {
+        "path": "work/fashion-week-2026-10-15/assets/originals/02-pink-backstage/master-v1.png",
+        "width": 1536,
+        "height": 1024,
+        "alpha": true,
+        "bytes": 2011279,
+        "sha256": "0ee9dc9d02f5b2862a2c48e323e446111f6389b0c394d54ce79630f0c0be8d61"
+      },
+      "exports": [
+        {
+          "path": "work/fashion-week-2026-10-15/assets/publish/02-pink-backstage/hero-desktop.webp",
+          "quality": 82,
+          "operations": [],
+          "use": "Hero escritorio; transparencia reutilizable sobre color CSS",
+          "width": 1536,
+          "height": 1024,
+          "alpha": true,
+          "bytes": 183848,
+          "sha256": "fddb40b11509494be2c994c9e8a908afb628d7e623fbe31c6fe71c116206262e"
+        },
+        {
+          "path": "work/fashion-week-2026-10-15/assets/publish/02-pink-backstage/hero-mobile.webp",
+          "quality": 82,
+          "operations": [],
+          "use": "Móvil: imagen debajo del título/CTA; no forzar cover ni recortar más",
+          "width": 768,
+          "height": 512,
+          "alpha": true,
+          "bytes": 55070,
+          "sha256": "35eec3004d38d4d37594aa3fedcd2920fc7ba4e15cc63e9e760a00f010256965"
+        }
+      ]
+    },
+    {
+      "id": "chrome",
+      "variant": "03-chrome-runway",
+      "tool": "built-in image_gen",
+      "source": "/home/nicocruz_04/.codex/generated_images/01a0ff2a-112d-7de2-94ac-f79465d545b4/exec-39a78c5a-4bb8-4315-9f92-cb4862ebd920.png",
+      "prompt_file": "work/fashion-week-2026-10-15/assets/originals/03-chrome-runway/prompt-v1.txt",
+      "master": {
+        "path": "work/fashion-week-2026-10-15/assets/originals/03-chrome-runway/master-v1.png",
+        "width": 1536,
+        "height": 1024,
+        "alpha": true,
+        "bytes": 1730505,
+        "sha256": "667568451213afdbae2c42b5233846fff8f3907cfb02e354565b30c878ba776e"
+      },
+      "exports": [
+        {
+          "path": "work/fashion-week-2026-10-15/assets/publish/03-chrome-runway/hero-desktop.webp",
+          "quality": 82,
+          "operations": [],
+          "use": "Hero escritorio; transparencia reutilizable sobre color CSS",
+          "width": 1536,
+          "height": 1024,
+          "alpha": true,
+          "bytes": 125274,
+          "sha256": "798a41f08b9d75fcfc16e74e47aed9e6484f817f9082cfd829ca5e0ed75aea8f"
+        },
+        {
+          "path": "work/fashion-week-2026-10-15/assets/publish/03-chrome-runway/hero-mobile.webp",
+          "quality": 82,
+          "operations": [],
+          "use": "Móvil: imagen debajo del título/CTA; no forzar cover ni recortar más",
+          "width": 768,
+          "height": 512,
+          "alpha": true,
+          "bytes": 40880,
+          "sha256": "e2c83a892dc0391ccf7e375b11c6b25f17abc4551b5d9409fc70869dc293c428"
+        }
+      ]
+    },
+    {
+      "id": "satin",
+      "variant": "04-satin-invitation",
+      "tool": "built-in image_gen",
+      "source": "/home/nicocruz_04/.codex/generated_images/01a0ff2a-112d-7de2-94ac-f79465d545b4/exec-b4702609-02d3-4d4a-ac54-1a45a7e0a408.png",
+      "prompt_file": "work/fashion-week-2026-10-15/assets/originals/04-satin-invitation/prompt-v1.txt",
+      "master": {
+        "path": "work/fashion-week-2026-10-15/assets/originals/04-satin-invitation/master-v1.png",
+        "width": 1536,
+        "height": 1024,
+        "alpha": false,
+        "bytes": 2722720,
+        "sha256": "e737e9317db73a0078f5ce8ff9416a928db522794db1bb7c2be07533447bd81a"
+      },
+      "exports": [
+        {
+          "path": "work/fashion-week-2026-10-15/assets/publish/04-satin-invitation/hero-desktop.webp",
+          "quality": 82,
+          "operations": [],
+          "use": "Hero escritorio con espacio de texto",
+          "width": 1536,
+          "height": 1024,
+          "alpha": false,
+          "bytes": 116126,
+          "sha256": "28748a03dcce06ca8d1be9a3c7ddde6195c8e372076a386c367776a2628c6507"
+        },
+        {
+          "path": "work/fashion-week-2026-10-15/assets/publish/04-satin-invitation/hero-mobile.webp",
+          "quality": 82,
+          "operations": [
+            "-crop",
+            "820x1024+716+0",
+            "+repage"
+          ],
+          "use": "Móvil: imagen debajo del título/CTA; no forzar cover ni recortar más",
+          "width": 820,
+          "height": 1024,
+          "alpha": false,
+          "bytes": 75144,
+          "sha256": "26d7a58972fc73fd7fc717bafd21546d4ef48fd75e73a5b20f13b87b4a63192e"
+        },
+        {
+          "path": "work/fashion-week-2026-10-15/assets/publish/04-satin-invitation/detail-bow.webp",
+          "quality": 82,
+          "operations": [
+            "-crop",
+            "430x420+1100+600",
+            "+repage"
+          ],
+          "use": "Detalle de lazo reutilizado del master",
+          "width": 430,
+          "height": 420,
+          "alpha": false,
+          "bytes": 21792,
+          "sha256": "f9729202e47e957ed57453066cd45ec048225fff29b1cbbbe66a449230e6207c"
+        }
+      ]
+    },
+    {
+      "id": "after",
+      "variant": "05-after-hours",
+      "tool": "built-in image_gen",
+      "source": "/home/nicocruz_04/.codex/generated_images/01a0ff2a-112d-7de2-94ac-f79465d545b4/exec-5cb9fce8-8b15-409b-80e0-0d18f5bf2854.png",
+      "prompt_file": "work/fashion-week-2026-10-15/assets/originals/05-after-hours/prompt-v1.txt",
+      "master": {
+        "path": "work/fashion-week-2026-10-15/assets/originals/05-after-hours/master-v1.png",
+        "width": 1536,
+        "height": 1024,
+        "alpha": false,
+        "bytes": 2077153,
+        "sha256": "79fc9cc59f4157e43be76ac3f9036c6120972d3b7ce34a4b00b94425b457cf8d"
+      },
+      "exports": [
+        {
+          "path": "work/fashion-week-2026-10-15/assets/publish/05-after-hours/hero-desktop.webp",
+          "quality": 82,
+          "operations": [],
+          "use": "Hero escritorio con espacio de texto",
+          "width": 1536,
+          "height": 1024,
+          "alpha": false,
+          "bytes": 87288,
+          "sha256": "9ba0199967badf7b4a4f1e5d4b60448228e828be9166750fe9337f1e35e44bef"
+        },
+        {
+          "path": "work/fashion-week-2026-10-15/assets/publish/05-after-hours/hero-mobile.webp",
+          "quality": 82,
+          "operations": [
+            "-crop",
+            "1000x1024+0+0",
+            "+repage"
+          ],
+          "use": "Móvil: imagen debajo del título/CTA; no forzar cover ni recortar más",
+          "width": 900,
+          "height": 922,
+          "alpha": false,
+          "bytes": 70512,
+          "sha256": "e61ce758b6b88695a43b2eb65f7606424358d7c6f415e9052f7c1d49c2e0fac4"
+        }
+      ]
+    }
+  ]
+}

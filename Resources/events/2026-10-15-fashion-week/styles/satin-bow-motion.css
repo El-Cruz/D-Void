@@ -1,0 +1,27 @@
+/* Motion is progressive: the unenhanced document is always visible. */
+.satin-bow{--fw-ease:cubic-bezier(.16,1,.3,1);--fw-feedback:160ms}
+.satin-bow .fw-cta,.satin-bow .fw-submit{transition:transform var(--fw-feedback) var(--fw-ease),background-color var(--fw-feedback)}
+.satin-bow .fw-cta:focus-visible,.satin-bow .fw-submit:focus-visible{outline:3px solid var(--deep);outline-offset:4px}
+.satin-bow .fw-cta:active,.satin-bow .fw-submit:active{transform:scale(.97)}
+.satin-bow .fw-nav-link{position:relative;transition:color 160ms,background-color 160ms,border-color 160ms}
+.satin-bow .fw-nav-link:after{content:'';position:absolute;left:20%;right:20%;bottom:.3rem;height:1px;background:currentColor;transform:scaleX(0);transition:transform 180ms var(--fw-ease)}
+.satin-bow .fw-nav-link[aria-current=location]{background:#fbedf2;border-color:var(--deep)}
+.satin-bow .fw-nav-link[aria-current=location]:after{transform:scaleX(1)}
+.satin-bow .fw-fact b{transition:color 160ms,transform 160ms var(--fw-ease)}
+.satin-bow .fw-field label{transition:color 160ms}
+.satin-bow .fw-field input{caret-color:var(--deep);transition:border-color 160ms,background-color 160ms}
+.satin-bow .fw-field:focus-within label{color:var(--deep)}
+.satin-bow .fw-field:focus-within input{border-color:var(--deep);background:#fff}
+.satin-bow .fw-field input[aria-invalid=true]{border-color:#9f1746;background:#fff2f6}
+.satin-bow .fw-error:focus{outline:2px solid var(--deep);outline-offset:4px}
+.satin-bow .fw-bow-still-wrap{pointer-events:none;user-select:none}
+@media(hover:hover) and (pointer:fine){
+.satin-bow .fw-cta:hover,.satin-bow .fw-submit:hover{transform:translateY(-2px)}
+.satin-bow .fw-cta:active,.satin-bow .fw-submit:active{transform:scale(.97)}
+.satin-bow .fw-fact:hover b{color:#592038;transform:translateY(-1px)}
+}
+@media(prefers-reduced-motion:reduce){
+.satin-bow *,.satin-bow *:before,.satin-bow *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+.satin-bow .fw-cta,.satin-bow .fw-submit,.satin-bow .fw-fact b,.satin-bow .fw-hero-art,.satin-bow .fw-bow-still-wrap{transform:none!important}
+}
+.satin-bow .fw-field input:focus{outline:3px solid var(--deep);outline-offset:3px}

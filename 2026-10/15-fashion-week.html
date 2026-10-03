@@ -1,1181 +1,317 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>D-VOID Fashion Week</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-carbon: #110c0e;
-      --bg-carbon-light: #1a1416;
-      --dusty-rose: #c08a90;
-      --dusty-rose-dark: #a8767c;
-      --blush: #ebd5d8;
-      --blush-deep: #d4bfc2;
-      --smoke: #f0ecee;
-      --chrome: #b8b0ae;
-      --text-dark: #1a1416;
-      --text-smoke: #e8e2e0;
-      --text-muted: #9a908c;
-      --transition: cubic-bezier(0.16, 1, 0.3, 1);
-      --radius: 0px;
-    }
-
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
-      background: var(--bg-carbon);
-      color: var(--text-smoke);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    .serif { font-family: "Cormorant Garamond", Georgia, serif; }
-    .serif-i { font-family: "Cormorant Garamond", Georgia, serif; font-style: italic; }
-
-    ::selection { background: var(--dusty-rose); color: var(--text-dark); }
-
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--bg-carbon); }
-    ::-webkit-scrollbar-thumb { background: var(--dusty-rose); border-radius: 2px; }
-
-    /* NAV */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      height: 64px;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 24px;
-      backdrop-filter: blur(24px) saturate(180%);
-      -webkit-backdrop-filter: blur(24px) saturate(180%);
-      background: rgba(17, 12, 14, 0.82);
-      border-bottom: 1px solid rgba(192, 138, 144, 0.12);
-    }
-    .nav-logo {
-      display: flex; align-items: center;
-      text-decoration: none;
-    }
-    .nav-logo img {
-      height: 30px;
-      width: auto;
-      max-width: 90px;
-      filter: saturate(1.4) hue-rotate(-10deg) brightness(1.1);
-      transition: filter 0.3s var(--transition);
-    }
-    .nav-logo:hover img {
-      filter: saturate(1.6) hue-rotate(-10deg) brightness(1.2);
-    }
-    .nav-logo-fallback {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 22px; font-weight: 600;
-      letter-spacing: 0.15em;
-      color: var(--smoke);
-      text-decoration: none;
-      display: none;
-    }
-    .nav-cta {
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--text-dark); background: var(--dusty-rose);
-      border: none; padding: 10px 26px;
-      cursor: pointer; transition: all 0.3s var(--transition);
-      font-family: inherit; text-decoration: none;
-    }
-    .nav-cta:hover { background: var(--dusty-rose-dark); transform: translateY(-1px); }
-    .nav-cta:active { transform: scale(0.97); }
-    .nav-cta:focus-visible { outline: 2px solid var(--chrome); outline-offset: 2px; }
-
-    @media (max-width: 768px) {
-      .nav { height: 56px; padding: 0 16px; }
-      .nav-logo { font-size: 18px; }
-    }
-
-    /* HERO */
-    .hero {
-      position: relative;
-      min-height: 100dvh;
-      display: flex; flex-direction: column;
-      align-items: flex-start; justify-content: center;
-      padding: 80px 24px 40px 24px;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0; z-index: 0;
-      background:
-        radial-gradient(ellipse 70% 50% at 65% 25%, rgba(192, 138, 144, 0.1) 0%, transparent 60%),
-        linear-gradient(180deg, var(--bg-carbon) 0%, var(--bg-carbon-light) 100%);
-    }
-    .hero-image-placeholder {
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(135deg, rgba(192,138,144,0.08) 0%, rgba(184,176,174,0.04) 50%, transparent 100%);
-      background-size: cover; background-position: center;
-      filter: sepia(0.3) contrast(0.9);
-    }
-    .hero-image-placeholder::after {
-      content: ""; position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(17,12,14,0.3) 0%, rgba(17,12,14,0.7) 100%);
-    }
-    .hero-overlay {
-      position: absolute; inset: 0; z-index: 2;
-      background: radial-gradient(ellipse at 50% 80%, rgba(17,12,14,0.6) 0%, transparent 50%);
-    }
-    .hero-content { position: relative; z-index: 3; max-width: 580px; }
-    .hero-eyebrow {
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--dusty-rose); margin-bottom: 24px;
-    }
-    .hero-headline {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: clamp(44px, 9vw, 88px);
-      font-weight: 700; line-height: 1;
-      letter-spacing: -0.02em;
-      color: var(--smoke); margin-bottom: 20px;
-    }
-    .hero-headline .rose { color: var(--dusty-rose); }
-    .hero-sub {
-      font-size: 15px; font-weight: 400;
-      line-height: 1.9; color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-    .hero-sub strong { color: var(--smoke); font-weight: 600; }
-    .hero-cta-wrap { margin-top: 40px; }
-    .hero-cta {
-      display: inline-block;
-      font-size: 13px; font-weight: 700;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--text-dark); background: var(--dusty-rose);
-      border: none; padding: 16px 40px;
-      cursor: pointer; transition: all 0.3s var(--transition);
-      font-family: inherit; text-decoration: none;
-    }
-    .hero-cta:hover { background: var(--dusty-rose-dark); transform: translateY(-2px); }
-    .hero-cta:active { transform: scale(0.97) translateY(0); }
-    .hero-cta:focus-visible { outline: 2px solid var(--chrome); outline-offset: 2px; }
-    .hero-micro {
-      margin-top: 16px;
-      font-size: 12px; letter-spacing: 0.08em;
-      color: var(--text-muted); font-style: italic;
-    }
-
-    @media (max-width: 768px) {
-      .hero { padding: 72px 20px 32px 20px; align-items: center; }
-      .hero-content { text-align: center; max-width: 100%; }
-      .hero-eyebrow { margin-bottom: 16px; }
-      .hero-cta-wrap { display: flex; justify-content: center; }
-    }
-
-    /* MARQUEE */
-    .marquee-wrap {
-      position: relative;
-      background: var(--bg-carbon-light);
-      padding: 14px 0;
-      overflow: hidden;
-      border-top: 1px solid rgba(192, 138, 144, 0.1);
-      border-bottom: 1px solid rgba(192, 138, 144, 0.1);
-    }
-    .marquee-track {
-      display: flex; gap: 48px;
-      white-space: nowrap;
-      animation: marquee 30s linear infinite;
-      will-change: transform;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .marquee-track { animation: none; display: flex; overflow-x: auto; }
-    }
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .marquee-item {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 15px; font-weight: 400; font-style: italic;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      display: inline-flex; align-items: center; gap: 16px;
-    }
-    .marquee-item::after { content: "\2022"; color: var(--dusty-rose); font-size: 12px; font-style: normal; }
-    .marquee-item:last-child::after { display: none; }
-
-    /* CONCEPTO */
-    .concepto {
-      padding: 120px 24px;
-      background: var(--blush);
-      color: var(--text-dark);
-    }
-    .concepto-inner { max-width: 680px; margin: 0 auto; }
-    .concepto-headline {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: clamp(38px, 8vw, 70px);
-      font-weight: 700; line-height: 1.1;
-      letter-spacing: -0.01em;
-      color: var(--text-dark); margin-bottom: 28px;
-    }
-    .concepto-body {
-      font-size: 15px; line-height: 1.9;
-      color: var(--text-dark); margin-bottom: 20px;
-      font-style: italic;
-      letter-spacing: 0.01em;
-    }
-    .concepto-body strong { font-weight: 700; font-style: normal; }
-    .concepto-highlight {
-      margin-top: 36px; padding: 28px 32px;
-      background: rgba(192, 138, 144, 0.1);
-      border-top: 1px solid var(--dusty-rose-dark);
-      border-bottom: 1px solid var(--dusty-rose-dark);
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 18px; font-style: italic;
-      line-height: 1.6; color: var(--text-dark);
-    }
-    .concepto-highlight .label {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-      font-size: 10px; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--dusty-rose); display: block;
-      margin-bottom: 12px;
-    }
-
-    @media (max-width: 768px) {
-      .concepto { padding: 80px 20px; }
-      .concepto-highlight { padding: 20px; font-size: 17px; }
-    }
-
-    /* COMO FUNCIONA */
-    .como-funciona {
-      padding: 120px 24px;
-      background: var(--bg-carbon);
-      color: var(--text-smoke);
-    }
-    .como-inner { max-width: 760px; margin: 0 auto; }
-    .timeline { position: relative; }
-    .timeline::before {
-      content: ""; position: absolute;
-      left: 24px; top: 0; bottom: 0;
-      width: 1px; background: rgba(192, 138, 144, 0.15);
-    }
-    @media (max-width: 768px) {
-      .timeline::before { left: 16px; }
-    }
-    .timeline-item {
-      position: relative;
-      padding-left: 64px;
-      margin-bottom: 44px;
-      opacity: 0;
-      transform: translateY(24px);
-      transition: all 0.8s var(--transition);
-    }
-    .timeline-item.revealed { opacity: 1; transform: translateY(0); }
-    .timeline-item:last-child { margin-bottom: 0; }
-    .timeline-dot {
-      position: absolute; left: 17px; top: 8px;
-      width: 14px; height: 14px;
-      background: var(--dusty-rose);
-      border-radius: 50%;
-      border: 3px solid var(--bg-carbon);
-      z-index: 1;
-    }
-    @media (max-width: 768px) {
-      .timeline-dot { left: 11px; width: 12px; height: 12px; top: 6px; }
-    }
-    .timeline-block {
-      background: rgba(192, 138, 144, 0.06);
-      border: 1px solid rgba(192, 138, 144, 0.12);
-      padding: 28px 32px;
-      transition: border-color 0.3s var(--transition);
-    }
-    .timeline-block:hover { border-color: rgba(192, 138, 144, 0.35); }
-    .timeline-time {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 28px; font-weight: 700;
-      color: var(--dusty-rose); margin-bottom: 8px;
-    }
-    .timeline-title {
-      font-size: 15px; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      margin-bottom: 6px; color: var(--smoke);
-    }
-    .timeline-detail {
-      font-size: 14px; color: var(--text-muted); line-height: 1.6;
-    }
-    .timeline-detail strong { color: var(--text-smoke); }
-
-    @media (max-width: 768px) {
-      .timeline-item { padding-left: 48px; }
-      .timeline-block { padding: 20px; }
-      .timeline-time { font-size: 22px; }
-    }
-
-    /* THE EXPERIENCE */
-    .experience {
-      padding: 120px 24px;
-      background: var(--bg-carbon-light);
-      color: var(--text-smoke);
-    }
-    .experience-inner { max-width: 1000px; margin: 0 auto; }
-    .experience-headline {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: clamp(34px, 7vw, 60px);
-      font-weight: 700; line-height: 1;
-      letter-spacing: -0.01em;
-      margin-bottom: 56px;
-      text-align: center;
-      color: var(--smoke);
-    }
-    .experience-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    .exp-card {
-      position: relative;
-      overflow: hidden;
-      background: var(--bg-carbon);
-      border: 1px solid rgba(192, 138, 144, 0.1);
-      aspect-ratio: 3/4;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: flex-end;
-      padding: 28px;
-      cursor: pointer;
-      transition: all 0.5s var(--transition);
-      opacity: 0;
-      transform: translateY(32px);
-    }
-    .exp-card.revealed { opacity: 1; transform: translateY(0); }
-    .exp-card:hover { transform: scale(1.02); }
-    .exp-card:active { transform: scale(0.98); }
-    .exp-card-bg {
-      position: absolute; inset: 0; z-index: 0;
-      background-size: cover; background-position: center;
-      filter: sepia(0.25) contrast(0.85) brightness(0.6);
-      opacity: 0.4;
-      transition: opacity 0.5s var(--transition);
-    }
-    .exp-card:hover .exp-card-bg { opacity: 0.6; }
-    .exp-card-overlay {
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(to top, rgba(17,12,14,0.75) 0%, transparent 40%);
-    }
-    .exp-card-content { position: relative; z-index: 2; text-align: center; }
-    .exp-card-num {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 52px; font-weight: 700;
-      color: var(--dusty-rose); line-height: 1;
-      margin-bottom: 8px;
-    }
-    .exp-card-label {
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--chrome);
-    }
-
-    @media (max-width: 768px) {
-      .experience { padding: 80px 20px; }
-      .experience-grid { grid-template-columns: 1fr; gap: 16px; }
-      .exp-card { aspect-ratio: 4/3; }
-      .exp-card-num { font-size: 40px; }
-    }
-
-    /* DRESS CODE */
-    .dress-code {
-      padding: 120px 24px;
-      background: var(--bg-carbon);
-      color: var(--text-smoke);
-    }
-    .dress-inner { max-width: 900px; margin: 0 auto; }
-    .dress-headline {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: clamp(30px, 7vw, 52px);
-      font-weight: 700; line-height: 1.1;
-      letter-spacing: -0.01em;
-      margin-bottom: 20px;
-      text-align: center;
-      color: var(--smoke);
-    }
-    .dress-headline .rose { color: var(--dusty-rose); }
-    .dress-body {
-      font-size: 15px; line-height: 1.8;
-      color: var(--text-muted); text-align: center;
-      max-width: 520px; margin: 0 auto 44px;
-    }
-    .moodboard {
-      display: flex; gap: 14px;
-      overflow-x: auto; scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 12px;
-      scrollbar-width: none;
-    }
-    .moodboard::-webkit-scrollbar { display: none; }
-    .moodboard-item {
-      flex-shrink: 0;
-      width: 250px; height: 330px;
-      scroll-snap-align: start;
-      background-size: cover; background-position: center;
-      position: relative;
-      border: 1px solid rgba(192, 138, 144, 0.12);
-      transition: transform 0.5s var(--transition);
-      filter: sepia(0.2) contrast(0.85) brightness(0.55);
-    }
-    .moodboard-item:hover { transform: scale(1.03); }
-    .moodboard-item::after {
-      content: ""; position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(17,12,14,0.5) 0%, transparent 35%);
-    }
-
-    @media (max-width: 768px) {
-      .dress-code { padding: 80px 20px; }
-      .moodboard-item { width: 210px; height: 280px; }
-    }
-
-    /* GUEST ENTRY CARD */
-    .guest-entry {
-      display: none;
-      text-align: center;
-      padding: 40px 28px;
-    }
-    .guest-entry.visible { display: block; }
-    .guest-entry-badge {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--dusty-rose);
-      border: 1px solid var(--dusty-rose);
-      padding: 6px 18px;
-      display: inline-block;
-      margin-bottom: 24px;
-    }
-    .guest-entry-title {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 36px; font-weight: 700;
-      color: var(--smoke); margin-bottom: 4px;
-      letter-spacing: -0.01em;
-    }
-    .guest-entry-subtitle {
-      font-size: 13px; color: var(--text-muted);
-      letter-spacing: 0.1em; text-transform: uppercase;
-      margin-bottom: 32px;
-    }
-    .guest-entry-card {
-      background: rgba(192, 138, 144, 0.06);
-      border: 1px solid rgba(192, 138, 144, 0.15);
-      padding: 32px;
-      position: relative;
-      overflow: hidden;
-    }
-    .guest-entry-card::before {
-      content: ""; position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--dusty-rose), transparent);
-    }
-    .guest-entry-name {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 28px; font-weight: 700;
-      color: var(--dusty-rose); margin-bottom: 8px;
-    }
-    .guest-entry-detail {
-      font-size: 14px; color: var(--text-muted);
-      line-height: 1.8; margin-bottom: 24px;
-    }
-    .guest-entry-detail strong { color: var(--smoke); }
-    .entry-type-badge {
-      display: inline-block;
-      font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--text-dark);
-      background: var(--dusty-rose); padding: 6px 16px;
-      border-radius: 2px; margin-bottom: 12px;
-    }
-    .guest-entry-qr {
-      display: flex; justify-content: center;
-      margin: 28px 0;
-    }
-    .guest-entry-qr svg {
-      width: 140px; height: 140px;
-      background: var(--smoke);
-      border-radius: 4px;
-    }
-    .guest-entry-instructions {
-      font-size: 12px; color: var(--text-muted);
-      line-height: 1.8; margin-top: 24px;
-      border-top: 1px solid rgba(192, 138, 144, 0.1);
-      padding-top: 20px;
-    }
-    .guest-entry-instructions strong { color: var(--smoke); }
-    .guest-entry-whatsapp {
-      display: inline-block;
-      margin-top: 20px;
-      font-size: 12px; font-weight: 600;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--smoke); background: transparent;
-      border: 1px solid var(--dusty-rose); padding: 12px 28px;
-      text-decoration: none; transition: all 0.3s var(--transition);
-    }
-    .guest-entry-whatsapp:hover { background: var(--dusty-rose); color: var(--text-dark); }
-    .guest-entry-whatsapp:active { transform: scale(0.97); }
-
-    @media (max-width: 768px) {
-      .guest-entry { padding: 28px 20px; }
-      .guest-entry-title { font-size: 28px; }
-      .guest-entry-name { font-size: 22px; }
-    }
-    .registro {
-      padding: 120px 24px;
-      background: var(--bg-carbon);
-      color: var(--text-smoke);
-    }
-    .registro-inner { max-width: 480px; margin: 0 auto; }
-    .registro-headline {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: clamp(34px, 7vw, 56px);
-      font-weight: 700; line-height: 1.1;
-      letter-spacing: -0.01em;
-      margin-bottom: 6px;
-      text-align: center;
-      color: var(--smoke);
-    }
-    .registro-sub {
-      font-size: 14px; color: var(--text-muted);
-      text-align: center; margin-bottom: 36px; line-height: 1.6;
-    }
-    .form-glass {
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      background: rgba(17, 12, 14, 0.6);
-      border: 1px solid rgba(192, 138, 144, 0.12);
-      border-radius: var(--radius);
-      padding: 32px 28px;
-    }
-    .form-group { margin-bottom: 18px; }
-    .form-label {
-      display: block; font-size: 10px; font-weight: 600;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--dusty-rose); margin-bottom: 7px;
-    }
-    .form-input {
-      width: 100%;
-      font-size: 15px; font-family: inherit;
-      color: var(--smoke);
-      background: transparent;
-      border: none; border-bottom: 1px solid rgba(192, 138, 144, 0.2);
-      padding: 12px 0; outline: none;
-      transition: border-color 0.3s var(--transition);
-    }
-    .form-input:focus { border-bottom-color: var(--dusty-rose); }
-    .form-input::placeholder { color: rgba(192, 138, 144, 0.3); }
-    .form-input:invalid { border-bottom-color: rgba(192, 138, 144, 0.4); }
-    .form-select {
-      width: 100%;
-      font-size: 15px; font-family: inherit;
-      color: var(--smoke);
-      background: transparent;
-      border: none; border-bottom: 1px solid rgba(192, 138, 144, 0.2);
-      padding: 12px 0; outline: none;
-      appearance: none; -webkit-appearance: none;
-      cursor: pointer;
-      transition: border-color 0.3s var(--transition);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c08a90' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 0 top 50%;
-    }
-    .form-select:focus { border-bottom-color: var(--dusty-rose); }
-    .form-select option { background: var(--bg-carbon); color: var(--smoke); }
-    .radio-group {
-      display: flex; gap: 12px;
-    }
-    .radio-label {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 14px; color: var(--smoke);
-      cursor: pointer; padding: 10px 18px;
-      border: 1px solid rgba(192, 138, 144, 0.2);
-      transition: all 0.3s var(--transition);
-      letter-spacing: 0.05em;
-    }
-    .radio-label:hover { border-color: var(--dusty-rose); }
-    .radio-label:has(input:checked) {
-      border-color: var(--dusty-rose); background: rgba(192, 138, 144, 0.1);
-    }
-    .radio-label input[type="radio"] {
-      appearance: none; -webkit-appearance: none;
-      width: 14px; height: 14px;
-      border: 1px solid var(--dusty-rose);
-      border-radius: 50%; cursor: pointer;
-      position: relative;
-    }
-    .radio-label input[type="radio"]:checked::after {
-      content: ""; position: absolute;
-      top: 2px; left: 2px; width: 8px; height: 8px;
-      background: var(--dusty-rose); border-radius: 50%;
-    }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    @media (max-width: 480px) {
-      .form-row { grid-template-columns: 1fr; }
-    }
-    .form-submit {
-      width: 100%; margin-top: 28px;
-      font-size: 13px; font-weight: 700;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--text-dark); background: var(--dusty-rose);
-      border: none; padding: 16px;
-      cursor: pointer; transition: all 0.3s var(--transition);
-      font-family: inherit;
-    }
-    .form-submit:hover { background: var(--dusty-rose-dark); transform: translateY(-1px); }
-    .form-submit:active { transform: scale(0.98) translateY(0); }
-    .form-submit:focus-visible { outline: 2px solid var(--chrome); outline-offset: 2px; }
-    .form-hint {
-      font-size: 11px; color: var(--text-muted);
-      margin-top: 4px; line-height: 1.5;
-    }
-    /* GUEST ENTRY */
-    .guest-entry {
-      display: none;
-      text-align: center;
-      padding: 40px 28px;
-    }
-    .guest-entry.visible { display: block; }
-    .guest-entry-badge {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--dusty-rose);
-      border: 1px solid var(--dusty-rose);
-      padding: 6px 18px;
-      display: inline-block;
-      margin-bottom: 24px;
-    }
-    .guest-entry-title {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 36px; font-weight: 700;
-      color: var(--smoke); margin-bottom: 4px;
-      letter-spacing: -0.01em;
-    }
-    .guest-entry-subtitle {
-      font-size: 13px; color: var(--text-muted);
-      letter-spacing: 0.1em; text-transform: uppercase;
-      margin-bottom: 32px;
-    }
-    .guest-entry-card {
-      background: rgba(192, 138, 144, 0.06);
-      border: 1px solid rgba(192, 138, 144, 0.15);
-      padding: 32px;
-      position: relative;
-      overflow: hidden;
-    }
-    .guest-entry-card::before {
-      content: ""; position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--dusty-rose), transparent);
-    }
-    .guest-entry-name {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 28px; font-weight: 700;
-      color: var(--dusty-rose); margin-bottom: 8px;
-    }
-    .guest-entry-detail {
-      font-size: 14px; color: var(--text-muted);
-      line-height: 1.8; margin-bottom: 24px;
-    }
-    .guest-entry-detail strong { color: var(--smoke); }
-    .entry-type-badge {
-      display: inline-block;
-      font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--text-dark);
-      background: var(--dusty-rose); padding: 6px 16px;
-      border-radius: 2px; margin-bottom: 12px;
-    }
-    .guest-entry-qr {
-      display: flex; justify-content: center;
-      margin: 28px 0;
-    }
-    .guest-entry-qr svg {
-      width: 140px; height: 140px;
-      background: var(--smoke);
-      border-radius: 4px;
-    }
-    .guest-entry-instructions {
-      font-size: 12px; color: var(--text-muted);
-      line-height: 1.8; margin-top: 24px;
-      border-top: 1px solid rgba(192, 138, 144, 0.1);
-      padding-top: 20px;
-    }
-    .guest-entry-instructions strong { color: var(--smoke); }
-    .guest-entry-whatsapp {
-      display: inline-block;
-      margin-top: 20px;
-      font-size: 12px; font-weight: 600;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--smoke); background: transparent;
-      border: 1px solid var(--dusty-rose); padding: 12px 28px;
-      text-decoration: none; transition: all 0.3s var(--transition);
-    }
-    .guest-entry-whatsapp:hover { background: var(--dusty-rose); color: var(--text-dark); }
-    .guest-entry-whatsapp:active { transform: scale(0.97); }
-    .guest-entry-download {
-      display: inline-block;
-      margin-top: 20px;
-      font-size: 12px; font-weight: 600;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--text-dark); background: var(--smoke);
-      border: none; padding: 12px 28px;
-      cursor: pointer; transition: all 0.3s var(--transition);
-    }
-    .guest-entry-download:hover { background: var(--dusty-rose); color: var(--text); }
-    .guest-entry-download:active { transform: scale(0.97); }
-
-    @media (max-width: 768px) {
-      .guest-entry { padding: 28px 20px; }
-      .guest-entry-title { font-size: 28px; }
-      .guest-entry-name { font-size: 22px; }
-    }
-
-    @media (max-width: 768px) {
-      .registro { padding: 80px 20px; }
-      .registro-headline { margin-bottom: 4px; }
-      .form-glass { padding: 24px 20px; }
-    }
-
-    /* FOOTER */
-    .footer {
-      padding: 36px 24px;
-      background: var(--bg-carbon);
-      border-top: 1px solid rgba(192, 138, 144, 0.08);
-      text-align: center;
-    }
-    .footer-text {
-      font-size: 10px; letter-spacing: 0.1em;
-      color: var(--text-muted); text-transform: uppercase;
-    }
-    .footer-accent { color: var(--dusty-rose); }
-
-    /* SCROLL REVEAL */
-    [data-reveal] {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
-    }
-    [data-reveal].revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* PREFERS REDUCED MOTION */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-      [data-reveal] { opacity: 1; transform: none; }
-      .timeline-item { opacity: 1; transform: none; }
-      .exp-card { opacity: 1; transform: none; }
-      .guest-entry { animation: none !important; opacity: 1 !important; transform: none !important; }
-    }
-
-    @keyframes printReveal {
-      0% { opacity: 0; transform: scale(0.92) translateY(24px); }
-      40% { opacity: 1; transform: scale(1.02) translateY(-4px); }
-      100% { opacity: 1; transform: scale(1) translateY(0); }
-    }
-
-    .guest-entry.visible {
-      display: block;
-      animation: printReveal 0.7s var(--transition) forwards;
-    }
-
-    /* LOADER */
-    .loader {
-      position: fixed; inset: 0; z-index: 9999;
-      background: var(--bg-carbon);
-      display: flex; align-items: center; justify-content: center;
-      transition: opacity 0.6s var(--transition);
-    }
-    .loader.hidden { opacity: 0; pointer-events: none; }
-    .loader-text {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 22px; letter-spacing: 0.3em;
-      color: var(--dusty-rose);
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Loader -->
-  <div class="loader" id="loader">
-    <div class="loader-text">DV</div>
-  </div>
-
-  <!-- Navigation -->
-  <nav class="nav" role="navigation" aria-label="Main navigation">
-    <a href="#" class="nav-logo" aria-label="D-VOID home">
-      <img src="/Resources/DVOID/dvoid-logo.png" alt="D-VOID" width="80" height="30" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-      <span class="nav-logo-fallback">D-<span style="color:var(--dusty-rose)">VOID</span></span>
-    </a>
-    <a href="#registro" class="nav-cta">GET ON THE LIST</a>
-  </nav>
-
-  <!-- Hero -->
-  <section class="hero" id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-image-placeholder" role="img" aria-label="Fashion editorial background"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-eyebrow">EVENTO · OCTUBRE</p>
-      <h1 class="hero-headline">D-VOID<br><span class="rose">FASHION WEEK</span></h1>
-      <p class="hero-sub"><strong>GIRLS ONLY UNTIL 11 PM</strong><br>JUEVES 15 OCT · 21H00 · D-VOID Av. República</p>
-      <div class="hero-cta-wrap">
-        <a href="#registro" class="hero-cta">GET ON THE LIST</a>
-      </div>
-      <p class="hero-micro">Dress to impress.</p>
-    </div>
-  </section>
-
-  <!-- Marquee -->
-  <div class="marquee-wrap" aria-hidden="true">
-    <div class="marquee-track" id="marqueeTrack">
-      <span class="marquee-item">GET READY WITH US</span>
-      <span class="marquee-item">GIRLS TAKE OVER</span>
-      <span class="marquee-item">DRESS TO IMPRESS</span>
-      <span class="marquee-item">SEE YOU AT 9</span>
-      <span class="marquee-item">AFTER 11, EVERYONE'S INVITED</span>
-      <span class="marquee-item">GET READY WITH US</span>
-      <span class="marquee-item">GIRLS TAKE OVER</span>
-      <span class="marquee-item">DRESS TO IMPRESS</span>
-      <span class="marquee-item">SEE YOU AT 9</span>
-      <span class="marquee-item">AFTER 11, EVERYONE'S INVITED</span>
-    </div>
-  </div>
-
-  <!-- Concepto -->
-  <section class="concepto" id="concepto">
-    <div class="concepto-inner" data-reveal>
-      <h2 class="concepto-headline">THIS ONE'S FOR THE GIRLS.</h2>
-      <p class="concepto-body">
-        Una noche para sacar ese outfit que tienes guardado, venir con tus amigas o llegar sola y conocer nuevas.<br>
-        <strong>Fashion. Drinks. Music. New girls.</strong><br>
-        One night at D-VOID.
-      </p>
-      <div class="concepto-highlight">
-        <span class="label">Detalle</span>
-        Hasta las 23H00, Girls Only. Despu&eacute;s, la noche se abre para todos.
-      </div>
-    </div>
-  </section>
-
-  <!-- Como Funciona -->
-  <section class="como-funciona" id="como-funciona">
-    <div class="como-inner" data-reveal>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-block">
-            <p class="timeline-time">21H00</p>
-            <p class="timeline-title">THE GIRLS TAKE OVER</p>
-            <p class="timeline-detail">Hasta las 23H00 · Girls Only · Cover chicas: <strong>$10</strong></p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-block">
-            <p class="timeline-time">23H00</p>
-            <p class="timeline-title">LATE · EVERYONE'S INVITED</p>
-            <p class="timeline-detail">Open door · Cover general: <strong>$15</strong></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- The Experience -->
-  <section class="experience" id="experience">
-    <div class="experience-inner" data-reveal>
-      <h2 class="experience-headline">THE EXPERIENCE</h2>
-      <div class="experience-grid">
-        <div class="exp-card">
-          <div class="exp-card-bg" style="background-image: url('https://picsum.photos/seed/dvoid-exp1/600/800.jpg');"></div>
-          <div class="exp-card-overlay"></div>
-          <div class="exp-card-content">
-            <p class="exp-card-num">01</p>
-            <p class="exp-card-label">BACKSTAGE VIBES</p>
-          </div>
-        </div>
-        <div class="exp-card">
-          <div class="exp-card-bg" style="background-image: url('https://picsum.photos/seed/dvoid-exp2/600/800.jpg');"></div>
-          <div class="exp-card-overlay"></div>
-          <div class="exp-card-content">
-            <p class="exp-card-num">02</p>
-            <p class="exp-card-label">THE CROWD</p>
-          </div>
-        </div>
-        <div class="exp-card">
-          <div class="exp-card-bg" style="background-image: url('https://picsum.photos/seed/dvoid-exp3/600/800.jpg');"></div>
-          <div class="exp-card-overlay"></div>
-          <div class="exp-card-content">
-            <p class="exp-card-num">03</p>
-            <p class="exp-card-label">MUSIC & DRINKS</p>
-          </div>
-        </div>
-        <div class="exp-card">
-          <div class="exp-card-bg" style="background-image: url('https://picsum.photos/seed/dvoid-exp4/600/800.jpg');"></div>
-          <div class="exp-card-overlay"></div>
-          <div class="exp-card-content">
-            <p class="exp-card-num">04</p>
-            <p class="exp-card-label">AFTER PARTY</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Dress Code -->
-  <section class="dress-code" id="dress-code">
-    <div class="dress-inner" data-reveal>
-      <h2 class="dress-headline">YOUR BEST LOOK HAS PLANS.<br><span class="rose">DRESS TO IMPRESS.</span></h2>
-      <p class="dress-body">
-        No necesitas venir de rosa. Solo queremos que saques ese outfit que estabas esperando una excusa para usar.
-      </p>
-      <div class="moodboard" role="list" aria-label="Dress code moodboard">
-        <div class="moodboard-item" style="background-image: url('https://picsum.photos/seed/dvoid-mood1/500/660.jpg');" role="listitem" aria-label="Outfit inspiration"></div>
-        <div class="moodboard-item" style="background-image: url('https://picsum.photos/seed/dvoid-mood2/500/660.jpg');" role="listitem" aria-label="Outfit inspiration"></div>
-        <div class="moodboard-item" style="background-image: url('https://picsum.photos/seed/dvoid-mood3/500/660.jpg');" role="listitem" aria-label="Outfit inspiration"></div>
-        <div class="moodboard-item" style="background-image: url('https://picsum.photos/seed/dvoid-mood4/500/660.jpg');" role="listitem" aria-label="Outfit inspiration"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Registro -->
-  <section class="registro" id="registro">
-    <div class="registro-inner" data-reveal>
-      <h2 class="registro-headline">YOU'RE ON THE LIST?</h2>
-      <p class="registro-sub">Regístrate para D-VOID Fashion Week.</p>
-
-      <div class="form-glass">
-        <form id="registroForm" novalidate>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="nombre">Nombre</label>
-              <input class="form-input" type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="apellido">Apellido</label>
-              <input class="form-input" type="text" id="apellido" name="apellido" placeholder="Tu apellido" required>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="whatsapp">WhatsApp</label>
-            <input class="form-input" type="tel" id="whatsapp" name="whatsapp" placeholder="+1234567890" required>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="edad">Edad</label>
-              <input class="form-input" type="number" id="edad" name="edad" placeholder="Tu edad" min="18" max="100" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="instagram">Instagram</label>
-              <input class="form-input" type="text" id="instagram" name="instagram" placeholder="@tuhandle" required>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Vienes sola o con amigas</label>
-            <div class="radio-group">
-              <label class="radio-label">
-                <input type="radio" name="acompaniante" value="sola" required>
-                <span>Sola</span>
-              </label>
-              <label class="radio-label">
-                <input type="radio" name="acompaniante" value="amigas" required>
-                <span>Con amigas</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="form-group" id="grupoGroup" style="display:none;">
-            <label class="form-label" for="grupo">Cuántas personas vienen contigo</label>
-            <input class="form-input" type="number" id="grupo" name="grupo" placeholder="Número de asistentes" min="1" max="20" required>
-          </div>
-
-          <button type="submit" class="form-submit">I'M IN</button>
-          <p class="form-hint">Al registrarte confirmas tu asistencia. Cover aplica en puerta.</p>
-        </form>
-
-        <div class="guest-entry" id="successMessage">
-          <span class="guest-entry-badge">Special Guest</span>
-          <h2 class="guest-entry-title">ENTRADA CONFIRMADA</h2>
-          <p class="guest-entry-subtitle">Tu pase de revista</p>
-          <div class="guest-entry-card">
-            <p class="guest-entry-name" id="guestName"></p>
-            <p class="guest-entry-detail" id="guestDetail"></p>
-            <div class="guest-entry-qr">
-              <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-                <rect width="140" height="140" fill="#f0ecee"/>
-                <rect x="10" y="10" width="40" height="40" rx="3" fill="#1a1416"/>
-                <rect x="15" y="15" width="30" height="30" rx="2" fill="#f0ecee"/>
-                <rect x="20" y="20" width="20" height="20" rx="1" fill="#1a1416"/>
-                <rect x="90" y="10" width="40" height="40" rx="3" fill="#1a1416"/>
-                <rect x="95" y="15" width="30" height="30" rx="2" fill="#f0ecee"/>
-                <rect x="100" y="20" width="20" height="20" rx="1" fill="#1a1416"/>
-                <rect x="10" y="90" width="40" height="40" rx="3" fill="#1a1416"/>
-                <rect x="15" y="95" width="30" height="30" rx="2" fill="#f0ecee"/>
-                <rect x="20" y="100" width="20" height="20" rx="1" fill="#1a1416"/>
-                <rect x="55" y="10" width="10" height="10" fill="#1a1416"/>
-                <rect x="70" y="10" width="10" height="10" fill="#1a1416"/>
-                <rect x="55" y="25" width="10" height="10" fill="#1a1416"/>
-                <rect x="70" y="25" width="10" height="10" fill="#1a1416"/>
-                <rect x="55" y="40" width="10" height="10" fill="#1a1416"/>
-                <rect x="70" y="40" width="10" height="10" fill="#1a1416"/>
-                <rect x="55" y="55" width="10" height="10" fill="#1a1416"/>
-                <rect x="70" y="55" width="10" height="10" fill="#1a1416"/>
-                <rect x="90" y="55" width="10" height="10" fill="#1a1416"/>
-                <rect x="105" y="55" width="10" height="10" fill="#1a1416"/>
-                <rect x="90" y="70" width="10" height="10" fill="#1a1416"/>
-                <rect x="105" y="70" width="10" height="10" fill="#1a1416"/>
-                <rect x="120" y="10" width="10" height="10" fill="#1a1416"/>
-                <rect x="120" y="25" width="10" height="10" fill="#1a1416"/>
-                <rect x="120" y="40" width="10" height="10" fill="#1a1416"/>
-                <rect x="120" y="55" width="10" height="10" fill="#1a1416"/>
-                <rect x="120" y="70" width="10" height="10" fill="#1a1416"/>
-                <rect x="120" y="85" width="10" height="10" fill="#1a1416"/>
-                <rect x="120" y="100" width="10" height="10" fill="#1a1416"/>
-                <rect x="120" y="115" width="10" height="10" fill="#1a1416"/>
-                <rect x="120" y="125" width="10" height="5" fill="#1a1416"/>
-                <rect x="10" y="125" width="10" height="5" fill="#1a1416"/>
-                <rect x="55" y="125" width="10" height="5" fill="#1a1416"/>
-                <rect x="90" y="125" width="10" height="5" fill="#1a1416"/>
-                <rect x="125" y="125" width="5" height="10" fill="#1a1416"/>
-                <rect x="10" y="125" width="5" height="10" fill="#1a1416"/>
-                <rect x="55" y="125" width="5" height="10" fill="#1a1416"/>
-                <rect x="90" y="125" width="5" height="10" fill="#1a1416"/>
-                <rect x="75" y="90" width="30" height="30" rx="2" fill="#1a1416"/>
-                <rect x="80" y="95" width="20" height="20" rx="1" fill="#f0ecee"/>
-                <rect x="85" y="100" width="10" height="10" fill="#1a1416"/>
-                <rect x="110" y="90" width="10" height="10" fill="#1a1416"/>
-                <rect x="110" y="110" width="10" height="10" fill="#1a1416"/>
-                <rect x="110" y="125" width="10" height="10" fill="#1a1416"/>
-              </svg>
-            </div>
-            <p class="guest-entry-instructions">
-              Presenta tu entrada en puerta.<br>
-              <strong>Jueves 15 de octubre · 21H00</strong><br>
-              D-VOID · Av. República
-            </p>
-                        <button class="guest-entry-download" id="downloadEntry">Descarga tu entrada</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <p class="footer-text">D-<span class="footer-accent">VOID</span> Fashion Week · Jueves 15 Oct · 21H00</p>
-  </footer>
-
-  <script>
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('loader').classList.add('hidden');
-      }, 600);
-    });
-
-    var revealElements = document.querySelectorAll('[data-reveal], .timeline-item, .exp-card');
-    var revealObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-
-    revealElements.forEach(function(el) {
-      revealObserver.observe(el);
-    });
-
-    var timelineItems = document.querySelectorAll('.timeline-item');
-    timelineItems.forEach(function(item, i) {
-      item.style.transitionDelay = (i * 0.15) + 's';
-    });
-
-    var expCards = document.querySelectorAll('.exp-card');
-    expCards.forEach(function(card, i) {
-      card.style.transitionDelay = (i * 0.12) + 's';
-    });
-
-    var form = document.getElementById('registroForm');
-    var successMessage = document.getElementById('successMessage');
-    var grupoGroup = document.getElementById('grupoGroup');
-    var radioInputs = document.querySelectorAll('input[name="acompaniante"]');
-
-    radioInputs.forEach(function(radio) {
-      radio.addEventListener('change', function() {
-        var grupoInput = grupoGroup.querySelector('input');
-        if (radio.value === 'amigas') {
-          grupoGroup.style.display = 'block';
-          grupoInput.setAttribute('required', 'required');
-        } else {
-          grupoGroup.style.display = 'none';
-          grupoInput.removeAttribute('required');
-          grupoInput.value = '';
-        }
-      });
-    });
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var nombre = document.getElementById('nombre').value;
-      var apellido = document.getElementById('apellido').value;
-      var acompaniante = document.querySelector('input[name="acompaniante"]:checked');
-      var grupoInput = document.getElementById('grupo');
-      var numAsistentes = grupoInput ? grupoInput.value : '';
-      var guestNameEl = document.getElementById('guestName');
-      var guestDetailEl = document.getElementById('guestDetail');
-      guestNameEl.textContent = nombre + ' ' + apellido;
-      if (acompaniante && acompaniante.value === 'sola') {
-        guestDetailEl.innerHTML = '<span class="entry-type-badge">ENTRADA UNICA</span>';
-      } else {
-        guestDetailEl.innerHTML = '<span class="entry-type-badge">ENTRADA GRUPAL</span>' + (numAsistentes ? ' · ' + numAsistentes + ' personas' : '');
-      }
-      form.style.display = 'none';
-      successMessage.classList.add('visible');
-      var registroInner = document.querySelector('.registro-inner');
-      if (registroInner) registroInner.classList.add('revealed');
-      successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
-
-    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        var target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-
-    document.getElementById('downloadEntry').addEventListener('click', function() {
-      var btn = document.getElementById('downloadEntry');
-      btn.style.display = 'none';
-      html2canvas(document.getElementById('successMessage'), {
-        backgroundColor: '#110c0e',
-        scale: 2,
-        useCORS: true
-      }).then(function(canvas) {
-        btn.style.display = 'inline-block';
-        var link = document.createElement('a');
-        link.download = 'dvoid-entrada.jpg';
-        link.href = canvas.toDataURL('image/jpeg', 0.95);
-        link.click();
-      });
-    });
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-</body>
-</html>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="D-VOID Fashion Week · Satin Bow"><link rel="icon" href="../Resources/events/2026-10-15-fashion-week/assets/favicon.svg" type="image/svg+xml"><title>Satin Bow · D-VOID Fashion Week</title><link rel="stylesheet" href="../Resources/events/2026-10-15-fashion-week/styles/base.css"><link rel="stylesheet" href="../Resources/events/2026-10-15-fashion-week/styles/satin-refinements.css"><link rel="stylesheet" href="../Resources/events/2026-10-15-fashion-week/styles/satin-bow-composition.css"><link rel="stylesheet" href="../Resources/events/2026-10-15-fashion-week/styles/satin-bow-motion.css"><link rel="stylesheet" href="../Resources/events/2026-10-15-fashion-week/styles/satin-bow-ui.css"><link rel="stylesheet" href="../Resources/events/2026-10-15-fashion-week/styles/satin-bow-invitation.css"></head><body><div class="fw-shell satin-refine satin-bow" id="fw-satin-bow"><a class="fw-skip" href="#registro">Saltar al registro</a><nav class="fw-nav" aria-label="Navegación de Fashion Week"><a class="fw-brand" href="#inicio" data-smooth aria-label="D-VOID, inicio"><img src="../Resources/DVOID/dvoid-logo-black.png" alt="D-VOID" width="1290" height="568"></a><a class="fw-nav-link" href="#registro" data-smooth>Lista</a></nav><main><section class="fw-hero" id="inicio"><div class="fw-hero-copy"><span class="fw-css-ribbon" aria-hidden="true"></span><p class="fw-kicker">D-VOID · <span class="fw-age-tag">+21</span></p><h1 class="fw-title">Fashion<br><em>Week</em></h1><div class="fw-meta"><span class="fw-date-tag">Jueves 15 de octubre</span><span>Entrada 21h30</span></div><span class="fw-ui-rule" aria-hidden="true"></span><p class="fw-lede"><span class="fw-girls-note">Girls Night hasta las 23h00.</span> <span class="fw-after-note">Después, la noche se abre para todos.</span></p><a class="fw-cta" href="#registro" data-smooth>Quiero estar en la lista</a></div><div class="fw-hero-art" aria-hidden="true"><img src="../Resources/events/2026-10-15-fashion-week/assets/bow.webp" alt="" width="1048" height="962" fetchpriority="high"></div></section><section class="fw-section fw-bow-concept"><div class="fw-bow-concept-copy"><p class="fw-kicker">Una invitación abierta</p><h2>Tu entrada tiene su propio gesto.</h2><p>Una noche para vestir tu propia versión de la pasarela. Ven con tus amigas o llega sola y conoce nuevas.</p><p><strong>Dress to impress.</strong> Elige el detalle que te represente.</p><span class="fw-ui-rule" aria-hidden="true"></span></div><div class="fw-bow-still-wrap" aria-hidden="true"><img class="fw-bow-still" src="../Resources/events/2026-10-15-fashion-week/assets/cocktail-shoes.webp" alt="" aria-hidden="true" width="1048" height="962" loading="lazy"></div></section><section class="fw-section fw-dress" id="dress-code" aria-labelledby="dress-title"><div class="fw-dress-heading"><h2 id="dress-title">Your best look<br>has plans.<br><em>Dress to impress.</em></h2></div><div class="fw-dress-copy"><span class="fw-ui-rule" aria-hidden="true"></span><p>No necesitas venir de rosa. Solo queremos que saques ese outfit que estabas esperando una excusa para usar.</p></div></section><section class="fw-section fw-info" aria-labelledby="satin-info"><p class="fw-kicker">La noche, en dos momentos</p><h2 id="satin-info">Tu entrada cambia a las 23h00.</h2><span class="fw-ui-rule" aria-hidden="true"></span><div class="fw-grid"><div class="fw-fact"><b>21h30</b><span>Entrada · +21</span></div><div class="fw-fact fw-girls-fact"><b>$10</b><span>Cover ellas hasta las 23h00</span></div><div class="fw-fact fw-after-fact"><b>$15</b><span>Cover general después de las 23h00</span></div></div></section><section class="fw-section fw-form-section" id="registro" aria-labelledby="satin-registro"><div class="fw-form-intro"><span class="fw-ui-rule" aria-hidden="true"></span><p class="fw-kicker">Registro visual</p><h2 id="satin-registro">Quiero estar en la lista.</h2><p>Una demostración de la experiencia de registro para comparar la propuesta.</p></div><div class="fw-form-card"><div class="fw-invitation-fold" aria-hidden="true"><span>Fashion Week</span><span>15 · 10 · 2026</span></div><button class="fw-invitation-open fw-cta" type="button" hidden aria-controls="bow-form-panel" aria-expanded="false">Quiero estar en la lista</button><div id="bow-form-panel"><noscript><p>Activa JavaScript para probar este registro visual. No se envían datos.</p></noscript><form class="fw-form" data-demo-form novalidate><div class="fw-field"><label for="satin-nombre">Nombre</label><input id="satin-nombre" name="nombre" aria-describedby="bow-error-nombre" autocomplete="given-name" required><p class="fw-error" id="bow-error-nombre" data-error="nombre" aria-live="polite"></p></div><div class="fw-field"><label for="satin-apellido">Apellido</label><input id="satin-apellido" name="apellido" aria-describedby="bow-error-apellido" autocomplete="family-name" required><p class="fw-error" id="bow-error-apellido" data-error="apellido" aria-live="polite"></p></div><div class="fw-field"><label for="satin-celular">Celular</label><input id="satin-celular" name="celular" aria-describedby="bow-error-celular" type="tel" inputmode="tel" autocomplete="tel" required><p class="fw-error" id="bow-error-celular" data-error="celular" aria-live="polite"></p></div><fieldset class="fw-company"><legend>¿Cómo vienes?</legend><div class="fw-company-option"><label class="fw-radio-label"><input type="radio" name="company" value="sola" required aria-describedby="bow-error-company"><span>Voy sola</span></label></div><div class="fw-company-option"><label class="fw-radio-label"><input type="radio" name="company" value="amigas" required aria-describedby="bow-error-company" aria-controls="bow-companions"><span>Voy con mis amigas</span></label><div class="fw-companions" id="bow-companions" hidden><div class="fw-field"><label for="satin-amigas">¿Cuántas amigas vienen contigo?</label><input id="satin-amigas" name="amigas" type="number" inputmode="numeric" min="1" step="1" disabled aria-describedby="bow-error-amigas"><p class="fw-error" id="bow-error-amigas" data-error="amigas" aria-live="polite"></p></div></div></div><p class="fw-error" id="bow-error-company" data-error="company" aria-live="polite"></p></fieldset><button class="fw-submit" type="submit" disabled>Quiero estar en la lista</button><p class="fw-error" data-demo-status tabindex="-1" role="status" aria-live="polite"></p></form></div><article class="fw-pass" id="bow-pass" hidden aria-labelledby="bow-pass-title"><div class="fw-pass-top"><img src="../Resources/DVOID/dvoid-logo-black.png" alt="D-VOID" width="1290" height="568"><span class="fw-preview-label">Vista previa</span></div><p class="fw-pass-event">Fashion Week</p><h3 id="bow-pass-title" tabindex="-1"></h3><p class="fw-pass-company"></p><p class="fw-pass-date">Jueves 15 de octubre de 2026<br>Entrada 21h30 · +21</p><div class="fw-pass-cut"><div class="fw-pass-qr"><svg role="img" aria-label="QR de muestra, no válido para acceso" width="164" height="164" viewBox="0 0 33 33" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<g id="QRcode">
+		<rect x="0" y="0" width="33" height="33" fill="#ffffff"/>
+		<g id="Pattern" transform="translate(4,4)">
+			<rect x="0" y="0" width="1" height="1" fill="#000000"/>
+			<rect x="1" y="0" width="1" height="1" fill="#000000"/>
+			<rect x="2" y="0" width="1" height="1" fill="#000000"/>
+			<rect x="3" y="0" width="1" height="1" fill="#000000"/>
+			<rect x="4" y="0" width="1" height="1" fill="#000000"/>
+			<rect x="5" y="0" width="1" height="1" fill="#000000"/>
+			<rect x="6" y="0" width="1" height="1" fill="#000000"/>
+			<rect x="9" y="0" width="1" height="1" fill="#000000"/>
+			<rect x="11" y="0" width="1" height="1" fill="#000000"/>
+			<rect x="13" y="0" width="1" height="1" fill="#000000"/>
+			<rect x="14" y="0" width="1" height="1" fill="#000000"/>
+			<rect x="16" y="0" width="1" height="1" fill="#000000"/>
+			<rect x="18" y="0" width="1" height="1" fill="#000000"/>
+			<rect x="19" y="0" width="1" height="1" fill="#000000"/>
+			<rect x="20" y="0" width="1" height="1" fill="#000000"/>
+			<rect x="21" y="0" width="1" height="1" fill="#000000"/>
+			<rect x="22" y="0" width="1" height="1" fill="#000000"/>
+			<rect x="23" y="0" width="1" height="1" fill="#000000"/>
+			<rect x="24" y="0" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="1" width="1" height="1" fill="#000000"/>
+			<rect x="6" y="1" width="1" height="1" fill="#000000"/>
+			<rect x="9" y="1" width="1" height="1" fill="#000000"/>
+			<rect x="12" y="1" width="1" height="1" fill="#000000"/>
+			<rect x="13" y="1" width="1" height="1" fill="#000000"/>
+			<rect x="18" y="1" width="1" height="1" fill="#000000"/>
+			<rect x="24" y="1" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="2" width="1" height="1" fill="#000000"/>
+			<rect x="2" y="2" width="1" height="1" fill="#000000"/>
+			<rect x="3" y="2" width="1" height="1" fill="#000000"/>
+			<rect x="4" y="2" width="1" height="1" fill="#000000"/>
+			<rect x="6" y="2" width="1" height="1" fill="#000000"/>
+			<rect x="9" y="2" width="1" height="1" fill="#000000"/>
+			<rect x="12" y="2" width="1" height="1" fill="#000000"/>
+			<rect x="13" y="2" width="1" height="1" fill="#000000"/>
+			<rect x="14" y="2" width="1" height="1" fill="#000000"/>
+			<rect x="15" y="2" width="1" height="1" fill="#000000"/>
+			<rect x="16" y="2" width="1" height="1" fill="#000000"/>
+			<rect x="18" y="2" width="1" height="1" fill="#000000"/>
+			<rect x="20" y="2" width="1" height="1" fill="#000000"/>
+			<rect x="21" y="2" width="1" height="1" fill="#000000"/>
+			<rect x="22" y="2" width="1" height="1" fill="#000000"/>
+			<rect x="24" y="2" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="3" width="1" height="1" fill="#000000"/>
+			<rect x="2" y="3" width="1" height="1" fill="#000000"/>
+			<rect x="3" y="3" width="1" height="1" fill="#000000"/>
+			<rect x="4" y="3" width="1" height="1" fill="#000000"/>
+			<rect x="6" y="3" width="1" height="1" fill="#000000"/>
+			<rect x="8" y="3" width="1" height="1" fill="#000000"/>
+			<rect x="11" y="3" width="1" height="1" fill="#000000"/>
+			<rect x="12" y="3" width="1" height="1" fill="#000000"/>
+			<rect x="13" y="3" width="1" height="1" fill="#000000"/>
+			<rect x="15" y="3" width="1" height="1" fill="#000000"/>
+			<rect x="16" y="3" width="1" height="1" fill="#000000"/>
+			<rect x="18" y="3" width="1" height="1" fill="#000000"/>
+			<rect x="20" y="3" width="1" height="1" fill="#000000"/>
+			<rect x="21" y="3" width="1" height="1" fill="#000000"/>
+			<rect x="22" y="3" width="1" height="1" fill="#000000"/>
+			<rect x="24" y="3" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="4" width="1" height="1" fill="#000000"/>
+			<rect x="2" y="4" width="1" height="1" fill="#000000"/>
+			<rect x="3" y="4" width="1" height="1" fill="#000000"/>
+			<rect x="4" y="4" width="1" height="1" fill="#000000"/>
+			<rect x="6" y="4" width="1" height="1" fill="#000000"/>
+			<rect x="8" y="4" width="1" height="1" fill="#000000"/>
+			<rect x="11" y="4" width="1" height="1" fill="#000000"/>
+			<rect x="12" y="4" width="1" height="1" fill="#000000"/>
+			<rect x="13" y="4" width="1" height="1" fill="#000000"/>
+			<rect x="15" y="4" width="1" height="1" fill="#000000"/>
+			<rect x="18" y="4" width="1" height="1" fill="#000000"/>
+			<rect x="20" y="4" width="1" height="1" fill="#000000"/>
+			<rect x="21" y="4" width="1" height="1" fill="#000000"/>
+			<rect x="22" y="4" width="1" height="1" fill="#000000"/>
+			<rect x="24" y="4" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="5" width="1" height="1" fill="#000000"/>
+			<rect x="6" y="5" width="1" height="1" fill="#000000"/>
+			<rect x="10" y="5" width="1" height="1" fill="#000000"/>
+			<rect x="12" y="5" width="1" height="1" fill="#000000"/>
+			<rect x="13" y="5" width="1" height="1" fill="#000000"/>
+			<rect x="16" y="5" width="1" height="1" fill="#000000"/>
+			<rect x="18" y="5" width="1" height="1" fill="#000000"/>
+			<rect x="24" y="5" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="6" width="1" height="1" fill="#000000"/>
+			<rect x="1" y="6" width="1" height="1" fill="#000000"/>
+			<rect x="2" y="6" width="1" height="1" fill="#000000"/>
+			<rect x="3" y="6" width="1" height="1" fill="#000000"/>
+			<rect x="4" y="6" width="1" height="1" fill="#000000"/>
+			<rect x="5" y="6" width="1" height="1" fill="#000000"/>
+			<rect x="6" y="6" width="1" height="1" fill="#000000"/>
+			<rect x="8" y="6" width="1" height="1" fill="#000000"/>
+			<rect x="10" y="6" width="1" height="1" fill="#000000"/>
+			<rect x="12" y="6" width="1" height="1" fill="#000000"/>
+			<rect x="14" y="6" width="1" height="1" fill="#000000"/>
+			<rect x="16" y="6" width="1" height="1" fill="#000000"/>
+			<rect x="18" y="6" width="1" height="1" fill="#000000"/>
+			<rect x="19" y="6" width="1" height="1" fill="#000000"/>
+			<rect x="20" y="6" width="1" height="1" fill="#000000"/>
+			<rect x="21" y="6" width="1" height="1" fill="#000000"/>
+			<rect x="22" y="6" width="1" height="1" fill="#000000"/>
+			<rect x="23" y="6" width="1" height="1" fill="#000000"/>
+			<rect x="24" y="6" width="1" height="1" fill="#000000"/>
+			<rect x="11" y="7" width="1" height="1" fill="#000000"/>
+			<rect x="12" y="7" width="1" height="1" fill="#000000"/>
+			<rect x="13" y="7" width="1" height="1" fill="#000000"/>
+			<rect x="15" y="7" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="8" width="1" height="1" fill="#000000"/>
+			<rect x="1" y="8" width="1" height="1" fill="#000000"/>
+			<rect x="5" y="8" width="1" height="1" fill="#000000"/>
+			<rect x="6" y="8" width="1" height="1" fill="#000000"/>
+			<rect x="7" y="8" width="1" height="1" fill="#000000"/>
+			<rect x="9" y="8" width="1" height="1" fill="#000000"/>
+			<rect x="11" y="8" width="1" height="1" fill="#000000"/>
+			<rect x="15" y="8" width="1" height="1" fill="#000000"/>
+			<rect x="20" y="8" width="1" height="1" fill="#000000"/>
+			<rect x="21" y="8" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="9" width="1" height="1" fill="#000000"/>
+			<rect x="2" y="9" width="1" height="1" fill="#000000"/>
+			<rect x="3" y="9" width="1" height="1" fill="#000000"/>
+			<rect x="10" y="9" width="1" height="1" fill="#000000"/>
+			<rect x="11" y="9" width="1" height="1" fill="#000000"/>
+			<rect x="14" y="9" width="1" height="1" fill="#000000"/>
+			<rect x="15" y="9" width="1" height="1" fill="#000000"/>
+			<rect x="16" y="9" width="1" height="1" fill="#000000"/>
+			<rect x="17" y="9" width="1" height="1" fill="#000000"/>
+			<rect x="18" y="9" width="1" height="1" fill="#000000"/>
+			<rect x="19" y="9" width="1" height="1" fill="#000000"/>
+			<rect x="21" y="9" width="1" height="1" fill="#000000"/>
+			<rect x="22" y="9" width="1" height="1" fill="#000000"/>
+			<rect x="23" y="9" width="1" height="1" fill="#000000"/>
+			<rect x="24" y="9" width="1" height="1" fill="#000000"/>
+			<rect x="4" y="10" width="1" height="1" fill="#000000"/>
+			<rect x="5" y="10" width="1" height="1" fill="#000000"/>
+			<rect x="6" y="10" width="1" height="1" fill="#000000"/>
+			<rect x="8" y="10" width="1" height="1" fill="#000000"/>
+			<rect x="9" y="10" width="1" height="1" fill="#000000"/>
+			<rect x="11" y="10" width="1" height="1" fill="#000000"/>
+			<rect x="13" y="10" width="1" height="1" fill="#000000"/>
+			<rect x="14" y="10" width="1" height="1" fill="#000000"/>
+			<rect x="15" y="10" width="1" height="1" fill="#000000"/>
+			<rect x="16" y="10" width="1" height="1" fill="#000000"/>
+			<rect x="18" y="10" width="1" height="1" fill="#000000"/>
+			<rect x="21" y="10" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="11" width="1" height="1" fill="#000000"/>
+			<rect x="1" y="11" width="1" height="1" fill="#000000"/>
+			<rect x="3" y="11" width="1" height="1" fill="#000000"/>
+			<rect x="4" y="11" width="1" height="1" fill="#000000"/>
+			<rect x="5" y="11" width="1" height="1" fill="#000000"/>
+			<rect x="7" y="11" width="1" height="1" fill="#000000"/>
+			<rect x="12" y="11" width="1" height="1" fill="#000000"/>
+			<rect x="14" y="11" width="1" height="1" fill="#000000"/>
+			<rect x="15" y="11" width="1" height="1" fill="#000000"/>
+			<rect x="22" y="11" width="1" height="1" fill="#000000"/>
+			<rect x="24" y="11" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="12" width="1" height="1" fill="#000000"/>
+			<rect x="1" y="12" width="1" height="1" fill="#000000"/>
+			<rect x="2" y="12" width="1" height="1" fill="#000000"/>
+			<rect x="3" y="12" width="1" height="1" fill="#000000"/>
+			<rect x="6" y="12" width="1" height="1" fill="#000000"/>
+			<rect x="9" y="12" width="1" height="1" fill="#000000"/>
+			<rect x="10" y="12" width="1" height="1" fill="#000000"/>
+			<rect x="13" y="12" width="1" height="1" fill="#000000"/>
+			<rect x="15" y="12" width="1" height="1" fill="#000000"/>
+			<rect x="16" y="12" width="1" height="1" fill="#000000"/>
+			<rect x="20" y="12" width="1" height="1" fill="#000000"/>
+			<rect x="22" y="12" width="1" height="1" fill="#000000"/>
+			<rect x="23" y="12" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="13" width="1" height="1" fill="#000000"/>
+			<rect x="2" y="13" width="1" height="1" fill="#000000"/>
+			<rect x="4" y="13" width="1" height="1" fill="#000000"/>
+			<rect x="11" y="13" width="1" height="1" fill="#000000"/>
+			<rect x="13" y="13" width="1" height="1" fill="#000000"/>
+			<rect x="14" y="13" width="1" height="1" fill="#000000"/>
+			<rect x="15" y="13" width="1" height="1" fill="#000000"/>
+			<rect x="17" y="13" width="1" height="1" fill="#000000"/>
+			<rect x="18" y="13" width="1" height="1" fill="#000000"/>
+			<rect x="19" y="13" width="1" height="1" fill="#000000"/>
+			<rect x="21" y="13" width="1" height="1" fill="#000000"/>
+			<rect x="22" y="13" width="1" height="1" fill="#000000"/>
+			<rect x="24" y="13" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="14" width="1" height="1" fill="#000000"/>
+			<rect x="2" y="14" width="1" height="1" fill="#000000"/>
+			<rect x="3" y="14" width="1" height="1" fill="#000000"/>
+			<rect x="6" y="14" width="1" height="1" fill="#000000"/>
+			<rect x="7" y="14" width="1" height="1" fill="#000000"/>
+			<rect x="8" y="14" width="1" height="1" fill="#000000"/>
+			<rect x="12" y="14" width="1" height="1" fill="#000000"/>
+			<rect x="14" y="14" width="1" height="1" fill="#000000"/>
+			<rect x="17" y="14" width="1" height="1" fill="#000000"/>
+			<rect x="18" y="14" width="1" height="1" fill="#000000"/>
+			<rect x="21" y="14" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="15" width="1" height="1" fill="#000000"/>
+			<rect x="5" y="15" width="1" height="1" fill="#000000"/>
+			<rect x="7" y="15" width="1" height="1" fill="#000000"/>
+			<rect x="9" y="15" width="1" height="1" fill="#000000"/>
+			<rect x="11" y="15" width="1" height="1" fill="#000000"/>
+			<rect x="12" y="15" width="1" height="1" fill="#000000"/>
+			<rect x="13" y="15" width="1" height="1" fill="#000000"/>
+			<rect x="17" y="15" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="16" width="1" height="1" fill="#000000"/>
+			<rect x="2" y="16" width="1" height="1" fill="#000000"/>
+			<rect x="3" y="16" width="1" height="1" fill="#000000"/>
+			<rect x="6" y="16" width="1" height="1" fill="#000000"/>
+			<rect x="7" y="16" width="1" height="1" fill="#000000"/>
+			<rect x="15" y="16" width="1" height="1" fill="#000000"/>
+			<rect x="16" y="16" width="1" height="1" fill="#000000"/>
+			<rect x="17" y="16" width="1" height="1" fill="#000000"/>
+			<rect x="18" y="16" width="1" height="1" fill="#000000"/>
+			<rect x="19" y="16" width="1" height="1" fill="#000000"/>
+			<rect x="20" y="16" width="1" height="1" fill="#000000"/>
+			<rect x="23" y="16" width="1" height="1" fill="#000000"/>
+			<rect x="24" y="16" width="1" height="1" fill="#000000"/>
+			<rect x="8" y="17" width="1" height="1" fill="#000000"/>
+			<rect x="11" y="17" width="1" height="1" fill="#000000"/>
+			<rect x="12" y="17" width="1" height="1" fill="#000000"/>
+			<rect x="13" y="17" width="1" height="1" fill="#000000"/>
+			<rect x="14" y="17" width="1" height="1" fill="#000000"/>
+			<rect x="16" y="17" width="1" height="1" fill="#000000"/>
+			<rect x="20" y="17" width="1" height="1" fill="#000000"/>
+			<rect x="21" y="17" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="18" width="1" height="1" fill="#000000"/>
+			<rect x="1" y="18" width="1" height="1" fill="#000000"/>
+			<rect x="2" y="18" width="1" height="1" fill="#000000"/>
+			<rect x="3" y="18" width="1" height="1" fill="#000000"/>
+			<rect x="4" y="18" width="1" height="1" fill="#000000"/>
+			<rect x="5" y="18" width="1" height="1" fill="#000000"/>
+			<rect x="6" y="18" width="1" height="1" fill="#000000"/>
+			<rect x="8" y="18" width="1" height="1" fill="#000000"/>
+			<rect x="9" y="18" width="1" height="1" fill="#000000"/>
+			<rect x="11" y="18" width="1" height="1" fill="#000000"/>
+			<rect x="14" y="18" width="1" height="1" fill="#000000"/>
+			<rect x="15" y="18" width="1" height="1" fill="#000000"/>
+			<rect x="16" y="18" width="1" height="1" fill="#000000"/>
+			<rect x="18" y="18" width="1" height="1" fill="#000000"/>
+			<rect x="20" y="18" width="1" height="1" fill="#000000"/>
+			<rect x="22" y="18" width="1" height="1" fill="#000000"/>
+			<rect x="23" y="18" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="19" width="1" height="1" fill="#000000"/>
+			<rect x="6" y="19" width="1" height="1" fill="#000000"/>
+			<rect x="8" y="19" width="1" height="1" fill="#000000"/>
+			<rect x="11" y="19" width="1" height="1" fill="#000000"/>
+			<rect x="13" y="19" width="1" height="1" fill="#000000"/>
+			<rect x="14" y="19" width="1" height="1" fill="#000000"/>
+			<rect x="16" y="19" width="1" height="1" fill="#000000"/>
+			<rect x="20" y="19" width="1" height="1" fill="#000000"/>
+			<rect x="21" y="19" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="20" width="1" height="1" fill="#000000"/>
+			<rect x="2" y="20" width="1" height="1" fill="#000000"/>
+			<rect x="3" y="20" width="1" height="1" fill="#000000"/>
+			<rect x="4" y="20" width="1" height="1" fill="#000000"/>
+			<rect x="6" y="20" width="1" height="1" fill="#000000"/>
+			<rect x="10" y="20" width="1" height="1" fill="#000000"/>
+			<rect x="11" y="20" width="1" height="1" fill="#000000"/>
+			<rect x="14" y="20" width="1" height="1" fill="#000000"/>
+			<rect x="16" y="20" width="1" height="1" fill="#000000"/>
+			<rect x="17" y="20" width="1" height="1" fill="#000000"/>
+			<rect x="18" y="20" width="1" height="1" fill="#000000"/>
+			<rect x="19" y="20" width="1" height="1" fill="#000000"/>
+			<rect x="20" y="20" width="1" height="1" fill="#000000"/>
+			<rect x="21" y="20" width="1" height="1" fill="#000000"/>
+			<rect x="22" y="20" width="1" height="1" fill="#000000"/>
+			<rect x="23" y="20" width="1" height="1" fill="#000000"/>
+			<rect x="24" y="20" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="21" width="1" height="1" fill="#000000"/>
+			<rect x="2" y="21" width="1" height="1" fill="#000000"/>
+			<rect x="3" y="21" width="1" height="1" fill="#000000"/>
+			<rect x="4" y="21" width="1" height="1" fill="#000000"/>
+			<rect x="6" y="21" width="1" height="1" fill="#000000"/>
+			<rect x="14" y="21" width="1" height="1" fill="#000000"/>
+			<rect x="18" y="21" width="1" height="1" fill="#000000"/>
+			<rect x="21" y="21" width="1" height="1" fill="#000000"/>
+			<rect x="23" y="21" width="1" height="1" fill="#000000"/>
+			<rect x="24" y="21" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="22" width="1" height="1" fill="#000000"/>
+			<rect x="2" y="22" width="1" height="1" fill="#000000"/>
+			<rect x="3" y="22" width="1" height="1" fill="#000000"/>
+			<rect x="4" y="22" width="1" height="1" fill="#000000"/>
+			<rect x="6" y="22" width="1" height="1" fill="#000000"/>
+			<rect x="11" y="22" width="1" height="1" fill="#000000"/>
+			<rect x="12" y="22" width="1" height="1" fill="#000000"/>
+			<rect x="13" y="22" width="1" height="1" fill="#000000"/>
+			<rect x="14" y="22" width="1" height="1" fill="#000000"/>
+			<rect x="16" y="22" width="1" height="1" fill="#000000"/>
+			<rect x="19" y="22" width="1" height="1" fill="#000000"/>
+			<rect x="21" y="22" width="1" height="1" fill="#000000"/>
+			<rect x="24" y="22" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="23" width="1" height="1" fill="#000000"/>
+			<rect x="6" y="23" width="1" height="1" fill="#000000"/>
+			<rect x="8" y="23" width="1" height="1" fill="#000000"/>
+			<rect x="12" y="23" width="1" height="1" fill="#000000"/>
+			<rect x="16" y="23" width="1" height="1" fill="#000000"/>
+			<rect x="19" y="23" width="1" height="1" fill="#000000"/>
+			<rect x="21" y="23" width="1" height="1" fill="#000000"/>
+			<rect x="22" y="23" width="1" height="1" fill="#000000"/>
+			<rect x="0" y="24" width="1" height="1" fill="#000000"/>
+			<rect x="1" y="24" width="1" height="1" fill="#000000"/>
+			<rect x="2" y="24" width="1" height="1" fill="#000000"/>
+			<rect x="3" y="24" width="1" height="1" fill="#000000"/>
+			<rect x="4" y="24" width="1" height="1" fill="#000000"/>
+			<rect x="5" y="24" width="1" height="1" fill="#000000"/>
+			<rect x="6" y="24" width="1" height="1" fill="#000000"/>
+			<rect x="8" y="24" width="1" height="1" fill="#000000"/>
+			<rect x="9" y="24" width="1" height="1" fill="#000000"/>
+			<rect x="10" y="24" width="1" height="1" fill="#000000"/>
+			<rect x="13" y="24" width="1" height="1" fill="#000000"/>
+			<rect x="14" y="24" width="1" height="1" fill="#000000"/>
+			<rect x="15" y="24" width="1" height="1" fill="#000000"/>
+			<rect x="17" y="24" width="1" height="1" fill="#000000"/>
+			<rect x="18" y="24" width="1" height="1" fill="#000000"/>
+			<rect x="23" y="24" width="1" height="1" fill="#000000"/>
+			<rect x="24" y="24" width="1" height="1" fill="#000000"/>
+		</g>
+	</g>
+</svg>
+</div><p>QR de muestra<br><span>No válido para acceso</span></p></div><button class="fw-edit" type="button">Editar mis datos</button></article><p class="fw-pass-announcement fw-sr-only" role="status" aria-live="polite" aria-atomic="true"></p></div></section></main><footer class="fw-foot">D-VOID Fashion Week · Jueves 15 de octubre · Entrada 21h30 · +21<br><span>Reservas vía DM · muestra visual, sin conexión.</span></footer></div><script src="../Resources/events/2026-10-15-fashion-week/scripts/form.js"></script><script>FWShared.init(document.getElementById('fw-satin-bow'));</script><script src="../Resources/events/2026-10-15-fashion-week/scripts/satin-bow-motion.js"></script><script src="../Resources/events/2026-10-15-fashion-week/scripts/satin-bow-invitation.js"></script></body></html>

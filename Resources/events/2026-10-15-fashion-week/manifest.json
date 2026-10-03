@@ -1,0 +1,75 @@
+{
+  "active_page": "2026-10/15-fashion-week.html",
+  "direction": "Satin Bow",
+  "date": "2026-10-03",
+  "logo": "Resources/DVOID/dvoid-logo-black.png",
+  "originals": "Resources/References/Fashion Week/Generated/originals/06-satin-bow",
+  "files": [
+    {
+      "path": "Resources/events/2026-10-15-fashion-week/assets/bow.webp",
+      "bytes": 126474,
+      "sha256": "675fbe06da2810fb9c3e516b96683ef55d835fbf79db9116369d59032fe6b8c7"
+    },
+    {
+      "path": "Resources/events/2026-10-15-fashion-week/assets/cocktail-shoes.webp",
+      "bytes": 141572,
+      "sha256": "a93ac0ca594f9864c28626033ffa63c1e9fa627ae22a6a06970292ce8058e193"
+    },
+    {
+      "path": "Resources/events/2026-10-15-fashion-week/assets/favicon.svg",
+      "bytes": 222,
+      "sha256": "fd665c8667ca98f49d2fd251e72a4a9eb4b6fe0e467e492265857a0853381714"
+    },
+    {
+      "path": "Resources/events/2026-10-15-fashion-week/scripts/form.js",
+      "bytes": 3242,
+      "sha256": "797d4387d46f8071e431f7fb372f53f346ab3d86d0ba891145213810cde45d2e"
+    },
+    {
+      "path": "Resources/events/2026-10-15-fashion-week/scripts/satin-bow-invitation.js",
+      "bytes": 3268,
+      "sha256": "443971fcec113b62f8d521f7d8dd6c50f02c2d0fdadb0980ea65d406ce0fcad2"
+    },
+    {
+      "path": "Resources/events/2026-10-15-fashion-week/scripts/satin-bow-motion.js",
+      "bytes": 6744,
+      "sha256": "9c8014831efbd374775b424db4807baca0b1422f857b8aa2844da5bd08f6aad3"
+    },
+    {
+      "path": "Resources/events/2026-10-15-fashion-week/styles/base.css",
+      "bytes": 4140,
+      "sha256": "1fa261de8941ab4848ca170f70fe8d70dcb89db81a1daf2cd34e87548d4e264a"
+    },
+    {
+      "path": "Resources/events/2026-10-15-fashion-week/styles/satin-bow-composition.css",
+      "bytes": 3539,
+      "sha256": "7745f7c4103c4ccd27acd99ee944dc28488cf6a70f538ad684bf165019fa4d51"
+    },
+    {
+      "path": "Resources/events/2026-10-15-fashion-week/styles/satin-bow-invitation.css",
+      "bytes": 5486,
+      "sha256": "1ad0f49ab1861beaeb0a8dd8988fe8bd0b7783bc31f723782b6a9637bc70ec94"
+    },
+    {
+      "path": "Resources/events/2026-10-15-fashion-week/styles/satin-bow-motion.css",
+      "bytes": 2209,
+      "sha256": "5129e193fe7a893747fb3a020aff3dc9bb9363f9b41067bc091de5fea2dcd897"
+    },
+    {
+      "path": "Resources/events/2026-10-15-fashion-week/styles/satin-bow-ui.css",
+      "bytes": 3600,
+      "sha256": "902983159f24b64525ad9c48d26531a5c2b2d596a0e1fb168784579f66eacbf6"
+    },
+    {
+      "path": "Resources/events/2026-10-15-fashion-week/styles/satin-refinements.css",
+      "bytes": 3629,
+      "sha256": "10a38fabad84af7358c43f927b381e3a9acdfdd978fa627aee42e8e504cb59d2"
+    }
+  ],
+  "demo_qr": {
+    "generator": "qrencode 4.1.1 instalado",
+    "format": "SVG inline en HTML",
+    "payload": "DVOID-FASHION-WEEK-DEMO-NO-VALIDO-PARA-ACCESO",
+    "verification": "zbarimg desde PNG y captura localhost a 390 px"
+  }
+}
