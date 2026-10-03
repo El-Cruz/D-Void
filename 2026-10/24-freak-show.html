@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#120503">
 <title>D-VOID · Halloween Freak Show · Sábado 24 Octubre</title>
-<meta name="description" content="Halloween Freak Show en D-VOID · Sábado 24 de octubre, 21H00. Tarot negro, bodas falsas express, photobooth del delito y el circo más desquiciado de la ciudad.">
+<meta name="description" content="Halloween Freak Show en D-VOID · Sábado 24 de octubre, 21H00. Lectura de tarot, Fake Weddings y Photobooth.">
 <style>
 :root {
   --ink:#130907;
@@ -346,7 +346,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--gold2);outline-
       <div class="hero-copy">
 
         <h1 id="freak-heading" tabindex="-1">Halloween <em>Freak Show</em></h1>
-        <p class="lede">El circo de Halloween llega a D-VOID con tarot, bodas falsas y photobooth.</p>
+        <p class="lede">El circo se tomó D-VOID: cero payasos tristes, tarot, Fake Weddings y photobooth.</p>
         <button class="primary-cta" id="reserveTop" type="button">Reclamar mi boleto</button>
 
       </div>
@@ -360,10 +360,9 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--gold2);outline-
           <div class="slot">
             <div class="slot-window">
               <div class="promo-reel" id="promoReel">
-                <div class="promo">Lectura de Tarot</div>
-                <div class="promo">Capilla de Bodas Falsas</div>
-                <div class="promo">Photobooth del Delito</div>
-                <div class="promo">Pócimas Ocultas<small>Trago gratis si tu disfraz impresiona a los bartenders.</small></div>
+                <div class="promo">Lectura de tarot</div>
+                <div class="promo">Fake Weddings</div>
+                <div class="promo">Photobooth</div>
               </div>
             </div>
             <div class="machine-controls">
@@ -720,8 +719,8 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--gold2);outline-
 
     <div class="event-strip" aria-hidden="true">
       <div class="event-track">
-        <span>🎪 HALLOWEEN FREAK SHOW</span><span>24 OCT · 21H00</span><span>🔮 TAROT NEGRO</span><span>💍 BODAS FALSAS EXPRESS</span><span>📸 PHOTOBOOTH DEL DELITO</span><span>🧪 PÓCIMAS DE BARRA</span><span>🎭 DRESS CODE: EXTRA BIZARRO</span>
-        <span>🎪 HALLOWEEN FREAK SHOW</span><span>24 OCT · 21H00</span><span>🔮 TAROT NEGRO</span><span>💍 BODAS FALSAS EXPRESS</span><span>📸 PHOTOBOOTH DEL DELITO</span><span>🧪 PÓCIMAS DE BARRA</span><span>🎭 DRESS CODE: EXTRA BIZARRO</span>
+        <span>🎪 HALLOWEEN FREAK SHOW</span><span>24 OCT · 21H00</span><span>🔮 LECTURA DE TAROT</span><span>💍 FAKE WEDDINGS</span><span>📸 PHOTOBOOTH</span><span>🎭 DRESS CODE: EXTRA BIZARRO</span>
+        <span>🎪 HALLOWEEN FREAK SHOW</span><span>24 OCT · 21H00</span><span>🔮 LECTURA DE TAROT</span><span>💍 FAKE WEDDINGS</span><span>📸 PHOTOBOOTH</span><span>🎭 DRESS CODE: EXTRA BIZARRO</span>
       </div>
     </div>
 
@@ -731,13 +730,13 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--gold2);outline-
       </div>
       <div class="poster-copy">
 
-        <h2>Dentro de la carpa.</h2>
+        <h2>Más que una fiesta, un circo donde todo puede pasar.</h2>
         <div class="features">
-          <div class="feature"><b>Lectura de Tarot</b></div>
-          <div class="feature"><b>Capilla de Bodas Falsas</b><small>Ceremonias de juego, sin validez legal.</small></div>
-          <div class="feature"><b>Photobooth del Delito</b></div>
-          <div class="feature"><b>Pócimas &amp; Rituales</b><small>Tragos especiales en la barra.</small></div>
+          <div class="feature"><b>Lectura de tarot</b></div>
+          <div class="feature"><b>Fake Weddings</b><small>Ceremonias de juego, sin validez legal.</small></div>
+          <div class="feature"><b>Photobooth</b></div>
         </div>
+        <p>Trago gratis si tu disfraz impresiona a los bartenders.</p>
       </div>
     </section>
   </main>
@@ -844,7 +843,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--gold2);outline-
   enterBtn.addEventListener("click", enterShow);
 
   function spin(){
-    promoIndex = (promoIndex + 1) % 4;
+    promoIndex = (promoIndex + 1) % promoReel.children.length;
     promoReel.style.transform = "translateY(-" + (promoIndex * 122) + "px)";
   }
   spinBtn.addEventListener("click", spin);
