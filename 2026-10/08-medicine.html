@@ -740,6 +740,7 @@
             }
 
             .screen-tube {
+                container-type: inline-size;
                 border-radius: 15px !important;
                 box-shadow: inset 0 0 40px rgba(0,0,0,0.9), inset 0 0 10px rgba(255,255,255,0.05) !important;
             }
@@ -758,15 +759,6 @@
             .channel {
                 padding: 50px 10px 20px 10px !important;
                 box-sizing: border-box;
-            }
-
-            #ch-01 h1 {
-                font-size: 3.5rem !important;
-                margin-top: 5px !important;
-            }
-
-            #ch-01 h2 {
-                font-size: 1.8rem !important;
             }
 
             .blood-bag-wrapper img {
@@ -838,34 +830,36 @@
             }
             .blood-drop { bottom: -30px; }
 
-            /* --- CORRECCIÓN CRÍTICA CH-01 MÓVIL --- */
+            /* Fit the existing hero to the CRT interior, not the viewport. */
             #ch-01:not(.hidden) {
                 display: flex !important;
                 flex-direction: column !important;
                 justify-content: flex-start !important;
                 align-items: center !important;
-                padding: 40px 15px 15px 15px !important;
-                gap: 15px !important;
+                padding: 56px clamp(12px, 5cqw, 24px) 12px !important;
+                gap: clamp(8px, 3cqw, 15px) !important;
             }
 
-            .hero-texts, .blood-bag-wrapper, .hero-action {
-                grid-column: auto !important;
-                grid-row: auto !important;
+            #ch-01 > div:first-child,
+            #ch-01 > div:last-child {
+                flex: 0 0 auto;
+                min-width: 0;
                 max-width: 100% !important;
                 width: 100% !important;
-                display: flex !important;
                 justify-content: center !important;
+                align-items: center !important;
             }
 
-            .hero-texts {
-                flex-direction: column !important;
-                align-items: flex-start !important;
-                text-align: left !important;
-                order: 1 !important;
+            #ch-01 > div:first-child {
+                text-align: center;
+            }
+
+            #ch-01 > div:last-child {
+                min-height: 0;
             }
 
             #ch-01 h1 {
-                font-size: 15vw !important;
+                font-size: clamp(2.25rem, 18cqw, 4.2rem) !important;
                 white-space: nowrap !important;
                 transform: scaleY(1.2) !important;
                 transform-origin: center center !important;
@@ -873,21 +867,24 @@
             }
 
             #ch-01 h2 {
-                font-size: 8vw !important;
-                margin: 5px 0 10px 0 !important;
+                font-size: clamp(1.5rem, 9.5cqw, 2.4rem) !important;
+                line-height: 1.1;
+                margin: 8px 0 12px 0 !important;
                 white-space: nowrap !important;
                 transform: scaleY(1.2) !important;
                 transform-origin: center center !important;
             }
 
-            .hero-date {
-                font-size: 1.2rem !important;
-                white-space: nowrap !important;
+            #ch-01 .ch01-date {
+                max-width: 8ch;
+                font-size: clamp(1.125rem, 6.5cqw, 1.5rem);
+                line-height: 1.15;
+                margin-bottom: clamp(12px, 4cqw, 18px);
             }
 
-            .blood-bag-wrapper {
-                order: 2 !important;
-                min-height: auto !important;
+            #ch-01 .blood-bag-wrapper {
+                width: 100%;
+                min-width: 0;
             }
 
             .blood-bag-svg {
@@ -895,14 +892,11 @@
                 max-height: 180px !important;
             }
 
-            .hero-action {
-                order: 3 !important;
-                margin-top: 10px !important;
-            }
-
-            .btn-blood {
-                font-size: 1.1rem !important;
-                padding: 12px 20px !important;
+            #ch-01 .btn-blood {
+                font-size: clamp(0.875rem, 5cqw, 1.1rem) !important;
+                padding: 10px clamp(10px, 4cqw, 20px) !important;
+                min-height: 44px;
+                max-width: 100%;
                 white-space: nowrap !important;
                 width: auto !important;
             }

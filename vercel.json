@@ -1,7 +1,13 @@
 {
+  "framework": null,
+  "buildCommand": "node build-static.mjs",
+  "outputDirectory": "dist",
+  "installCommand": "",
   "cleanUrls": false,
   "rewrites": [
     { "source": "/", "destination": "/index.html" },
+    { "source": "/medicine", "destination": "/2026-10/08-medicine.html" },
+    { "source": "/home", "destination": "/dvoid-home.html" },
     { "source": "/casino", "destination": "/2026-09/17-casino.html" },
     { "source": "/formulario-de-reservas", "destination": "/reservas.html" },
     { "source": "/menu", "destination": "/menu.html" },
