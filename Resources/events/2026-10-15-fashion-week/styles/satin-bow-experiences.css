@@ -1,0 +1,56 @@
+/* Girls Night editorial insert. All rules are scoped to the new section. */
+.satin-bow .fw-section.fw-experiences{background:#211b20;color:#fff5f1;max-width:none;padding:5rem max(1.5rem,env(safe-area-inset-left));margin-top:2rem;overflow:clip;--experience-pink:#edb9cc;--experience-line:rgb(237 185 204 / .3)}
+.fw-experience-intro,.fw-experience-layout,.fw-experience-finale{max-width:72rem;margin-inline:auto}
+.satin-bow .fw-experience-intro h2{max-width:none;font-size:clamp(2.4rem,4.6vw,4.2rem);line-height:1.06;letter-spacing:-.035em;text-wrap:balance}
+.fw-experience-intro h2 em{color:var(--experience-pink);font-weight:400}
+.satin-bow .fw-experience-intro p{max-width:48ch;color:#e6cdd5;margin:1.5rem 0 0}
+.fw-experience-layout{display:grid;gap:1.5rem;margin-top:3.5rem}
+.fw-experience{position:relative;min-width:0;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid var(--experience-line);min-height:25rem;isolation:isolate}
+.fw-experience-copy{padding:1.7rem;position:relative;z-index:2}
+.fw-experience h3{font-size:.95rem;line-height:1.4;letter-spacing:.07em;margin:0 0 .7rem;font-weight:650}
+.satin-bow .fw-experience-copy p{font-size:1rem;line-height:1.6;margin:0;max-width:35ch;color:inherit}
+.fw-experience-photo{position:absolute;inset:0;overflow:hidden;z-index:-1}
+.fw-experience-photo img{height:100%;width:100%;object-fit:cover;object-position:center 40%;transform:translateY(var(--photo-shift,0px)) scale(1.06)}
+.fw-experience-flower{min-height:34rem;background:#241e23}
+.fw-experience-flower .fw-experience-copy{background:linear-gradient(transparent, rgb(25 18 24 / .96));padding-top:5rem}
+.fw-experience-art{position:relative;display:flex;align-items:center;justify-content:center;flex:1;min-height:15rem;padding:2rem;overflow:hidden;font:clamp(3rem,7vw,5.5rem)/.95 Georgia,serif;letter-spacing:-.035em}
+.fw-experience-beauty{background:#eac3d1;color:#3a2030}
+.fw-beauty-art{justify-content:flex-start;align-items:flex-start;padding-top:2.8rem}
+.fw-beauty-art span{position:relative;z-index:1;font-style:italic;font-size:clamp(5rem,10vw,8rem)}
+.fw-beauty-art img{position:absolute;width:52%;height:auto;max-width:16rem;right:1%;bottom:0;transform:rotate(-13deg)}
+.fw-experience-color{background:#30242d}
+.fw-color-art{display:flex;gap:.5rem;align-items:center;padding:2rem 1.7rem;min-height:13rem;flex:1}
+.fw-color-art span{height:9rem;flex:1;background:#f1c9d0;transform:rotate(-7deg)}
+.fw-color-art span:nth-child(2){background:#d99aab;transform:rotate(-3deg)}
+.fw-color-art span:nth-child(3){background:#af6684;transform:rotate(1deg)}
+.fw-color-art span:nth-child(4){background:#7d3e62;transform:rotate(5deg)}
+.fw-color-art span:nth-child(5){background:#d5b6a7;transform:rotate(9deg)}
+.fw-experience-talk{background:#f5e7dd;color:#3c2934}
+.fw-talk-art{justify-content:flex-start;line-height:1.08;font-size:clamp(2.6rem,5vw,4rem)}
+.fw-talk-art em{font-size:.75em;color:#894360}
+.fw-experience-wellness{background:#4a2b3e}
+.fw-wellness-art{justify-content:flex-start;color:#edb9cc;font-size:clamp(4rem,7vw,6rem)}
+.fw-experience-spots{background:#f3dce5;color:#3a2030}
+.fw-spots-art{padding:0}
+.fw-spots-art img{width:80%;max-width:22rem;height:auto;transform:translateY(var(--photo-shift,0px))}
+.fw-experience-finale{min-height:75svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-block:5rem 1rem;text-align:center}
+.satin-bow .fw-experience-finale p{max-width:none;margin:0;font:clamp(2.5rem,6.1vw,5.6rem)/1.07 Georgia,serif;letter-spacing:-.035em;text-wrap:balance}
+.fw-experience-finale em{color:var(--experience-pink)}
+.fw-experience-thread{display:block;width:1px;height:5rem;background:var(--experience-line);margin-top:3rem}
+.fw-experiences ::selection{background:#edb9cc;color:#211b20}
+@media(min-width:760px){
+.satin-bow .fw-section.fw-experiences{padding:6rem 3rem 3rem}
+.fw-experience-intro{display:grid;grid-template-columns:1.6fr 1fr;gap:3rem;align-items:end}
+.satin-bow .fw-experience-intro p{margin-bottom:1rem}
+.fw-experience-layout{grid-template-columns:repeat(12,minmax(0,1fr));gap:1.5rem;margin-top:4rem;align-items:stretch}
+.fw-experience-flower{grid-column:span 7;grid-row:span 2;min-height:55rem}
+.fw-experience-beauty,.fw-experience-color{grid-column:span 5;min-height:26rem}
+.fw-experience-talk{grid-column:span 5;min-height:29rem}
+.fw-experience-wellness{grid-column:span 3;min-height:29rem}
+.fw-experience-spots{grid-column:span 4;min-height:29rem}
+.fw-experience-copy{padding:2rem}
+.fw-experience-wellness .fw-experience-art{padding:1.5rem;font-size:clamp(3.5rem,6vw,5rem)}
+}
+@media(prefers-reduced-motion:reduce){.fw-experience-photo img,.fw-spots-art img{transform:none}}
+
+@media(min-width:760px) and (max-width:1099px){.fw-experience-flower,.fw-experience-beauty,.fw-experience-color,.fw-experience-talk,.fw-experience-wellness{grid-column:span 6}.fw-experience-spots{grid-column:span 12}.fw-experience-intro{grid-template-columns:1fr}.satin-bow .fw-experience-intro h2{font-size:3.4rem}.fw-experience-spots .fw-experience-art{max-height:22rem}}

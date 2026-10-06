@@ -1,7 +1,7 @@
 {
   "active_page": "2026-10/15-fashion-week.html",
   "direction": "Satin Bow",
-  "date": "2026-10-03",
+  "date": "2026-10-06",
   "logo": "Resources/DVOID/dvoid-logo-black.png",
   "originals": "Resources/References/Fashion Week/Generated/originals/06-satin-bow",
   "files": [
@@ -64,6 +64,21 @@
       "path": "Resources/events/2026-10-15-fashion-week/styles/satin-refinements.css",
       "bytes": 3629,
       "sha256": "10a38fabad84af7358c43f927b381e3a9acdfdd978fa627aee42e8e504cb59d2"
+    },
+    {
+      "path": "Resources/events/2026-10-15-fashion-week/assets/girls-flower-bar.webp",
+      "bytes": 124590,
+      "sha256": "5e0a6d670e5781253cc47806588318b1f928ca30f8ddf62e3274e2fdc00a7ee7"
+    },
+    {
+      "path": "Resources/events/2026-10-15-fashion-week/styles/satin-bow-experiences.css",
+      "bytes": 5063,
+      "sha256": "4f451c8e1416f3e5a16cfb62ce78659ae66d08df4b3aaa8f6d47ae420798067f"
+    },
+    {
+      "path": "Resources/events/2026-10-15-fashion-week/scripts/satin-bow-experiences.js",
+      "bytes": 1871,
+      "sha256": "29b038bab303135d80416bafc276efbef551a2e3d15b36d7dfdccc96cc2aced6"
     }
   ],
   "demo_qr": {
