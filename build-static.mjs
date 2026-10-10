@@ -22,6 +22,14 @@ cpSync(path.join(root, 'Resources'), path.join(output, 'Resources'), {
   recursive: true,
   filter: source => source !== path.join(root, 'Resources/References'),
 });
+// Publish only runtime files; keep art masters and notes in the repository.
+const hollywood = path.join(output, 'old-hollywood');
+mkdirSync(path.join(hollywood, 'assets/img'), { recursive: true });
+for (const file of ['index.html', 'styles.css', 'script.js']) {
+  copyFileSync(path.join(root, 'old-hollywood', file), path.join(hollywood, file));
+}
+cpSync(path.join(root, 'old-hollywood/assets/img/web'), path.join(hollywood, 'assets/img/web'), { recursive: true });
+copyFileSync(path.join(root, 'old-hollywood/assets/img/the-golden-ticket-v1.png'), path.join(hollywood, 'assets/img/the-golden-ticket-v1.png'));
 copyFileSync(path.join(root, 'index.html'), path.join(output, 'dvoid-home.html'));
 copyFileSync(medicine, path.join(output, 'index.html'));
 console.log('Static build ready: dist/ — Medicine at /; D-Void home at /home');
