@@ -25,7 +25,7 @@ cpSync(path.join(root, 'Resources'), path.join(output, 'Resources'), {
 // Publish only runtime files; keep art masters and notes in the repository.
 const hollywood = path.join(output, 'old-hollywood');
 mkdirSync(path.join(hollywood, 'assets/img'), { recursive: true });
-for (const file of ['index.html', 'styles.css', 'script.js']) {
+for (const file of ['index.html', 'styles.css', 'script.js', 'hollywood-never-dies-ghl.html']) {
   copyFileSync(path.join(root, 'old-hollywood', file), path.join(hollywood, file));
 }
 cpSync(path.join(root, 'old-hollywood/assets/img/web'), path.join(hollywood, 'assets/img/web'), { recursive: true });
