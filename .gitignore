@@ -6,3 +6,4 @@ AUDIT_REPORT.md
 .vercel
 .env*
 /dist/
+node_modules/

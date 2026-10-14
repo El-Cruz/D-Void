@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="es">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ <meta name="description" content="D-VOID presenta Hollywood Never Dies. La noche nunca termina.">
+ <title>Hollywood Never Dies · D-VOID</title>
+ <link rel="icon" href="data:,">
+ <style>
+/* Estilos aislados bajo .oh-page; el reset del body solo aplica al standalone. */
+body.oh-document { margin: 0; background: #070707; }
+.oh-page {
+  --oh-black: #070707; --oh-burgundy: #3a0707; --oh-carpet: #760d0b;
+  --oh-champagne: #e1c18b; --oh-gold: #b98a38; --oh-ivory: #f2ece2;
+  --oh-muted: #c5bcb0; --oh-surface: #17120e; --oh-rule: #615039;
+  --oh-ease-cinematic: cubic-bezier(.4,0,.2,1);
+  --oh-ease-enter: cubic-bezier(.16,1,.3,1);
+  --oh-ease-exit: cubic-bezier(.4,0,1,1);
+  --oh-ease-mechanical: cubic-bezier(.3,.1,.3,1);
+  --oh-duration-micro: 180ms; --oh-duration-ui: 320ms;
+  --oh-duration-editorial: 600ms;
+  --oh-duration-print: 680ms; --oh-duration-light: 700ms;
+  --oh-space-1: .5rem; --oh-space-2: 1rem; --oh-space-3: 1.5rem;
+  --oh-space-4: 2rem; --oh-space-5: 3rem; --oh-space-6: 5rem;
+  --oh-gutter: clamp(1rem, 4vw, 3rem); --oh-section-space: clamp(3.5rem, 8vw, 8rem);
+  --oh-display: 'Bodoni MT', Didot, 'Times New Roman', serif;
+  --oh-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --oh-heading: clamp(2.5rem, 5.5vw, 5.5rem);
+  --oh-media-position: 50% 50%; --oh-media-fit: contain;
+  box-sizing: border-box; color: var(--oh-ivory); background: var(--oh-black);
+  font: 400 1rem/1.65 var(--oh-ui); color-scheme: dark;
+}
+.oh-page *, .oh-page *::before, .oh-page *::after { box-sizing: inherit; }
+.oh-page :is(h1,h2,h3,p,figure) { margin: 0; }
+.oh-page :is(h1,h2,h3) { font-family: var(--oh-display); font-weight: 400; line-height: 1.04; text-wrap: balance; overflow-wrap: anywhere; }
+.oh-page h2 { font-size: var(--oh-heading); }
+.oh-page h3 { font-size: clamp(2rem, 3.5vw, 3.5rem); }
+.oh-page em { font-weight: 400; color: var(--oh-champagne); }
+.oh-page p { max-width: 48ch; }
+.oh-page a { color: inherit; text-underline-offset: .3em; }
+.oh-page :is(a,button) { min-height: 44px; min-width: 44px; }
+.oh-page :is(a,button):active { transform: scale(.97); }
+.oh-page :focus-visible { outline: 3px solid var(--oh-champagne); outline-offset: 5px; }
+.oh-page [hidden] { display: none !important; }
+.oh-page .oh-shell { width: 100%; max-width: 1440px; margin-inline: auto; padding-left: max(var(--oh-gutter), env(safe-area-inset-left)); padding-right: max(var(--oh-gutter), env(safe-area-inset-right)); }
+.oh-page .oh-skip { position: absolute; top: 1rem; left: 1rem; z-index: 10; padding: 1rem; background: var(--oh-ivory); color: var(--oh-black); transform: translateY(-200%); }
+.oh-page .oh-skip:focus { transform: none; }
+.oh-page .oh-eyebrow { font-size: .8125rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--oh-champagne); }
+.oh-page .oh-section { position: relative; isolation: isolate; padding-block: var(--oh-section-space); scroll-margin-top: 1rem; }
+.oh-page .oh-section-heading { display: grid; gap: 1.25rem; margin-bottom: 2rem; }
+.oh-page .oh-media { position: relative; isolation: isolate; min-width: 0; width: 100%; aspect-ratio: 1672 / 941; background: #100e0b; }
+.oh-page .oh-media picture { display: block; width: 100%; height: 100%; }
+.oh-page .oh-media :is(img,video) { display: block; width: 100%; height: 100%; object-fit: var(--oh-media-fit); object-position: var(--oh-media-position); }
+/* Superposición óptica discreta: nunca detrás de texto esencial ni sobre los rostros. */
+.oh-page .oh-media::after { content: ''; position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 0 1px #e1c18b30; background: linear-gradient(0deg,#07070720,transparent 15%,transparent 90%,#07070715); }
+.oh-page .oh-finale { background: linear-gradient(180deg,var(--oh-black),transparent 25%),radial-gradient(ellipse at 50% 65%,#261a12,var(--oh-black) 75%); }
+.oh-page .oh-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-top: 2rem; padding-bottom: max(2rem,env(safe-area-inset-bottom)); border-top: 1px solid var(--oh-rule); color: var(--oh-muted); }
+/* 60rem: composición editorial, medios con proporción nativa. */
+@media (min-width: 960px) {
+ .oh-page .oh-section-heading { max-width: 58rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+ .oh-page *, .oh-page *::before, .oh-page *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+ .oh-page :is(a,button):active { transform: none; }
+}
+
+/* Llegada → red carpet → afterlife: una cámara, un recorrido nativo. */
+.oh-page .oh-scene { position: relative; isolation: isolate; background: var(--oh-black); }
+.oh-page .oh-scene-origin { position: absolute; top: 0; }
+.oh-page .oh-premiere-scene {
+ --oh-camera-scale: 1; --oh-camera-y: 0px; --oh-title-opacity: 1; --oh-title-y: 0px;
+ --oh-undead: 0; --oh-light: 0; --oh-haze: .04; --oh-haze-x: 0px;
+ --oh-flash: 0; --oh-reveal: 0; --oh-reveal-y: 0px; --oh-cue: 1; --oh-exit: 0;
+}
+.oh-page .oh-premiere-scene.has-scroll { height: 270svh; }
+.oh-page .oh-scene-stage {
+ position: relative; isolation: isolate; display: grid; grid-template-rows: auto 1fr auto;
+ min-height: 100svh; padding: max(1.5rem,env(safe-area-inset-top)) max(1.5rem,env(safe-area-inset-right)) max(1.5rem,env(safe-area-inset-bottom)) max(1.5rem,env(safe-area-inset-left));
+ overflow: hidden; overflow: clip; background: var(--oh-black);
+}
+.oh-page .has-scroll > .oh-scene-stage { position: sticky; top: 0; }
+.oh-page .oh-premiere-scene.has-scroll.is-oversized { height: auto; }
+.oh-page .is-oversized > .oh-scene-stage { position: relative; }
+.oh-page .oh-cinema-world,.oh-page .oh-world-camera,.oh-page .oh-cinema-world picture,.oh-page .oh-cinema-world img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.oh-page .oh-cinema-world { z-index: -5; overflow: hidden; }
+.oh-page .oh-world-camera { transform: translateY(var(--oh-camera-y)) scale(var(--oh-camera-scale)); transform-origin: 50% 46%; }
+.oh-page .oh-cinema-world img { display: block; object-fit: cover; object-position: 50% 46%; }
+.oh-page .oh-world-undead { opacity: var(--oh-undead); }
+.oh-page :is(.oh-cinema-light,.oh-cinema-haze,.oh-cinema-shade,.oh-cinema-flash,.oh-cinema-exit) { position: absolute; inset: 0; pointer-events: none; }
+.oh-page .oh-cinema-light { z-index: -4; background: linear-gradient(180deg,#10182080,#0b10143d 50%,#070707b3); opacity: var(--oh-light); }
+.oh-page .oh-cinema-haze { z-index: -3; inset: -4%; background: radial-gradient(ellipse at 50% 43%,#e1c18b80,transparent 65%),linear-gradient(115deg,transparent 30%,#e1c18b33 50%,transparent 65%); opacity: var(--oh-haze); transform: translateX(var(--oh-haze-x)); }
+.oh-page .oh-cinema-shade { z-index: -2; background: linear-gradient(180deg,#07070788,transparent 24%,transparent 40%,#070707a8 76%,#070707ed),linear-gradient(90deg,#07070735,transparent 25%,transparent 75%,#07070735); }
+.oh-page .oh-cinema-flash { z-index: -1; opacity: var(--oh-flash); background: radial-gradient(ellipse at 12% 43%,#f2ece2,transparent 43%),radial-gradient(ellipse at 90% 38%,#e1c18b,transparent 35%); }
+.oh-page .oh-cinema-exit { z-index: 1; background: linear-gradient(180deg,#07070799,#070707); opacity: var(--oh-exit); }
+.oh-page .oh-cinema-brand { justify-self: center; opacity: var(--oh-title-opacity); }
+.oh-page .oh-cinema-brand img { display: block; width: 112px; height: auto; }
+.oh-page .oh-arrival-title { align-self: end; text-align: center; padding-block: 5rem 3rem; opacity: var(--oh-title-opacity); transform: translateY(var(--oh-title-y)); }
+.oh-page .oh-arrival-title h1 { font-size: clamp(2rem,10.8vw,5rem); line-height: 1.06; letter-spacing: .025em; text-transform: uppercase; }
+.oh-page .oh-arrival-title h1 span { display: block; }
+.oh-page .oh-arrival-title h1 span + span { color: var(--oh-champagne); font-size: .84em; letter-spacing: .1em; margin-top: .15em; }
+.oh-page .oh-revelation { position: absolute; inset: 0; display: grid; place-content: center; padding: 2rem 1.5rem; text-align: center; opacity: var(--oh-reveal); transform: translateY(var(--oh-reveal-y)); pointer-events: none; }
+.oh-page .oh-revelation h2 { font-size: clamp(2.5rem,11vw,5rem); line-height: 1.12; text-transform: uppercase; }
+.oh-page .oh-revelation em { display: inline-block; font-size: .86em; padding-bottom: .12em; }
+.oh-page .oh-scroll-cue { justify-self: center; display: grid; justify-items: center; gap: .8rem; color: var(--oh-ivory); font: 400 .6875rem/1.5 var(--oh-ui); letter-spacing: .18em; text-transform: uppercase; opacity: var(--oh-cue); }
+.oh-page .oh-scroll-cue span { display: block; height: 2rem; width: 1px; background: linear-gradient(var(--oh-champagne),transparent); }
+@media (min-width: 960px) {
+ .oh-page .oh-premiere-scene.has-scroll { height: 360svh; }
+ .oh-page .oh-scene-stage { padding: max(2.5rem,env(safe-area-inset-top)) 3rem; }
+ .oh-page .oh-cinema-brand img { width: 136px; }
+ .oh-page .oh-arrival-title { padding-bottom: 3.5rem; }
+ .oh-page .oh-arrival-title h1 { font-size: clamp(4rem,7.8vw,8.5rem); }
+ .oh-page .oh-revelation h2 { font-size: clamp(4rem,7.8vw,8rem); }
+}
+@media (max-height: 500px) {
+ .oh-page .oh-scene-stage { padding-block: 1rem; }
+ .oh-page .oh-cinema-brand img { width: 80px; }
+ .oh-page .oh-arrival-title { padding-block: 2rem 1rem; }
+ .oh-page .oh-arrival-title h1 { font-size: clamp(2rem,8svh,4rem); }
+ .oh-page .oh-scroll-cue span { height: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+ .oh-page :is(.oh-world-camera,.oh-cinema-haze,.oh-arrival-title,.oh-revelation) { transform: none; }
+ .oh-page .oh-cinema-flash { display: none; }
+}
+
+/* Fase 4.5: retrato editorial íntegro, sin superponer texto a los personajes. */
+.oh-page .oh-dresscode { background: linear-gradient(180deg,var(--oh-black),transparent 18%,transparent 70%,#100a08),radial-gradient(ellipse at 15% 48%,#3a07072e,transparent 65%),radial-gradient(ellipse at 72% 55%,#b98a380a,transparent 55%),var(--oh-black); }
+.oh-page .oh-dress-layout { display: grid; grid-template-areas: 'heading' 'portrait' 'copy'; gap: 2rem; }
+.oh-page .oh-dress-heading { grid-area: heading; }
+.oh-page .oh-dress-heading h2 { margin-top: 1.25rem; font-size: clamp(2.7rem,11.5vw,5rem); line-height: 1.02; letter-spacing: -.025em; }
+.oh-page .oh-dress-heading em { font-style: italic; }
+.oh-page .oh-dress-portrait { grid-area: portrait; aspect-ratio: 1086 / 1449; max-width: 40rem; margin-inline: auto; --oh-media-fit: contain; --oh-media-position: 50% 50%; }
+.oh-page .oh-dress-portrait::after { display: none; }
+.oh-page .oh-dress-copy { grid-area: copy; min-width: 0; }
+.oh-page .oh-dress-introduction { font-size: 1rem; line-height: 1.7; color: var(--oh-ivory); }
+.oh-page .oh-dress-details { position: relative; margin-top: 2rem; padding-top: 1.5rem; }
+.oh-page .oh-dress-details::before { content: ''; position: absolute; top: 0; left: 0; width: 4rem; height: 5px; border-block: 1px solid var(--oh-gold); }
+.oh-page .oh-dress-details h3 { font-size: clamp(4rem,12vw,6rem); line-height: 1; letter-spacing: .04em; text-transform: uppercase; }
+.oh-page .oh-dress-palette { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; padding: 0; margin: 1.25rem 0 0; list-style: none; font: 400 1rem/1.65 var(--oh-display); letter-spacing: .065em; text-transform: uppercase; color: var(--oh-champagne); }
+.oh-page .oh-dress-inspiration { margin-top: 1.5rem; font-size: .8125rem; line-height: 1.6; letter-spacing: .1em; text-transform: uppercase; color: var(--oh-muted); }
+.oh-page .oh-dress-cta { display: inline-flex; align-items: center; justify-content: center; max-width: 100%; min-height: 52px; margin-top: 2rem; padding: .875rem 0; border-bottom: 1px solid var(--oh-gold); color: var(--oh-champagne); text-decoration: none; font: 500 .8125rem/1.5 var(--oh-ui); letter-spacing: .1em; text-transform: uppercase; }
+@media (hover: hover) { .oh-page .oh-dress-cta:hover { color: var(--oh-ivory); border-color: var(--oh-ivory); } }
+@media (min-width: 640px) and (max-width: 959px) {
+ .oh-page .oh-dress-heading,.oh-page .oh-dress-copy { width: 100%; max-width: 40rem; margin-inline: auto; }
+}
+@media (min-width: 960px) {
+ .oh-page .oh-dress-layout { grid-template-columns: 50% minmax(0,1fr); grid-template-areas: 'portrait heading' 'portrait copy'; column-gap: clamp(2rem,5vw,5rem); row-gap: 2rem; align-items: start; }
+ .oh-page .oh-dress-portrait { max-width: none; }
+ .oh-page .oh-dress-heading { align-self: end; padding-top: 2rem; }
+ .oh-page .oh-dress-heading h2 { font-size: clamp(3.5rem,5.4vw,5.5rem); }
+ .oh-page .oh-dress-introduction { font-size: 1.0625rem; }
+ .oh-page .oh-dress-details { margin-top: clamp(2rem,4vw,4rem); padding-top: 2rem; }
+ .oh-page .oh-dress-details h3 { font-size: clamp(4.5rem,7vw,6rem); }
+ .oh-page .oh-dress-copy { padding-bottom: 2rem; }
+}
+
+/* Fase 4.6: el mostrador continúa debajo de la fotografía; altura libre para errores y teclado. */
+.oh-page .oh-box-office { background: linear-gradient(180deg,#100a08,#160d09 58%,var(--oh-black)); }
+.oh-page .oh-box-heading { display: grid; gap: 1.5rem; margin-bottom: 2.5rem; }
+.oh-page .oh-box-heading h2 { margin-top: 1.25rem; font-size: clamp(2.7rem,7vw,6rem); }
+.oh-page .oh-box-subcopy { font: 400 1.25rem/1.5 var(--oh-display); color: var(--oh-champagne); }
+.oh-page .oh-box-scene { --oh-media-fit: contain; }
+.oh-page .oh-box-scene::after { box-shadow: none; opacity: .35; background: radial-gradient(ellipse at 48% 18%,#e1c18b22,transparent 55%); }
+.oh-page .oh-reservation-form { position: relative; width: 100%; margin: 0 auto; padding: clamp(1.25rem,4vw,3rem); border: 1px solid #826339; border-top: 5px double var(--oh-gold); background: linear-gradient(90deg,#24160e,var(--oh-surface) 12%,var(--oh-surface) 88%,#24160e); box-shadow: inset 0 0 0 7px #0e0a07, inset 0 0 0 8px #615039; }
+.oh-page .oh-counter-title { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--oh-rule); }
+.oh-page .oh-counter-title > span { font: 400 .75rem/1.5 var(--oh-ui); letter-spacing: .15em; color: var(--oh-champagne); }
+.oh-page .oh-counter-title h3 { font-size: clamp(1.5rem,3vw,2rem); }
+.oh-page .oh-form-note { margin-top: 1rem; font-size: .875rem; line-height: 1.6; color: var(--oh-muted); }
+.oh-page .oh-reservation-fields { display: grid; gap: 1.5rem; min-width: 0; padding: 0; margin: 1.75rem 0 0; border: 0; }
+.oh-page .oh-reservation-fields legend { padding: 0; margin-bottom: 1.25rem; color: var(--oh-champagne); font-size: .875rem; letter-spacing: .04em; }
+.oh-page .oh-name-fields { display: grid; gap: 1.5rem; }
+.oh-page .oh-field { display: grid; gap: .5rem; min-width: 0; }
+.oh-page .oh-field label { font-size: .9375rem; line-height: 1.5; }
+.oh-page .oh-field label > span:not([lang]) { color: var(--oh-muted); font-size: .8125rem; }
+.oh-page .oh-field input { width: 100%; min-width: 0; min-height: 52px; padding: .75rem; border: 1px solid #927853; border-radius: 0; background: #0e0c0a; color: var(--oh-ivory); font: 400 1rem/1.5 var(--oh-ui); scroll-margin-block: 5rem; }
+.oh-page .oh-field input:focus-visible { border-color: var(--oh-champagne); outline-offset: 3px; }
+.oh-page .oh-field input[aria-invalid="true"] { border-color: #ecada2; }
+.oh-page .oh-field-hint { font-size: .8125rem; line-height: 1.6; color: var(--oh-muted); }
+.oh-page .oh-field-error { font-size: .875rem; line-height: 1.5; color: #f3b9ac; }
+.oh-page .oh-accompanied { display: flex; align-items: center; gap: .875rem; width: fit-content; min-height: 48px; cursor: pointer; }
+.oh-page .oh-accompanied input { width: 24px; height: 24px; margin: 0; accent-color: var(--oh-champagne); cursor: pointer; }
+.oh-page .oh-guests { margin-top: 1.25rem; }
+.oh-page .oh-guests input { max-width: 8rem; }
+.oh-page .oh-reserve { display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; min-height: 56px; padding: 1rem; border: 1px solid var(--oh-champagne); border-radius: 0; background: var(--oh-champagne); color: var(--oh-black); font: 500 .8125rem/1.5 var(--oh-ui); text-transform: uppercase; letter-spacing: .08em; cursor: pointer; scroll-margin-block: 3rem; }
+.oh-page .oh-reserve:disabled { cursor: wait; opacity: .7; }
+.oh-page .oh-reservation-fields:disabled .oh-reserve { cursor: not-allowed; }
+.oh-page .oh-form-status { margin-top: 1rem; color: var(--oh-champagne); font-size: .9375rem; overflow-wrap: anywhere; }
+.oh-page .oh-form-status:empty { margin: 0; }
+.oh-page .oh-form-errors { margin-top: 1.5rem; padding: 1rem; border-left: 2px solid #f3b9ac; background: #291813; font-size: .875rem; }
+.oh-page .oh-form-errors ul { padding-left: 1.25rem; margin: .5rem 0 0; }
+.oh-page .oh-form-errors a { display: inline-flex; align-items: center; min-height: 44px; }
+.oh-page .oh-box-office.is-box-revealed .oh-box-scene::after { animation: oh-box-light var(--oh-duration-light) var(--oh-ease-cinematic) both; }
+.oh-page .oh-box-office.is-box-revealed .oh-reservation-form { animation: oh-counter-reveal var(--oh-duration-editorial) var(--oh-ease-enter) 100ms backwards; }
+.oh-page .oh-box-office:focus-within .oh-reservation-form,.oh-page .oh-box-office:focus-within .oh-box-scene::after { animation: none; }
+.oh-page .oh-guests:not([hidden]) { animation: oh-counter-reveal var(--oh-duration-micro) var(--oh-ease-enter); }
+@keyframes oh-box-light { from { opacity: 0; } to { opacity: .35; } }
+@keyframes oh-counter-reveal { from { opacity: .85; } to { opacity: 1; } }
+@media (hover: hover) { .oh-page .oh-reserve:hover { background: var(--oh-ivory); } }
+@media (min-width: 640px) {
+ .oh-page .oh-name-fields { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+ .oh-page .oh-reservation-form { max-width: 42rem; }
+}
+@media (min-width: 960px) {
+ .oh-page .oh-box-heading { grid-template-columns: 1fr auto; align-items: end; }
+ .oh-page .oh-box-subcopy { padding: 0 3rem .5rem 0; font-size: 1.5rem; }
+ .oh-page .oh-reservation-form { width: 56%; margin-top: clamp(-17rem,-18vw,-10rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+ .oh-page .oh-box-office :is(.oh-reservation-form,.oh-guests),.oh-page .oh-box-office .oh-box-scene::after { animation: none !important; transform: none; }
+}
+
+/* Fase 4.7: un único ticket; ornamento aprobado arriba, marco y talón adaptables en HTML. */
+.oh-page .oh-confirmation-shell { max-width: 1200px; }
+.oh-page .oh-ticket-printer { position: relative; padding-top: 1rem; }
+.oh-page .oh-ticket-printer::before { content: ''; position: absolute; inset: 0 8% auto; z-index: 2; height: 12px; pointer-events: none; border-block: 2px solid #826339; background: #020202; box-shadow: 0 3px 8px #000; }
+.oh-page .oh-ticket { display: grid; position: relative; min-width: 0; margin: 0 .375rem; padding-top: clamp(3.5rem,7vw,6rem); border: 4px double #886326; color: #302012; background: #f2e6cc; box-shadow: 0 12px 32px #0006; }
+.oh-page .oh-ticket::before { content: ''; position: absolute; inset: 0 0 auto; height: clamp(3.5rem,7vw,6rem); pointer-events: none; background: url('/Resources/events/2026-10-22-hollywood-never-dies/assets/the-golden-ticket-v1.png') center top / 100% auto no-repeat; }
+@supports (background-image: image-set(url('image.webp') type('image/webp'))) {
+ .oh-page .oh-ticket::before { background-image: image-set(url('/Resources/events/2026-10-22-hollywood-never-dies/assets/the-golden-ticket-v1.webp') type('image/webp'),url('/Resources/events/2026-10-22-hollywood-never-dies/assets/the-golden-ticket-v1.png') type('image/png')); }
+}
+.oh-page .oh-ticket-body { display: grid; gap: 1.5rem; min-width: 0; padding: clamp(1.25rem,4vw,3rem); }
+.oh-page .oh-ticket :is(.oh-eyebrow,em) { color: #674719; }
+.oh-page .oh-ticket h3 { font-size: clamp(2rem,5vw,4rem); }
+.oh-page .oh-ticket-label { font: 500 .875rem/1.5 var(--oh-ui); letter-spacing: .08em; text-transform: uppercase; color: #674719; }
+.oh-page .oh-ticket h4 { margin: .5rem 0 0; font: 400 clamp(1.75rem,3.5vw,3rem)/1.2 var(--oh-display); overflow-wrap: anywhere; }
+.oh-page .oh-ticket-party { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; margin: 1.5rem 0 0; }
+.oh-page .oh-ticket-party dt { font-size: 1rem; }
+.oh-page .oh-ticket-party dd { margin: .25rem 0 0; font: 400 2.5rem/1.2 var(--oh-display); }
+.oh-page .oh-ticket-meaning { margin-top: 1rem; font-size: .875rem; line-height: 1.6; color: #674719; }
+.oh-page .oh-ticket-footer { padding-top: 1rem; border-top: 1px solid #a48245; font: 500 .8125rem/1.6 var(--oh-ui); letter-spacing: .065em; text-transform: uppercase; }
+.oh-page .oh-ticket-stub { display: grid; gap: 1.5rem; align-content: start; min-width: 0; padding: clamp(1.25rem,4vw,3rem); border-top: 1px dashed #886326; }
+.oh-page #oh-ticket-state { margin-top: .5rem; font-size: 1rem; line-height: 1.6; text-transform: uppercase; }
+.oh-page #oh-ticket-state strong { font-size: .875rem; font-weight: 500; }
+.oh-page #oh-ticket-code { margin-top: .5rem; font: 500 1rem/1.6 ui-monospace,monospace; overflow-wrap: anywhere; }
+.oh-page .oh-ticket-qr { display: grid; gap: .5rem; place-items: center; width: 100%; max-width: 10rem; min-height: 8rem; padding: 1rem; border: 1px solid #a48245; text-align: center; }
+.oh-page .oh-ticket-qr > span { font-size: 1.5rem; color: #674719; }
+.oh-page .oh-ticket-qr p { font-size: .875rem; letter-spacing: .08em; text-transform: uppercase; }
+.oh-page .oh-ticket-note { margin-top: 1.5rem; color: var(--oh-champagne); font-size: .9375rem; }
+.oh-page .oh-ticket-edit { display: flex; justify-content: space-between; align-items: center; gap: 1rem; width: 100%; min-height: 52px; margin-top: 1.5rem; padding: 1rem 1.25rem; border: 1px solid var(--oh-champagne); border-radius: 0; background: transparent; color: var(--oh-champagne); font: 500 .875rem/1.5 var(--oh-ui); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+.oh-page .oh-ticket-edit > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+.oh-page .oh-ticket-edit > span:last-child { flex-shrink: 0; }
+.oh-page .oh-finale.is-printing .oh-ticket { animation: oh-ticket-print var(--oh-duration-print) var(--oh-ease-mechanical) both; }
+.oh-page .oh-finale.is-printing :is(.oh-ticket-data,.oh-ticket-code) { animation: oh-ticket-details var(--oh-duration-micro) var(--oh-ease-enter) calc(var(--oh-duration-print) + 100ms) backwards; }
+@keyframes oh-ticket-print {
+ 0% { opacity: .94; transform: translateY(-10px); clip-path: inset(0 0 92% 0); }
+ 40%,46% { opacity: 1; transform: translateY(-4px); clip-path: inset(0 0 53% 0); }
+ 88% { opacity: 1; transform: translateY(-1px); clip-path: inset(0 0 3% 0); }
+ 100% { opacity: 1; transform: none; clip-path: inset(0); }
+}
+@keyframes oh-ticket-details { from { opacity: .65; } to { opacity: 1; } }
+@media (hover: hover) { .oh-page .oh-ticket-edit:hover { background: #23190f; } }
+@media (min-width: 960px) {
+ .oh-page .oh-ticket { grid-template-columns: minmax(0,7fr) minmax(0,3fr); }
+ .oh-page .oh-ticket-stub { border-top: 0; border-left: 1px dashed #886326; }
+ .oh-page .oh-ticket-edit { width: auto; min-width: 280px; }
+}
+@media (prefers-reduced-motion: reduce) {
+ .oh-page .oh-finale.is-printing :is(.oh-ticket,.oh-ticket-data,.oh-ticket-code) { animation: none !important; transform: none; clip-path: none; }
+}
+
+/* Fase 4.8: el mismo ritmo de exposición en toda la experiencia. */
+.oh-page :is(.oh-dress-cta,.oh-reserve,.oh-ticket-edit) { transition: color var(--oh-duration-micro) var(--oh-ease-enter),background-color var(--oh-duration-micro) var(--oh-ease-enter),border-color var(--oh-duration-micro) var(--oh-ease-enter); overflow-wrap: anywhere; }
+.oh-page .oh-ticket-printer::after { content: ''; position: absolute; inset: 1rem .375rem auto; z-index: 1; height: 2rem; pointer-events: none; opacity: 0; background: linear-gradient(#30201255,transparent); }
+.oh-page .oh-finale.is-printing .oh-ticket-printer::after { animation: oh-print-shadow var(--oh-duration-print) var(--oh-ease-exit) both; }
+@keyframes oh-print-shadow { 0%,46% { opacity: 1; } 100% { opacity: 0; } }
+@media (min-width: 960px) {
+ .oh-page { --oh-duration-print: 860ms; --oh-duration-light: 900ms; }
+}
+@media (prefers-reduced-motion: reduce) {
+ .oh-page .oh-ticket-printer::after { display: none; }
+}
+
+</style>
+ 
+
+</head>
+<body class="oh-document">
+<!-- Standalone: conservar esta carpeta. GHL: método de inserción pendiente de validar. -->
+<div id="dvoid-hollywood" class="oh-page" data-old-hollywood>
+ <a class="oh-skip" href="#oh-dresscode">Saltar al contenido</a>
+ <main id="oh-main" tabindex="-1">
+  <section id="oh-hero" class="oh-scene oh-premiere-scene" data-scroll-scene="premiere" data-hero-state="clean" aria-labelledby="oh-hero-title">
+   <span id="oh-intro" class="oh-scene-origin" aria-hidden="true"></span>
+   <div class="oh-scene-stage">
+    <figure id="oh-premiere-frame" class="oh-cinema-world" data-media="the-last-premiere-master-v1" data-media-state="poster">
+     <div class="oh-world-camera">
+      <picture class="oh-world-clean"><img src="/Resources/events/2026-10-22-hollywood-never-dies/assets/the-last-premiere-master-v1-640.webp" srcset="/Resources/events/2026-10-22-hollywood-never-dies/assets/the-last-premiere-master-v1-640.webp 640w, /Resources/events/2026-10-22-hollywood-never-dies/assets/the-last-premiere-master-v1-1280.webp 1280w" sizes="(max-aspect-ratio: 16/9) 178svh, 100vw" width="1672" height="941" alt="Alfombra roja hacia un salón iluminado por arañas, con invitados y fotógrafos a ambos lados." loading="eager" decoding="async" fetchpriority="high"></picture>
+      <picture class="oh-world-undead" aria-hidden="true"><img src="/Resources/events/2026-10-22-hollywood-never-dies/assets/the-last-premiere-master-v2-undead-640.webp" srcset="/Resources/events/2026-10-22-hollywood-never-dies/assets/the-last-premiere-master-v2-undead-640.webp 640w, /Resources/events/2026-10-22-hollywood-never-dies/assets/the-last-premiere-master-v2-undead-1280.webp 1280w" sizes="(max-aspect-ratio: 16/9) 178svh, 100vw" width="1672" height="941" alt="El salón transformado, con invitados esqueléticos junto a la alfombra roja." loading="lazy" decoding="async"></picture>
+     </div>
+    </figure>
+    <div class="oh-cinema-light" aria-hidden="true"></div>
+    <div class="oh-cinema-haze" aria-hidden="true"></div>
+    <div class="oh-cinema-shade" aria-hidden="true"></div>
+    <div class="oh-cinema-flash" aria-hidden="true"></div>
+    <div class="oh-cinema-exit" aria-hidden="true"></div>
+    <div class="oh-cinema-brand"><img src="/Resources/dvoid/dvoid-logo.png" width="700" height="262" alt="D·VOID"></div>
+    <div class="oh-arrival-title">
+     <h1 id="oh-hero-title" lang="en"><span>Hollywood</span><span>Never Dies</span></h1>
+    </div>
+    <div id="oh-concept" class="oh-revelation" aria-labelledby="oh-concept-title">
+     <h2 id="oh-concept-title">La noche<br><em>nunca termina.</em></h2>
+    </div>
+    <p class="oh-scroll-cue">Desliza para entrar<span aria-hidden="true"></span></p>
+   </div>
+  </section>
+  <section id="oh-dresscode" tabindex="-1" class="oh-section oh-dresscode" aria-labelledby="oh-dresscode-title">
+   <div class="oh-shell oh-dress-layout">
+    <header class="oh-dress-heading">
+     <p class="oh-eyebrow">Código de vestimenta</p>
+     <h2 id="oh-dresscode-title">Vuelve como<br>un <em>ícono.</em></h2>
+    </header>
+    <figure class="oh-media oh-dress-portrait" data-media="skeleton-couple-charlie-marilyn-v1" data-media-state="poster">
+     <picture><img src="/Resources/events/2026-10-22-hollywood-never-dies/assets/skeleton-couple-charlie-marilyn-v1-640.webp" srcset="/Resources/events/2026-10-22-hollywood-never-dies/assets/skeleton-couple-charlie-marilyn-v1-640.webp 640w, /Resources/events/2026-10-22-hollywood-never-dies/assets/skeleton-couple-charlie-marilyn-v1-1280.webp 1086w" sizes="(min-width: 1440px) 672px, (min-width: 960px) 46vw, (min-width: 640px) 640px, calc(100vw - 32px)" width="1086" height="1449" alt="Pareja de muertos vivientes inspirada en Chaplin y Marilyn: bombín, bastón y frac negro junto a un vestido marfil." loading="lazy" decoding="async"></picture>
+    </figure>
+    <div class="oh-dress-copy">
+     <p class="oh-dress-introduction">Elige tu estrella de Hollywood<br>y tráela de vuelta de entre los muertos.</p>
+     <div class="oh-dress-details">
+      <h3>Gala</h3>
+      <ul class="oh-dress-palette" aria-label="Paleta del código de vestimenta"><li>Negro</li><li>Blanco</li><li>Dorado</li><li>Champaña</li><li>Rojo profundo</li></ul>
+      <p class="oh-dress-inspiration">Íconos de Hollywood — de vuelta de entre los muertos.</p>
+     </div>
+     <a class="oh-dress-cta" href="#oh-reservation">Reclama tu invitación</a>
+    </div>
+   </div>
+  </section>
+  <section id="oh-reservation" class="oh-section oh-box-office" aria-labelledby="oh-reservation-title">
+   <div class="oh-shell">
+    <header class="oh-box-heading">
+     <div><p class="oh-eyebrow">La última taquilla</p><h2 id="oh-reservation-title">Reclama tu<br><em>invitación.</em></h2></div>
+     <p class="oh-box-subcopy">Una última entrada.<br>Una última premiere.</p>
+    </header>
+    <div class="oh-box-layout">
+     <figure class="oh-media oh-box-scene" data-media="the-last-box-office-v1" data-media-state="poster">
+      <picture><img src="/Resources/events/2026-10-22-hollywood-never-dies/assets/the-last-box-office-v1-640.webp" srcset="/Resources/events/2026-10-22-hollywood-never-dies/assets/the-last-box-office-v1-640.webp 640w, /Resources/events/2026-10-22-hollywood-never-dies/assets/the-last-box-office-v1-1280.webp 1280w" sizes="(min-width: 1440px) 1344px, 94vw" width="1672" height="941" alt="Una encargada muerta viviente espera detrás de una taquilla del Hollywood clásico, rodeada de latón, madera oscura y luces cálidas." loading="lazy" decoding="async"></picture>
+     </figure>
+     <form class="oh-reservation-form" data-state="idle" aria-labelledby="oh-form-title" aria-describedby="oh-demo-note" method="post" lang="es">
+      <div class="oh-counter-title"><span aria-hidden="true">D·VOID</span><h3 id="oh-form-title">Tu invitación</h3></div>
+      <p id="oh-demo-note" class="oh-form-note">Vista previa · No se enviarán datos ni se realizará una reserva.</p>
+      <div class="oh-form-errors" id="oh-form-errors" tabindex="-1" aria-labelledby="oh-errors-title" hidden>
+       <p id="oh-errors-title">Revisa estos datos para continuar:</p><ul></ul>
+      </div>
+      <fieldset class="oh-reservation-fields" disabled>
+       <legend>Datos del titular</legend>
+       <div class="oh-name-fields">
+        <div class="oh-field"><label for="oh-first-name">Nombre <span>(requerido)</span></label><input id="oh-first-name" name="firstName" autocomplete="given-name" required minlength="2" maxlength="80" aria-describedby="oh-first-name-error"><p class="oh-field-error" id="oh-first-name-error" hidden></p></div>
+        <div class="oh-field"><label for="oh-last-name">Apellido <span>(requerido)</span></label><input id="oh-last-name" name="lastName" autocomplete="family-name" required maxlength="80" aria-describedby="oh-last-name-error"><p class="oh-field-error" id="oh-last-name-error" hidden></p></div>
+       </div>
+       <div class="oh-field"><label for="oh-phone">Número / WhatsApp <span>(requerido)</span></label><input id="oh-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="40" aria-describedby="oh-phone-hint oh-phone-error"><p id="oh-phone-hint" class="oh-field-hint">Puedes incluir el prefijo internacional, por ejemplo +593.</p><p class="oh-field-error" id="oh-phone-error" hidden></p></div>
+       <div class="oh-party">
+        <label class="oh-accompanied" for="oh-accompanied"><input id="oh-accompanied" name="accompanied" type="checkbox" aria-controls="oh-guests-field" aria-describedby="oh-party-hint"><span>Acompañado</span></label>
+        <p id="oh-party-hint" class="oh-field-hint">Tu invitación es la del titular. Tus acompañantes se cuentan aparte.</p>
+        <div class="oh-field oh-guests" id="oh-guests-field" hidden><label for="oh-guests">Acompañantes adicionales</label><input id="oh-guests" name="guests" type="number" inputmode="numeric" min="1" max="10" step="1" value="0" required disabled aria-describedby="oh-guests-hint oh-guests-error"><p id="oh-guests-hint" class="oh-field-hint">De 1 a 10 en esta demo, sin incluirte a ti. Límite definitivo por confirmar.</p><p class="oh-field-error" id="oh-guests-error" hidden></p></div>
+       </div>
+       <button class="oh-reserve" type="submit">Preparar mi invitación <span aria-hidden="true">→</span></button>
+      </fieldset>
+      <noscript><p class="oh-form-note">Activa JavaScript para probar el formulario de demostración. Las reservas reales aún no están disponibles.</p></noscript>
+      <p class="oh-form-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
+     </form>
+    </div>
+   </div>
+  </section>
+  <section id="oh-confirmation" class="oh-section oh-finale" aria-labelledby="oh-confirmation-title" hidden>
+   <div class="oh-shell oh-confirmation-shell">
+    <header id="oh-ticket-summary" class="oh-section-heading" tabindex="-1" aria-labelledby="oh-confirmation-title" aria-describedby="oh-ticket-name oh-ticket-state oh-ticket-note">
+     <p class="oh-eyebrow">Pase de premiere — demo</p><h2 id="oh-confirmation-title">El boleto<br><em>dorado.</em></h2>
+    </header>
+    <div class="oh-ticket-printer">
+     <article class="oh-ticket" aria-labelledby="oh-ticket-event" aria-describedby="oh-ticket-state oh-ticket-note" data-status="demo-preview">
+      <div class="oh-ticket-body">
+       <p class="oh-eyebrow">D·VOID presenta</p>
+       <h3 id="oh-ticket-event" lang="en">Hollywood<br><em>never dies.</em></h3>
+       <div class="oh-ticket-data"><p class="oh-ticket-label">Titular</p><h4 id="oh-ticket-name"></h4>
+        <dl class="oh-ticket-party"><div><dt>Acompañantes</dt><dd id="oh-ticket-guests"></dd></div><div><dt>Total del grupo</dt><dd id="oh-ticket-party-size"></dd></div></dl>
+        <p class="oh-ticket-meaning">El número de acompañantes cuenta solo a tus invitados. El total del grupo te incluye a ti.</p>
+       </div>
+       <p class="oh-ticket-footer">Pase al más allá · Una producción D·VOID</p>
+      </div>
+      <div class="oh-ticket-stub">
+       <div class="oh-ticket-state"><p class="oh-ticket-label">Estado</p><p id="oh-ticket-state">Vista previa demo<br><strong>Aún no confirmada</strong></p></div>
+       <div class="oh-ticket-code"><p class="oh-ticket-label">Código demo</p><p id="oh-ticket-code"></p></div>
+       <div class="oh-ticket-qr" data-ticket-qr aria-label="Espacio QR de demo; no hay código para escanear"><span aria-hidden="true">✦</span><p>Demo<br>Sin QR</p></div>
+      </div>
+     </article>
+    </div>
+    <p id="oh-ticket-note" class="oh-ticket-note">Vista previa personalizada · Sin reserva confirmada ni validez como entrada.</p>
+    <button class="oh-ticket-edit" type="button" aria-controls="oh-reservation"><span>Editar datos</span><span aria-hidden="true">↑</span></button>
+   </div>
+  </section>
+ </main>
+ <footer class="oh-footer oh-shell"><span>D-VOID</span><p lang="en">Hollywood never dies.</p></footer>
+</div>
+<script>
+/* Scroll nativo: llegada, red carpet y afterlife comparten un stage. */
+(() => {
+  'use strict';
+  const page = document.querySelector('#dvoid-hollywood');
+  const scene = page?.querySelector('[data-scroll-scene="premiere"]');
+  if (!scene || scene.dataset.motionInitialized) return;
+  scene.dataset.motionInitialized = 'true';
+  const stage = scene.querySelector('.oh-scene-stage');
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const desktopScene = matchMedia('(min-width: 960px)');
+  const clean = scene.querySelector('.oh-world-clean');
+  const undead = scene.querySelector('.oh-world-undead');
+  const undeadImage = undead.querySelector('img');
+  let undeadReady = false;
+  let prepared = false;
+  let visible = false;
+  let frame = 0;
+  const clamp = value => Math.max(0, Math.min(1, value));
+  const ramp = (value, start, end) => {
+    const t = clamp((value - start) / (end - start));
+    return t * t * (3 - 2 * t);
+  };
+
+  function renderScene() {
+    frame = 0;
+    // Texto ampliado: liberar el stage si ya no cabe en la pantalla.
+    const oversized = stage.offsetHeight > window.innerHeight + 1;
+    scene.classList.toggle('is-oversized', oversized);
+    const bounds = scene.getBoundingClientRect();
+    const distance = Math.max(1, bounds.height - stage.offsetHeight);
+    const progress = oversized ? 0 : clamp(-bounds.top / distance);
+    const reduced = reducedMotion.matches;
+    const desktop = desktopScene.matches;
+    const push = ramp(progress, .12, .82);
+    // Exposiciones ligadas a posición: nunca se inicia/reinicia una línea de tiempo.
+    let exposure = progress < .5 ? .72 * ramp(progress, .35, .46)
+      : progress < .65 ? .72 - .58 * ramp(progress, .5, .58)
+      : .14 + .86 * ramp(progress, .65, .8);
+    if (reduced) exposure = ramp(progress, .45, .8);
+    if (!undeadReady) exposure = 0;
+    const pulse = center => Math.max(0, 1 - Math.abs(progress - center) / .025);
+    const flash = reduced || !undeadReady ? 0 : (desktop ? Math.max(pulse(.445), pulse(.735)) * .055 : pulse(.735) * .035);
+    const values = {
+      '--oh-camera-scale': reduced ? 1 : 1 + push * (desktop ? .065 : .025),
+      '--oh-camera-y': `${reduced ? 0 : -push * (desktop ? 10 : 3)}px`,
+      '--oh-title-opacity': 1 - ramp(progress, .2, .43),
+      '--oh-title-y': `${reduced ? 0 : -ramp(progress, .2, .5) * (desktop ? 34 : 12)}px`,
+      '--oh-undead': exposure,
+      '--oh-light': ramp(progress, .3, .82) * .7,
+      '--oh-haze': .04 + ramp(progress, .28, .7) * (desktop ? .2 : .09),
+      '--oh-haze-x': `${reduced ? 0 : push * (desktop ? 18 : 3)}px`,
+      '--oh-flash': flash,
+      '--oh-reveal': ramp(progress, .72, .87),
+      '--oh-reveal-y': `${reduced ? 0 : (1 - ramp(progress, .72, .87)) * (desktop ? 24 : 8)}px`,
+      '--oh-cue': 1 - ramp(progress, 0, .1),
+      '--oh-exit': ramp(progress, .91, 1) * .6
+    };
+    for (const [name, value] of Object.entries(values)) stage.style.setProperty(name, value);
+    scene.dataset.heroState = exposure >= .999 ? 'undead' : exposure > 0 ? 'transitioning' : 'clean';
+    clean.setAttribute('aria-hidden', String(exposure >= .5));
+    undead.setAttribute('aria-hidden', String(exposure < .5));
+  }
+
+  function requestFrame() {
+    if (!frame && !document.hidden) frame = requestAnimationFrame(renderScene);
+  }
+  function syncListeners() {
+    if (visible && !document.hidden) {
+      window.addEventListener('scroll', requestFrame, { passive: true });
+      window.addEventListener('resize', requestFrame, { passive: true });
+    } else {
+      window.removeEventListener('scroll', requestFrame);
+      window.removeEventListener('resize', requestFrame);
+      cancelAnimationFrame(frame);
+      frame = 0;
+    }
+  }
+  function prepareUndead() {
+    if (prepared) return;
+    prepared = true;
+    undeadImage.loading = 'eager';
+    undeadImage.decode().then(() => { undeadReady = true; requestFrame(); }).catch(() => {});
+  }
+  scene.classList.add('has-scroll');
+  new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting;
+    syncListeners();
+    if (visible) prepareUndead();
+    requestFrame();
+  }).observe(scene);
+  reducedMotion.addEventListener('change', requestFrame);
+  desktopScene.addEventListener('change', requestFrame);
+  document.addEventListener('visibilitychange', () => { syncListeners(); requestFrame(); });
+  window.addEventListener('pageshow', () => { syncListeners(); requestFrame(); });
+  window.addEventListener('pagehide', () => {
+    window.removeEventListener('scroll', requestFrame);
+    window.removeEventListener('resize', requestFrame);
+    cancelAnimationFrame(frame);
+    frame = 0;
+  });
+  requestFrame();
+
+  // Dresscode conserva el reveal de 4.8; su futura escena usará este mismo scheduler.
+  const dresscode = page.querySelector('#oh-dresscode');
+  const easeEnter = getComputedStyle(page).getPropertyValue('--oh-ease-enter').trim();
+  let dresscodeAnimations = [];
+  const dresscodeObserver = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) return;
+    dresscodeObserver.disconnect();
+    dresscode.dataset.revealed = 'true';
+    dresscode.querySelector('img').loading = 'eager';
+    if (document.hidden || reducedMotion.matches) return;
+    const desktop = desktopScene.matches;
+    dresscodeAnimations = [dresscode.querySelector('.oh-dress-portrait'), dresscode.querySelector('.oh-dress-copy')].map((element, i) => element.animate([
+      { opacity: i === 0 ? .75 : .85, transform: `translateY(${desktop ? (i === 0 ? 4 : 2) : 0}px)` },
+      { opacity: 1, transform: 'translateY(0)' }
+    ], { duration: i === 0 ? (desktop ? 800 : 600) : (desktop ? 600 : 500), delay: i === 0 ? 0 : (desktop ? 220 : 140), easing: easeEnter, fill: 'backwards' }));
+    Promise.all(dresscodeAnimations.map(animation => animation.finished)).then(settleDresscode).catch(() => {});
+  }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+  dresscodeObserver.observe(dresscode.querySelector('.oh-dress-portrait'));
+  function settleDresscode() {
+    dresscodeAnimations.forEach(animation => animation.cancel());
+    dresscodeAnimations = [];
+  }
+  dresscode.addEventListener('focusin', settleDresscode);
+  reducedMotion.addEventListener('change', () => { if (reducedMotion.matches) settleDresscode(); });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) settleDresscode(); });
+})();
+
+/* Fases 4.6–4.7: formulario y ticket demo independientes de la intro. */
+(() => {
+  'use strict';
+  const page = document.querySelector('#dvoid-hollywood');
+  const section = page?.querySelector('#oh-reservation');
+  const form = section?.querySelector('.oh-reservation-form');
+  if (!form || form.dataset.reservationInitialized) return;
+  form.dataset.reservationInitialized = 'true';
+  const fields = form.querySelector('fieldset');
+  const firstName = form.elements.namedItem('firstName');
+  const lastName = form.elements.namedItem('lastName');
+  const phone = form.elements.namedItem('phone');
+  const accompanied = form.elements.namedItem('accompanied');
+  const guests = form.elements.namedItem('guests');
+  const guestsField = section.querySelector('#oh-guests-field');
+  const feedback = form.querySelector('.oh-form-status');
+  const summary = form.querySelector('.oh-form-errors');
+  const inputs = [firstName, lastName, phone, guests];
+  let reservation = null;
+  let demoSequence = 0;
+  const confirmation = page.querySelector('#oh-confirmation');
+  const ticketSummary = confirmation.querySelector('#oh-ticket-summary');
+  const ticket = confirmation.querySelector('.oh-ticket');
+  const reducedTicketMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function renderTicket(payload, result, moveFocus) {
+    // TODO GHL: mapear status verificado aquí; reservar data-ticket-qr para qrValue real.
+    // No interpretar demo-preview como confirmación de servidor.
+    const additionalGuests = payload.accompanied ? payload.guests : 0;
+    confirmation.querySelector('#oh-ticket-name').textContent = `${payload.firstName} ${payload.lastName}`;
+    confirmation.querySelector('#oh-ticket-guests').textContent = String(additionalGuests);
+    confirmation.querySelector('#oh-ticket-party-size').textContent = String(1 + additionalGuests);
+    confirmation.querySelector('#oh-ticket-code').textContent = result.reservationId;
+    ticket.dataset.status = result.status;
+    confirmation.classList.remove('is-printing');
+    confirmation.hidden = false;
+    // Reiniciar solo la secuencia finita al emitir una nueva preview.
+    void ticket.offsetWidth;
+    if (!reducedTicketMotion.matches) confirmation.classList.add('is-printing');
+    if (moveFocus) {
+      ticketSummary.focus({ preventScroll: true });
+      ticketSummary.scrollIntoView({ behavior: 'instant', block: 'start' });
+    }
+  }
+
+  reducedTicketMotion.addEventListener('change', () => {
+    if (reducedTicketMotion.matches) {
+      confirmation.classList.remove('is-printing');
+      section.classList.remove('is-box-revealed');
+    }
+  });
+  form.addEventListener('focusin', () => section.classList.remove('is-box-revealed'));
+  section.addEventListener('animationend', event => {
+    if (event.animationName === 'oh-box-light') section.classList.remove('is-box-revealed');
+  });
+
+  function clearTicket() {
+    confirmation.hidden = true;
+    confirmation.classList.remove('is-printing');
+  }
+
+  confirmation.querySelector('.oh-ticket-edit').addEventListener('click', () => {
+    clearTicket();
+    reservation = null;
+    setState('idle');
+    firstName.focus();
+  });
+  confirmation.querySelector('.oh-ticket-code').addEventListener('animationend', event => {
+    if (event.animationName === 'oh-ticket-details') confirmation.classList.remove('is-printing');
+  });
+
+  const cleanText = value => value.normalize('NFC').replace(/[\u0000-\u001f\u007f-\u009f]/g, '').trim().replace(/\s+/gu, ' ');
+  const cleanPhone = value => value.normalize('NFKC').trim().replace(/[\s().-]/g, '').replace(/^00/, '+');
+
+  function errorFor(input) {
+    const value = cleanText(input.value);
+    if (input === firstName || input === lastName) {
+      if (!value) return input === firstName ? 'Escribe tu nombre.' : 'Escribe tu apellido.';
+      if (input === firstName && Array.from(value).length < 2) return 'Escribe al menos 2 caracteres para tu nombre.';
+      if (value.length > 80) return 'Usa hasta 80 caracteres.';
+      if (!/\p{L}/u.test(value) || /[<>]/.test(value)) return input === firstName ? 'Revisa tu nombre.' : 'Revisa tu apellido.';
+    }
+    if (input === phone) {
+      if (!value) return 'Escribe tu número de teléfono.';
+      if (!/^\+?[\d\s().-]+$/.test(value.normalize('NFKC')) || !/^\+?\d{7,15}$/.test(cleanPhone(value))) return 'Escribe un número de teléfono válido.';
+    }
+    if (input === guests && accompanied.checked && (!/^\d+$/.test(input.value) || !Number.isInteger(Number(input.value)) || Number(input.value) < 1 || Number(input.value) > 10)) return 'Elige entre 1 y 10 acompañantes para esta demo.';
+    return '';
+  }
+
+  function showError(input, message) {
+    input.setAttribute('aria-invalid', String(Boolean(message)));
+    const error = page.querySelector(`#${input.id}-error`);
+    error.textContent = message;
+    error.hidden = !message;
+  }
+
+  function updateSummary() {
+    const list = summary.querySelector('ul');
+    list.replaceChildren();
+    inputs.filter(input => input.getAttribute('aria-invalid') === 'true').forEach(input => {
+      const item = document.createElement('li');
+      const link = document.createElement('a');
+      link.href = `#${input.id}`;
+      link.textContent = page.querySelector(`#${input.id}-error`).textContent;
+      item.append(link);
+      list.append(item);
+    });
+    summary.hidden = !list.children.length;
+  }
+
+  function setState(state, message = '') {
+    form.dataset.state = state;
+    feedback.textContent = message;
+    form.setAttribute('aria-busy', String(state === 'submitting'));
+  }
+
+  // TODO GHL: sustituir solo este adaptador cuando exista contrato confirmado.
+  // Recibe { firstName, lastName, phone, accompanied, guests }; guests EXCLUYE al titular.
+  // Añadir endpoint, consentimiento, validación servidor, errores e idempotencia en esa fase.
+  // El resultado demo permite solo una preview personalizada, sin reserva real ni QR.
+  async function submitReservation(payload) {
+    void payload;
+    if (!reducedTicketMotion.matches) await new Promise(resolve => window.setTimeout(resolve, 180));
+    return {
+      mode: 'demo',
+      reservationId: `DVOID-DEMO-${(++demoSequence).toString(36).toUpperCase().padStart(4, '0')}`,
+      status: 'demo-preview',
+      qrValue: null
+    };
+  }
+
+  function editReservation(event) {
+    if (!inputs.includes(event.target) && event.target !== accompanied) return;
+    reservation = null;
+    clearTicket();
+    setState('idle');
+    if (event.target === accompanied) {
+      guestsField.hidden = !accompanied.checked;
+      guests.disabled = !accompanied.checked;
+      guests.value = accompanied.checked ? '1' : '0';
+      showError(guests, '');
+    } else if (event.target.getAttribute('aria-invalid') === 'true') {
+      showError(event.target, errorFor(event.target));
+    }
+    if (!summary.hidden) updateSummary();
+  }
+
+  form.addEventListener('input', editReservation);
+  form.addEventListener('focusout', event => {
+    if (inputs.includes(event.target) && !event.target.disabled) {
+      showError(event.target, errorFor(event.target));
+      if (!summary.hidden) updateSummary();
+    }
+  });
+  summary.addEventListener('click', event => {
+    const link = event.target.closest('a');
+    if (!link) return;
+    event.preventDefault();
+    page.querySelector(link.hash).focus();
+  });
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (form.dataset.state === 'submitting') return;
+    clearTicket();
+    setState('validating');
+    inputs.forEach(input => showError(input, errorFor(input)));
+    updateSummary();
+    if (!summary.hidden) {
+      reservation = null;
+      setState('error', 'Revisa los campos indicados. Tus datos siguen aquí.');
+      summary.focus();
+      return;
+    }
+    reservation = {
+      firstName: cleanText(firstName.value),
+      lastName: cleanText(lastName.value),
+      phone: cleanPhone(phone.value),
+      accompanied: accompanied.checked,
+      guests: accompanied.checked ? Number(guests.value) : 0
+    };
+    firstName.value = reservation.firstName;
+    lastName.value = reservation.lastName;
+    phone.value = reservation.phone;
+    setState('ready');
+    const submittedFromForm = form.contains(document.activeElement);
+    fields.disabled = true;
+    setState('submitting', 'Preparando la vista previa…');
+    try {
+      const result = await submitReservation(reservation);
+      if (result.mode !== 'demo' || result.status !== 'demo-preview') throw new Error('Unexpected reservation mode');
+      setState('demo-success', 'Ticket demo preparado. No se han enviado datos y tu reserva no está confirmada.');
+      const moveFocus = submittedFromForm && (form.contains(document.activeElement) || document.activeElement === document.body);
+      renderTicket(reservation, result, moveFocus);
+    } catch {
+      setState('error', 'No pudimos preparar la vista previa. Tus datos siguen aquí; vuelve a intentarlo.');
+      feedback.focus();
+    } finally {
+      fields.disabled = false;
+    }
+  });
+  // El HTML permanece deshabilitado sin JS: nunca hace un POST nativo con datos personales.
+  form.noValidate = true;
+  fields.disabled = false;
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      if (!entries.some(entry => entry.isIntersecting)) return;
+      if (!form.contains(document.activeElement) && !reducedTicketMotion.matches) section.classList.add('is-box-revealed');
+      observer.disconnect();
+    }, { rootMargin: '0px 0px -8% 0px' });
+    observer.observe(section.querySelector('.oh-box-scene'));
+  }
+})();
+
+</script>
+</body>
+</html>

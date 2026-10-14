@@ -1,0 +1,10 @@
+{
+  "name": "dvoid-capturas",
+  "private": true,
+  "scripts": {
+    "capturas:octubre": "node capturas-octubre.mjs"
+  },
+  "dependencies": {
+    "puppeteer": "^25.12.0"
+  }
+}
