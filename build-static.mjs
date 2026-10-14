@@ -20,9 +20,7 @@ for (const entry of readdirSync(root, { withFileTypes: true })) {
 }
 cpSync(path.join(root, 'Resources'), path.join(output, 'Resources'), {
   recursive: true,
-  filter: source =>
-    source !== path.join(root, 'Resources/references') &&
-    source !== path.join(root, 'Resources/References'),
+  filter: source => source !== path.join(root, 'Resources/references'),
 });
 copyFileSync(path.join(root, 'index.html'), path.join(output, 'dvoid-home.html'));
 copyFileSync(medicine, path.join(output, 'index.html'));

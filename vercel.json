@@ -5,6 +5,8 @@
   "installCommand": "",
   "cleanUrls": false,
   "rewrites": [
+    { "source": "/criminix", "destination": "/2026-11/07-criminix.html" },
+    { "source": "/criminix.html", "destination": "/2026-11/07-criminix.html" },
     { "source": "/hollywood-never-dies", "destination": "/2026-10/22-hollywood-never-dies.html" },
     { "source": "/", "destination": "/index.html" },
     { "source": "/medicine", "destination": "/2026-10/08-medicine.html" },

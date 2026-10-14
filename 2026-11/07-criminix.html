@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRIMINIX · 07 de Noviembre | D-VOID</title>
+
+  <!-- Tipografías Google Fonts: Oswald (700) y Space Mono (400, 700) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       VARIABLES DE DISEÑO: BRUTALISMO OSCURO FORENSE
+       ========================================================================== */
+    :root {
+      --color-bg: #050505;
+      --color-blood: #D90429;
+      --color-blood-glow: rgba(217, 4, 41, 0.45);
+      --color-bone: #F4F4F0;
+      --color-bone-pure: #FFFFFF;
+      --color-muted: #333333;
+      --color-dark: #0A0A0A;
+      --color-dark-card: #0E0E0E;
+      --font-display: 'Oswald', sans-serif;
+      --font-mono: 'Space Mono', monospace;
+    }
+
+    /* Reset estructural */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-bg);
+      color: var(--color-bone);
+      font-family: var(--font-mono);
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* ==========================================================================
+       CONTENEDOR PRINCIPAL (#app)
+       ========================================================================== */
+    #app {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-color: var(--color-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ==========================================================================
+       CAPAS DE FONDO Y ATMÓSFERA (NIVEL 1, 2, 3)
+       ========================================================================== */
+
+    /* Nivel 1: Blur Tipográfico "CRIMINIX" */
+    .bg-blur-title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 30vw;
+      line-height: 0.85;
+      color: var(--color-blood);
+      filter: blur(15px);
+      text-transform: uppercase;
+      letter-spacing: -0.04em;
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 1;
+      animation: crim-breathe 6s ease-in-out infinite;
+    }
+
+    @keyframes crim-breathe {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        filter: blur(15px);
+        opacity: 0.75;
+        text-shadow: 0 0 20px rgba(217, 4, 41, 0.4);
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.04);
+        filter: blur(25px);
+        opacity: 0.95;
+        text-shadow: 0 0 60px rgba(217, 4, 41, 0.85), 0 0 100px rgba(217, 4, 41, 0.45);
+      }
+    }
+
+    /* Nivel 2: CCTV Noise Overlay */
+    .cctv-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 10;
+      background:
+        repeating-radial-gradient(
+          circle at 50% 50%,
+          rgba(244, 244, 240, 0.035) 0,
+          rgba(244, 244, 240, 0.035) 1px,
+          transparent 1px,
+          transparent 4px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.35) 0,
+          rgba(0, 0, 0, 0.35) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+      opacity: 0.85;
+      animation: cctv-flicker 0.2s steps(2, start) infinite;
+    }
+
+    @keyframes cctv-flicker {
+      0% { opacity: 0.82; }
+      50% { opacity: 0.90; }
+      100% { opacity: 0.84; }
+    }
+
+    /* Nivel 3: Marquesinas de Policía */
+    .police-tape-wrapper {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 22vh;
+      pointer-events: none;
+      z-index: 5;
+      transition: opacity 0.6s ease;
+    }
+
+    .police-tape {
+      width: 140vw;
+      margin-left: -20vw;
+      background-color: var(--color-blood);
+      color: var(--color-bone);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: clamp(8px, 1.3vh, 16px) 0;
+      border-top: 2px solid var(--color-bg);
+      border-bottom: 2px solid var(--color-bg);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.85);
+    }
+
+    .police-tape-1 { transform: rotate(-5deg); }
+    .police-tape-2 { transform: rotate(5deg); }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+    }
+
+    .police-tape-1 .marquee-track {
+      animation: marquee-left 24s linear infinite;
+    }
+
+    .police-tape-2 .marquee-track {
+      animation: marquee-right 28s linear infinite;
+    }
+
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 2rem;
+      padding-right: 2rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: clamp(0.85rem, 1.8vw, 1.35rem);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .marquee-item .sep {
+      opacity: 0.85;
+      font-weight: 400;
+    }
+
+    @keyframes marquee-left {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+
+    @keyframes marquee-right {
+      0% { transform: translate3d(-50%, 0, 0); }
+      100% { transform: translate3d(0, 0, 0); }
+    }
+
+    /* ==========================================================================
+       CABECERA Y LOGO GLOBAL
+       ========================================================================== */
+    .terminal-header {
+      position: absolute;
+      top: clamp(1.2rem, 3vh, 2.2rem);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      pointer-events: auto;
+      transition: opacity 0.5s ease;
+    }
+
+    .brand-logo {
+      height: clamp(32px, 5vh, 46px);
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 0 14px rgba(217, 4, 41, 0.5));
+    }
+
+    .terminal-stamp {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(244, 244, 240, 0.45);
+    }
+
+    /* ==========================================================================
+       HERO: TERMINAL DE ACCESO A EXPEDIENTES
+       ========================================================================== */
+    #terminal-hero {
+      position: relative;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 1.5rem;
+      max-width: 900px;
+      width: 100%;
+      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #terminal-hero.fade-out {
+      opacity: 0;
+      transform: scale(0.96);
+      pointer-events: none;
+    }
+
+    .terminal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.35rem 0.9rem;
+      background: rgba(217, 4, 41, 0.12);
+      border: 1px solid rgba(217, 4, 41, 0.4);
+      color: var(--color-bone);
+      font-size: clamp(0.65rem, 1vw, 0.75rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .terminal-badge .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--color-blood);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--color-blood);
+      animation: pulse-dot 1.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    .terminal-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(3.8rem, 9.5vw, 7.5rem);
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--color-bone);
+      text-shadow: 0 0 35px rgba(217, 4, 41, 0.6), 0 4px 12px rgba(0, 0, 0, 0.9);
+      margin-bottom: 0.8rem;
+    }
+
+    .terminal-subtitle {
+      font-family: var(--font-mono);
+      font-size: clamp(0.75rem, 1.3vw, 0.98rem);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-bone);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .terminal-subtitle .highlight {
+      color: var(--color-blood);
+      text-shadow: 0 0 10px rgba(217, 4, 41, 0.7);
+    }
+
+    /* Escáner Dactilar */
+    .scanner-station {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .scanner-bracket {
+      position: relative;
+      padding: 1.2rem;
+      background: rgba(10, 10, 10, 0.75);
+      border: 1px solid rgba(244, 244, 240, 0.12);
+      border-radius: 4px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
+    }
+
+    .scanner-bracket::before,
+    .scanner-bracket::after {
+      content: '';
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-color: var(--color-blood);
+      pointer-events: none;
+    }
+    .scanner-bracket::before {
+      top: -2px;
+      left: -2px;
+      border-top: 2px solid var(--color-blood);
+      border-left: 2px solid var(--color-blood);
+    }
+    .scanner-bracket::after {
+      bottom: -2px;
+      right: -2px;
+      border-bottom: 2px solid var(--color-blood);
+      border-right: 2px solid var(--color-blood);
+    }
+
+    .scanner-btn {
+      position: relative;
+      width: 104px;
+      height: 118px;
+      background: #080808;
+      border: 1px solid rgba(217, 4, 41, 0.3);
+      border-radius: 6px;
+      cursor: pointer;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .scanner-btn:focus-visible {
+      box-shadow: 0 0 0 2px var(--color-bone), 0 0 16px var(--color-blood);
+    }
+
+    .scanner-btn:active {
+      transform: scale(0.98);
+    }
+
+    .fingerprint-box {
+      position: relative;
+      width: 82px;
+      height: 94px;
+    }
+
+    .fingerprint-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .fingerprint-base {
+      stroke: var(--color-muted);
+      transition: stroke 0.25s ease;
+    }
+
+    .fingerprint-fill {
+      stroke: var(--color-blood);
+      filter: drop-shadow(0 0 6px rgba(217, 4, 41, 0.9));
+      clip-path: inset(100% 0 0 0);
+      transition: clip-path 0.25s cubic-bezier(0.4, 0, 1, 1);
+      will-change: clip-path;
+    }
+
+    .scanner-laser {
+      position: absolute;
+      left: -5%;
+      right: -5%;
+      bottom: 0%;
+      height: 3px;
+      background: var(--color-blood);
+      box-shadow: 0 0 10px var(--color-blood), 0 0 20px var(--color-blood);
+      opacity: 0;
+      transition: bottom 0.25s ease-out, opacity 0.2s ease;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .scanner-btn.scanning {
+      border-color: var(--color-blood);
+      box-shadow: 0 0 24px rgba(217, 4, 41, 0.45), inset 0 0 15px rgba(217, 4, 41, 0.2);
+    }
+
+    .scanner-btn.scanning .fingerprint-fill {
+      clip-path: inset(0% 0 0 0);
+      transition: clip-path 2.0s linear;
+    }
+
+    .scanner-btn.scanning .scanner-laser {
+      opacity: 1;
+      bottom: 100%;
+      transition: bottom 2.0s linear, opacity 0.15s ease;
+    }
+
+    .scanner-btn.granted {
+      border-color: var(--color-bone);
+      box-shadow: 0 0 35px var(--color-blood), inset 0 0 20px rgba(217, 4, 41, 0.5);
+    }
+
+    .scanner-btn.granted .fingerprint-fill {
+      clip-path: inset(0% 0 0 0);
+      stroke: var(--color-bone);
+      filter: drop-shadow(0 0 10px #FFFFFF);
+      transition: stroke 0.2s ease, filter 0.2s ease;
+    }
+
+    .scanner-instruction {
+      font-family: var(--font-mono);
+      font-size: clamp(0.72rem, 1.1vw, 0.85rem);
+      font-weight: 700;
+      color: var(--color-bone);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+      min-height: 1.4em;
+    }
+
+    .scanner-instruction.scanning-text {
+      color: var(--color-blood);
+      animation: pulse-instruction 0.6s ease-in-out infinite alternate;
+    }
+
+    .scanner-instruction.granted-text {
+      color: var(--color-blood);
+      text-shadow: 0 0 12px var(--color-blood);
+      letter-spacing: 0.2em;
+    }
+
+    .scanner-instruction.error-text {
+      color: var(--color-blood);
+    }
+
+    /* Flash rojo */
+    #scanner-flash {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: var(--color-blood);
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0;
+    }
+
+    #scanner-flash.flash-active {
+      animation: blood-flash 0.65s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+    }
+
+    @keyframes blood-flash {
+      0% { opacity: 0.95; }
+      25% { opacity: 0.85; }
+      100% { opacity: 0; }
+    }
+
+    /* ==========================================================================
+       INTERIOR DE #dossier-section (REPORTE FORENSE / POLICIAL COMPLETO)
+       ========================================================================== */
+    #dossier-section {
+      position: absolute;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      display: none;
+      z-index: 25;
+      background: rgba(5, 5, 5, 0.96);
+      padding: clamp(5.5rem, 10vh, 7.5rem) 1.5rem clamp(3rem, 6vh, 5rem);
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-blood) #111;
+      animation: dossier-enter 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    #dossier-section::-webkit-scrollbar {
+      width: 6px;
+    }
+    #dossier-section::-webkit-scrollbar-track {
+      background: #0a0a0a;
+    }
+    #dossier-section::-webkit-scrollbar-thumb {
+      background: var(--color-blood);
+    }
+
+    @keyframes dossier-enter {
+      0% {
+        opacity: 0;
+        transform: translateY(25px) scale(0.98);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .dossier-wrapper {
+      max-width: 980px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* Líneas Guía Rojas y Marcadores Forenses */
+    .forensic-frame {
+      position: relative;
+      border: 1px solid rgba(217, 4, 41, 0.3);
+      padding: clamp(1.5rem, 4vw, 3rem);
+      background: rgba(8, 8, 8, 0.92);
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), inset 0 0 30px rgba(217, 4, 41, 0.05);
+    }
+
+    /* Marcas de calibración en las 4 esquinas */
+    .forensic-frame::before,
+    .forensic-frame::after {
+      content: '+';
+      position: absolute;
+      color: var(--color-blood);
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .forensic-frame::before { top: 6px; left: 8px; }
+    .forensic-frame::after { bottom: 6px; right: 8px; }
+
+    /* Encabezado del Expediente */
+    .dossier-header-bar {
+      border-bottom: 2px solid var(--color-blood);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    .dossier-meta-stamp {
+      font-size: 0.68rem;
+      color: var(--color-blood);
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .dossier-main-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      line-height: 0.95;
+      color: var(--color-bone);
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
+
+    .dossier-case-number {
+      font-size: 0.8rem;
+      color: rgba(244, 244, 240, 0.55);
+      letter-spacing: 0.16em;
+      margin-top: 0.4rem;
+    }
+
+    .dossier-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.8rem;
+      background: rgba(217, 4, 41, 0.15);
+      border: 1px solid var(--color-blood);
+      color: var(--color-bone);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* 1. GRID DE INFORMACIÓN & ADVERTENCIA */
+    .warning-banner {
+      background: rgba(217, 4, 41, 0.1);
+      border-left: 4px solid var(--color-blood);
+      border-right: 1px solid rgba(217, 4, 41, 0.3);
+      border-top: 1px solid rgba(217, 4, 41, 0.3);
+      border-bottom: 1px solid rgba(217, 4, 41, 0.3);
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .warning-tag {
+      font-size: 0.65rem;
+      color: var(--color-blood);
+      letter-spacing: 0.25em;
+      font-weight: 700;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    .warning-text {
+      font-family: var(--font-mono);
+      font-size: clamp(0.92rem, 1.8vw, 1.25rem);
+      font-weight: 700;
+      color: var(--color-bone);
+      letter-spacing: 0.1em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+
+    .warning-text .accent {
+      color: var(--color-blood);
+      text-decoration: underline;
+      text-decoration-color: var(--color-blood);
+      text-underline-offset: 4px;
+    }
+
+    /* 1. FICHAS POLICIALES (DRESS CODE / FOTOGRAFÍAS GRAPADAS) */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.75rem;
+      color: var(--color-blood);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(217, 4, 41, 0.4), transparent);
+    }
+
+    .mugshot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1.6rem 1.2rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .mugshot-card {
+      position: relative;
+      background: var(--color-dark-card);
+      border: 1px solid rgba(244, 244, 240, 0.12);
+      padding: 1.4rem 1rem 1rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      cursor: default;
+    }
+
+    .mugshot-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--color-blood);
+      box-shadow: 0 12px 30px rgba(217, 4, 41, 0.25);
+    }
+
+    /* Grapa Metálica Superior */
+    .staple {
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 28px;
+      height: 5px;
+      background: linear-gradient(90deg, #333 0%, #888 20%, #ddd 50%, #888 80%, #333 100%);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      border-radius: 1px;
+      z-index: 4;
+    }
+
+    .mugshot-photo {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1.05;
+      background: #050505;
+      border: 1px solid rgba(244, 244, 240, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 0.9rem;
+    }
+
+    /* Retícula forense de altura */
+    .mugshot-photo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(244, 244, 240, 0.06) 0,
+          rgba(244, 244, 240, 0.06) 1px,
+          transparent 1px,
+          transparent 12px
+        );
+      pointer-events: none;
+    }
+
+    .mugshot-svg-icon {
+      width: 52px;
+      height: 52px;
+      color: rgba(244, 244, 240, 0.7);
+      transition: color 0.2s ease, transform 0.2s ease;
+      z-index: 2;
+    }
+
+    .mugshot-card:hover .mugshot-svg-icon {
+      color: var(--color-blood);
+      transform: scale(1.08);
+    }
+
+    .mugshot-badge {
+      position: absolute;
+      bottom: 6px;
+      left: 6px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid rgba(217, 4, 41, 0.4);
+      color: var(--color-blood);
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      padding: 0.15rem 0.4rem;
+      font-weight: 700;
+      z-index: 3;
+    }
+
+    .mugshot-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--color-bone);
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .mugshot-desc {
+      font-size: 0.7rem;
+      line-height: 1.35;
+      color: rgba(244, 244, 240, 0.65);
+      letter-spacing: 0.05em;
+    }
+
+    /* 2. TARJETAS DE EVIDENCIA (PRECIOS) */
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.4rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .evidence-card {
+      position: relative;
+      background: var(--color-dark-card);
+      border: 1px solid rgba(244, 244, 240, 0.15);
+      padding: 1.6rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 200px;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .evidence-card:hover:not(.is-soldout) {
+      transform: translateY(-3px);
+      border-color: rgba(217, 4, 41, 0.6);
+      box-shadow: 0 8px 24px rgba(217, 4, 41, 0.2);
+    }
+
+    /* Estado seleccionado */
+    .evidence-card.selected {
+      border: 2px solid var(--color-blood);
+      background: rgba(217, 4, 41, 0.06);
+      box-shadow: 0 0 25px rgba(217, 4, 41, 0.35);
+    }
+
+    /* Tarjeta destacada: Promo Amigos (borde continuo #D90429) */
+    .evidence-card.featured-card {
+      border: 2px solid var(--color-blood);
+      box-shadow: 0 0 20px rgba(217, 4, 41, 0.28);
+    }
+
+    .evidence-card-badge {
+      display: inline-block;
+      align-self: flex-start;
+      background: var(--color-blood);
+      color: var(--color-bone);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      padding: 0.2rem 0.55rem;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+    }
+
+    .evidence-card-title {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-bone);
+      margin-bottom: 0.4rem;
+    }
+
+    .evidence-card-price {
+      font-family: var(--font-mono);
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--color-blood);
+      letter-spacing: -0.02em;
+      margin: 0.6rem 0;
+    }
+
+    .evidence-card-price span {
+      font-size: 0.85rem;
+      color: rgba(244, 244, 240, 0.6);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+    }
+
+    .evidence-card-details {
+      font-size: 0.75rem;
+      color: rgba(244, 244, 240, 0.65);
+      line-height: 1.4;
+      letter-spacing: 0.04em;
+    }
+
+    /* Tarjeta Preventa 1: Sello AGOTADO */
+    .evidence-card.is-soldout {
+      opacity: 0.55;
+      cursor: not-allowed;
+      filter: grayscale(0.2);
+    }
+
+    .stamp-sold-out {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-14deg);
+      color: var(--color-blood);
+      border: 4px double var(--color-blood);
+      padding: 0.35rem 1.6rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.75rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      background: rgba(5, 5, 5, 0.88);
+      pointer-events: none;
+      box-shadow: 0 0 16px rgba(217, 4, 41, 0.6);
+      white-space: nowrap;
+      z-index: 5;
+    }
+
+    /* 3. FORMULARIO DE IDENTIFICACIÓN FORENSE */
+    .form-wrapper {
+      background: rgba(10, 10, 10, 0.95);
+      border: 1px solid rgba(217, 4, 41, 0.35);
+      padding: clamp(1.5rem, 4vw, 2.8rem);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85);
+    }
+
+    .form-header-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.8vw, 2.6rem);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-bone);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-header-sub {
+      font-size: 0.78rem;
+      color: rgba(244, 244, 240, 0.6);
+      letter-spacing: 0.14em;
+      margin-bottom: 2.2rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem 1.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-field label {
+      font-size: 0.72rem;
+      color: var(--color-blood);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* Inputs minimalistas con border-bottom: 2px solid #333 y focus a #D90429 */
+    .form-field input {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid #333333;
+      color: var(--color-bone);
+      font-family: var(--font-mono);
+      font-size: 1.05rem;
+      padding: 0.6rem 0.2rem;
+      outline: none;
+      border-radius: 0;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .form-field input:focus {
+      border-bottom: 2px solid var(--color-blood);
+      box-shadow: 0 4px 12px rgba(217, 4, 41, 0.25);
+    }
+
+    .form-field input::placeholder {
+      color: rgba(244, 244, 240, 0.25);
+      font-size: 0.9rem;
+    }
+
+    /* Selector de ticket visible en el form */
+    .form-selected-ticket-box {
+      border: 1px dashed rgba(217, 4, 41, 0.4);
+      padding: 0.9rem 1.2rem;
+      background: rgba(217, 4, 41, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-ticket-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      color: rgba(244, 244, 240, 0.6);
+      text-transform: uppercase;
+    }
+
+    .form-ticket-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--color-blood);
+      letter-spacing: 0.12em;
+    }
+
+    /* Botón Masivo de Envío */
+    .btn-submit-case {
+      width: 100%;
+      background: var(--color-bone);
+      color: #050505;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1.25rem 1.5rem;
+      border: none;
+      cursor: pointer;
+      display: block;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+      transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-submit-case:hover {
+      background: var(--color-bone-pure);
+      box-shadow: 0 0 30px rgba(244, 244, 240, 0.45);
+      transform: translateY(-2px);
+    }
+
+    .btn-submit-case:active {
+      transform: scale(0.99);
+    }
+
+    /* ==========================================================================
+       4. RESPUESTA VISUAL: RECIBO DE EVIDENCIA (ESTILO IMPRESO / TÉRMICO)
+       ========================================================================== */
+    #evidence-receipt {
+      display: none;
+      max-width: 580px;
+      margin: 0 auto;
+      background: var(--color-bone);
+      color: #050505;
+      padding: clamp(1.8rem, 4vw, 2.8rem) clamp(1.5rem, 3.5vw, 2.4rem);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95), 0 0 40px rgba(217, 4, 41, 0.4);
+      position: relative;
+      animation: receipt-print 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes receipt-print {
+      0% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.96);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Borde dentado / perforación de recibo térmico */
+    #evidence-receipt::before,
+    #evidence-receipt::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background:
+        radial-gradient(circle, transparent, transparent 50%, var(--color-bone) 50%, var(--color-bone) 100%);
+      background-size: 16px 16px;
+    }
+    #evidence-receipt::before {
+      top: -8px;
+      background-position: 0 8px;
+    }
+    #evidence-receipt::after {
+      bottom: -8px;
+      background-position: 0 0;
+    }
+
+    .receipt-header {
+      text-align: center;
+      border-bottom: 2px dashed #050505;
+      padding-bottom: 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Logo invertido a negro sobre fondo hueso */
+    .receipt-logo {
+      height: 40px;
+      width: auto;
+      margin: 0 auto 0.6rem;
+      display: block;
+      filter: invert(1);
+    }
+
+    .receipt-doc-type {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .receipt-event-name {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      line-height: 1;
+      margin: 0.3rem 0;
+      color: #050505;
+    }
+
+    .receipt-meta-sub {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: #444;
+    }
+
+    .receipt-body {
+      margin-bottom: 1.5rem;
+    }
+
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.55rem 0;
+      border-bottom: 1px dotted #888;
+      font-size: 0.82rem;
+    }
+
+    .receipt-label {
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #333;
+    }
+
+    .receipt-value {
+      text-align: right;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #050505;
+    }
+
+    .receipt-stamp-badge {
+      display: inline-block;
+      border: 2px solid var(--color-blood);
+      color: var(--color-blood);
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      padding: 0.3rem 0.6rem;
+      text-transform: uppercase;
+      transform: rotate(-3deg);
+      margin: 1.2rem auto 0.8rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* Código de Barras Procedimental */
+    .barcode-section {
+      text-align: center;
+      padding-top: 1.4rem;
+      border-top: 2px dashed #050505;
+      margin-top: 1.2rem;
+    }
+
+    .barcode-bars {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      height: 52px;
+      gap: 2px;
+      margin: 0.6rem 0;
+      overflow: hidden;
+    }
+
+    .barcode-bar {
+      background-color: #050505;
+      height: 100%;
+    }
+
+    .barcode-number {
+      font-size: 0.75rem;
+      letter-spacing: 0.32em;
+      font-weight: 700;
+      color: #111;
+      font-family: var(--font-mono);
+    }
+
+    .receipt-actions {
+      margin-top: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .btn-receipt-action {
+      width: 100%;
+      background: #050505;
+      color: var(--color-bone);
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.85rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .btn-receipt-action:hover {
+      background: var(--color-blood);
+    }
+
+    /* Reducción de movimiento accesible */
+    @media (prefers-reduced-motion: reduce) {
+      .bg-blur-title, .cctv-overlay, .terminal-badge .dot {
+        animation: none;
+      }
+      .police-tape-1 .marquee-track,
+      .police-tape-2 .marquee-track {
+        animation-duration: 90s;
+      }
+      #dossier-section, #evidence-receipt {
+        animation: none;
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+      .forensic-frame {
+        padding: 1.2rem 0.9rem;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+      }
+      .evidence-grid {
+        grid-template-columns: 1fr;
+      }
+      .mugshot-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Flash rojo de autorización biométrica -->
+  <div id="scanner-flash" aria-hidden="true"></div>
+
+  <!-- Contenedor Principal (#app) -->
+  <div id="app">
+    <!-- Nivel 0 + 1: Blur Tipográfico "CRIMINIX" con respiración -->
+    <div class="bg-blur-title" aria-hidden="true">CRIMINIX</div>
+
+    <!-- Nivel 3: Marquesinas de Policía (Cintas Diagonales) -->
+    <div class="police-tape-wrapper" id="police-tapes" aria-hidden="true">
+      <div class="police-tape police-tape-1">
+        <div class="marquee-track">
+          <div class="marquee-item">
+            <span>CRIME SCENE - DO NOT CROSS</span><span class="sep">///</span>
+            <span>CRIME SCENE - DO NOT CROSS</span><span class="sep">///</span>
+            <span>CRIME SCENE - DO NOT CROSS</span><span class="sep">///</span>
+            <span>CRIME SCENE - DO NOT CROSS</span><span class="sep">///</span>
+            <span>CRIME SCENE - DO NOT CROSS</span><span class="sep">///</span>
+            <span>CRIME SCENE - DO NOT CROSS</span><span class="sep">///</span>
+          </div>
+          <div class="marquee-item" aria-hidden="true">
+            <span>CRIME SCENE - DO NOT CROSS</span><span class="sep">///</span>
+            <span>CRIME SCENE - DO NOT CROSS</span><span class="sep">///</span>
+            <span>CRIME SCENE - DO NOT CROSS</span><span class="sep">///</span>
+            <span>CRIME SCENE - DO NOT CROSS</span><span class="sep">///</span>
+            <span>CRIME SCENE - DO NOT CROSS</span><span class="sep">///</span>
+            <span>CRIME SCENE - DO NOT CROSS</span><span class="sep">///</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="police-tape police-tape-2">
+        <div class="marquee-track">
+          <div class="marquee-item">
+            <span>NADIE ES TAN INOCENTE COMO PARECE</span><span class="sep">///</span>
+            <span>NADIE ES TAN INOCENTE COMO PARECE</span><span class="sep">///</span>
+            <span>NADIE ES TAN INOCENTE COMO PARECE</span><span class="sep">///</span>
+            <span>NADIE ES TAN INOCENTE COMO PARECE</span><span class="sep">///</span>
+            <span>NADIE ES TAN INOCENTE COMO PARECE</span><span class="sep">///</span>
+            <span>NADIE ES TAN INOCENTE COMO PARECE</span><span class="sep">///</span>
+          </div>
+          <div class="marquee-item" aria-hidden="true">
+            <span>NADIE ES TAN INOCENTE COMO PARECE</span><span class="sep">///</span>
+            <span>NADIE ES TAN INOCENTE COMO PARECE</span><span class="sep">///</span>
+            <span>NADIE ES TAN INOCENTE COMO PARECE</span><span class="sep">///</span>
+            <span>NADIE ES TAN INOCENTE COMO PARECE</span><span class="sep">///</span>
+            <span>NADIE ES TAN INOCENTE COMO PARECE</span><span class="sep">///</span>
+            <span>NADIE ES TAN INOCENTE COMO PARECE</span><span class="sep">///</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1. Logo Global en la parte superior central -->
+    <header class="terminal-header">
+      <img
+        class="brand-logo"
+        src="/Resources/dvoid/LOGO%20DVOID.png"
+        alt="D-VOID"
+        width="1290"
+        height="568"
+        decoding="async"
+      >
+      <span class="terminal-stamp">SYS.TERMINAL // SEC-0711</span>
+    </header>
+
+    <!-- 2. Hero Section: Terminal de Acceso a Expedientes -->
+    <main id="terminal-hero">
+      <div class="terminal-badge">
+        <span class="dot"></span>
+        <span>ACCESO CLASIFICADO // NIVEL 4</span>
+      </div>
+
+      <h1 class="terminal-title">CRIMINIX</h1>
+
+      <p class="terminal-subtitle">
+        <span class="highlight">07.NOV.26</span> — SISTEMA DE ARCHIVOS CLASIFICADOS
+      </p>
+
+      <!-- Escáner Dactilar (Interacción Core) -->
+      <div class="scanner-station">
+        <div class="scanner-bracket">
+          <button
+            class="scanner-btn"
+            id="scanner-trigger"
+            type="button"
+            aria-label="Mantén presionado para abrir tu expediente biométrico"
+          >
+            <div class="fingerprint-box">
+              <!-- Capa Base (Gris #333333) -->
+              <svg class="fingerprint-svg fingerprint-base" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12C2 6.5 6.5 2 12 2a10 10 0 0 1 8 4"/>
+                <path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/>
+                <path d="M8.65 22c.21-.66.45-1.32.57-2"/>
+                <path d="M9 6.8a6 6 0 0 1 9 5.2v2"/>
+                <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/>
+                <path d="M14 13.12c0 2.38 0 6.38-1 8.88"/>
+                <path d="M17 16c0 1.5-.1 3-.3 4.5"/>
+                <path d="M20 10a8 8 0 0 0-16 0c0 4.99 1.63 8.35 2 11"/>
+                <path d="M22 12c0 3.5-.8 6.5-1.7 8.5"/>
+              </svg>
+
+              <!-- Capa Activa (Rojo Sangre #D90429 con transición progresiva) -->
+              <svg class="fingerprint-svg fingerprint-fill" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12C2 6.5 6.5 2 12 2a10 10 0 0 1 8 4"/>
+                <path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/>
+                <path d="M8.65 22c.21-.66.45-1.32.57-2"/>
+                <path d="M9 6.8a6 6 0 0 1 9 5.2v2"/>
+                <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/>
+                <path d="M14 13.12c0 2.38 0 6.38-1 8.88"/>
+                <path d="M17 16c0 1.5-.1 3-.3 4.5"/>
+                <path d="M20 10a8 8 0 0 0-16 0c0 4.99 1.63 8.35 2 11"/>
+                <path d="M22 12c0 3.5-.8 6.5-1.7 8.5"/>
+              </svg>
+            </div>
+
+            <!-- Láser de lectura biométrica -->
+            <div class="scanner-laser" aria-hidden="true"></div>
+          </button>
+        </div>
+
+        <p class="scanner-instruction" id="scanner-status" aria-live="polite">
+          [ MANTÉN PRESIONADO PARA ABRIR TU EXPEDIENTE ]
+        </p>
+      </div>
+    </main>
+
+    <!-- ==========================================================================
+         INTERIOR DE #dossier-section: REPORTE FORENSE / POLICIAL COMPLETO
+         ========================================================================== -->
+    <section id="dossier-section" aria-labelledby="dossier-main-heading">
+      <div class="dossier-wrapper">
+        <div class="forensic-frame">
+
+          <!-- Encabezado del Expediente Forense -->
+          <header class="dossier-header-bar">
+            <div>
+              <p class="dossier-meta-stamp">DEPARTAMENTO FORENSE // CASO CRIMINIX</p>
+              <h2 class="dossier-main-title" id="dossier-main-heading">EXPEDIENTE #0711</h2>
+              <p class="dossier-case-number">EVIDENCIA REGISTRADA · SÁBADO 07 DE NOVIEMBRE 2026</p>
+            </div>
+            <div class="dossier-status-pill">
+              <span class="dot" style="width:6px;height:6px;background:var(--color-blood);border-radius:50%;"></span>
+              <span>ESTADO: CASO ACTIVO</span>
+            </div>
+          </header>
+
+          <!-- 1. GRID DE INFORMACIÓN: ADVERTENCIA -->
+          <div class="warning-banner">
+            <span class="warning-tag">ALERTA A TODOS LOS ASISTENTES // PROTOCOLO DE INVESTIGACIÓN</span>
+            <p class="warning-text">
+              NADIE ES TAN INOCENTE COMO PARECE. <span class="accent">¿DE QUÉ LADO ESTÁS?</span>
+            </p>
+          </div>
+
+          <!-- 1. FICHAS POLICIALES (DRESS CODE // FOTOGRAFÍAS GRAPADAS) -->
+          <div class="section-label">
+            <span>// 01. FICHAS DE SOSPECHOSOS (DRESS CODE OFICIAL)</span>
+          </div>
+
+          <div class="mugshot-grid">
+            <!-- Ficha 1: SEGURIDAD -->
+            <article class="mugshot-card">
+              <div class="staple" aria-hidden="true"></div>
+              <div class="mugshot-photo">
+                <svg class="mugshot-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="M12 8v4"/>
+                  <path d="M12 16h.01"/>
+                </svg>
+                <span class="mugshot-badge">CAT. 01</span>
+              </div>
+              <h3 class="mugshot-title">SEGURIDAD</h3>
+              <p class="mugshot-desc">Policías, agentes DEA, detectives privados, tácticos SWAT e investigadores forenses.</p>
+            </article>
+
+            <!-- Ficha 2: MUERTOS -->
+            <article class="mugshot-card">
+              <div class="staple" aria-hidden="true"></div>
+              <div class="mugshot-photo">
+                <svg class="mugshot-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="9" cy="12" r="1.5"/>
+                  <circle cx="15" cy="12" r="1.5"/>
+                  <path d="M8 20v-2a4 4 0 0 1 8 0v2"/>
+                  <path d="M12 2a9 9 0 0 0-9 9c0 3.2 1.7 6.1 4.3 7.6"/>
+                  <path d="M16.7 18.6A9 9 0 0 0 21 11a9 9 0 0 0-9-9z"/>
+                </svg>
+                <span class="mugshot-badge">CAT. 02</span>
+              </div>
+              <h3 class="mugshot-title">MUERTOS</h3>
+              <p class="mugshot-desc">Víctimas del crimen, baleados, espíritus del Día de Muertos y catrinas de ultratumba.</p>
+            </article>
+
+            <!-- Ficha 3: MÉDICOS -->
+            <article class="mugshot-card">
+              <div class="staple" aria-hidden="true"></div>
+              <div class="mugshot-photo">
+                <svg class="mugshot-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M11 2v6h2V2h-2z"/>
+                  <path d="M8 8H4v2h4V8zm12 0h-4v2h4V8z"/>
+                  <path d="M19 14v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-6"/>
+                  <path d="M9 14h6"/>
+                  <path d="M12 11v6"/>
+                </svg>
+                <span class="mugshot-badge">CAT. 03</span>
+              </div>
+              <h3 class="mugshot-title">MÉDICOS</h3>
+              <p class="mugshot-desc">Cirujanos de urgencia, médicos forenses, enfermeras de trauma y asistentes patológicos.</p>
+            </article>
+
+            <!-- Ficha 4: CRIMINALES -->
+            <article class="mugshot-card">
+              <div class="staple" aria-hidden="true"></div>
+              <div class="mugshot-photo">
+                <svg class="mugshot-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  <circle cx="12" cy="16" r="1.5"/>
+                </svg>
+                <span class="mugshot-badge">CAT. 04</span>
+              </div>
+              <h3 class="mugshot-title">CRIMINALES</h3>
+              <p class="mugshot-desc">Prófugos clasificados, narcos, reclusos amotinados, cómplices y líderes del cártel.</p>
+            </article>
+          </div>
+
+          <!-- 2. TARJETAS DE EVIDENCIA (PRECIOS) -->
+          <div class="section-label">
+            <span>// 02. TARJETAS DE EVIDENCIA (TARIFAS Y ACCESOS)</span>
+          </div>
+
+          <div class="evidence-grid" id="pricing-grid">
+            <!-- Preventa 1 ($10) - AGOTADO -->
+            <div class="evidence-card is-soldout" data-ticket="Preventa 1 ($10)" aria-disabled="true">
+              <div class="stamp-sold-out">AGOTADO</div>
+              <div>
+                <span class="evidence-card-badge" style="background:#444;">EVIDENCIA #01</span>
+                <h4 class="evidence-card-title">PREVENTA 1</h4>
+                <div class="evidence-card-price">$10 <span>USD</span></div>
+              </div>
+              <p class="evidence-card-details">Fase inicial de apertura. Cupos de acceso anticipado 100% liquidados.</p>
+            </div>
+
+            <!-- Promo Amigos ($60 / 5 pax) - Destacada con borde continuo #D90429 -->
+            <div class="evidence-card featured-card selected" data-ticket="Promo Amigos ($60 / 5 pax)" tabindex="0" role="radio" aria-checked="true">
+              <div>
+                <span class="evidence-card-badge">PROMO RECOMENDADA // 5 PAX</span>
+                <h4 class="evidence-card-title">PROMO AMIGOS</h4>
+                <div class="evidence-card-price">$60 <span>USD / GRUPO</span></div>
+              </div>
+              <p class="evidence-card-details">
+                Ingreso grupal para 5 personas ($12 USD cada uno). Asegura la coartada de toda tu facción.
+              </p>
+            </div>
+
+            <!-- Preventa Individual ($15) -->
+            <div class="evidence-card" data-ticket="Preventa Individual ($15)" tabindex="0" role="radio" aria-checked="false">
+              <div>
+                <span class="evidence-card-badge" style="background:#222; border:1px solid #444;">INDIVIDUAL</span>
+                <h4 class="evidence-card-title">PREVENTA INDIVIDUAL</h4>
+                <div class="evidence-card-price">$15 <span>USD</span></div>
+              </div>
+              <p class="evidence-card-details">Acceso personal para 1 sospechoso. Válido durante la segunda fase de investigación.</p>
+            </div>
+          </div>
+
+          <!-- 3. FORMULARIO DE IDENTIFICACIÓN FORENSE -->
+          <div class="form-wrapper" id="form-container">
+            <div class="section-label" style="margin-bottom: 0.8rem;">
+              <span>// 03. FICHA DE REGISTRO FORENSE</span>
+            </div>
+            <h3 class="form-header-title">IDENTIFICACIÓN DE SOSPECHOSO</h3>
+            <p class="form-header-sub">COMPLETA EL REGISTRO PARA EMITIR TU SALVOCONDUCTO OFICIAL</p>
+
+            <form id="suspect-form" novalidate>
+              <!-- Muestra el pase seleccionado actualmente -->
+              <div class="form-selected-ticket-box">
+                <span class="form-ticket-label">TIPO DE PASE SELECCIONADO:</span>
+                <span class="form-ticket-name" id="selected-ticket-display">PROMO AMIGOS ($60 / 5 PAX)</span>
+              </div>
+
+              <!-- Inputs minimalistas (border-bottom: 2px solid #333) -->
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="field-nombre">01 // NOMBRE</label>
+                  <input type="text" id="field-nombre" name="nombre" placeholder="Tu nombre" required autocomplete="given-name">
+                </div>
+
+                <div class="form-field">
+                  <label for="field-apellido">02 // APELLIDO</label>
+                  <input type="text" id="field-apellido" name="apellido" placeholder="Tu apellido" required autocomplete="family-name">
+                </div>
+
+                <div class="form-field">
+                  <label for="field-cedula">03 // CÉDULA DE IDENTIDAD</label>
+                  <input type="text" id="field-cedula" name="cedula" inputmode="numeric" placeholder="10 dígitos" required pattern="[0-9]{10}" autocomplete="off">
+                </div>
+
+                <div class="form-field">
+                  <label for="field-telefono">04 // TELÉFONO / WHATSAPP</label>
+                  <input type="tel" id="field-telefono" name="telefono" inputmode="tel" placeholder="099XXXXXXX" required autocomplete="tel">
+                </div>
+              </div>
+
+              <!-- Botón Masivo de Envío -->
+              <button class="btn-submit-case" type="submit">
+                [ CONFIRMAR EXPEDIENTE Y ASEGURAR ENTRADA ]
+              </button>
+            </form>
+          </div>
+
+          <!-- 4. RESPUESTA VISUAL: RECIBO DE EVIDENCIA (ESTILO IMPRESO / TÉRMICO) -->
+          <article id="evidence-receipt" aria-labelledby="receipt-title">
+            <header class="receipt-header">
+              <!-- Logo invertido a negro sobre fondo blanco hueso -->
+              <img class="receipt-logo" src="/Resources/dvoid/LOGO%20DVOID.png" alt="D-VOID" width="1290" height="568">
+              <p class="receipt-doc-type">COMPROBANTE DE CUSTODIA FORENSE // EVIDENCIA #CRIM-0711</p>
+              <h3 class="receipt-event-name" id="receipt-title">CRIMINIX</h3>
+              <p class="receipt-meta-sub">SÁBADO 07 DE NOVIEMBRE 2026 · 20H00 · D-VOID CLUB</p>
+            </header>
+
+            <div class="receipt-body">
+              <div class="receipt-row">
+                <span class="receipt-label">SOSPECHOSO:</span>
+                <span class="receipt-value" id="rc-nombre">--</span>
+              </div>
+              <div class="receipt-row">
+                <span class="receipt-label">DOCUMENTO CÉDULA:</span>
+                <span class="receipt-value" id="rc-cedula">--</span>
+              </div>
+              <div class="receipt-row">
+                <span class="receipt-label">TELÉFONO VINCULADO:</span>
+                <span class="receipt-value" id="rc-telefono">--</span>
+              </div>
+              <div class="receipt-row">
+                <span class="receipt-label">EVIDENCIA / PASE:</span>
+                <span class="receipt-value" id="rc-ticket">--</span>
+              </div>
+              <div class="receipt-row">
+                <span class="receipt-label">FOLIO DEL CASO:</span>
+                <span class="receipt-value" id="rc-folio">#CRIM-9942</span>
+              </div>
+              <div class="receipt-row">
+                <span class="receipt-label">ESTATUS DE INGRESO:</span>
+                <span class="receipt-value" style="color:var(--color-blood);">AUTORIZADO (+21)</span>
+              </div>
+
+              <div class="receipt-stamp-badge">
+                SALVOCONDUCTO EXPEDIDO // COARTADA VERIFICADA
+              </div>
+            </div>
+
+            <!-- Código de Barras Procedimental Dinámico -->
+            <div class="barcode-section">
+              <div class="barcode-bars" id="receipt-barcode" aria-hidden="true">
+                <!-- Se generan barras con grosores aleatorios por JS -->
+              </div>
+              <p class="barcode-number" id="rc-barcode-number">*CRIMINIX-0711-2026*</p>
+            </div>
+
+            <div class="receipt-actions">
+              <button class="btn-receipt-action" type="button" onclick="window.print()">
+                [ IMPRIMIR O GUARDAR RECIBO FORENSE ]
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Nivel 2: Overlay CCTV Noise -->
+    <div class="cctv-overlay" aria-hidden="true"></div>
+  </div>
+
+  <!-- ==========================================================================
+       LÓGICA VANILLA JS
+       ========================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      // Elementos del escáner y hero
+      const scannerBtn = document.getElementById('scanner-trigger');
+      const scannerStatus = document.getElementById('scanner-status');
+      const scannerFlash = document.getElementById('scanner-flash');
+      const terminalHero = document.getElementById('terminal-hero');
+      const policeTapes = document.getElementById('police-tapes');
+      const dossierSection = document.getElementById('dossier-section');
+
+      // Elementos del formulario y recibo
+      const suspectForm = document.getElementById('suspect-form');
+      const formContainer = document.getElementById('form-container');
+      const evidenceReceipt = document.getElementById('evidence-receipt');
+      const pricingGrid = document.getElementById('pricing-grid');
+      const selectedTicketDisplay = document.getElementById('selected-ticket-display');
+
+      let currentSelectedTicket = 'Promo Amigos ($60 / 5 pax)';
+
+      const REQUIRED_HOLD_MS = 2000;
+      let scanTimer = null;
+      let isHolding = false;
+      let isCompleted = false;
+
+      const DEFAULT_TEXT = '[ MANTÉN PRESIONADO PARA ABRIR TU EXPEDIENTE ]';
+      const SCANNING_TEXT = '[ ESCANEANDO HUELLA DACTILAR... ]';
+      const GRANTED_TEXT = '/// ACCESO CONCEDIDO ///';
+      const ERROR_TEXT = '[ ERROR: REGISTRO INCOMPLETO - REINTENTA ]';
+
+      /* --- 1. Lógica del Escáner Biométrico --- */
+      function startScan(e) {
+        if (isCompleted || isHolding) return;
+        if (e && e.type === 'touchstart') e.preventDefault();
+
+        isHolding = true;
+        scannerBtn.classList.add('scanning');
+        scannerStatus.textContent = SCANNING_TEXT;
+        scannerStatus.className = 'scanner-instruction scanning-text';
+
+        scanTimer = setTimeout(grantAccess, REQUIRED_HOLD_MS);
+      }
+
+      function cancelScan() {
+        if (isCompleted || !isHolding) return;
+
+        isHolding = false;
+        clearTimeout(scanTimer);
+        scanTimer = null;
+
+        scannerBtn.classList.remove('scanning');
+        scannerStatus.textContent = ERROR_TEXT;
+        scannerStatus.className = 'scanner-instruction error-text';
+
+        setTimeout(() => {
+          if (!isHolding && !isCompleted) {
+            scannerStatus.textContent = DEFAULT_TEXT;
+            scannerStatus.className = 'scanner-instruction';
+          }
+        }, 1100);
+      }
+
+      function grantAccess() {
+        isCompleted = true;
+        isHolding = false;
+        clearTimeout(scanTimer);
+        scanTimer = null;
+
+        scannerBtn.classList.remove('scanning');
+        scannerBtn.classList.add('granted');
+        scannerStatus.textContent = GRANTED_TEXT;
+        scannerStatus.className = 'scanner-instruction granted-text';
+
+        // Flash rojo de pantalla
+        scannerFlash.classList.add('flash-active');
+
+        // Desvanecimiento del hero y cabecera global
+        setTimeout(() => {
+          terminalHero.classList.add('fade-out');
+          const header = document.querySelector('.terminal-header');
+          if (header) {
+            header.style.opacity = '0';
+            header.style.pointerEvents = 'none';
+          }
+          if (policeTapes) policeTapes.style.opacity = '0.15';
+        }, 250);
+
+        // Mostrar dossier section
+        setTimeout(() => {
+          terminalHero.style.display = 'none';
+          dossierSection.style.display = 'block';
+          dossierSection.scrollTop = 0;
+        }, 750);
+      }
+
+      scannerBtn.addEventListener('mousedown', startScan);
+      window.addEventListener('mouseup', cancelScan);
+      scannerBtn.addEventListener('mouseleave', cancelScan);
+
+      scannerBtn.addEventListener('touchstart', startScan, { passive: false });
+      window.addEventListener('touchend', cancelScan);
+      window.addEventListener('touchcancel', cancelScan);
+
+      scannerBtn.addEventListener('keydown', (e) => {
+        if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) {
+          e.preventDefault();
+          startScan();
+        }
+      });
+      window.addEventListener('keyup', (e) => {
+        if (e.key === ' ' || e.key === 'Enter') cancelScan();
+      });
+
+      /* --- 2. Selección de Tarjetas de Precios --- */
+      const cards = pricingGrid.querySelectorAll('.evidence-card:not(.is-soldout)');
+      cards.forEach((card) => {
+        card.addEventListener('click', () => {
+          cards.forEach((c) => {
+            c.classList.remove('selected');
+            c.setAttribute('aria-checked', 'false');
+          });
+          card.classList.add('selected');
+          card.setAttribute('aria-checked', 'true');
+          currentSelectedTicket = card.getAttribute('data-ticket');
+          if (selectedTicketDisplay) {
+            selectedTicketDisplay.textContent = currentSelectedTicket.toUpperCase();
+          }
+        });
+
+        card.addEventListener('keydown', (e) => {
+          if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            card.click();
+          }
+        });
+      });
+
+      /* --- 3. Generador Procedimental de Código de Barras --- */
+      function generateProceduralBarcode(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = '';
+
+        // Generar 46 barras con anchos pseudo-aleatorios (1px a 5px)
+        const totalBars = 46;
+        for (let i = 0; i < totalBars; i++) {
+          const bar = document.createElement('div');
+          bar.className = 'barcode-bar';
+          // Patrón pseudoaleatorio estético
+          const widthWeights = [1, 2, 1, 3, 2, 4, 1, 2, 3, 5, 2, 1];
+          const width = widthWeights[i % widthWeights.length];
+          bar.style.width = width + 'px';
+          container.appendChild(bar);
+        }
+      }
+
+      /* --- 4. Envío de Formulario y Despliegue del Recibo --- */
+      suspectForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const nombre = document.getElementById('field-nombre').value.trim();
+        const apellido = document.getElementById('field-apellido').value.trim();
+        const cedula = document.getElementById('field-cedula').value.trim();
+        const telefono = document.getElementById('field-telefono').value.trim();
+
+        if (!nombre || !apellido || !cedula || !telefono) {
+          alert('POR FAVOR COMPLETA TODOS LOS CAMPOS DE LA COARTADA.');
+          return;
+        }
+
+        // Generar folio alfanumérico único
+        const randomFolio = '#CRIM-' + Math.floor(1000 + Math.random() * 9000);
+        const barcodeNum = '*CRIM-' + Math.floor(100000 + Math.random() * 900000) + '*';
+
+        // Inyectar datos en el recibo
+        document.getElementById('rc-nombre').textContent = (nombre + ' ' + apellido).toUpperCase();
+        document.getElementById('rc-cedula').textContent = cedula;
+        document.getElementById('rc-telefono').textContent = telefono;
+        document.getElementById('rc-ticket').textContent = currentSelectedTicket.toUpperCase();
+        document.getElementById('rc-folio').textContent = randomFolio;
+        document.getElementById('rc-barcode-number').textContent = barcodeNum;
+
+        // Generar barras del código de barras
+        generateProceduralBarcode('receipt-barcode');
+
+        // Ocultar el formulario con desvanecimiento
+        formContainer.style.display = 'none';
+
+        // Mostrar recibo de evidencia
+        evidenceReceipt.style.display = 'block';
+
+        // Scroll suave hacia el recibo
+        evidenceReceipt.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    })();
+  </script>
+</body>
+</html>
