@@ -300,6 +300,7 @@
           `Bando: ${currentFaction}\n` +
           `Folio Oficial: ${caseFolio}\n` +
           `Entrada: ${currentSelectedTicket}\n` +
+          `Acceso: AUTORIZADO (+18)\n` +
           `Fecha: Sábado 07 de Noviembre 2026\n` +
           `D-VOID Club · 20H00\n\n` +
           `"Nadie es tan inocente como parece. ¿De qué lado estás?"\n` +

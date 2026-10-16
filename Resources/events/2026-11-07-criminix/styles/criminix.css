@@ -1043,10 +1043,14 @@ body.dossier-unlocked #app {
   box-shadow: 0 0 25px rgba(217, 4, 41, 0.35);
 }
 
-/* Tarjeta Destacada Promo Amigos (Borde Continuo #D90429) */
+/* Tarjeta Destacada Promo Amigos (resaltado sutil en reposo, borde rojo solo cuando está .selected) */
 .evidence-card.featured-card {
+  border: 1px solid rgba(244, 244, 240, 0.22);
+}
+
+.evidence-card.featured-card.selected {
   border: 2px solid var(--color-blood);
-  box-shadow: 0 0 22px rgba(217, 4, 41, 0.3);
+  box-shadow: 0 0 25px rgba(217, 4, 41, 0.4);
 }
 
 .evidence-card-badge {
