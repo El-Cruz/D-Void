@@ -1,0 +1,43 @@
+{
+  "active_page": "2026-11/07-criminix.html",
+  "direction": "Brutalismo Forense Clasificado",
+  "date": "2026-11-07",
+  "slug": "2026-11-07-criminix",
+  "palette": {
+    "bg": "#050505",
+    "blood": "#D90429",
+    "bone": "#F4F4F0"
+  },
+  "logo": "Resources/dvoid/LOGO DVOID.png",
+  "references": "Resources/references/2026-11-07-criminix",
+  "files": [
+    {
+      "path": "Resources/events/2026-11-07-criminix/assets/mugshot_seguridad.webp",
+      "role": "suspect-mugshot-seguridad"
+    },
+    {
+      "path": "Resources/events/2026-11-07-criminix/assets/mugshot_muertos.webp",
+      "role": "suspect-mugshot-muertos"
+    },
+    {
+      "path": "Resources/events/2026-11-07-criminix/assets/mugshot_medicos.webp",
+      "role": "suspect-mugshot-medicos"
+    },
+    {
+      "path": "Resources/events/2026-11-07-criminix/assets/mugshot_criminales.webp",
+      "role": "suspect-mugshot-criminales"
+    },
+    {
+      "path": "Resources/events/2026-11-07-criminix/styles/criminix.css",
+      "role": "main-stylesheet"
+    },
+    {
+      "path": "Resources/events/2026-11-07-criminix/scripts/criminix.js",
+      "role": "interactive-controller"
+    },
+    {
+      "path": "Resources/events/2026-11-07-criminix/scripts/qr-generator.js",
+      "role": "pure-native-qr-engine"
+    }
+  ]
+}

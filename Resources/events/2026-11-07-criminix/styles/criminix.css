@@ -1,0 +1,1692 @@
+/* ==========================================================================
+   CRIMINIX · D-VOID (07 DE NOVIEMBRE 2026)
+   ESTILO: BRUTALISMO PREMIUM FORENSE
+   PALETA ESTRICTA:
+     - NEGRO:       #050505 (Base / Fondos profundos)
+     - ROJO SANGRE: #D90429 (Acentos / Láser / Sellos / Alertas)
+     - BLANCO HUESO: #F4F4F0 (Tipografía / Etiquetas / Ficha policial)
+   ========================================================================== */
+
+:root {
+  --color-bg: #050505;
+  --color-blood: #D90429;
+  --color-blood-glow: rgba(217, 4, 41, 0.45);
+  --color-blood-subtle: rgba(217, 4, 41, 0.12);
+  --color-bone: #F4F4F0;
+  --color-bone-pure: #FFFFFF;
+  --color-bone-muted: rgba(244, 244, 240, 0.65);
+  --color-muted: #222222;
+  --color-line: #333333;
+  --color-dark-card: #0A0A0A;
+  --color-dark-elevated: #111111;
+  --font-display: 'Oswald', -apple-system, BlinkMacSystemFont, 'Impact', 'Arial Black', sans-serif;
+  --font-mono: 'Space Mono', 'SF Mono', 'Courier New', 'Roboto Mono', Menlo, monospace;
+}
+
+/* Reset y Normalización */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--color-bg);
+  color: var(--color-bone);
+  font-family: var(--font-mono);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  position: relative;
+  touch-action: manipulation;
+}
+
+/* Enlaces de Accesibilidad */
+.skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 999;
+  padding: 0.8rem 1.4rem;
+  background: var(--color-blood);
+  color: var(--color-bone);
+  text-decoration: none;
+  font-weight: 700;
+  transform: translateY(-180%);
+  transition: transform 0.2s ease;
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL (#app)
+   ========================================================================== */
+#app {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   ATMÓSFERA BRUTALISTA: CAPAS DE FONDO Y CINTAS
+   ========================================================================== */
+
+/* 1. Titular Colosal de Fondo con respiración */
+.bg-blur-title {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(18vw, 28vw, 34vw);
+  line-height: 0.85;
+  color: var(--color-blood);
+  filter: blur(18px);
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 1;
+  animation: crim-breathe 7s ease-in-out infinite;
+  will-change: transform, opacity, filter;
+}
+
+@keyframes crim-breathe {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    filter: blur(18px);
+    opacity: 0.65;
+    text-shadow: 0 0 25px rgba(217, 4, 41, 0.4);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.03);
+    filter: blur(28px);
+    opacity: 0.9;
+    text-shadow: 0 0 70px rgba(217, 4, 41, 0.8), 0 0 110px rgba(217, 4, 41, 0.4);
+  }
+}
+
+/* 2. CCTV Overlay y Ruido de Escáner */
+.cctv-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10;
+  background:
+    repeating-radial-gradient(
+      circle at 50% 50%,
+      rgba(244, 244, 240, 0.035) 0,
+      rgba(244, 244, 240, 0.035) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.38) 0,
+      rgba(0, 0, 0, 0.38) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  opacity: 0.85;
+  animation: cctv-flicker 0.25s steps(2, start) infinite;
+}
+
+@keyframes cctv-flicker {
+  0% { opacity: 0.82; }
+  50% { opacity: 0.92; }
+  100% { opacity: 0.85; }
+}
+
+/* CCTV HUD de Cámara Forense */
+.cctv-hud {
+  position: fixed;
+  top: max(0.8rem, env(safe-area-inset-top));
+  left: max(1rem, env(safe-area-inset-left));
+  right: max(1rem, env(safe-area-inset-right));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: clamp(0.6rem, 1vw, 0.72rem);
+  letter-spacing: 0.18em;
+  color: rgba(244, 244, 240, 0.55);
+  pointer-events: none;
+  z-index: 15;
+  text-transform: uppercase;
+}
+
+.cctv-rec {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-blood);
+  font-weight: 700;
+}
+
+.cctv-rec-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-blood);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--color-blood);
+  animation: rec-blink 1s steps(2, start) infinite;
+}
+
+@keyframes rec-blink {
+  0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--color-blood), 0 0 20px rgba(217, 4, 41, 0.4); }
+  50% { opacity: 0.15; box-shadow: none; }
+}
+
+/* ==========================================================================
+   ESCALA DE ALTURA DE FICHAJE POLICIAL (Mugshot Height Chart) · BILATERAL
+   ========================================================================== */
+
+.mugshot-height-scale {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 56px;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.mugshot-height-scale--left {
+  left: 0;
+  border-right: 1px solid rgba(244, 244, 240, 0.1);
+}
+
+.mugshot-height-scale--right {
+  right: 0;
+  border-left: 1px solid rgba(244, 244, 240, 0.1);
+}
+
+.height-tick {
+  position: absolute;
+  top: var(--pos);
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  opacity: 0.25;
+}
+
+.mugshot-height-scale--left .height-tick {
+  flex-direction: row;   /* label — line */
+  justify-content: flex-end;
+}
+
+.mugshot-height-scale--right .height-tick {
+  flex-direction: row;   /* line — label */
+  justify-content: flex-start;
+}
+
+.height-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-bone);
+  white-space: nowrap;
+  line-height: 1;
+  padding: 0 4px;
+  flex-shrink: 0;
+}
+
+.height-line {
+  flex: 1;
+  height: 1px;
+  background: var(--color-bone);
+  display: block;
+}
+
+/* Marca corta extra cada 3 px para simular sub-ticks */
+.mugshot-height-scale--left::after,
+.mugshot-height-scale--right::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0,
+    transparent calc(100% / 36 - 1px),
+    rgba(244, 244, 240, 0.07) calc(100% / 36 - 1px),
+    rgba(244, 244, 240, 0.07) calc(100% / 36)
+  );
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   CABECERA Y LOGO GLOBAL D-VOID
+   ========================================================================== */
+.terminal-header {
+  position: absolute;
+  top: clamp(2rem, 4.5vh, 3.2rem);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  pointer-events: auto;
+  transition: opacity 0.5s ease;
+}
+
+.brand-logo {
+  height: clamp(34px, 5.5vh, 50px);
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 0 16px rgba(217, 4, 41, 0.5));
+}
+
+.terminal-stamp {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(244, 244, 240, 0.5);
+}
+
+/* ==========================================================================
+   HERO: TERMINAL DE INGRESO (GANCHO VALIDADO)
+   ========================================================================== */
+#terminal-hero {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 1.5rem;
+  max-width: 900px;
+  width: 100%;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+#terminal-hero.fade-out {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+.terminal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 1rem;
+  background: var(--color-blood-subtle);
+  border: 1px solid rgba(217, 4, 41, 0.45);
+  color: var(--color-bone);
+  font-size: clamp(0.68rem, 1vw, 0.78rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.terminal-badge .dot {
+  width: 7px;
+  height: 7px;
+  background: var(--color-blood);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--color-blood);
+  animation: pulse-dot 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.terminal-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(4rem, 10vw, 8rem);
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--color-bone);
+  text-shadow: 0 0 40px rgba(217, 4, 41, 0.65), 0 4px 14px rgba(0, 0, 0, 0.95);
+  margin-bottom: 0.9rem;
+}
+
+.terminal-subtitle {
+  font-family: var(--font-mono);
+  font-size: clamp(0.78rem, 1.4vw, 1rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-bone);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.4rem;
+}
+
+.terminal-subtitle .highlight {
+  color: var(--color-blood);
+  text-shadow: 0 0 12px rgba(217, 4, 41, 0.75);
+}
+
+/* ==========================================================================
+   ESCÁNER DE HUELLA DACTILAR ANIMADO
+   ========================================================================== */
+.scanner-station {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.scanner-bracket {
+  position: relative;
+  padding: 1.3rem;
+  background: rgba(10, 10, 10, 0.85);
+  border: 1px solid rgba(244, 244, 240, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.85);
+}
+
+.scanner-bracket::before,
+.scanner-bracket::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--color-blood);
+  pointer-events: none;
+}
+.scanner-bracket::before {
+  top: -2px;
+  left: -2px;
+  border-top: 2px solid var(--color-blood);
+  border-left: 2px solid var(--color-blood);
+}
+.scanner-bracket::after {
+  bottom: -2px;
+  right: -2px;
+  border-bottom: 2px solid var(--color-blood);
+  border-right: 2px solid var(--color-blood);
+}
+
+.scanner-btn {
+  position: relative;
+  width: 110px;
+  height: 124px;
+  background: #080808;
+  border: 1px solid rgba(217, 4, 41, 0.35);
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  touch-action: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.12s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.scanner-btn:focus-visible {
+  outline: 2px solid var(--color-bone);
+  outline-offset: 4px;
+  box-shadow: 0 0 20px var(--color-blood);
+}
+
+.scanner-btn:active {
+  transform: scale(0.97);
+}
+
+.fingerprint-box {
+  position: relative;
+  width: 86px;
+  height: 98px;
+  pointer-events: none;
+}
+
+.fingerprint-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fingerprint-base {
+  stroke: var(--color-muted);
+  transition: stroke 0.25s ease;
+}
+
+.fingerprint-fill {
+  stroke: var(--color-blood);
+  filter: drop-shadow(0 0 8px rgba(217, 4, 41, 0.95));
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 0.25s cubic-bezier(0.4, 0, 1, 1);
+  will-change: clip-path;
+}
+
+.scanner-laser {
+  position: absolute;
+  left: -5%;
+  right: -5%;
+  bottom: 0%;
+  height: 3px;
+  background: var(--color-blood);
+  box-shadow: 0 0 12px var(--color-blood), 0 0 24px var(--color-blood);
+  opacity: 0;
+  transition: bottom 0.25s ease-out, opacity 0.2s ease;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Estados Interactivos del Escáner */
+.scanner-btn.scanning {
+  border-color: var(--color-blood);
+  box-shadow: 0 0 28px rgba(217, 4, 41, 0.5), inset 0 0 16px rgba(217, 4, 41, 0.25);
+}
+
+.scanner-btn.scanning .fingerprint-fill {
+  clip-path: inset(0% 0 0 0);
+  transition: clip-path 2.0s linear;
+}
+
+.scanner-btn.scanning .scanner-laser {
+  opacity: 1;
+  bottom: 100%;
+  transition: bottom 2.0s linear, opacity 0.15s ease;
+}
+
+.scanner-btn.granted {
+  border-color: var(--color-bone);
+  box-shadow: 0 0 40px var(--color-blood), inset 0 0 25px rgba(217, 4, 41, 0.6);
+}
+
+.scanner-btn.granted .fingerprint-fill {
+  clip-path: inset(0% 0 0 0);
+  stroke: var(--color-bone);
+  filter: drop-shadow(0 0 12px #FFFFFF);
+  transition: stroke 0.2s ease, filter 0.2s ease;
+}
+
+/* Instrucción Exacta Requerida */
+.scanner-instruction {
+  font-family: var(--font-mono);
+  font-size: clamp(0.74rem, 1.1vw, 0.88rem);
+  font-weight: 700;
+  color: var(--color-bone);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+  min-height: 1.5em;
+  text-align: center;
+}
+
+.scanner-instruction.scanning-text {
+  color: var(--color-blood);
+  animation: pulse-instruction 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-instruction {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+.scanner-instruction.granted-text {
+  color: var(--color-blood);
+  text-shadow: 0 0 14px var(--color-blood);
+  letter-spacing: 0.22em;
+}
+
+.scanner-instruction.error-text {
+  color: var(--color-blood);
+}
+
+/* Flash Rojo Estroboscópico de Pantalla */
+#scanner-flash {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-blood);
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+}
+
+#scanner-flash.flash-active {
+  animation: blood-flash 0.65s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+}
+
+@keyframes blood-flash {
+  0% { opacity: 0.95; }
+  25% { opacity: 0.85; }
+  100% { opacity: 0; }
+}
+
+/* ==========================================================================
+   CONVERSIÓN: DOSSIER FORENSE (#dossier-section)
+   ========================================================================== */
+#dossier-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: none;
+  z-index: 25;
+  background: rgba(5, 5, 5, 0.98);
+  padding: clamp(3.5rem, 6vh, 5.5rem) 1.2rem clamp(3rem, 6vh, 5rem);
+  animation: dossier-enter 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+body.dossier-unlocked {
+  overflow-y: auto !important;
+  height: auto !important;
+}
+
+body.dossier-unlocked .terminal-header,
+body.dossier-unlocked .cctv-hud {
+  display: none !important;
+}
+
+body.dossier-unlocked #app {
+  overflow: visible !important;
+  height: auto !important;
+  min-height: 100vh;
+}
+
+@keyframes dossier-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dossier-wrapper {
+  max-width: 980px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.forensic-frame {
+  position: relative;
+  border: 1px solid rgba(217, 4, 41, 0.35);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: rgba(8, 8, 8, 0.94);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.95), inset 0 0 35px rgba(217, 4, 41, 0.05);
+}
+
+/* Marcas de Calibración Forense (+) en 4 esquinas */
+.forensic-frame::before,
+.forensic-frame::after {
+  content: '+';
+  position: absolute;
+  color: var(--color-blood);
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  line-height: 1;
+  pointer-events: none;
+}
+.forensic-frame::before { top: 6px; left: 8px; }
+.forensic-frame::after { bottom: 6px; right: 8px; }
+
+/* Encabezado del Expediente */
+.dossier-header-bar {
+  border-bottom: 2px solid var(--color-blood);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+
+.dossier-meta-stamp {
+  font-size: 0.7rem;
+  color: var(--color-blood);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.dossier-main-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
+  line-height: 0.92;
+  color: var(--color-bone);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.dossier-case-number {
+  font-size: 0.8rem;
+  color: rgba(244, 244, 240, 0.55);
+  letter-spacing: 0.16em;
+  margin-top: 0.4rem;
+}
+
+.dossier-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.9rem;
+  background: var(--color-blood-subtle);
+  border: 1px solid var(--color-blood);
+  color: var(--color-bone);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Banner Forense Inmersivo (reemplaza lineup-poster) */
+.case-evidence-banner {
+  position: relative;
+  border: 1px solid rgba(217, 4, 41, 0.45);
+  background: rgba(8, 8, 8, 0.96);
+  margin-bottom: 2.5rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.case-evidence-banner::before,
+.case-evidence-banner::after {
+  content: '+';
+  position: absolute;
+  color: var(--color-blood);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  line-height: 1;
+  pointer-events: none;
+  opacity: 0.55;
+}
+.case-evidence-banner::before { top: 6px; left: 8px; }
+.case-evidence-banner::after { bottom: 6px; right: 8px; }
+
+.ceb-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.2rem;
+  border-bottom: 1px solid rgba(217, 4, 41, 0.3);
+}
+
+.ceb-stamp {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: rgba(244, 244, 240, 0.55);
+  text-transform: uppercase;
+}
+
+.ceb-status {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--color-blood);
+  text-transform: uppercase;
+}
+
+.ceb-body {
+  padding: 1.4rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.ceb-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px dotted rgba(244, 244, 240, 0.12);
+  font-family: var(--font-mono);
+  font-size: clamp(0.72rem, 1.2vw, 0.85rem);
+  text-transform: uppercase;
+}
+
+.ceb-k {
+  color: rgba(244, 244, 240, 0.55);
+  letter-spacing: 0.14em;
+  font-weight: 400;
+  flex-shrink: 0;
+  margin-right: 1rem;
+}
+
+.ceb-v {
+  color: var(--color-bone);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: right;
+}
+
+.ceb-v.accent {
+  color: var(--color-blood);
+  text-shadow: 0 0 8px rgba(217, 4, 41, 0.3);
+}
+
+.ceb-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem 1.2rem;
+  border-top: 1px solid rgba(217, 4, 41, 0.3);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  color: rgba(244, 244, 240, 0.4);
+  text-transform: uppercase;
+}
+
+.ceb-footer strong {
+  color: var(--color-blood);
+}
+
+/* Alerta de Protocolo */
+.warning-banner {
+  background: rgba(217, 4, 41, 0.1);
+  border-left: 4px solid var(--color-blood);
+  border-right: 1px solid rgba(217, 4, 41, 0.3);
+  border-top: 1px solid rgba(217, 4, 41, 0.3);
+  border-bottom: 1px solid rgba(217, 4, 41, 0.3);
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 2.8rem;
+}
+
+.warning-tag {
+  font-size: 0.66rem;
+  color: var(--color-blood);
+  letter-spacing: 0.25em;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.warning-text {
+  font-family: var(--font-mono);
+  font-size: clamp(0.92rem, 1.8vw, 1.22rem);
+  font-weight: 700;
+  color: var(--color-bone);
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.warning-text .accent {
+  color: var(--color-blood);
+  text-decoration: underline;
+  text-decoration-color: var(--color-blood);
+  text-underline-offset: 4px;
+}
+
+/* Separadores de Sección */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.75rem;
+  color: var(--color-blood);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(217, 4, 41, 0.45), transparent);
+}
+
+/* ==========================================================================
+   1. FICHAS DE SOSPECHOSOS (DRESS CODE OFICIAL)
+   ========================================================================== */
+.mugshot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.4rem;
+  margin-bottom: 3.5rem;
+}
+
+.mugshot-card {
+  position: relative;
+  background: var(--color-dark-card);
+  border: 1px solid rgba(244, 244, 240, 0.14);
+  padding: 1.4rem 1.1rem 1.1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+}
+
+.mugshot-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-blood);
+  box-shadow: 0 12px 30px rgba(217, 4, 41, 0.25);
+}
+
+.mugshot-card.active-faction {
+  border: 2px solid var(--color-blood);
+  background: rgba(217, 4, 41, 0.08);
+  box-shadow: 0 0 25px rgba(217, 4, 41, 0.35);
+}
+
+.staple {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 5px;
+  background: linear-gradient(90deg, #333 0%, #888 20%, #ddd 50%, #888 80%, #333 100%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border-radius: 1px;
+  z-index: 4;
+}
+
+.mugshot-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.05;
+  background: #050505;
+  border: 1px solid rgba(244, 244, 240, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 0.9rem;
+}
+
+/* Retícula de Altura de Fichaje Policial */
+.mugshot-photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(244, 244, 240, 0.07) 0,
+      rgba(244, 244, 240, 0.07) 1px,
+      transparent 1px,
+      transparent 12px
+    );
+  pointer-events: none;
+}
+
+.mugshot-svg-icon {
+  width: 52px;
+  height: 52px;
+  color: rgba(244, 244, 240, 0.7);
+  transition: color 0.2s ease, transform 0.2s ease;
+  z-index: 2;
+}
+
+/* Foto de Mugshot Generada (WebP) */
+.mugshot-photo-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: contrast(1.15) brightness(0.9);
+  z-index: 1;
+  transition: filter 0.25s ease, transform 0.3s ease;
+}
+
+.mugshot-card:hover .mugshot-photo-img,
+.mugshot-card.active-faction .mugshot-photo-img {
+  filter: contrast(1.25) brightness(1.05);
+  transform: scale(1.04);
+}
+
+.mugshot-card:hover .mugshot-svg-icon,
+.mugshot-card.active-faction .mugshot-svg-icon {
+  color: var(--color-blood);
+  transform: scale(1.08);
+}
+
+.mugshot-badge {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  background: rgba(0, 0, 0, 0.88);
+  border: 1px solid rgba(217, 4, 41, 0.45);
+  color: var(--color-blood);
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  padding: 0.15rem 0.4rem;
+  font-weight: 700;
+  z-index: 3;
+}
+
+.mugshot-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-bone);
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+
+.mugshot-desc {
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: rgba(244, 244, 240, 0.65);
+  letter-spacing: 0.04em;
+}
+
+/* ==========================================================================
+   2. PRUEBAS FORENSES (PRECIOS Y TARIFAS)
+   ========================================================================== */
+.evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.4rem;
+  margin-bottom: 3.5rem;
+}
+
+.evidence-card {
+  position: relative;
+  background: var(--color-dark-card);
+  border: 1px solid rgba(244, 244, 240, 0.15);
+  padding: 1.6rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+}
+
+.evidence-card:hover:not(.is-soldout) {
+  transform: translateY(-3px);
+  border-color: rgba(217, 4, 41, 0.6);
+  box-shadow: 0 8px 24px rgba(217, 4, 41, 0.2);
+}
+
+.evidence-card.selected {
+  border: 2px solid var(--color-blood);
+  background: rgba(217, 4, 41, 0.06);
+  box-shadow: 0 0 25px rgba(217, 4, 41, 0.35);
+}
+
+/* Tarjeta Destacada Promo Amigos (Borde Continuo #D90429) */
+.evidence-card.featured-card {
+  border: 2px solid var(--color-blood);
+  box-shadow: 0 0 22px rgba(217, 4, 41, 0.3);
+}
+
+.evidence-card-badge {
+  display: inline-block;
+  align-self: flex-start;
+  background: var(--color-blood);
+  color: var(--color-bone);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  padding: 0.2rem 0.55rem;
+  text-transform: uppercase;
+  margin-bottom: 0.9rem;
+}
+
+.evidence-card-title {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-bone);
+  margin-bottom: 0.4rem;
+}
+
+.evidence-card-price {
+  font-family: var(--font-mono);
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--color-blood);
+  letter-spacing: -0.02em;
+  margin: 0.6rem 0;
+}
+
+.evidence-card-price span {
+  font-size: 0.85rem;
+  color: rgba(244, 244, 240, 0.6);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+}
+
+.evidence-card-details {
+  font-size: 0.74rem;
+  color: rgba(244, 244, 240, 0.65);
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+}
+
+/* Sello Agotado */
+.evidence-card.is-soldout {
+  opacity: 0.55;
+  cursor: not-allowed;
+  filter: grayscale(0.2);
+}
+
+.stamp-sold-out {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-14deg);
+  color: var(--color-blood);
+  border: 4px double var(--color-blood);
+  padding: 0.35rem 1.6rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.75rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  background: rgba(5, 5, 5, 0.9);
+  pointer-events: none;
+  box-shadow: 0 0 16px rgba(217, 4, 41, 0.6);
+  white-space: nowrap;
+  z-index: 5;
+}
+
+/* ==========================================================================
+   3. CRONOGRAMA DE INVESTIGACIÓN (MOMENTOS CLAVE)
+   ========================================================================== */
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 1rem;
+  margin-bottom: 3.5rem;
+}
+
+.timeline-step {
+  border: 1px solid rgba(244, 244, 240, 0.12);
+  background: rgba(10, 10, 10, 0.8);
+  padding: 1.2rem 1rem;
+  position: relative;
+}
+
+.timeline-hour {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--color-blood);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.04em;
+}
+
+.timeline-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-bone);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+.timeline-desc {
+  font-size: 0.68rem;
+  color: rgba(244, 244, 240, 0.6);
+  line-height: 1.35;
+}
+
+/* ==========================================================================
+   4. FORMULARIO DE IDENTIFICACIÓN FORENSE
+   ========================================================================== */
+.form-wrapper {
+  background: rgba(10, 10, 10, 0.95);
+  border: 1px solid rgba(217, 4, 41, 0.35);
+  padding: clamp(1.5rem, 4vw, 2.8rem);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85);
+  margin-bottom: 3rem;
+}
+
+.form-header-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.8vw, 2.6rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-bone);
+  margin-bottom: 0.4rem;
+}
+
+.form-header-sub {
+  font-size: 0.78rem;
+  color: rgba(244, 244, 240, 0.6);
+  letter-spacing: 0.14em;
+  margin-bottom: 2.2rem;
+}
+
+.form-selected-ticket-box {
+  border: 1px dashed rgba(217, 4, 41, 0.45);
+  padding: 1rem 1.3rem;
+  background: rgba(217, 4, 41, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.form-ticket-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: rgba(244, 244, 240, 0.65);
+  text-transform: uppercase;
+}
+
+.form-ticket-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-blood);
+  letter-spacing: 0.12em;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-field label {
+  font-size: 0.72rem;
+  color: var(--color-blood);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.form-field input,
+.form-field select {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(244, 244, 240, 0.35);
+  color: var(--color-bone);
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  padding: 0.6rem 0.2rem;
+  outline: none;
+  border-radius: 0;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  min-height: 44px;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+  border-bottom: 2px solid var(--color-blood);
+  box-shadow: 0 4px 12px rgba(217, 4, 41, 0.25);
+}
+
+.form-field input::placeholder {
+  color: rgba(244, 244, 240, 0.45);
+  font-size: 0.9rem;
+}
+
+.form-field select {
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%23D90429'%3E%3Cpath d='M0 0l6 8 6-8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 10px;
+  padding-right: 1.6rem;
+}
+
+.form-field select option {
+  background-color: var(--color-bg);
+  color: var(--color-bone);
+}
+
+.btn-submit-case {
+  width: 100%;
+  min-height: 54px;
+  background: var(--color-bone);
+  color: #050505;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 1.25rem 1.5rem;
+  border: none;
+  cursor: pointer;
+  display: block;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.btn-submit-case:hover {
+  background: var(--color-bone-pure);
+  box-shadow: 0 0 30px rgba(244, 244, 240, 0.45);
+  transform: translateY(-2px);
+}
+
+.btn-submit-case:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   5. ENTREGABLE FINAL: FICHA POLICIAL CLASIFICADA CON CÓDIGO QR
+   ========================================================================== */
+#classified-dossier-pass {
+  display: none;
+  max-width: 680px;
+  margin: 0 auto;
+  background: var(--color-bone);
+  color: #050505;
+  padding: clamp(2rem, 5vw, 3.2rem) clamp(1.5rem, 4vw, 2.8rem);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95), 0 0 50px rgba(217, 4, 41, 0.45);
+  position: relative;
+  animation: dossier-unfold 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  border: 4px double #050505;
+}
+
+@keyframes dossier-unfold {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Grapas de la Ficha Policial */
+#classified-dossier-pass::before,
+#classified-dossier-pass::after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  width: 26px;
+  height: 5px;
+  background: linear-gradient(90deg, #333 0%, #888 50%, #333 100%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+#classified-dossier-pass::before { left: 24px; }
+#classified-dossier-pass::after { right: 24px; }
+
+.pass-header {
+  text-align: center;
+  border-bottom: 2px solid #050505;
+  padding-bottom: 1.4rem;
+  margin-bottom: 1.6rem;
+}
+
+.pass-dvoid-logo {
+  height: 42px;
+  width: auto;
+  margin: 0 auto 0.6rem;
+  display: block;
+  filter: invert(1);
+}
+
+.pass-top-stamp {
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #222;
+}
+
+.pass-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  margin: 0.4rem 0;
+  color: #050505;
+}
+
+.pass-subtitle {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: #333;
+}
+
+/* Grid de Identificación de Prontuario */
+.suspect-profile-grid {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 1.4rem;
+  align-items: start;
+  margin-bottom: 1.8rem;
+}
+
+.suspect-mugshot-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.25;
+  background: #050505;
+  border: 2px solid #050505;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Escala de Altura dentro del Mugshot */
+.suspect-mugshot-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(244, 244, 240, 0.25) 0,
+      rgba(244, 244, 240, 0.25) 1px,
+      transparent 1px,
+      transparent 14px
+    );
+  pointer-events: none;
+}
+
+.mugshot-silhouette-svg {
+  width: 70px;
+  height: 70px;
+  color: var(--color-bone);
+  z-index: 2;
+}
+
+.mugshot-status-tag {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-blood);
+  color: var(--color-bone);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-align: center;
+  padding: 0.2rem 0;
+  z-index: 3;
+}
+
+.suspect-data-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.pass-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dotted #888;
+  font-size: 0.8rem;
+}
+
+.pass-label {
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #333;
+}
+
+.pass-value {
+  text-align: right;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #050505;
+}
+
+/* Sello de Tinta Roja "CLASIFICADO / COARTADA VERIFICADA" */
+.rubber-stamp {
+  border: 3px double var(--color-blood);
+  color: var(--color-blood);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.22em;
+  padding: 0.4rem 0.8rem;
+  text-transform: uppercase;
+  transform: rotate(-3deg);
+  margin: 1.2rem auto 1.5rem;
+  text-align: center;
+  box-shadow: inset 0 0 10px rgba(217, 4, 41, 0.2);
+}
+
+/* Componente del Código QR Forense */
+.pass-qr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.4rem 0;
+  border-top: 2px dashed #050505;
+  border-bottom: 2px dashed #050505;
+  margin-bottom: 1.6rem;
+  position: relative;
+}
+
+.pass-qr-frame {
+  position: relative;
+  padding: 0.8rem;
+  background: #FFFFFF;
+  border: 2px solid #050505;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.pass-qr-frame::before,
+.pass-qr-frame::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--color-blood);
+  pointer-events: none;
+}
+.pass-qr-frame::before {
+  top: -2px;
+  left: -2px;
+  border-top: 2px solid var(--color-blood);
+  border-left: 2px solid var(--color-blood);
+}
+.pass-qr-frame::after {
+  bottom: -2px;
+  right: -2px;
+  border-bottom: 2px solid var(--color-blood);
+  border-right: 2px solid var(--color-blood);
+}
+
+.pass-qr-render {
+  display: block;
+}
+
+.pass-hash-text {
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  color: #333;
+  margin-top: 0.8rem;
+  font-family: var(--font-mono);
+  text-align: center;
+}
+
+/* Botones de Acción de la Ficha */
+.pass-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.btn-pass-action {
+  width: 100%;
+  min-height: 48px;
+  background: #050505;
+  color: var(--color-bone);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.84rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.85rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.btn-pass-action:hover {
+  background: var(--color-blood);
+  transform: translateY(-2px);
+}
+
+.btn-pass-action:active {
+  transform: scale(0.98);
+}
+
+.btn-pass-action.btn-secondary {
+  background: transparent;
+  color: #050505;
+  border: 1px solid #050505;
+}
+
+.btn-pass-action.btn-secondary:hover {
+  background: #050505;
+  color: var(--color-bone);
+}
+
+/* ==========================================================================
+   ESTILOS DE IMPRESIÓN (FICHA FORENSE A4)
+   ========================================================================== */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+  #terminal-hero,
+  .terminal-header,
+  .cctv-overlay,
+  .cctv-hud,
+  .bg-blur-title,
+  .police-tape-wrapper,
+  .mugshot-height-scale,
+  .case-evidence-banner,
+  .form-wrapper,
+  .warning-banner,
+  .mugshot-grid,
+  .evidence-grid,
+  .timeline-grid,
+  .lineup-feature-box,
+  .section-label,
+  .pass-actions {
+    display: none !important;
+  }
+  #dossier-section {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: transparent !important;
+    padding: 0 !important;
+  }
+  .forensic-frame {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  #classified-dossier-pass {
+    display: block !important;
+    box-shadow: none !important;
+    border: 2px solid #000 !important;
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+}
+
+/* ==========================================================================
+   ACCESIBILIDAD Y PREFERS-REDUCED-MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .bg-blur-title,
+  .cctv-overlay,
+  .cctv-rec-dot,
+  .terminal-badge .dot {
+    animation: none !important;
+  }
+  #terminal-hero,
+  #dossier-section,
+  #classified-dossier-pass {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVIDAD MOBILE-FIRST (375x812)
+   ========================================================================== */
+@media (max-width: 640px) {
+  .forensic-frame {
+    padding: 1.2rem 0.9rem;
+  }
+  .suspect-profile-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .suspect-mugshot-frame {
+    width: 130px;
+    margin-bottom: 0.8rem;
+  }
+  .mugshot-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .evidence-grid {
+    grid-template-columns: 1fr;
+  }
+  .timeline-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+}
