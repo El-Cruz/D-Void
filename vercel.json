@@ -17,6 +17,8 @@
     { "source": "/ingreso", "destination": "/ingreso.html" },
     { "source": "/evento-udla", "destination": "/2026-09/25-evento-udla.html" },
     { "source": "/fashion-week", "destination": "/2026-10/15-fashion-week.html" },
-    { "source": "/la-tentacion", "destination": "/2026-10/01-la-tentacion.html" }
+    { "source": "/la-tentacion", "destination": "/2026-10/01-la-tentacion.html" },
+    { "source": "/after-dark", "destination": "/2026-10/28-after-dark.html" },
+    { "source": "/after-dark.html", "destination": "/2026-10/28-after-dark.html" }
   ]
 }

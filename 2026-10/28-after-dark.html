@@ -1,0 +1,1904 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#D90429">
+  <title>AFTER DARK · Inicio de la Semana del Terror · D-VOID</title>
+  <meta name="description" content="AFTER DARK: Inicio de la Semana del Terror en D-VOID. Miércoles 28 de Octubre de 2026. Todo empieza después de oscurecer. Registro y Lista VIP Oficial.">
+
+  <!-- Google Fonts: Cinzel & Playfair Display (Serif Dramática Editorial) + Inter & Space Mono (UI Técnica & Datos) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── PALETA & TOKENS CSS (AFTER DARK // TERROR PSICOLÓGICO & CINEMATOGRÁFICO) ── */
+    :root {
+      --bg-void: #050505;
+      --blood-red: #D90429;
+      --dark-red: #8B0000;
+      --crimson-glow: rgba(217, 4, 41, 0.4);
+      --crimson-halo: rgba(217, 4, 41, 0.2);
+      --bone: #F4F4F0;
+      --muted-gray: #333333;
+      --border-gray: #222222;
+      --text-silver: #888888;
+      --font-headline: 'Cinzel', 'Playfair Display', Georgia, serif;
+      --font-editorial: 'Playfair Display', Georgia, serif;
+      --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono: 'Space Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    /* ── RESET RADICAL BRUTALISTA: BORDES CORTANTES, CERO REDONDEO ── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border-radius: 0 !important;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      background-color: var(--bg-void);
+      color: var(--bone);
+      font-family: var(--font-ui);
+      font-size: 16px;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      background-color: var(--bg-void);
+      color: var(--bone);
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      line-height: 1.2;
+      padding-bottom: max(24px, env(safe-area-inset-bottom));
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ── TEXT SELECTION & SCROLLBAR ── */
+    ::selection {
+      background: var(--blood-red);
+      color: var(--bone);
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #000000;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--dark-red);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--blood-red);
+    }
+
+    /* ── 1. SECTION: HERO (ATMÓSFERA CINEMATOGRÁFICA & PERSPECTIVA 3D) ── */
+    .hero-section {
+      height: 100vh;
+      height: 100dvh;
+      min-height: 600px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      background-color: var(--bg-void);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1000px;
+      perspective-origin: center center;
+    }
+
+    /* Fondo Volumétrico con Cuadrícula y Niebla Roja Sangre */
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      inset: -15%;
+      transform: translateZ(-200px);
+      background-color: var(--bg-void);
+      background-image: 
+        radial-gradient(circle at 50% 45%, rgba(217, 4, 41, 0.18) 0%, rgba(139, 0, 0, 0.08) 40%, transparent 70%),
+        linear-gradient(rgba(217, 4, 41, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(217, 4, 41, 0.15) 1px, transparent 1px);
+      background-size: 100% 100%, 50px 50px, 50px 50px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Viñeta Oscura Periférica */
+    .hero-section::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, transparent 35%, rgba(5, 5, 5, 0.85) 85%, #050505 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Cabecera Flotante Superior */
+    .hero-top-nav {
+      position: absolute;
+      top: max(16px, env(safe-area-inset-top));
+      left: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      z-index: 30;
+      padding: 0 16px;
+      pointer-events: auto;
+    }
+
+    .brand-logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 6px;
+    }
+
+    .brand-logo-img {
+      height: clamp(26px, 4.5vw, 36px);
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 12px rgba(217, 4, 41, 0.35));
+    }
+
+    .hero-event-tag {
+      font-family: var(--font-mono);
+      font-size: clamp(11px, 2.5vw, 13.5px);
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 0.22em;
+      color: var(--bone);
+      text-transform: uppercase;
+      background: rgba(13, 13, 13, 0.85);
+      border: 1px solid rgba(217, 4, 41, 0.4);
+      padding: 5px 14px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-event-tag span.tag-accent {
+      color: var(--blood-red);
+      font-weight: 800;
+    }
+
+    /* Panel Central con Profundidad 3D & Halo Rojo Volumétrico */
+    .hero-cinema-panel {
+      width: clamp(285px, 84vw, 440px);
+      height: clamp(370px, 58vh, 520px);
+      background-color: #080808;
+      border: 3px solid var(--blood-red);
+      box-shadow: 
+        0 0 50px var(--crimson-glow),
+        0 25px 60px rgba(0, 0, 0, 0.95),
+        inset 0 0 35px rgba(139, 0, 0, 0.5) !important;
+      transform: translateZ(0);
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    /* Imagen Oficial Ghostface con Teléfono Rojo */
+    .hero-poster-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      filter: contrast(1.15) brightness(0.9);
+      transform: scale(1.03);
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-cinema-panel:hover .hero-poster-img {
+      transform: scale(1.07);
+    }
+
+    /* Filtro de atmósfera roja sangrienta sobre la imagen */
+    .hero-poster-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg, 
+        rgba(5, 5, 5, 0.4) 0%, 
+        transparent 35%, 
+        rgba(139, 0, 0, 0.35) 70%, 
+        rgba(5, 5, 5, 0.92) 100%
+      );
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .hero-scanlines {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.25) 0px,
+        rgba(0, 0, 0, 0.25) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      pointer-events: none;
+      z-index: 3;
+      opacity: 0.6;
+    }
+
+    /* Titular de Gran Escala "After Dark" en Serif Dramática con Relieve 3D */
+    .hero-title-container {
+      position: absolute;
+      bottom: 22px;
+      left: 0;
+      width: 100%;
+      transform: translateZ(80px);
+      text-align: center;
+      padding: 0 16px;
+      z-index: 25;
+      pointer-events: none;
+    }
+
+    .hero-kicker-small {
+      font-family: var(--font-mono);
+      font-size: clamp(9px, 2.2vw, 11px);
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--bone);
+      text-shadow: 0 2px 10px #000000;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .hero-title-massive {
+      font-family: var(--font-headline);
+      font-size: clamp(2.8rem, 10vw, 5rem);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--blood-red);
+      text-shadow: 
+        0 0 30px var(--blood-red),
+        0 4px 18px rgba(0, 0, 0, 0.95),
+        0 0 8px rgba(255, 255, 255, 0.3);
+      filter: drop-shadow(0 6px 12px #000000);
+      margin-bottom: 6px;
+    }
+
+    .hero-tagline-subtle {
+      font-family: var(--font-editorial);
+      font-style: italic;
+      font-size: clamp(14px, 3.4vw, 17px);
+      letter-spacing: 0.06em;
+      color: var(--bone);
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+      opacity: 0.95;
+    }
+
+    /* Barra Inferior del Hero: CTA Principal */
+    .hero-bottom-bar {
+      position: absolute;
+      bottom: max(18px, env(safe-area-inset-bottom));
+      left: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 0 16px;
+      z-index: 30;
+      pointer-events: auto;
+    }
+
+    .hero-cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      max-width: 440px;
+      background: #000000;
+      color: var(--bone);
+      font-family: var(--font-mono);
+      font-size: clamp(13px, 3.4vw, 16px);
+      font-weight: 700;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 15px 18px;
+      border: 2px solid var(--blood-red);
+      box-shadow: 0 0 25px rgba(217, 4, 41, 0.35);
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+      min-height: 44px;
+    }
+
+    .hero-cta-btn:hover {
+      background: var(--blood-red);
+      color: #000000;
+      box-shadow: 0 0 40px var(--crimson-glow);
+    }
+
+    .hero-cta-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* ── 2. SECTION: TYPOGRAPHIC STACKING (PROMOCIONES & CONDICIONES) ── */
+    .stacking-section {
+      width: 100%;
+      background-color: var(--bg-void);
+      border-top: 2px solid var(--border-gray);
+      border-bottom: 2px solid var(--border-gray);
+      position: relative;
+    }
+
+    .stacking-row {
+      width: 100%;
+      padding: clamp(24px, 5.5vw, 42px) 16px;
+      border-bottom: 2px solid var(--border-gray);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: background-color 0.25s ease;
+    }
+
+    .stacking-row:last-child {
+      border-bottom: none;
+    }
+
+    .stacking-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--text-silver);
+      margin-bottom: 8px;
+    }
+
+    .stacking-title-white {
+      font-family: var(--font-headline);
+      font-size: clamp(24px, 6vw, 48px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--bone);
+      text-shadow: 0 3px 15px rgba(0, 0, 0, 0.9);
+      max-width: 900px;
+    }
+
+    .stacking-title-red {
+      font-family: var(--font-headline);
+      font-size: clamp(24px, 6vw, 48px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--blood-red);
+      text-shadow: 0 0 25px rgba(217, 4, 41, 0.45), 0 3px 15px rgba(0, 0, 0, 0.9);
+      max-width: 900px;
+    }
+
+    /* Fila 3: Highlight Invertido Brutalista */
+    .stacking-row-highlight {
+      background-color: var(--blood-red);
+      color: #000000;
+    }
+
+    .stacking-row-highlight .stacking-kicker {
+      color: #000000;
+      font-weight: 800;
+    }
+
+    .stacking-title-black {
+      font-family: var(--font-headline);
+      font-size: clamp(24px, 6vw, 48px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #000000;
+      text-shadow: none;
+      max-width: 900px;
+    }
+
+    /* ── 3. SECTION: SELECTOR MONOLÍTICO INTERACTIVO ── */
+    .selector-section {
+      width: 100%;
+      padding: clamp(60px, 8vw, 90px) 16px;
+      background-color: #080808;
+      border-bottom: 2px solid var(--border-gray);
+      position: relative;
+    }
+
+    .section-container {
+      width: 100%;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: clamp(32px, 5vw, 48px);
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--blood-red);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: var(--font-headline);
+      font-size: clamp(28px, 6.5vw, 48px);
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--bone);
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+
+    .section-desc {
+      font-family: var(--font-ui);
+      font-size: clamp(13.5px, 2.8vw, 16px);
+      color: var(--text-silver);
+      line-height: 1.5;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Grid de Tarjetas Interactivas */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      width: 100%;
+    }
+
+    @media (min-width: 680px) {
+      .cards-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .monolith-card {
+      background-color: #0d0d0d;
+      border: 2px solid var(--border-gray);
+      padding: clamp(24px, 4vw, 32px) clamp(18px, 3vw, 24px);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      outline: none;
+      transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+      min-height: 270px;
+    }
+
+    .monolith-card:hover {
+      border-color: rgba(217, 4, 41, 0.6);
+      background-color: #121212;
+    }
+
+    .monolith-card:active {
+      transform: scale(0.98);
+    }
+
+    /* Tarjeta Seleccionada: Borde Sangre Brillante + Halo Pulsante */
+    .monolith-card.is-selected {
+      border-color: var(--blood-red);
+      background-color: #140708;
+      box-shadow: 0 0 35px var(--crimson-halo), inset 0 0 20px rgba(217, 4, 41, 0.15);
+    }
+
+    .card-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    /* Radar Pulsante */
+    .radar-beacon {
+      position: relative;
+      width: 14px;
+      height: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .radar-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--text-silver);
+      border-radius: 50% !important;
+      transition: background-color 0.2s ease;
+    }
+
+    .radar-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50% !important;
+      border: 1px solid transparent;
+      animation: none;
+    }
+
+    .monolith-card.is-selected .radar-dot {
+      background-color: var(--blood-red);
+      box-shadow: 0 0 10px var(--blood-red);
+    }
+
+    .monolith-card.is-selected .radar-ring {
+      border-color: var(--blood-red);
+      animation: radarPing 1.8s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+
+    @keyframes radarPing {
+      0% { transform: scale(1); opacity: 0.9; }
+      100% { transform: scale(3.2); opacity: 0; }
+    }
+
+    .card-badge-status {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: #1a1a1a;
+      color: var(--text-silver);
+      border: 1px solid #333333;
+      transition: all 0.2s ease;
+    }
+
+    .monolith-card.is-selected .card-badge-status {
+      background: var(--blood-red);
+      color: #000000;
+      border-color: var(--blood-red);
+      font-weight: 800;
+    }
+
+    .card-title {
+      font-family: var(--font-headline);
+      font-size: clamp(20px, 4vw, 25px);
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--bone);
+      margin-bottom: 8px;
+      transition: color 0.2s ease;
+    }
+
+    .monolith-card.is-selected .card-title {
+      color: var(--blood-red);
+    }
+
+    .card-specs {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--bone);
+      opacity: 0.9;
+      margin-bottom: 12px;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+
+    .card-desc {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text-silver);
+      margin-bottom: 20px;
+    }
+
+    .card-footer-pill {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      background: #000000;
+      border: 1px solid var(--border-gray);
+      color: var(--text-silver);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .monolith-card.is-selected .card-footer-pill {
+      border-color: rgba(217, 4, 41, 0.4);
+      color: var(--bone);
+    }
+
+    /* ── 4. SECTION: MONOLITO DE REGISTRO & CHECK-IN ── */
+    .registro-section {
+      width: 100%;
+      padding: clamp(60px, 8vw, 100px) 16px;
+      background-color: var(--bg-void);
+      position: relative;
+    }
+
+    .registro-box {
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto;
+      background-color: #0a0a0a;
+      border: 2px solid var(--border-gray);
+      padding: clamp(28px, 6vw, 48px) clamp(20px, 5vw, 40px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+      position: relative;
+    }
+
+    /* Indicador Dinámico de Modalidad Seleccionada */
+    .registro-modality-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      background-color: #121212;
+      border: 1px solid #2a2a2a;
+      padding: 12px 16px;
+      margin-bottom: 30px;
+    }
+
+    .modality-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--text-silver);
+      text-transform: uppercase;
+    }
+
+    .modality-value {
+      font-family: var(--font-headline);
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      color: var(--blood-red);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .form-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+      width: 100%;
+    }
+
+    .field-row-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 26px;
+    }
+
+    @media (min-width: 540px) {
+      .field-row-2 {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .field-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--bone);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    /* Inputs Industriales: Fondo transparente, línea inferior hueso, roja al foco */
+    .industrial-input {
+      width: 100%;
+      background: transparent;
+      border: none !important;
+      border-bottom: 2px solid var(--bone) !important;
+      color: var(--bone);
+      font-family: var(--font-ui);
+      font-size: clamp(16px, 3.8vw, 19px);
+      font-weight: 600;
+      padding: 12px 2px;
+      text-transform: uppercase;
+      outline: none;
+      box-sizing: border-box;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+      min-height: 44px;
+    }
+
+    .industrial-input::placeholder {
+      color: #555555;
+      font-size: clamp(13px, 3vw, 14px);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .industrial-input:focus {
+      border-bottom-color: var(--blood-red) !important;
+      background: rgba(217, 4, 41, 0.06);
+    }
+
+    .field-error {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--blood-red);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 6px;
+      display: none;
+    }
+
+    /* Selector de Acompañantes */
+    .companion-section {
+      background-color: #0f0f0f;
+      border: 1px solid var(--border-gray);
+      padding: 18px 16px;
+      margin-top: 6px;
+    }
+
+    .companion-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bone);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .companion-toggle-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .companion-btn {
+      background-color: #181818;
+      border: 1px solid #333333;
+      color: var(--text-silver);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 12px 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      min-height: 44px;
+    }
+
+    .companion-btn.is-active {
+      background-color: var(--blood-red);
+      border-color: var(--blood-red);
+      color: #000000;
+      font-weight: 800;
+    }
+
+    .companion-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Stepper Numérico para Acompañantes */
+    .stepper-container {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background: #000000;
+      border: 1px solid rgba(217, 4, 41, 0.4);
+      padding: 12px 16px;
+      margin-top: 8px;
+    }
+
+    .stepper-container.is-visible {
+      display: flex;
+    }
+
+    .stepper-label {
+      font-family: var(--font-ui);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--bone);
+      text-transform: uppercase;
+    }
+
+    .stepper-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .stepper-btn {
+      width: 44px;
+      height: 44px;
+      background-color: #1a1a1a;
+      border: 1px solid #333333;
+      color: var(--bone);
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .stepper-btn:hover {
+      background-color: var(--blood-red);
+      border-color: var(--blood-red);
+      color: #000000;
+    }
+
+    .stepper-btn:active {
+      transform: scale(0.92);
+    }
+
+    .stepper-value {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--blood-red);
+      min-width: 28px;
+      text-align: center;
+    }
+
+    /* Botón Masivo Submit */
+    .submit-massive-btn {
+      width: 100%;
+      background-color: var(--blood-red);
+      color: var(--bone);
+      font-family: var(--font-headline);
+      font-size: clamp(17px, 4vw, 22px);
+      font-weight: 900;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 22px 18px;
+      border: 2px solid var(--blood-red);
+      box-shadow: 0 0 35px var(--crimson-glow);
+      cursor: pointer;
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 58px;
+      transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .submit-massive-btn:hover {
+      background-color: #b50322;
+      box-shadow: 0 0 50px rgba(217, 4, 41, 0.6);
+    }
+
+    .submit-massive-btn:active {
+      transform: scale(0.98);
+    }
+
+    .form-disclaimer {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--text-silver);
+      text-transform: uppercase;
+      line-height: 1.6;
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-gray);
+    }
+
+    /* ── 5. SECTION: CONFIRMACIÓN DIGITAL (TICKET EXPEDIENTE & QR PROCEDURAL) ── */
+    .ticket-success {
+      display: none;
+      width: 100%;
+      background-color: #0a0a0a;
+      border: 2px solid var(--blood-red);
+      box-shadow: 0 0 45px var(--crimson-glow);
+      padding: clamp(28px, 6vw, 44px) clamp(16px, 4vw, 28px);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .ticket-success.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .ticket-dossier-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed rgba(217, 4, 41, 0.4);
+    }
+
+    .ticket-dossier-tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.26em;
+      color: var(--blood-red);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .ticket-dossier-title {
+      font-family: var(--font-headline);
+      font-size: clamp(24px, 5.5vw, 36px);
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--bone);
+      line-height: 1.1;
+    }
+
+    .ticket-summary-table {
+      background-color: #050505;
+      border: 1px solid var(--border-gray);
+      padding: 20px 18px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .ticket-summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #161616;
+      padding-bottom: 8px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .ticket-summary-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .ticket-row-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--text-silver);
+      text-transform: uppercase;
+    }
+
+    .ticket-row-value {
+      font-family: var(--font-ui);
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--bone);
+      text-transform: uppercase;
+      text-align: right;
+    }
+
+    .ticket-row-value.accent-code {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--blood-red);
+      letter-spacing: 0.12em;
+    }
+
+    .ticket-row-value.accent-modality {
+      color: var(--blood-red);
+    }
+
+    /* Contenedor QR y Viewfinder Brutalista */
+    .ticket-qr-block {
+      background-color: #000000;
+      border: 1px solid rgba(217, 4, 41, 0.35);
+      padding: 24px 16px;
+      margin-bottom: 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .qr-viewfinder {
+      position: relative;
+      padding: 12px;
+      background-color: #000000;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Esquinas L del visor */
+    .qr-corner {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      pointer-events: none;
+      border-color: var(--blood-red);
+    }
+
+    .qr-corner-tl { top: -2px; left: -2px; border-top: 3px solid; border-left: 3px solid; }
+    .qr-corner-tr { top: -2px; right: -2px; border-top: 3px solid; border-right: 3px solid; }
+    .qr-corner-bl { bottom: -2px; left: -2px; border-bottom: 3px solid; border-left: 3px solid; }
+    .qr-corner-br { bottom: -2px; right: -2px; border-bottom: 3px solid; border-right: 3px solid; }
+
+    /* Marco del código QR */
+    .qr-code-frame {
+      width: 180px;
+      height: 180px;
+      background-color: var(--bone);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.95);
+    }
+
+    .qr-code-frame svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Animación del Láser Escáner Rojo */
+    .qr-laser-scanner {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--blood-red);
+      box-shadow: 0 0 10px var(--blood-red), 0 0 20px rgba(217, 4, 41, 0.9);
+      z-index: 2;
+      pointer-events: none;
+      animation: qrLaserScan 2.4s ease-in-out infinite alternate;
+    }
+
+    @keyframes qrLaserScan {
+      0% { top: 4%; opacity: 0.85; }
+      50% { opacity: 1; }
+      100% { top: 94%; opacity: 0.85; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .qr-laser-scanner {
+        animation: none !important;
+        display: none;
+      }
+    }
+
+    .qr-caption {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--text-silver);
+      text-transform: uppercase;
+      margin-top: 14px;
+    }
+
+    .ticket-instructions {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--bone);
+      opacity: 0.88;
+      text-transform: uppercase;
+      line-height: 1.6;
+      margin-bottom: 22px;
+      padding: 0 10px;
+    }
+
+    .ticket-action-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 480px) {
+      .ticket-action-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .ticket-btn {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 14px 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      transition: all 0.2s ease;
+    }
+
+    .ticket-btn-primary {
+      background-color: var(--bone);
+      color: #000000;
+      border: 1px solid var(--bone);
+    }
+
+    .ticket-btn-primary:hover {
+      background-color: var(--blood-red);
+      color: var(--bone);
+      border-color: var(--blood-red);
+    }
+
+    .ticket-btn-secondary {
+      background-color: transparent;
+      color: var(--text-silver);
+      border: 1px solid #333333;
+    }
+
+    .ticket-btn-secondary:hover {
+      border-color: var(--blood-red);
+      color: var(--bone);
+    }
+
+    /* ── FOOTER BRUTALISTA ── */
+    .after-footer {
+      width: 100%;
+      background-color: var(--bg-void);
+      border-top: 1px solid var(--border-gray);
+      padding: 36px 20px;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--text-silver);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-warning {
+      color: var(--blood-red);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. SECTION: HERO (ATMÓSFERA CINEMATOGRÁFICA & PERSPECTIVA 3D) -->
+  <header class="hero-section" id="hero">
+    
+    <!-- Cabecera Flotante con Logo D-VOID y Tag Oficial -->
+    <div class="hero-top-nav">
+      <a href="/" class="brand-logo-wrap" aria-label="D-VOID Inicio">
+        <!-- Logo Institucional con Fallback Dinámico -->
+        <img 
+          src="../Resources/dvoid/LOGO%20DVOID.png" 
+          srcset="/Resources/dvoid/LOGO%20DVOID.png 1x, ../Resources/dvoid/LOGO%20DVOID.png 1x"
+          onerror="this.onerror=null; this.src='/Resources/dvoid/dvoid-logo.png';" 
+          alt="D-VOID Club" 
+          class="brand-logo-img"
+        >
+      </a>
+      <div class="hero-event-tag">
+        MIÉRCOLES 28 DE OCTUBRE · OPEN DOORS 21H00 · <span class="tag-accent">+21</span>
+      </div>
+    </div>
+
+    <!-- Panel Central con Profundidad 3D y Halo Rojo Volumétrico -->
+    <div class="hero-cinema-panel" id="heroCinemaPanel">
+      <!-- Imagen Oficial Ghostface con Teléfono Rojo -->
+      <img 
+        src="../Resources/events/2026-10-28-after-dark/assets/after-dark-hero.jpg" 
+        srcset="/Resources/events/2026-10-28-after-dark/assets/after-dark-hero.jpg 1x, ../Resources/events/2026-10-28-after-dark/assets/after-dark-hero.jpg 1x"
+        alt="After Dark Ghostface con Teléfono Rojo" 
+        class="hero-poster-img"
+        fetchpriority="high"
+      >
+      <div class="hero-poster-overlay" aria-hidden="true"></div>
+      <div class="hero-scanlines" aria-hidden="true"></div>
+
+      <!-- Titular de Gran Escala "After Dark" en Serif Dramática con Relieve -->
+      <div class="hero-title-container">
+        <span class="hero-kicker-small">INICIO DE LA SEMANA DEL TERROR</span>
+        <h1 class="hero-title-massive">AFTER DARK</h1>
+        <p class="hero-tagline-subtle">"Todo empieza después de oscurecer"</p>
+      </div>
+    </div>
+
+    <!-- Botón CTA Inferior -->
+    <div class="hero-bottom-bar">
+      <a href="#selectorModalidad" class="hero-cta-btn" id="heroCta">
+        [ ENTRAR A LA LISTA / RESERVAR ↓ ]
+      </a>
+    </div>
+
+  </header>
+
+  <!-- 2. SECTION: TYPOGRAPHIC STACKING (PROMOCIONES & CONDICIONES) -->
+  <section class="stacking-section" id="promociones" aria-label="Promociones y Condiciones After Dark">
+    <!-- Fila 1: 2X1 EN BOTELLAS & CÓCTELES DE LA CASA -->
+    <div class="stacking-row">
+      <span class="stacking-kicker">BARRA LIBRE & PROMOCIÓN EXCLUSIVA</span>
+      <h2 class="stacking-title-white">2X1 EN BOTELLAS & CÓCTELES DE LA CASA</h2>
+    </div>
+
+    <!-- Fila 2: MUJERES EN LISTA: NO COVER HASTA LAS 23H00 -->
+    <div class="stacking-row">
+      <span class="stacking-kicker">BENEFICIO FEMENINO EN LISTA</span>
+      <h2 class="stacking-title-red">MUJERES EN LISTA: NO COVER HASTA LAS 23H00</h2>
+    </div>
+
+    <!-- Fila 3: HOMBRES EN LISTA: COVER $10 (TARIFA PREFERENCIAL) -->
+    <div class="stacking-row stacking-row-highlight">
+      <span class="stacking-kicker">INGRESO PREFERENCIAL CABALLEROS</span>
+      <h2 class="stacking-title-black">HOMBRES EN LISTA: COVER $10 (TARIFA PREFERENCIAL)</h2>
+    </div>
+  </section>
+
+  <!-- 3. SECTION: SELECTOR MONOLÍTICO INTERACTIVO -->
+  <section class="selector-section" id="selectorModalidad" aria-label="Selección de Modalidad de Acceso">
+    <div class="section-container">
+      
+      <div class="section-header">
+        <span class="section-kicker">// PASO 01 · SELECCIONA TU ACCESO</span>
+        <h2 class="section-title">MODALIDAD DE INGRESO</h2>
+        <p class="section-desc">
+          Elige entre registro general en lista VIP o reserva una mesa exclusiva con tu grupo para la primera noche del terror.
+        </p>
+      </div>
+
+      <div class="cards-grid">
+        
+        <!-- Tarjeta 1: LISTA GENERAL VIP (Default) -->
+        <div 
+          class="monolith-card is-selected" 
+          id="cardLista" 
+          role="button" 
+          tabindex="0" 
+          aria-pressed="true" 
+          aria-label="Seleccionar Lista General VIP"
+        >
+          <div class="card-top-row">
+            <div class="radar-beacon">
+              <span class="radar-dot"></span>
+              <span class="radar-ring"></span>
+            </div>
+            <span class="card-badge-status" id="badgeLista">[ ✓ SELECCIONADO ]</span>
+          </div>
+          <div>
+            <h3 class="card-title">LISTA GENERAL VIP</h3>
+            <p class="card-specs">Acceso individual o grupo · Free ellas hasta 23h00 · Hombres $10</p>
+            <p class="card-desc">
+              Ingreso preferencial en lista digital. Acceso directo a pista, barras principales y aplicación de promociones 2x1 en cócteles.
+            </p>
+          </div>
+          <div class="card-footer-pill">
+            <span>MODO: PISTA & BARRAS</span>
+            <span>DISPONIBLE</span>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2: RESERVA DE MESA -->
+        <div 
+          class="monolith-card" 
+          id="cardMesa" 
+          role="button" 
+          tabindex="0" 
+          aria-pressed="false" 
+          aria-label="Seleccionar Reserva de Mesa"
+        >
+          <div class="card-top-row">
+            <div class="radar-beacon">
+              <span class="radar-dot"></span>
+              <span class="radar-ring"></span>
+            </div>
+            <span class="card-badge-status" id="badgeMesa">[ SELECCIONAR ]</span>
+          </div>
+          <div>
+            <h3 class="card-title">RESERVA DE MESA</h3>
+            <p class="card-specs">Espacio reservado · Paquete de botellas · Atención personalizada</p>
+            <p class="card-desc">
+              Mesa asignada para tu grupo con atención dedicada, cristalería oficial, ubicación preferencial y paquete de bienvenida.
+            </p>
+          </div>
+          <div class="card-footer-pill">
+            <span>MODO: ZONA VIP EXCLUSIVA</span>
+            <span>CUPOS LIMITADOS</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. SECTION: MONOLITO DE REGISTRO & CHECK-IN -->
+  <section class="registro-section" id="registro" aria-label="Monolito de Registro">
+    <div class="section-container">
+      
+      <div class="registro-box">
+        
+        <!-- Barra de Sincronización de Modalidad -->
+        <div class="registro-modality-bar">
+          <span class="modality-label">MODALIDAD SELECCIONADA:</span>
+          <span class="modality-value" id="currentModalityText">✦ LISTA GENERAL VIP</span>
+        </div>
+
+        <!-- Formulario Industrial -->
+        <form id="registroForm" class="form-grid" novalidate>
+          <input type="hidden" name="modalidad" id="modalidadHiddenInput" value="LISTA GENERAL VIP">
+
+          <!-- Nombre y Apellido -->
+          <div class="field-row-2">
+            <div class="field-group">
+              <label for="nombre" class="field-label">NOMBRE</label>
+              <input 
+                type="text" 
+                id="nombre" 
+                name="nombre" 
+                class="industrial-input" 
+                placeholder="TU NOMBRE" 
+                autocomplete="given-name" 
+                required
+              >
+              <span class="field-error" id="err-nombre">INGRESA TU NOMBRE</span>
+            </div>
+
+            <div class="field-group">
+              <label for="apellido" class="field-label">APELLIDO</label>
+              <input 
+                type="text" 
+                id="apellido" 
+                name="apellido" 
+                class="industrial-input" 
+                placeholder="TU APELLIDO" 
+                autocomplete="family-name" 
+                required
+              >
+              <span class="field-error" id="err-apellido">INGRESA TU APELLIDO</span>
+            </div>
+          </div>
+
+          <!-- WhatsApp / Celular -->
+          <div class="field-group">
+            <label for="whatsapp" class="field-label">WHATSAPP / CELULAR</label>
+            <input 
+              type="tel" 
+              id="whatsapp" 
+              name="whatsapp" 
+              class="industrial-input" 
+              placeholder="099 123 4567" 
+              autocomplete="tel" 
+              inputmode="tel" 
+              required
+            >
+            <span class="field-error" id="err-whatsapp">INGRESA TU NÚMERO DE CONTACTO</span>
+          </div>
+
+          <!-- Correo Electrónico -->
+          <div class="field-group">
+            <label for="email" class="field-label">CORREO ELECTRÓNICO</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              class="industrial-input" 
+              placeholder="TU@CORREO.COM" 
+              autocomplete="email" 
+              inputmode="email" 
+              required
+            >
+            <span class="field-error" id="err-email">INGRESA UN CORREO VÁLIDO</span>
+          </div>
+
+          <!-- Selector "¿Vienes acompañado?" -->
+          <div class="companion-section">
+            <span class="companion-label">¿VIENES ACOMPAÑADO?</span>
+            <div class="companion-toggle-group">
+              <button 
+                type="button" 
+                class="companion-btn is-active" 
+                id="btnIndividual" 
+                aria-pressed="true"
+              >
+                SOLO YO (1 PASE)
+              </button>
+              <button 
+                type="button" 
+                class="companion-btn" 
+                id="btnGrupal" 
+                aria-pressed="false"
+              >
+                CON ACOMPAÑANTES
+              </button>
+            </div>
+
+            <!-- Stepper numérico desplegable al seleccionar grupal -->
+            <div class="stepper-container" id="stepperContainer">
+              <span class="stepper-label">NÚMERO DE ACOMPAÑANTES:</span>
+              <div class="stepper-controls">
+                <button type="button" class="stepper-btn" id="stepMinus" aria-label="Restar acompañante">−</button>
+                <span class="stepper-value" id="stepValueDisplay">1</span>
+                <button type="button" class="stepper-btn" id="stepPlus" aria-label="Sumar acompañante">+</button>
+              </div>
+            </div>
+            <input type="hidden" name="num_acompanantes" id="numAcompanantesInput" value="0">
+          </div>
+
+          <!-- Botón Masivo Submit -->
+          <button type="submit" id="submitBtn" class="submit-massive-btn">
+            [ CONFIRMAR REGISTRO EN LISTA ]
+          </button>
+
+          <!-- Disclaimer Legal -->
+          <p class="form-disclaimer">
+            Ingreso exclusivo +21 con cédula física original. Nos reservamos el derecho de admisión.
+          </p>
+        </form>
+
+        <!-- 5. SECTION: CONFIRMACIÓN DIGITAL (TICKET EXPEDIENTE & QR PROCEDURAL) -->
+        <article id="ticketSuccess" class="ticket-success" role="status" aria-live="polite">
+          
+          <div class="ticket-dossier-header">
+            <span class="ticket-dossier-tag">// ARCHIVO CLASIFICADO · D-VOID SECRET SOCIETY</span>
+            <h3 class="ticket-dossier-title">PASE DE ACCESO OFICIAL</h3>
+          </div>
+
+          <div class="ticket-summary-table">
+            <div class="ticket-summary-row">
+              <span class="ticket-row-label">TITULAR REGISTRADO:</span>
+              <span class="ticket-row-value" id="ticketAttendee">INVITADO VIP</span>
+            </div>
+            <div class="ticket-summary-row">
+              <span class="ticket-row-label">EVENTO:</span>
+              <span class="ticket-row-value">AFTER DARK · D-VOID</span>
+            </div>
+            <div class="ticket-summary-row">
+              <span class="ticket-row-label">FECHA:</span>
+              <span class="ticket-row-value">MIÉRCOLES 28 DE OCTUBRE · 21H00</span>
+            </div>
+            <div class="ticket-summary-row">
+              <span class="ticket-row-label">MODALIDAD:</span>
+              <span class="ticket-row-value accent-modality" id="ticketModality">LISTA GENERAL VIP</span>
+            </div>
+            <div class="ticket-summary-row">
+              <span class="ticket-row-label">TOTAL PASES:</span>
+              <span class="ticket-row-value" id="ticketTotalPasses">1 PASE (TITULAR)</span>
+            </div>
+            <div class="ticket-summary-row">
+              <span class="ticket-row-label">CÓDIGO DE EXPEDIENTE:</span>
+              <span class="ticket-row-value accent-code" id="ticketCode">#DARK-928</span>
+            </div>
+          </div>
+
+          <!-- Bloque de QR Vectorial Procedimental SVG Offline -->
+          <div class="ticket-qr-block">
+            <div class="qr-viewfinder">
+              <span class="qr-corner qr-corner-tl"></span>
+              <span class="qr-corner qr-corner-tr"></span>
+              <span class="qr-corner qr-corner-bl"></span>
+              <span class="qr-corner qr-corner-br"></span>
+
+              <div class="qr-code-frame" id="ticketQrFrame" data-qr-code="#DARK-928">
+                <div class="qr-laser-scanner" aria-hidden="true"></div>
+                <!-- SVG inyectado por Vanilla JS -->
+              </div>
+            </div>
+            <span class="qr-caption">ESCANEAR EN EL ACCESO PRINCIPAL D-VOID</span>
+          </div>
+
+          <p class="ticket-instructions">
+            Presenta este teléfono con la pantalla iluminada en puerta antes de las 23h00 junto a tu cédula física original (+21).
+          </p>
+
+          <div class="ticket-action-row">
+            <button type="button" class="ticket-btn ticket-btn-primary" id="btnSaveTicket">
+              [ GUARDAR COMPROBANTE ]
+            </button>
+            <button type="button" class="ticket-btn ticket-btn-secondary" id="btnNewReg">
+              [ NUEVO REGISTRO ]
+            </button>
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER BRUTALISTA -->
+  <footer class="after-footer">
+    <p>D-VOID NIGHTCLUB · QUITO, ECUADOR · HALLOWEEN 2026</p>
+    <p class="footer-warning">TODO EMPIEZA DESPUÉS DE OSCURECER · +21</p>
+  </footer>
+
+  <!-- ── JAVASCRIPT VANILLA: LÓGICA, INTERACTIVIDAD Y QR PROCEDURAL SVG OFFLINE ── -->
+  <script>
+    (function() {
+      'use strict';
+
+      // Estado de la aplicación
+      var state = {
+        modalidad: 'LISTA GENERAL VIP',
+        isGrupal: false,
+        acompanantes: 1
+      };
+
+      // Elementos DOM
+      var cardLista = document.getElementById('cardLista');
+      var cardMesa = document.getElementById('cardMesa');
+      var badgeLista = document.getElementById('badgeLista');
+      var badgeMesa = document.getElementById('badgeMesa');
+      var currentModalityText = document.getElementById('currentModalityText');
+      var modalidadHiddenInput = document.getElementById('modalidadHiddenInput');
+      var submitBtn = document.getElementById('submitBtn');
+
+      var btnIndividual = document.getElementById('btnIndividual');
+      var btnGrupal = document.getElementById('btnGrupal');
+      var stepperContainer = document.getElementById('stepperContainer');
+      var stepMinus = document.getElementById('stepMinus');
+      var stepPlus = document.getElementById('stepPlus');
+      var stepValueDisplay = document.getElementById('stepValueDisplay');
+      var numAcompanantesInput = document.getElementById('numAcompanantesInput');
+
+      var form = document.getElementById('registroForm');
+      var ticketSuccess = document.getElementById('ticketSuccess');
+      var ticketAttendee = document.getElementById('ticketAttendee');
+      var ticketModality = document.getElementById('ticketModality');
+      var ticketTotalPasses = document.getElementById('ticketTotalPasses');
+      var ticketCode = document.getElementById('ticketCode');
+      var ticketQrFrame = document.getElementById('ticketQrFrame');
+      var btnSaveTicket = document.getElementById('btnSaveTicket');
+      var btnNewReg = document.getElementById('btnNewReg');
+
+      // Campos a validar
+      var formFields = [
+        { id: 'nombre', errId: 'err-nombre', validate: function(val) { return val.trim().length >= 2; } },
+        { id: 'apellido', errId: 'err-apellido', validate: function(val) { return val.trim().length >= 2; } },
+        { id: 'whatsapp', errId: 'err-whatsapp', validate: function(val) { return val.trim().replace(/\D/g, '').length >= 7; } },
+        { id: 'email', errId: 'err-email', validate: function(val) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim()); } }
+      ];
+
+      // Sincronizar Modalidad (Lista vs Mesa)
+      function setModality(modalityName, shouldScroll) {
+        state.modalidad = modalityName;
+        modalidadHiddenInput.value = modalityName;
+
+        if (modalityName === 'LISTA GENERAL VIP') {
+          cardLista.classList.add('is-selected');
+          cardLista.setAttribute('aria-pressed', 'true');
+          cardMesa.classList.remove('is-selected');
+          cardMesa.setAttribute('aria-pressed', 'false');
+
+          badgeLista.textContent = '[ ✓ SELECCIONADO ]';
+          badgeMesa.textContent = '[ SELECCIONAR ]';
+          currentModalityText.innerHTML = '✦ LISTA GENERAL VIP';
+          submitBtn.textContent = '[ CONFIRMAR REGISTRO EN LISTA ]';
+        } else {
+          cardMesa.classList.add('is-selected');
+          cardMesa.setAttribute('aria-pressed', 'true');
+          cardLista.classList.remove('is-selected');
+          cardLista.setAttribute('aria-pressed', 'false');
+
+          badgeMesa.textContent = '[ ✓ SELECCIONADO ]';
+          badgeLista.textContent = '[ SELECCIONAR ]';
+          currentModalityText.innerHTML = '✦ RESERVA DE MESA';
+          submitBtn.textContent = '[ CONFIRMAR RESERVA DE MESA ]';
+        }
+
+        if (shouldScroll) {
+          form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+
+      // Listeners de Tarjetas de Modalidad
+      if (cardLista) {
+        cardLista.addEventListener('click', function() { setModality('LISTA GENERAL VIP', false); });
+        cardLista.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setModality('LISTA GENERAL VIP', false);
+          }
+        });
+      }
+
+      if (cardMesa) {
+        cardMesa.addEventListener('click', function() { setModality('RESERVA DE MESA', false); });
+        cardMesa.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setModality('RESERVA DE MESA', false);
+          }
+        });
+      }
+
+      // Toggle Acompañantes
+      function updateCompanionState(isGrupal) {
+        state.isGrupal = isGrupal;
+        if (isGrupal) {
+          btnGrupal.classList.add('is-active');
+          btnGrupal.setAttribute('aria-pressed', 'true');
+          btnIndividual.classList.remove('is-active');
+          btnIndividual.setAttribute('aria-pressed', 'false');
+          stepperContainer.classList.add('is-visible');
+          numAcompanantesInput.value = state.acompanantes;
+        } else {
+          btnIndividual.classList.add('is-active');
+          btnIndividual.setAttribute('aria-pressed', 'true');
+          btnGrupal.classList.remove('is-active');
+          btnGrupal.setAttribute('aria-pressed', 'false');
+          stepperContainer.classList.remove('is-visible');
+          numAcompanantesInput.value = '0';
+        }
+      }
+
+      if (btnIndividual && btnGrupal) {
+        btnIndividual.addEventListener('click', function() { updateCompanionState(false); });
+        btnGrupal.addEventListener('click', function() { updateCompanionState(true); });
+      }
+
+      // Stepper numérico
+      if (stepMinus && stepPlus) {
+        stepMinus.addEventListener('click', function() {
+          if (state.acompanantes > 1) {
+            state.acompanantes--;
+            stepValueDisplay.textContent = state.acompanantes;
+            numAcompanantesInput.value = state.acompanantes;
+          }
+        });
+
+        stepPlus.addEventListener('click', function() {
+          if (state.acompanantes < 10) {
+            state.acompanantes++;
+            stepValueDisplay.textContent = state.acompanantes;
+            numAcompanantesInput.value = state.acompanantes;
+          }
+        });
+      }
+
+      // Limpieza de errores en tiempo real
+      formFields.forEach(function(item) {
+        var input = document.getElementById(item.id);
+        var err = document.getElementById(item.errId);
+        if (!input) return;
+
+        input.addEventListener('input', function() {
+          if (item.validate(input.value)) {
+            if (err) err.style.display = 'none';
+            input.style.borderBottomColor = 'var(--bone)';
+          }
+        });
+      });
+
+      // Validación del formulario
+      function validateForm() {
+        var isValid = true;
+        formFields.forEach(function(item) {
+          var input = document.getElementById(item.id);
+          var err = document.getElementById(item.errId);
+          if (!input || !err) return;
+
+          if (!item.validate(input.value)) {
+            err.style.display = 'block';
+            input.style.borderBottomColor = 'var(--blood-red)';
+            isValid = false;
+          } else {
+            err.style.display = 'none';
+            input.style.borderBottomColor = 'var(--bone)';
+          }
+        });
+        return isValid;
+      }
+
+      // ── GENERADOR PROCEDIMENTAL DE CÓDIGO QR VECTORIAL SVG (OFFLINE, ZERO-DEPS) ──
+      function generateQrSvg(dataStr, N) {
+        N = N || 25;
+        var grid = [];
+        for (var r = 0; r < N; r++) {
+          grid[r] = [];
+          for (var c = 0; c < N; c++) grid[r][c] = false;
+        }
+
+        function setFinder(r0, c0) {
+          for (var r = 0; r < 7; r++) {
+            for (var c = 0; c < 7; c++) {
+              if (r === 0 || r === 6 || c === 0 || c === 6 || (r >= 2 && r <= 4 && c >= 2 && c <= 4)) {
+                grid[r0 + r][c0 + c] = true;
+              }
+            }
+          }
+        }
+
+        // 3 Patrones de búsqueda en esquinas
+        setFinder(0, 0);
+        setFinder(0, N - 7);
+        setFinder(N - 7, 0);
+
+        // Patrón de alineación en (18, 18)
+        for (var ar = 16; ar <= 20; ar++) {
+          for (var ac = 16; ac <= 20; ac++) {
+            if (ar === 16 || ar === 20 || ac === 16 || ac === 20 || (ar === 18 && ac === 18)) {
+              grid[ar][ac] = true;
+            }
+          }
+        }
+
+        // Pistas de sincronización
+        for (var i = 8; i < N - 8; i++) {
+          grid[6][i] = (i % 2 === 0);
+          grid[i][6] = (i % 2 === 0);
+        }
+
+        // Módulo oscuro estándar
+        grid[N - 8][8] = true;
+
+        function isProtected(r, c) {
+          if (r <= 7 && c <= 7) return true;
+          if (r <= 7 && c >= N - 8) return true;
+          if (r >= N - 8 && c <= 7) return true;
+          if (r === 6 || c === 6) return true;
+          if (r >= 16 && r <= 20 && c >= 16 && c <= 20) return true;
+          if (r === N - 8 && c === 8) return true;
+          return false;
+        }
+
+        // Hash determinista del código y nombre del invitado
+        var h = 0;
+        for (var k = 0; k < dataStr.length; k++) {
+          h = ((h << 5) - h + dataStr.charCodeAt(k)) | 0;
+        }
+        var seed = Math.abs(h) || 77766;
+        function rnd() {
+          seed = (seed * 1664525 + 1013904223) | 0;
+          return (seed >>> 0) / 4294967296;
+        }
+
+        // Zona de silencio de 2 módulos
+        var Q = 2;
+        var totalSize = N + (Q * 2);
+        var pathD = '';
+
+        for (var r = 0; r < N; r++) {
+          for (var c = 0; c < N; c++) {
+            var dark = grid[r][c];
+            if (!isProtected(r, c)) {
+              dark = rnd() > 0.51;
+            }
+            if (dark) {
+              pathD += 'M' + (c + Q) + ',' + (r + Q) + 'h1v1h-1z ';
+            }
+          }
+        }
+
+        return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + totalSize + ' ' + totalSize + '" shape-rendering="crispEdges" width="100%" height="100%" aria-label="Código QR de Acceso After Dark D-Void"><rect width="' + totalSize + '" height="' + totalSize + '" fill="#F4F4F0"/><path d="' + pathD + '" fill="#000000"/></svg>';
+      }
+
+      // Envío del Formulario
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+
+          if (!validateForm()) {
+            return;
+          }
+
+          var nombre = document.getElementById('nombre').value.trim();
+          var apellido = document.getElementById('apellido').value.trim();
+          var email = document.getElementById('email').value.trim();
+          var fullName = (nombre + ' ' + apellido).toUpperCase();
+          var randomNum = Math.floor(100 + Math.random() * 900);
+          var accessCode = '#DARK-' + randomNum;
+
+          // Datos del ticket
+          if (ticketAttendee) ticketAttendee.textContent = fullName;
+          if (ticketModality) ticketModality.textContent = state.modalidad;
+          if (ticketCode) ticketCode.textContent = accessCode;
+
+          var totalPassesText = '1 PASE (TITULAR)';
+          if (state.isGrupal && state.acompanantes > 0) {
+            var total = 1 + state.acompanantes;
+            totalPassesText = total + ' PASES (TITULAR + ' + state.acompanantes + ' ACOMPAÑANTES)';
+          }
+          if (ticketTotalPasses) ticketTotalPasses.textContent = totalPassesText;
+
+          // Renderizar QR
+          if (ticketQrFrame) {
+            ticketQrFrame.setAttribute('data-qr-code', accessCode);
+            var qrPayload = accessCode + '::' + fullName + '::' + email + '::' + state.modalidad + '::' + (state.isGrupal ? state.acompanantes : 0);
+            ticketQrFrame.innerHTML = '<div class="qr-laser-scanner" aria-hidden="true"></div>' + generateQrSvg(qrPayload, 25);
+          }
+
+          // Transición suave: Ocultar form y revelar ticket
+          form.style.display = 'none';
+          if (ticketSuccess) {
+            ticketSuccess.style.display = 'block';
+            void ticketSuccess.offsetWidth; // Forzar reflow
+            ticketSuccess.classList.add('visible');
+            ticketSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        });
+      }
+
+      // Botón Guardar Comprobante (Imprimir o Descargar Pantalla)
+      if (btnSaveTicket) {
+        btnSaveTicket.addEventListener('click', function() {
+          window.print();
+        });
+      }
+
+      // Botón Nuevo Registro
+      if (btnNewReg) {
+        btnNewReg.addEventListener('click', function() {
+          form.reset();
+          updateCompanionState(false);
+          setModality('LISTA GENERAL VIP', false);
+          ticketSuccess.classList.remove('visible');
+          ticketSuccess.style.display = 'none';
+          form.style.display = 'flex';
+          form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+
+    })();
+  </script>
+</body>
+</html>
