@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090707">
+  <meta name="description" content="La Última Noche · La Tentación Chapter II. Halloween en D-VOID, sábado 31 de octubre de 2026 desde las 21h30.">
+  <title>La Última Noche · D-VOID</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --black: #090707;
+      --panel: #161010;
+      --red: #ed2028;
+      --red-dark: #9d101b;
+      --bone: #f2eee7;
+      --muted: #b8aaa7;
+      --line: #553333;
+      --display: Impact, "Arial Narrow", "Arial Black", sans-serif;
+      --body: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--black); color: var(--bone); font-family: var(--body); line-height: 1.45; }
+    button, input { font: inherit; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--bone); outline-offset: 4px; }
+    .skip { position: absolute; left: 12px; top: -60px; z-index: 100; padding: 12px; background: var(--bone); color: var(--black); }
+    .skip:focus { top: 12px; }
+    .wrap { width: min(100% - 40px, 1160px); margin-inline: auto; }
+    .eyebrow { margin: 0; color: var(--red); font-size: .75rem; font-weight: 900; letter-spacing: .19em; text-transform: uppercase; }
+    .display { font-family: var(--display); font-stretch: condensed; font-weight: 900; letter-spacing: -.025em; line-height: .88; text-transform: uppercase; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 12px 24px; border: 2px solid var(--red); background: var(--red); color: var(--black); font-family: var(--display); font-size: 1.12rem; letter-spacing: .08em; text-align: center; text-decoration: none; text-transform: uppercase; cursor: pointer; transition: transform .15s ease, background .15s ease, color .15s ease; }
+    .button:hover { background: var(--bone); border-color: var(--bone); }
+    .button:active { transform: scale(.97); }
+    .button-outline { background: transparent; color: var(--bone); }
+    .button-outline:hover { color: var(--black); }
+
+    .hero { position: relative; min-height: max(740px, 100svh); isolation: isolate; overflow: hidden; background: radial-gradient(ellipse at 58% 39%, #551018 0, #1a090c 40%, var(--black) 75%); }
+    .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .33; background: repeating-linear-gradient(108deg, transparent 0 100px, rgba(237,32,40,.2) 101px, transparent 103px), repeating-linear-gradient(0deg, transparent 0 4px, #000 5px 6px); pointer-events: none; }
+    .hero::after { content: ""; position: absolute; inset: auto -10% -110px; height: 240px; transform: rotate(-5deg); background: var(--black); border-top: 5px solid var(--red); pointer-events: none; }
+    .nav { position: relative; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: max(20px, env(safe-area-inset-top)); }
+    .logo { display: block; width: 112px; height: auto; }
+    .nav-link { display: inline-flex; align-items: center; min-height: 44px; font-family: var(--display); font-size: .95rem; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
+    .nav-link:hover { color: var(--red); }
+    .hero-inner { position: relative; display: grid; align-items: center; min-height: 640px; padding: 56px 0 135px; }
+    .hero-art { position: absolute; width: min(70vw, 610px); right: -6%; top: 8%; height: 74%; opacity: .86; pointer-events: none; filter: drop-shadow(0 20px 36px #000); }
+    .hero-art svg { width: 100%; height: 100%; }
+    .hero-copy { position: relative; z-index: 2; max-width: 790px; text-shadow: 0 3px 20px #000; }
+    .hero-edition { display: inline-block; margin: 0 0 22px; padding: 6px 9px; border: 1px solid var(--red); color: var(--bone); font-family: var(--display); font-size: .9rem; letter-spacing: .17em; text-transform: uppercase; }
+    h1 { margin: 0; font-size: clamp(4.8rem, 13.2vw, 11rem); }
+    h1 span { display: block; }
+    h1 span:first-child { color: var(--red); }
+    .chapter { margin: 23px 0 0; font-family: var(--display); font-size: clamp(1.2rem, 3vw, 2.1rem); letter-spacing: .12em; text-transform: uppercase; }
+    .hero-date { margin: 15px 0 0; font-weight: 900; font-size: clamp(1rem, 2.8vw, 1.4rem); letter-spacing: .08em; text-transform: uppercase; }
+    .hero-date b { color: var(--red); }
+    .hero-cta { margin-top: 24px; min-width: 230px; }
+    .hero-note { margin: 14px 0 0; color: var(--bone); font-size: .82rem; font-weight: 700; }
+
+    section { position: relative; }
+    .section-pad { padding: 92px 0; }
+    .section-title { margin: 14px 0 0; font-size: clamp(3.2rem, 8vw, 6.5rem); }
+    .intro { background: var(--black); }
+    .intro-grid { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: clamp(32px, 8vw, 110px); }
+    .intro-copy { max-width: 660px; }
+    .intro-copy > p:last-child { max-width: 500px; color: var(--muted); font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.65; }
+    .mask-card { position: relative; display: grid; place-items: center; min-height: 370px; border: 1px solid var(--line); background: radial-gradient(circle at 50% 40%, #821922, #190a0d 51%, #090707 80%); overflow: hidden; }
+    .mask-card::before, .mask-card::after { content: ""; position: absolute; width: 170%; height: 2px; background: var(--red); opacity: .65; transform: rotate(-24deg); }
+    .mask-card::after { transform: rotate(24deg); }
+    .mask-card svg { position: relative; z-index: 1; width: min(74%, 280px); filter: drop-shadow(0 18px 20px #000); }
+    .mask-card small { position: absolute; z-index: 2; bottom: 16px; left: 16px; font-family: var(--display); font-size: 1rem; letter-spacing: .15em; text-transform: uppercase; }
+    .slash { height: 5px; background: var(--red); transform: skewY(-2deg); transform-origin: left; box-shadow: 0 0 22px rgba(237,32,40,.55); }
+    .facts { background: #110b0c; }
+    .facts-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 34px; }
+    .facts-head p:last-child { max-width: 320px; margin: 0; color: var(--muted); }
+    .fact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .fact { padding: 30px 24px; border: 1px solid var(--line); background: #1b1112; }
+    .fact b { display: block; margin-top: 9px; color: var(--bone); font-family: var(--display); font-size: clamp(2.5rem, 5vw, 4.4rem); line-height: .95; text-transform: uppercase; }
+    .fact .price { color: var(--red); }
+    .fact span { color: var(--muted); font-size: .82rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .promos { padding-top: 40px; }
+    .promos h3 { margin: 0 0 15px; font-family: var(--display); font-size: clamp(2rem, 5vw, 3rem); letter-spacing: .02em; text-transform: uppercase; }
+    .promo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .promo { padding: 26px 24px; border-left: 5px solid var(--red); background: #290f13; }
+    .promo strong { display: block; color: var(--red); font-family: var(--display); font-size: clamp(2rem, 4vw, 3rem); line-height: 1; text-transform: uppercase; }
+    .promo p { margin: 10px 0 0; font-size: 1.05rem; }
+    .terms { margin: 14px 0 0; color: var(--muted); font-size: .8rem; }
+    .prize { padding: 55px 0; background: var(--red); color: var(--black); }
+    .prize .wrap { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+    .prize .eyebrow { color: var(--black); }
+    .prize h2 { margin: 10px 0 0; font-size: clamp(2.8rem, 7vw, 6rem); }
+    .prize p:last-child { max-width: 280px; margin: 0; font-size: 1rem; font-weight: 700; }
+
+    .booking { background: var(--black); }
+    .booking-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(32px, 7vw, 100px); align-items: start; }
+    .booking-intro { position: sticky; top: 35px; }
+    .booking-intro p:not(.eyebrow) { color: var(--muted); line-height: 1.65; }
+    .preview-tag { display: inline-block; margin-top: 16px; padding: 9px 12px; border: 1px solid var(--red); color: var(--bone); font-size: .78rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .form-card { padding: clamp(22px, 4vw, 42px); border: 1px solid var(--line); background: var(--panel); }
+    .form-card h3 { margin: 0 0 8px; font-family: var(--display); font-size: 2rem; line-height: 1; text-transform: uppercase; }
+    .form-help { margin: 0 0 26px; color: var(--muted); font-size: .92rem; }
+    .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 14px; }
+    .field-full { grid-column: 1 / -1; }
+    .field label, .choice legend { display: block; margin-bottom: 8px; color: var(--bone); font-size: .82rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .field input { display: block; width: 100%; min-height: 50px; padding: 12px 14px; border: 1px solid #775657; border-radius: 0; background: #0b0808; color: var(--bone); }
+    .field input::placeholder { color: #bca9a9; }
+    .field input[aria-invalid="true"] { border-color: var(--red); }
+    .field input:focus { border-color: var(--bone); }
+    .error { min-height: 0; margin: 5px 0 0; color: #ff777d; font-size: .8rem; font-weight: 700; }
+    .error:empty { display: none; }
+    .choice { min-width: 0; margin: 0; padding: 0; border: 0; }
+    .choice-items { display: flex; flex-wrap: wrap; gap: 8px; }
+    .choice-items label { display: inline-flex; align-items: center; gap: 9px; min-height: 48px; padding: 8px 13px; border: 1px solid #775657; background: #0b0808; cursor: pointer; }
+    .choice-items label:has(input:checked) { border-color: var(--red); background: #381218; }
+    .choice input { width: 18px; height: 18px; margin: 0; accent-color: var(--red); }
+    .form-submit { width: 100%; margin-top: 27px; }
+    .form-submit:disabled { cursor: not-allowed; opacity: .45; }
+    .form-note { margin: 12px 0 0; color: var(--muted); font-size: .82rem; }
+    .result { margin-top: 22px; padding: 20px; border: 1px solid var(--red); background: #290f13; }
+    .result[hidden] { display: none; }
+    .result h4 { margin: 0 0 8px; font-family: var(--display); font-size: 1.5rem; text-transform: uppercase; }
+    .result p { margin: 0; }
+    footer { padding: 34px 0 calc(34px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
+    footer .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    footer a { min-height: 44px; display: inline-flex; align-items: center; }
+    @media (max-width: 760px) {
+      .hero { min-height: 760px; }
+      .hero-inner { min-height: 690px; padding-top: 40px; align-items: end; }
+      .hero-art { width: min(95vw, 520px); height: 65%; right: -18%; top: 5%; opacity: .72; }
+      .hero-copy { padding-bottom: 58px; }
+      h1 { font-size: clamp(4.45rem, 15vw, 7rem); }
+      .intro-grid, .booking-grid { grid-template-columns: 1fr; }
+      .intro-grid { gap: 30px; }
+      .booking-intro { position: static; }
+      .fact-grid { grid-template-columns: 1fr 1fr; }
+      .fact:last-child { grid-column: 1 / -1; }
+      .prize .wrap { display: block; }
+      .prize p:last-child { margin-top: 16px; }
+    }
+    @media (max-width: 520px) {
+      .wrap { width: min(100% - 32px, 1160px); }
+      .nav { padding-top: max(16px, env(safe-area-inset-top)); }
+      .logo { width: 95px; }
+      .nav-link { font-size: .82rem; }
+      .hero { min-height: 700px; }
+      .hero-inner { min-height: 630px; }
+      .hero-art { top: 7%; right: -24%; width: 110vw; height: 56%; }
+      h1 { font-size: clamp(3.9rem, 17vw, 5.6rem); }
+      .chapter { font-size: 1.08rem; }
+      .hero-date { font-size: .95rem; }
+      .section-pad { padding: 72px 0; }
+      .facts-head { display: block; }
+      .facts-head p:last-child { margin-top: 18px; }
+      .fact-grid, .promo-grid, .fields { grid-template-columns: 1fr; }
+      .fact:last-child, .field-full { grid-column: auto; }
+      .fact { padding: 22px; }
+      .mask-card { min-height: 310px; }
+      footer .wrap { display: block; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <header class="hero" id="inicio">
+    <nav class="nav wrap" aria-label="Navegación principal">
+      <a href="/" aria-label="D-VOID, inicio"><img class="logo" src="../Resources/dvoid/dvoid-logo.png" alt="D-VOID" width="700" height="262"></a>
+      <a class="nav-link" href="#reserva">Vista previa de reserva ↓</a>
+    </nav>
+    <div class="hero-inner wrap">
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg" focusable="false">
+          <defs>
+            <linearGradient id="hood" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#050405"/><stop offset=".55" stop-color="#2b0b10"/><stop offset="1" stop-color="#050405"/></linearGradient>
+            <linearGradient id="face" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f4f0e8"/><stop offset="1" stop-color="#b8afa9"/></linearGradient>
+          </defs>
+          <path d="M65 650C69 525 94 450 156 402 115 324 127 172 196 91 233 47 291 47 329 91c73 85 79 238 29 313 62 46 80 124 84 246Z" fill="url(#hood)" stroke="#8d1520" stroke-width="4"/>
+          <path d="M251 113c-56 0-99 65-99 151 0 71 45 125 99 172 55-47 99-101 99-172 0-86-43-151-99-151Z" fill="url(#face)"/>
+          <path d="M170 250c31-30 61-23 83 12-37 11-63 9-83-12Zm163 0c-31-30-61-23-83 12 37 11 63 9 83-12Z" fill="#190b0d"/>
+          <path d="M251 274c-21 30-28 44-28 60 17 12 39 12 56 0 0-16-7-30-28-60Z" fill="#b51a25"/>
+          <path d="M186 350c46 24 84 25 130 0" fill="none" stroke="#3c1015" stroke-width="8" stroke-linecap="round"/>
+          <path d="M128 264c7-106 42-172 111-193M372 264C365 158 330 92 261 71" fill="none" stroke="#ed2028" stroke-width="5" opacity=".55"/>
+        </svg>
+      </div>
+      <div class="hero-copy">
+        <p class="hero-edition">Halloween Edition · 31.10.26</p>
+        <h1 class="display"><span>La última</span><span>noche</span></h1>
+        <p class="chapter">La Tentación · Chapter II</p>
+        <p class="hero-date"><b>Sábado 31 de octubre</b> · Desde las 21h30</p>
+        <a class="button hero-cta" href="#reserva">Reserva tu lugar ↓</a>
+        <p class="hero-note">Vista previa de reserva. Aún no recibe solicitudes.</p>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="intro section-pad" aria-labelledby="concepto-title">
+      <div class="wrap intro-grid">
+        <div class="intro-copy">
+          <p class="eyebrow">La Tentación continúa</p>
+          <h2 class="display section-title" id="concepto-title">¿Quién se esconde detrás de la máscara?</h2>
+          <p>Una noche de Halloween para descubrir otra identidad. Elige tu disfraz y entra al misterio: <strong>disfraz y antifaz obligatorios.</strong></p>
+        </div>
+        <div class="mask-card" aria-hidden="true">
+          <svg viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <path d="M19 68c37-26 77-34 131-17 54-17 94-9 131 17l-25 109c-38 26-70 30-106 7-36 23-68 19-106-7Z" fill="#e8e1d8" stroke="#17090b" stroke-width="10"/>
+            <path d="M40 91c39-23 72-13 95 22-13 22-34 35-62 28-19-5-29-22-33-50Zm220 0c-39-23-72-13-95 22 13 22 34 35 62 28 19-5 29-22 33-50Z" fill="#13090a"/>
+            <path d="M150 56v130" stroke="#a11922" stroke-width="5" opacity=".7"/>
+          </svg>
+          <small>Elige quién serás</small>
+        </div>
+      </div>
+    </section>
+
+    <div class="slash" aria-hidden="true"></div>
+    <section class="facts section-pad" aria-labelledby="info-title">
+      <div class="wrap">
+        <div class="facts-head">
+          <div><p class="eyebrow">Lo esencial</p><h2 class="display section-title" id="info-title">La noche en cifras</h2></div>
+          <p>La Última Noche empieza el sábado 31 de octubre a las 21h30 en D-VOID.</p>
+        </div>
+        <div class="fact-grid">
+          <div class="fact"><span>Cover mujeres</span><b class="price">$7</b></div>
+          <div class="fact"><span>Cover hombres</span><b class="price">$10</b></div>
+          <div class="fact"><span>Dress code</span><b>Disfraz<br>+ antifaz</b></div>
+        </div>
+        <div class="promos">
+          <h3>Ven en grupo</h3>
+          <div class="promo-grid">
+            <div class="promo"><strong>5 + 1</strong><p>Por cada grupo de cinco personas, la sexta obtiene Free Cover.</p></div>
+            <div class="promo"><strong>Grupo de 10</strong><p>Media botella de aguardiente gratis.</p></div>
+          </div>
+          <p class="terms">Aplican términos y condiciones. Detalles de las promociones pendientes de publicación.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="prize" aria-labelledby="premio-title">
+      <div class="wrap">
+        <div><p class="eyebrow">Premio de la noche</p><h2 class="display" id="premio-title">Free Cover<br>por un año</h2></div>
+        <p>La mecánica y las condiciones del premio se comunicarán por los canales oficiales de D-VOID.</p>
+      </div>
+    </section>
+
+    <section class="booking section-pad" id="reserva" aria-labelledby="reserva-title">
+      <div class="wrap booking-grid">
+        <div class="booking-intro">
+          <p class="eyebrow">Reserva · Vista previa</p>
+          <h2 class="display section-title" id="reserva-title">Tu lugar en la última noche</h2>
+          <p>Prueba cómo funcionará la solicitud de lista o mesa. Este formulario aún no está conectado: no envía ni guarda tus datos, y no confirma acceso.</p>
+          <span class="preview-tag">Demostración sin envío de datos</span>
+        </div>
+        <div class="form-card">
+          <h3>Solicitud de reserva</h3>
+          <p class="form-help">Todos los campos son obligatorios. Usa datos de prueba.</p>
+          <noscript><p>Activa JavaScript para probar la validación. Esta vista previa no envía datos.</p></noscript>
+          <form id="reserva-form" novalidate>
+            <div class="fields">
+              <div class="field"><label for="nombre">Nombre</label><input id="nombre" name="nombre" autocomplete="given-name" required aria-describedby="error-nombre"><p class="error" id="error-nombre"></p></div>
+              <div class="field"><label for="apellido">Apellido</label><input id="apellido" name="apellido" autocomplete="family-name" required aria-describedby="error-apellido"><p class="error" id="error-apellido"></p></div>
+              <div class="field"><label for="whatsapp">Celular / WhatsApp</label><input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="error-whatsapp"><p class="error" id="error-whatsapp"></p></div>
+              <div class="field"><label for="correo">Correo</label><input id="correo" name="correo" type="email" autocomplete="email" required aria-describedby="error-correo"><p class="error" id="error-correo"></p></div>
+              <fieldset class="choice field-full" id="categoria-group" aria-describedby="error-categoria"><legend>Categoría de entrada</legend><div class="choice-items"><label><input type="radio" name="categoria" value="mujer" required> Mujer · $7</label><label><input type="radio" name="categoria" value="hombre" required> Hombre · $10</label></div><p class="error" id="error-categoria"></p></fieldset>
+              <div class="field field-full"><label for="acompanantes">Número de acompañantes</label><input id="acompanantes" name="acompanantes" type="number" inputmode="numeric" min="0" step="1" placeholder="0 si vienes sin acompañantes" required aria-describedby="error-acompanantes"><p class="error" id="error-acompanantes"></p></div>
+              <fieldset class="choice field-full" id="tipo-group" aria-describedby="error-tipo"><legend>Tipo de reserva</legend><div class="choice-items"><label><input type="radio" name="tipo" value="lista" required> Lista</label><label><input type="radio" name="tipo" value="mesa" required> Mesa</label></div><p class="error" id="error-tipo"></p></fieldset>
+            </div>
+            <button class="button form-submit" type="submit" disabled>Ver vista previa de solicitud</button>
+            <p class="form-note">No se enviarán datos ni se generará una entrada o código QR.</p>
+          </form>
+          <div class="result" id="resultado" role="status" tabindex="-1" hidden>
+            <h4>Vista previa completada</h4>
+            <p>El formulario pasó la validación local. No se envió ninguna solicitud y tu reserva no está confirmada.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap"><span>D-VOID · La Última Noche · Sábado 31 de octubre de 2026</span><a href="#inicio">Volver arriba ↑</a></div></footer>
+  <script>
+    (() => {
+      const form = document.getElementById('reserva-form');
+      const result = document.getElementById('resultado');
+      const submit = form.querySelector('[type="submit"]');
+      submit.disabled = false;
+
+      const fields = [
+        ['nombre', 'Ingresa tu nombre.'],
+        ['apellido', 'Ingresa tu apellido.'],
+        ['whatsapp', 'Ingresa tu celular o WhatsApp.'],
+        ['correo', 'Ingresa un correo válido.'],
+        ['acompanantes', 'Indica cuántos acompañantes vienen contigo.']
+      ];
+      function showError(id, message) {
+        const input = document.getElementById(id);
+        document.getElementById('error-' + id).textContent = message;
+        input.setAttribute('aria-invalid', message ? 'true' : 'false');
+      }
+      function showChoiceError(name, message) {
+        document.getElementById('error-' + name).textContent = message;
+        document.getElementById(name + '-group').setAttribute('aria-invalid', message ? 'true' : 'false');
+      }
+      fields.forEach(([id]) => document.getElementById(id).addEventListener('input', () => showError(id, '')));
+      ['categoria', 'tipo'].forEach(name => form.querySelectorAll(`input[name="${name}"]`).forEach(input => input.addEventListener('change', () => showChoiceError(name, ''))));
+
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        result.hidden = true;
+        let firstInvalid = null;
+        fields.forEach(([id, requiredMessage]) => {
+          const input = document.getElementById(id);
+          let error = '';
+          if (!input.value.trim()) error = requiredMessage;
+          else if (id === 'correo' && !input.validity.valid) error = 'Ingresa un correo válido.';
+          else if (id === 'acompanantes' && (!/^\d+$/.test(input.value.trim()) || !input.validity.valid)) error = 'Ingresa un número entero igual o mayor que cero.';
+          showError(id, error);
+          if (error && !firstInvalid) firstInvalid = input;
+        });
+        [['categoria', 'Selecciona una categoría de entrada.'], ['tipo', 'Selecciona lista o mesa.']].forEach(([name, message]) => {
+          const checked = form.querySelector(`input[name="${name}"]:checked`);
+          showChoiceError(name, checked ? '' : message);
+          if (!checked && !firstInvalid) firstInvalid = form.querySelector(`input[name="${name}"]`);
+        });
+        if (firstInvalid) { firstInvalid.focus(); return; }
+        result.hidden = false;
+        result.focus();
+      });
+    })();
+  </script>
+</body>
+</html>
