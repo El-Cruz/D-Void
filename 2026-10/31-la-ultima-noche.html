@@ -7,251 +7,177 @@
   <meta name="description" content="La Última Noche · La Tentación Chapter II. Halloween en D-VOID, sábado 31 de octubre de 2026 desde las 21h30.">
   <title>La Última Noche · D-VOID</title>
   <style>
-    :root {
-      color-scheme: dark;
-      --black: #090707;
-      --panel: #161010;
-      --red: #ed2028;
-      --red-dark: #9d101b;
-      --bone: #f2eee7;
-      --muted: #b8aaa7;
-      --line: #553333;
-      --display: Impact, "Arial Narrow", "Arial Black", sans-serif;
-      --body: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    @font-face { font-family: 'Bodoni Poster'; src: url('../Resources/events/2026-10-31-la-ultima-noche/assets/bodoni-moda.ttf') format('truetype'); font-weight: 400 900; font-display: swap; }
+    @font-face { font-family: 'Anton'; src: url('../Resources/events/2026-10-31-la-ultima-noche/assets/anton.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    :root { color-scheme: dark; --black:#080707; --red:#ff2424; --bone:#f0e8d9; --muted:#b8afa5; --line:#63302d; --display:'Anton',Impact,sans-serif; --body:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif; }
+    *,*::before,*::after { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--black); color:var(--bone); font-family:var(--body); line-height:1.5; }
+    a { color:inherit; } button,input { font:inherit; } button,a,input { -webkit-tap-highlight-color:transparent; }
+    :focus-visible { outline:3px solid var(--bone); outline-offset:5px; }
+    .skip { position:absolute; top:-100px; left:16px; z-index:10; padding:12px; background:var(--bone); color:#000; }
+    .skip:focus { top:16px; }
+    .wrap { width:min(100% - 48px,1100px); margin-inline:auto; }
+    .eyebrow { margin:0 0 14px; font:400 1rem/1.2 var(--display); text-transform:uppercase; letter-spacing:.06em; color:var(--red); }
+    .display { font:400 clamp(3rem,6vw,5rem)/.98 var(--display); text-transform:uppercase; letter-spacing:-.015em; }
+    .button { display:inline-flex; justify-content:center; align-items:center; min-height:54px; padding:13px 30px; border:2px solid var(--red); border-radius:0; background:var(--red); color:#090707; text-decoration:none; text-transform:uppercase; font:400 1.3rem/1.15 var(--display); cursor:pointer; transition:background .15s,color .15s,transform .15s; }
+    .button:hover { background:var(--bone); border-color:var(--bone); } .button:active,a:active { transform:scale(.97); }
+    .hero { position:relative; max-width:1600px; margin:auto; padding-bottom:44px; overflow:hidden; }
+    .nav { position:absolute; z-index:2; top:0; left:0; right:0; display:flex; justify-content:space-between; align-items:start; padding-top:max(22px,env(safe-area-inset-top)); }
+    .brand { padding:8px 10px; background:#080707; }
+    .logo { display:block; width:112px; height:auto; }
+    .edition { margin:0; color:var(--bone); font:400 1.15rem/1 var(--display); text-align:right; text-transform:uppercase; background:#080707; padding:10px; }
+    .hero-scene { display:block; width:100%; height:clamp(440px,47vw,650px); object-fit:cover; object-position:50% 20%; }
+    .hero-copy { position:relative; margin:-130px auto 0; width:min(92%,1000px); text-align:center; }
+    .title-lockup { transform:rotate(-5deg); margin-bottom:48px; }
+    h1 { margin:0; font-family:'Bodoni Poster',Georgia,serif; font-size:clamp(5rem,10.8vw,9.7rem); font-weight:900; font-optical-sizing:none; font-variation-settings:'opsz' 96,'wght' 900; letter-spacing:-.065em; line-height:.86; text-transform:uppercase; text-shadow:3px 5px 0 #080707; }
+    h1 span { display:block; }
+    h1 .first { color:var(--red); white-space:nowrap; }
+    h1 .last { font-size:1.5em; letter-spacing:-.075em; }
+    .chapter { margin:15px 0 0; font-family:'Bodoni Poster',Georgia,serif; font-size:clamp(.85rem,2.1vw,1.55rem); font-weight:800; letter-spacing:.025em; line-height:1.2; text-transform:uppercase; }
+    .hero-details { display:grid; grid-template-columns:1fr 1.25fr 1fr; gap:20px; align-items:center; text-align:left; }
+    .hero-details p { margin:0; font:400 clamp(1.1rem,2.2vw,1.7rem)/1.1 var(--display); text-transform:uppercase; }
+    .hero-details .tagline { color:var(--red); }
+    .event-date { text-align:center; border-inline:1px solid var(--red); padding:0 18px; }
+    .event-date strong { display:block; text-transform:uppercase; color:var(--red); font:400 clamp(1.6rem,3.4vw,2.7rem)/1.05 var(--display); }
+    .event-date time { display:block; margin-top:7px; font:bold 1.45rem/1 Georgia,serif; }
+    .dress small { display:block; color:var(--red); font-size:.8em; margin-bottom:3px; }
+    .dress em { display:block; font-style:normal; font-size:.65em; margin-top:5px; }
+    .hero-cta { margin-top:28px; width:min(100%,420px); }
+    .hero-note { margin:9px 0 0; font-size:.72rem; color:var(--muted); }
+    .cover { border-top:2px solid var(--red); border-bottom:2px solid var(--red); padding:28px 0; }
+    .cover .wrap { display:flex; justify-content:space-between; align-items:center; gap:24px; }
+    .cover h2 { margin:0; color:var(--red); font:400 1.2rem var(--display); text-transform:uppercase; }
+    .cover p { margin:0; font:400 clamp(1.8rem,4vw,3.2rem)/1 var(--display); text-transform:uppercase; }
+    .cover b { color:var(--red); font-weight:400; }
+    .manifesto { padding:90px 0 70px; }
+    .manifesto h2 { margin:0; max-width:950px; font-size:clamp(3.3rem,7.3vw,6.5rem); }
+    .manifesto h2 span { color:var(--red); }
+    .manifesto-bottom { display:flex; gap:30px; justify-content:space-between; align-items:end; margin-top:30px; }
+    .manifesto-bottom p { max-width:430px; margin:0; color:var(--muted); }
+    .manifesto-bottom strong { font:400 clamp(1.4rem,3vw,2rem)/1.1 var(--display); text-transform:uppercase; color:var(--bone); }
+    .promos { padding:0 0 70px; }
+    .promo-grid { display:grid; grid-template-columns:1fr 1fr; gap:42px; }
+    .promo { display:grid; grid-template-columns:auto 1fr; align-items:center; gap:25px; border-top:6px solid var(--red); padding-top:25px; }
+    .promo strong { font:400 clamp(4rem,8vw,7rem)/1 var(--display); color:var(--red); white-space:nowrap; }
+    .promo p { margin:0; font:400 clamp(1.3rem,2.5vw,1.8rem)/1.2 var(--display); text-transform:uppercase; }
+    .promo small { display:block; margin-top:10px; font:400 .88rem/1.5 var(--body); text-transform:none; color:var(--muted); }
+    .terms { color:var(--muted); font-size:.78rem; margin:24px 0 0; }
+    .prize { background:var(--red); color:var(--black); padding:45px 0; }
+    .prize .wrap { display:flex; align-items:center; justify-content:space-between; gap:35px; }
+    .prize .eyebrow { color:var(--black); } .prize h2 { margin:0; }
+    .prize p:last-child { max-width:260px; font-size:.9rem; }
+    .booking { padding:85px 0; }
+    .booking-grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:70px; align-items:start; }
+    .section-title { margin:0 0 24px; }
+    .booking-intro { position:sticky; top:30px; }
+    .booking-intro p:not(.eyebrow) { color:var(--muted); max-width:380px; }
+    .form-card { border-top:6px solid var(--red); padding-top:24px; }
+    .form-card h3 { margin:0 0 8px; font:400 1.6rem var(--display); text-transform:uppercase; }
+    .form-help { color:var(--muted); font-size:.88rem; margin:0 0 26px; }
+    .fields { display:grid; grid-template-columns:1fr 1fr; gap:22px 16px; }
+    .field-full { grid-column:1/-1; }
+    .field label,.choice legend { display:block; margin-bottom:8px; font:400 1rem/1.2 var(--display); letter-spacing:.035em; text-transform:uppercase; }
+    .field input { display:block; width:100%; min-height:52px; border:1px solid #827368; border-radius:0; background:#13100e; color:var(--bone); padding:12px; }
+    .field input::placeholder { color:#b7ada5; font-size:.85rem; }
+    .field input[aria-invalid='true'] { border-color:var(--red); }
+    .error { margin:6px 0 0; color:#ff8f8f; font-size:.8rem; } .error:empty { display:none; }
+    .choice { min-width:0; border:0; margin:0; padding:0; }
+    .choice-items { display:flex; flex-wrap:wrap; gap:10px; }
+    .choice-items label { display:inline-flex; align-items:center; gap:10px; min-height:48px; padding:10px 15px; border:1px solid #827368; cursor:pointer; }
+    .choice-items label:has(input:checked) { border-color:var(--red); background:#2b1010; }
+    .choice input { width:18px; height:18px; accent-color:var(--red); margin:0; }
+    .form-submit { width:100%; margin-top:28px; }
+    .form-submit:disabled { opacity:.5; cursor:not-allowed; }
+    .form-note { font-size:.78rem; color:var(--muted); margin:12px 0 0; }
+    .result { margin-top:25px; padding:20px; border:2px solid var(--red); }
+    .result[hidden] { display:none; } .result h4 { margin:0 0 10px; font:400 1.5rem var(--display); text-transform:uppercase; } .result p { margin:0; }
+    footer { padding:24px 0 calc(24px + env(safe-area-inset-bottom)); border-top:1px solid var(--line); font-size:.78rem; color:var(--muted); }
+    footer .wrap { display:flex; align-items:center; justify-content:space-between; gap:20px; } footer a { display:inline-flex; align-items:center; min-height:44px; }
+    @media(max-width:760px) {
+      .hero-scene { height:510px; object-position:50% 0; }
+      .hero-copy { margin-top:-125px; width:92%; }
+      h1 { font-size:12vw; }
+      .title-lockup { margin-bottom:35px; }
+      .hero-details { gap:12px; }
+      .hero-details p { font-size:1.2rem; }
+      .hero-details .tagline { font-size:1rem; }
+      .event-date strong { font-size:1.6rem; }
+      .event-date { padding-inline:12px; }
+      .booking-grid { grid-template-columns:1fr; gap:28px; }
+      .booking-intro { position:static; } .booking-intro p:not(.eyebrow) { max-width:none; }
+      .promo-grid { gap:24px; } .promo { display:block; } .promo p { margin-top:15px; }
     }
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; background: var(--black); color: var(--bone); font-family: var(--body); line-height: 1.45; }
-    button, input { font: inherit; }
-    a { color: inherit; }
-    :focus-visible { outline: 3px solid var(--bone); outline-offset: 4px; }
-    .skip { position: absolute; left: 12px; top: -60px; z-index: 100; padding: 12px; background: var(--bone); color: var(--black); }
-    .skip:focus { top: 12px; }
-    .wrap { width: min(100% - 40px, 1160px); margin-inline: auto; }
-    .eyebrow { margin: 0; color: var(--red); font-size: .75rem; font-weight: 900; letter-spacing: .19em; text-transform: uppercase; }
-    .display { font-family: var(--display); font-stretch: condensed; font-weight: 900; letter-spacing: -.025em; line-height: .88; text-transform: uppercase; }
-    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 12px 24px; border: 2px solid var(--red); background: var(--red); color: var(--black); font-family: var(--display); font-size: 1.12rem; letter-spacing: .08em; text-align: center; text-decoration: none; text-transform: uppercase; cursor: pointer; transition: transform .15s ease, background .15s ease, color .15s ease; }
-    .button:hover { background: var(--bone); border-color: var(--bone); }
-    .button:active { transform: scale(.97); }
-    .button-outline { background: transparent; color: var(--bone); }
-    .button-outline:hover { color: var(--black); }
-
-    .hero { position: relative; min-height: max(740px, 100svh); isolation: isolate; overflow: hidden; background: radial-gradient(ellipse at 58% 39%, #551018 0, #1a090c 40%, var(--black) 75%); }
-    .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .33; background: repeating-linear-gradient(108deg, transparent 0 100px, rgba(237,32,40,.2) 101px, transparent 103px), repeating-linear-gradient(0deg, transparent 0 4px, #000 5px 6px); pointer-events: none; }
-    .hero::after { content: ""; position: absolute; inset: auto -10% -110px; height: 240px; transform: rotate(-5deg); background: var(--black); border-top: 5px solid var(--red); pointer-events: none; }
-    .nav { position: relative; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: max(20px, env(safe-area-inset-top)); }
-    .logo { display: block; width: 112px; height: auto; }
-    .nav-link { display: inline-flex; align-items: center; min-height: 44px; font-family: var(--display); font-size: .95rem; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
-    .nav-link:hover { color: var(--red); }
-    .hero-inner { position: relative; display: grid; align-items: center; min-height: 640px; padding: 56px 0 135px; }
-    .hero-art { position: absolute; width: min(70vw, 610px); right: -6%; top: 8%; height: 74%; opacity: .86; pointer-events: none; filter: drop-shadow(0 20px 36px #000); }
-    .hero-art svg { width: 100%; height: 100%; }
-    .hero-copy { position: relative; z-index: 2; max-width: 790px; text-shadow: 0 3px 20px #000; }
-    .hero-edition { display: inline-block; margin: 0 0 22px; padding: 6px 9px; border: 1px solid var(--red); color: var(--bone); font-family: var(--display); font-size: .9rem; letter-spacing: .17em; text-transform: uppercase; }
-    h1 { margin: 0; font-size: clamp(4.8rem, 13.2vw, 11rem); }
-    h1 span { display: block; }
-    h1 span:first-child { color: var(--red); }
-    .chapter { margin: 23px 0 0; font-family: var(--display); font-size: clamp(1.2rem, 3vw, 2.1rem); letter-spacing: .12em; text-transform: uppercase; }
-    .hero-date { margin: 15px 0 0; font-weight: 900; font-size: clamp(1rem, 2.8vw, 1.4rem); letter-spacing: .08em; text-transform: uppercase; }
-    .hero-date b { color: var(--red); }
-    .hero-cta { margin-top: 24px; min-width: 230px; }
-    .hero-note { margin: 14px 0 0; color: var(--bone); font-size: .82rem; font-weight: 700; }
-
-    section { position: relative; }
-    .section-pad { padding: 92px 0; }
-    .section-title { margin: 14px 0 0; font-size: clamp(3.2rem, 8vw, 6.5rem); }
-    .intro { background: var(--black); }
-    .intro-grid { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: clamp(32px, 8vw, 110px); }
-    .intro-copy { max-width: 660px; }
-    .intro-copy > p:last-child { max-width: 500px; color: var(--muted); font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.65; }
-    .mask-card { position: relative; display: grid; place-items: center; min-height: 370px; border: 1px solid var(--line); background: radial-gradient(circle at 50% 40%, #821922, #190a0d 51%, #090707 80%); overflow: hidden; }
-    .mask-card::before, .mask-card::after { content: ""; position: absolute; width: 170%; height: 2px; background: var(--red); opacity: .65; transform: rotate(-24deg); }
-    .mask-card::after { transform: rotate(24deg); }
-    .mask-card svg { position: relative; z-index: 1; width: min(74%, 280px); filter: drop-shadow(0 18px 20px #000); }
-    .mask-card small { position: absolute; z-index: 2; bottom: 16px; left: 16px; font-family: var(--display); font-size: 1rem; letter-spacing: .15em; text-transform: uppercase; }
-    .slash { height: 5px; background: var(--red); transform: skewY(-2deg); transform-origin: left; box-shadow: 0 0 22px rgba(237,32,40,.55); }
-    .facts { background: #110b0c; }
-    .facts-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 34px; }
-    .facts-head p:last-child { max-width: 320px; margin: 0; color: var(--muted); }
-    .fact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    .fact { padding: 30px 24px; border: 1px solid var(--line); background: #1b1112; }
-    .fact b { display: block; margin-top: 9px; color: var(--bone); font-family: var(--display); font-size: clamp(2.5rem, 5vw, 4.4rem); line-height: .95; text-transform: uppercase; }
-    .fact .price { color: var(--red); }
-    .fact span { color: var(--muted); font-size: .82rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-    .promos { padding-top: 40px; }
-    .promos h3 { margin: 0 0 15px; font-family: var(--display); font-size: clamp(2rem, 5vw, 3rem); letter-spacing: .02em; text-transform: uppercase; }
-    .promo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .promo { padding: 26px 24px; border-left: 5px solid var(--red); background: #290f13; }
-    .promo strong { display: block; color: var(--red); font-family: var(--display); font-size: clamp(2rem, 4vw, 3rem); line-height: 1; text-transform: uppercase; }
-    .promo p { margin: 10px 0 0; font-size: 1.05rem; }
-    .terms { margin: 14px 0 0; color: var(--muted); font-size: .8rem; }
-    .prize { padding: 55px 0; background: var(--red); color: var(--black); }
-    .prize .wrap { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
-    .prize .eyebrow { color: var(--black); }
-    .prize h2 { margin: 10px 0 0; font-size: clamp(2.8rem, 7vw, 6rem); }
-    .prize p:last-child { max-width: 280px; margin: 0; font-size: 1rem; font-weight: 700; }
-
-    .booking { background: var(--black); }
-    .booking-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(32px, 7vw, 100px); align-items: start; }
-    .booking-intro { position: sticky; top: 35px; }
-    .booking-intro p:not(.eyebrow) { color: var(--muted); line-height: 1.65; }
-    .preview-tag { display: inline-block; margin-top: 16px; padding: 9px 12px; border: 1px solid var(--red); color: var(--bone); font-size: .78rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
-    .form-card { padding: clamp(22px, 4vw, 42px); border: 1px solid var(--line); background: var(--panel); }
-    .form-card h3 { margin: 0 0 8px; font-family: var(--display); font-size: 2rem; line-height: 1; text-transform: uppercase; }
-    .form-help { margin: 0 0 26px; color: var(--muted); font-size: .92rem; }
-    .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 14px; }
-    .field-full { grid-column: 1 / -1; }
-    .field label, .choice legend { display: block; margin-bottom: 8px; color: var(--bone); font-size: .82rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
-    .field input { display: block; width: 100%; min-height: 50px; padding: 12px 14px; border: 1px solid #775657; border-radius: 0; background: #0b0808; color: var(--bone); }
-    .field input::placeholder { color: #bca9a9; }
-    .field input[aria-invalid="true"] { border-color: var(--red); }
-    .field input:focus { border-color: var(--bone); }
-    .error { min-height: 0; margin: 5px 0 0; color: #ff777d; font-size: .8rem; font-weight: 700; }
-    .error:empty { display: none; }
-    .choice { min-width: 0; margin: 0; padding: 0; border: 0; }
-    .choice-items { display: flex; flex-wrap: wrap; gap: 8px; }
-    .choice-items label { display: inline-flex; align-items: center; gap: 9px; min-height: 48px; padding: 8px 13px; border: 1px solid #775657; background: #0b0808; cursor: pointer; }
-    .choice-items label:has(input:checked) { border-color: var(--red); background: #381218; }
-    .choice input { width: 18px; height: 18px; margin: 0; accent-color: var(--red); }
-    .form-submit { width: 100%; margin-top: 27px; }
-    .form-submit:disabled { cursor: not-allowed; opacity: .45; }
-    .form-note { margin: 12px 0 0; color: var(--muted); font-size: .82rem; }
-    .result { margin-top: 22px; padding: 20px; border: 1px solid var(--red); background: #290f13; }
-    .result[hidden] { display: none; }
-    .result h4 { margin: 0 0 8px; font-family: var(--display); font-size: 1.5rem; text-transform: uppercase; }
-    .result p { margin: 0; }
-    footer { padding: 34px 0 calc(34px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
-    footer .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    footer a { min-height: 44px; display: inline-flex; align-items: center; }
-    @media (max-width: 760px) {
-      .hero { min-height: 760px; }
-      .hero-inner { min-height: 690px; padding-top: 40px; align-items: end; }
-      .hero-art { width: min(95vw, 520px); height: 65%; right: -18%; top: 5%; opacity: .72; }
-      .hero-copy { padding-bottom: 58px; }
-      h1 { font-size: clamp(4.45rem, 15vw, 7rem); }
-      .intro-grid, .booking-grid { grid-template-columns: 1fr; }
-      .intro-grid { gap: 30px; }
-      .booking-intro { position: static; }
-      .fact-grid { grid-template-columns: 1fr 1fr; }
-      .fact:last-child { grid-column: 1 / -1; }
-      .prize .wrap { display: block; }
-      .prize p:last-child { margin-top: 16px; }
+    @media(max-width:480px) {
+      .wrap { width:calc(100% - 32px); }
+      .nav { padding-top:max(16px,env(safe-area-inset-top)); }
+      .logo { width:86px; } .edition { font-size:.85rem; padding:8px; }
+      .hero-scene { height:400px; object-position:50% 0; }
+      .hero-copy { margin-top:-105px; width:94%; }
+      h1 { font-size:12.6vw; } .chapter { font-size:.82rem; margin-top:10px; }
+      .hero-details { grid-template-columns:1fr 1fr; padding-inline:9px; }
+      .hero-details .tagline { display:none; }
+      .event-date { border-left:0; padding-left:0; text-align:left; }
+      .hero-details p { font-size:1.2rem; }
+      .event-date strong { font-size:1.65rem; } .event-date time { font-size:1.2rem; }
+      .hero-cta { width:calc(100% - 18px); margin-top:22px; }
+      .hero-note { padding-inline:14px; }
+      .cover { padding:23px 0; } .cover .wrap { flex-wrap:wrap; gap:13px; }
+      .cover h2 { width:100%; font-size:1rem; } .cover p { font-size:1.85rem; }
+      .manifesto { padding:56px 0 40px; } .manifesto h2 { font-size:3rem; }
+      .manifesto-bottom { display:block; } .manifesto-bottom strong { display:block; margin-top:20px; }
+      .promo-grid { grid-template-columns:1fr; gap:28px; } .promo { display:grid; grid-template-columns:100px 1fr; gap:20px; } .promo p { margin-top:0; } .promo strong { font-size:4rem; }
+      .promos { padding-bottom:45px; } .prize .wrap { display:block; } .prize h2 { font-size:3.4rem; } .prize p:last-child { margin-bottom:0; max-width:none; }
+      .booking { padding:55px 0; } .fields { grid-template-columns:1fr; } .field-full { grid-column:auto; }
+      footer .wrap { display:block; } footer a { margin-top:12px; }
     }
-    @media (max-width: 520px) {
-      .wrap { width: min(100% - 32px, 1160px); }
-      .nav { padding-top: max(16px, env(safe-area-inset-top)); }
-      .logo { width: 95px; }
-      .nav-link { font-size: .82rem; }
-      .hero { min-height: 700px; }
-      .hero-inner { min-height: 630px; }
-      .hero-art { top: 7%; right: -24%; width: 110vw; height: 56%; }
-      h1 { font-size: clamp(3.9rem, 17vw, 5.6rem); }
-      .chapter { font-size: 1.08rem; }
-      .hero-date { font-size: .95rem; }
-      .section-pad { padding: 72px 0; }
-      .facts-head { display: block; }
-      .facts-head p:last-child { margin-top: 18px; }
-      .fact-grid, .promo-grid, .fields { grid-template-columns: 1fr; }
-      .fact:last-child, .field-full { grid-column: auto; }
-      .fact { padding: 22px; }
-      .mask-card { min-height: 310px; }
-      footer .wrap { display: block; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
-    }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none !important; animation:none !important; } }
   </style>
 </head>
 <body>
   <a class="skip" href="#contenido">Saltar al contenido</a>
   <header class="hero" id="inicio">
     <nav class="nav wrap" aria-label="Navegación principal">
-      <a href="/" aria-label="D-VOID, inicio"><img class="logo" src="../Resources/dvoid/dvoid-logo.png" alt="D-VOID" width="700" height="262"></a>
-      <a class="nav-link" href="#reserva">Vista previa de reserva ↓</a>
+      <a class="brand" href="/" aria-label="D-VOID, inicio"><img class="logo" src="../Resources/dvoid/dvoid-logo.png" alt="D-VOID" width="700" height="262"></a>
+      <p class="edition">Halloween<br>Edition</p>
     </nav>
-    <div class="hero-inner wrap">
-      <div class="hero-art" aria-hidden="true">
-        <svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg" focusable="false">
-          <defs>
-            <linearGradient id="hood" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#050405"/><stop offset=".55" stop-color="#2b0b10"/><stop offset="1" stop-color="#050405"/></linearGradient>
-            <linearGradient id="face" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f4f0e8"/><stop offset="1" stop-color="#b8afa9"/></linearGradient>
-          </defs>
-          <path d="M65 650C69 525 94 450 156 402 115 324 127 172 196 91 233 47 291 47 329 91c73 85 79 238 29 313 62 46 80 124 84 246Z" fill="url(#hood)" stroke="#8d1520" stroke-width="4"/>
-          <path d="M251 113c-56 0-99 65-99 151 0 71 45 125 99 172 55-47 99-101 99-172 0-86-43-151-99-151Z" fill="url(#face)"/>
-          <path d="M170 250c31-30 61-23 83 12-37 11-63 9-83-12Zm163 0c-31-30-61-23-83 12 37 11 63 9 83-12Z" fill="#190b0d"/>
-          <path d="M251 274c-21 30-28 44-28 60 17 12 39 12 56 0 0-16-7-30-28-60Z" fill="#b51a25"/>
-          <path d="M186 350c46 24 84 25 130 0" fill="none" stroke="#3c1015" stroke-width="8" stroke-linecap="round"/>
-          <path d="M128 264c7-106 42-172 111-193M372 264C365 158 330 92 261 71" fill="none" stroke="#ed2028" stroke-width="5" opacity=".55"/>
-        </svg>
-      </div>
-      <div class="hero-copy">
-        <p class="hero-edition">Halloween Edition · 31.10.26</p>
-        <h1 class="display"><span>La última</span><span>noche</span></h1>
+    <img class="hero-scene" src="../Resources/events/2026-10-31-la-ultima-noche/assets/terror-crowd.webp" alt="" width="1440" height="960" fetchpriority="high">
+    <div class="hero-copy">
+      <div class="title-lockup">
+        <h1><span class="first">La última</span><span class="last">noche</span></h1>
         <p class="chapter">La Tentación · Chapter II</p>
-        <p class="hero-date"><b>Sábado 31 de octubre</b> · Desde las 21h30</p>
-        <a class="button hero-cta" href="#reserva">Reserva tu lugar ↓</a>
-        <p class="hero-note">Vista previa de reserva. Aún no recibe solicitudes.</p>
       </div>
+      <div class="hero-details">
+        <p class="tagline">¿Quién se<br>esconde detrás<br>de la máscara?</p>
+        <div class="event-date"><strong>Sábado<br>31 octubre</strong><time datetime="2026-10-31T21:30:00-05:00">21h30</time></div>
+        <p class="dress"><small>Dress code:</small>Disfraz +<br>antifaz<em>Ambos obligatorios</em></p>
+      </div>
+      <a class="button hero-cta" href="#reserva">Reserva tu lugar</a>
+      <p class="hero-note">Formulario de demostración. No recibe reservas.</p>
     </div>
   </header>
-
   <main id="contenido">
-    <section class="intro section-pad" aria-labelledby="concepto-title">
-      <div class="wrap intro-grid">
-        <div class="intro-copy">
-          <p class="eyebrow">La Tentación continúa</p>
-          <h2 class="display section-title" id="concepto-title">¿Quién se esconde detrás de la máscara?</h2>
-          <p>Una noche de Halloween para descubrir otra identidad. Elige tu disfraz y entra al misterio: <strong>disfraz y antifaz obligatorios.</strong></p>
-        </div>
-        <div class="mask-card" aria-hidden="true">
-          <svg viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg" focusable="false">
-            <path d="M19 68c37-26 77-34 131-17 54-17 94-9 131 17l-25 109c-38 26-70 30-106 7-36 23-68 19-106-7Z" fill="#e8e1d8" stroke="#17090b" stroke-width="10"/>
-            <path d="M40 91c39-23 72-13 95 22-13 22-34 35-62 28-19-5-29-22-33-50Zm220 0c-39-23-72-13-95 22 13 22 34 35 62 28 19-5 29-22 33-50Z" fill="#13090a"/>
-            <path d="M150 56v130" stroke="#a11922" stroke-width="5" opacity=".7"/>
-          </svg>
-          <small>Elige quién serás</small>
-        </div>
-      </div>
+    <section class="cover" aria-labelledby="cover-title"><div class="wrap"><h2 id="cover-title">Cover</h2><p>Mujeres <b>$7</b></p><p>Hombres <b>$10</b></p></div></section>
+    <section class="manifesto wrap" aria-labelledby="concepto-title">
+      <h2 class="display" id="concepto-title">¿Quién se esconde<br>detrás de <span>la máscara?</span></h2>
+      <div class="manifesto-bottom"><p>Elige tu disfraz. Oculta tu identidad. La Tentación continúa este Halloween en D-VOID.</p><strong>Disfraz + antifaz<br>obligatorios.</strong></div>
     </section>
-
-    <div class="slash" aria-hidden="true"></div>
-    <section class="facts section-pad" aria-labelledby="info-title">
-      <div class="wrap">
-        <div class="facts-head">
-          <div><p class="eyebrow">Lo esencial</p><h2 class="display section-title" id="info-title">La noche en cifras</h2></div>
-          <p>La Última Noche empieza el sábado 31 de octubre a las 21h30 en D-VOID.</p>
-        </div>
-        <div class="fact-grid">
-          <div class="fact"><span>Cover mujeres</span><b class="price">$7</b></div>
-          <div class="fact"><span>Cover hombres</span><b class="price">$10</b></div>
-          <div class="fact"><span>Dress code</span><b>Disfraz<br>+ antifaz</b></div>
-        </div>
-        <div class="promos">
-          <h3>Ven en grupo</h3>
-          <div class="promo-grid">
-            <div class="promo"><strong>5 + 1</strong><p>Por cada grupo de cinco personas, la sexta obtiene Free Cover.</p></div>
-            <div class="promo"><strong>Grupo de 10</strong><p>Media botella de aguardiente gratis.</p></div>
-          </div>
-          <p class="terms">Aplican términos y condiciones. Detalles de las promociones pendientes de publicación.</p>
-        </div>
+    <section class="promos wrap" aria-labelledby="promos-title">
+      <h2 class="eyebrow" id="promos-title">Ven con los tuyos</h2>
+      <div class="promo-grid">
+        <div class="promo"><strong>5+1</strong><p>La sexta persona<br>tiene Free Cover.<small>Por cada grupo de cinco personas.</small></p></div>
+        <div class="promo"><strong>10</strong><p>Media botella<br>de aguardiente gratis.<small>Para grupos de diez personas.</small></p></div>
       </div>
+      <p class="terms">Aplican términos y condiciones. Detalles pendientes de publicación.</p>
     </section>
-
-    <section class="prize" aria-labelledby="premio-title">
-      <div class="wrap">
-        <div><p class="eyebrow">Premio de la noche</p><h2 class="display" id="premio-title">Free Cover<br>por un año</h2></div>
-        <p>La mecánica y las condiciones del premio se comunicarán por los canales oficiales de D-VOID.</p>
-      </div>
-    </section>
+    <section class="prize" aria-labelledby="premio-title"><div class="wrap"><div><p class="eyebrow">El premio</p><h2 class="display" id="premio-title">Free Cover<br>durante todo un año.</h2></div><p>La mecánica y las condiciones del premio se comunicarán por los canales oficiales de D-VOID.</p></div></section>
 
     <section class="booking section-pad" id="reserva" aria-labelledby="reserva-title">
       <div class="wrap booking-grid">
         <div class="booking-intro">
           <p class="eyebrow">Reserva · Vista previa</p>
-          <h2 class="display section-title" id="reserva-title">Tu lugar en la última noche</h2>
+          <h2 class="display section-title" id="reserva-title">Reserva tu lugar</h2>
           <p>Prueba cómo funcionará la solicitud de lista o mesa. Este formulario aún no está conectado: no envía ni guarda tus datos, y no confirma acceso.</p>
-          <span class="preview-tag">Demostración sin envío de datos</span>
         </div>
         <div class="form-card">
           <h3>Solicitud de reserva</h3>
