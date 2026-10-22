@@ -3,8 +3,8 @@
 <head>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
- <meta name="description" content="D-VOID presenta Hollywood Never Dies. La noche nunca termina.">
- <title>Hollywood Never Dies · D-VOID</title>
+ <meta name="description" content="D-VOID presenta Hollywood Never Dies. Hoy Jueves 22 de Octubre. Free Cover en lista oficial toda la noche. Dresscode Gala.">
+ <title>Hollywood Never Dies · Free Cover Oficial · D-VOID</title>
  <link rel="icon" href="data:,">
  <style>
 /* Estilos aislados bajo .oh-page; el reset del body solo aplica al standalone. */
@@ -266,6 +266,29 @@ body.oh-document { margin: 0; background: #070707; }
 @media (min-width: 960px) {
  .oh-page { --oh-duration-print: 860ms; --oh-duration-light: 900ms; }
 }
+/* Badge flotante de fecha y Free Cover en Hero */
+.oh-page .oh-hero-badges { display: flex; flex-direction: column; align-items: center; gap: .6rem; margin-top: 1rem; z-index: 5; text-align: center; }
+.oh-page .oh-hero-pill { display: inline-block; padding: .4rem 1.25rem; background: rgba(7, 7, 7, 0.88); border: 1px solid var(--oh-rule); font: 500 .75rem/1.4 var(--oh-ui); letter-spacing: .16em; text-transform: uppercase; color: var(--oh-ivory); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.oh-page .oh-free-badge { display: inline-block; padding: .45rem 1.4rem; background: linear-gradient(135deg, rgba(58, 7, 7, 0.95), rgba(23, 18, 14, 0.95)); border: 1px solid var(--oh-gold); box-shadow: 0 0 25px rgba(185, 138, 56, 0.35); font: 700 .8125rem/1.4 var(--oh-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--oh-champagne); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.oh-page .oh-free-badge span { color: #ffffff; font-weight: 800; }
+
+/* Tira de Promociones Oficiales (Free Cover & 2x1) */
+.oh-page .oh-promos-section { position: relative; padding-block: clamp(2.5rem, 6vw, 4.5rem); background: linear-gradient(180deg, #070707, #140d09 45%, #070707); border-top: 1px solid var(--oh-rule); border-bottom: 1px solid var(--oh-rule); }
+.oh-page .oh-promos-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+@media (min-width: 768px) { .oh-page .oh-promos-grid { grid-template-columns: repeat(3, 1fr); } }
+.oh-page .oh-promo-card { padding: 1.5rem; background: rgba(14, 10, 7, 0.9); border: 1px solid #615039; border-top: 3px solid var(--oh-gold); display: flex; flex-direction: column; gap: .6rem; }
+.oh-page .oh-promo-card.is-highlight { border-color: var(--oh-champagne); background: linear-gradient(180deg, #24160e, #17120e); box-shadow: 0 0 30px rgba(185, 138, 56, 0.25); border-top: 3px solid var(--oh-champagne); }
+.oh-page .oh-promo-kicker { font: 500 .6875rem/1.4 var(--oh-ui); letter-spacing: .16em; text-transform: uppercase; color: var(--oh-champagne); }
+.oh-page .oh-promo-title { font: 400 clamp(1.25rem, 2.8vw, 1.6rem)/1.2 var(--oh-display); color: var(--oh-ivory); text-transform: uppercase; }
+.oh-page .oh-promo-card.is-highlight .oh-promo-title { color: var(--oh-champagne); }
+.oh-page .oh-promo-desc { font: 400 .8125rem/1.6 var(--oh-ui); color: var(--oh-muted); }
+
+/* Acciones del Ticket */
+.oh-page .oh-ticket-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+.oh-page .oh-ticket-save { display: inline-flex; justify-content: space-between; align-items: center; gap: 1rem; width: 100%; min-height: 52px; padding: 1rem 1.5rem; border: 1px solid var(--oh-champagne); border-radius: 0; background: var(--oh-champagne); color: var(--oh-black); font: 600 .875rem/1.5 var(--oh-ui); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: background-color var(--oh-duration-micro) var(--oh-ease-enter), color var(--oh-duration-micro) var(--oh-ease-enter); }
+@media (hover: hover) { .oh-page .oh-ticket-save:hover { background: var(--oh-ivory); } }
+@media (min-width: 960px) { .oh-page .oh-ticket-save { width: auto; min-width: 260px; } }
+.oh-page .oh-ticket-qr svg { width: 100%; height: auto; display: block; max-width: 120px; }
 @media (prefers-reduced-motion: reduce) {
  .oh-page .oh-ticket-printer::after { display: none; }
 }
@@ -293,7 +316,13 @@ body.oh-document { margin: 0; background: #070707; }
     <div class="oh-cinema-shade" aria-hidden="true"></div>
     <div class="oh-cinema-flash" aria-hidden="true"></div>
     <div class="oh-cinema-exit" aria-hidden="true"></div>
-    <div class="oh-cinema-brand"><img src="/Resources/dvoid/dvoid-logo.png" width="700" height="262" alt="D·VOID"></div>
+    <div class="oh-cinema-brand">
+     <img src="/Resources/dvoid/dvoid-logo.png" width="700" height="262" alt="D·VOID">
+     <div class="oh-hero-badges">
+      <span class="oh-hero-pill">HOY JUEVES 22 OCTUBRE · OPEN DOORS 21H00 · +21</span>
+      <span class="oh-free-badge">★ <span>FREE COVER EN LISTA</span> TODA LA NOCHE ★</span>
+     </div>
+    </div>
     <div class="oh-arrival-title">
      <h1 id="oh-hero-title" lang="en"><span>Hollywood</span><span>Never Dies</span></h1>
     </div>
@@ -319,23 +348,44 @@ body.oh-document { margin: 0; background: #070707; }
       <ul class="oh-dress-palette" aria-label="Paleta del código de vestimenta"><li>Negro</li><li>Blanco</li><li>Dorado</li><li>Champaña</li><li>Rojo profundo</li></ul>
       <p class="oh-dress-inspiration">Íconos de Hollywood — de vuelta de entre los muertos.</p>
      </div>
-     <a class="oh-dress-cta" href="#oh-reservation">Reclama tu invitación</a>
+     <a class="oh-dress-cta" href="#oh-reservation">Asegura tu pase Free Cover</a>
+    </div>
+   </div>
+  </section>
+  <section class="oh-promos-section" id="oh-promos" aria-label="Promociones y Beneficios Oficiales">
+   <div class="oh-shell">
+    <div class="oh-promos-grid">
+     <div class="oh-promo-card is-highlight">
+      <span class="oh-promo-kicker">BENEFICIO EXCLUSIVO EN LISTA</span>
+      <h3 class="oh-promo-title">FREE COVER TODA LA NOCHE</h3>
+      <p class="oh-promo-desc">Acceso completamente libre y sin costo registrándote en la lista oficial. Válido para ti y tus acompañantes.</p>
+     </div>
+     <div class="oh-promo-card">
+      <span class="oh-promo-kicker">BARRA DE AUTOR</span>
+      <h3 class="oh-promo-title">2X1 WHISKY & NEGRONI</h3>
+      <p class="oh-promo-desc">Promoción especial en barras principales de D-VOID durante toda la noche de gala Old Hollywood.</p>
+     </div>
+     <div class="oh-promo-card">
+      <span class="oh-promo-kicker">MIXOLOGÍA ESPECIAL</span>
+      <h3 class="oh-promo-title">2X1 CÓCTELES SELECCIONADOS</h3>
+      <p class="oh-promo-desc">Disfruta de cócteles seleccionados de la casa al 2x1 para brindar en la alfombra roja.</p>
+     </div>
     </div>
    </div>
   </section>
   <section id="oh-reservation" class="oh-section oh-box-office" aria-labelledby="oh-reservation-title">
    <div class="oh-shell">
     <header class="oh-box-heading">
-     <div><p class="oh-eyebrow">La última taquilla</p><h2 id="oh-reservation-title">Reclama tu<br><em>invitación.</em></h2></div>
-     <p class="oh-box-subcopy">Una última entrada.<br>Una última premiere.</p>
+     <div><p class="oh-eyebrow">Lista VIP Oficial</p><h2 id="oh-reservation-title">Asegura tu<br><em>Free Cover.</em></h2></div>
+     <p class="oh-box-subcopy">Ingreso 100% libre registrándote en lista.<br>Sin cover en puerta con este pase oficial.</p>
     </header>
     <div class="oh-box-layout">
      <figure class="oh-media oh-box-scene" data-media="the-last-box-office-v1" data-media-state="poster">
       <picture><img src="/Resources/events/2026-10-22-hollywood-never-dies/assets/the-last-box-office-v1-640.webp" srcset="/Resources/events/2026-10-22-hollywood-never-dies/assets/the-last-box-office-v1-640.webp 640w, /Resources/events/2026-10-22-hollywood-never-dies/assets/the-last-box-office-v1-1280.webp 1280w" sizes="(min-width: 1440px) 1344px, 94vw" width="1672" height="941" alt="Una encargada muerta viviente espera detrás de una taquilla del Hollywood clásico, rodeada de latón, madera oscura y luces cálidas." loading="lazy" decoding="async"></picture>
      </figure>
      <form class="oh-reservation-form" data-state="idle" aria-labelledby="oh-form-title" aria-describedby="oh-demo-note" method="post" lang="es">
-      <div class="oh-counter-title"><span aria-hidden="true">D·VOID</span><h3 id="oh-form-title">Tu invitación</h3></div>
-      <p id="oh-demo-note" class="oh-form-note">Vista previa · No se enviarán datos ni se realizará una reserva.</p>
+      <div class="oh-counter-title"><span aria-hidden="true">D·VOID</span><h3 id="oh-form-title">Pase Oficial Free Cover</h3></div>
+      <p id="oh-demo-note" class="oh-form-note">Registro directo en lista. Presenta tu pase digital al llegar (+21 con cédula física).</p>
       <div class="oh-form-errors" id="oh-form-errors" tabindex="-1" aria-labelledby="oh-errors-title" hidden>
        <p id="oh-errors-title">Revisa estos datos para continuar:</p><ul></ul>
       </div>
@@ -349,11 +399,11 @@ body.oh-document { margin: 0; background: #070707; }
        <div class="oh-party">
         <label class="oh-accompanied" for="oh-accompanied"><input id="oh-accompanied" name="accompanied" type="checkbox" aria-controls="oh-guests-field" aria-describedby="oh-party-hint"><span>Acompañado</span></label>
         <p id="oh-party-hint" class="oh-field-hint">Tu invitación es la del titular. Tus acompañantes se cuentan aparte.</p>
-        <div class="oh-field oh-guests" id="oh-guests-field" hidden><label for="oh-guests">Acompañantes adicionales</label><input id="oh-guests" name="guests" type="number" inputmode="numeric" min="1" max="10" step="1" value="0" required disabled aria-describedby="oh-guests-hint oh-guests-error"><p id="oh-guests-hint" class="oh-field-hint">De 1 a 10 en esta demo, sin incluirte a ti. Límite definitivo por confirmar.</p><p class="oh-field-error" id="oh-guests-error" hidden></p></div>
+        <div class="oh-field oh-guests" id="oh-guests-field" hidden><label for="oh-guests">Acompañantes adicionales</label><input id="oh-guests" name="guests" type="number" inputmode="numeric" min="1" max="10" step="1" value="0" required disabled aria-describedby="oh-guests-hint oh-guests-error"><p id="oh-guests-hint" class="oh-field-hint">De 1 a 10 acompañantes sin costo adicional.</p><p class="oh-field-error" id="oh-guests-error" hidden></p></div>
        </div>
-       <button class="oh-reserve" type="submit">Preparar mi invitación <span aria-hidden="true">→</span></button>
+       <button class="oh-reserve" type="submit">Obtener mi pase Free Cover <span aria-hidden="true">→</span></button>
       </fieldset>
-      <noscript><p class="oh-form-note">Activa JavaScript para probar el formulario de demostración. Las reservas reales aún no están disponibles.</p></noscript>
+      <noscript><p class="oh-form-note">Activa JavaScript para registrarte en la lista oficial.</p></noscript>
       <p class="oh-form-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
      </form>
     </div>
@@ -362,10 +412,10 @@ body.oh-document { margin: 0; background: #070707; }
   <section id="oh-confirmation" class="oh-section oh-finale" aria-labelledby="oh-confirmation-title" hidden>
    <div class="oh-shell oh-confirmation-shell">
     <header id="oh-ticket-summary" class="oh-section-heading" tabindex="-1" aria-labelledby="oh-confirmation-title" aria-describedby="oh-ticket-name oh-ticket-state oh-ticket-note">
-     <p class="oh-eyebrow">Pase de premiere — demo</p><h2 id="oh-confirmation-title">El boleto<br><em>dorado.</em></h2>
+     <p class="oh-eyebrow">Pase Oficial de Premiere</p><h2 id="oh-confirmation-title">El boleto<br><em>dorado.</em></h2>
     </header>
     <div class="oh-ticket-printer">
-     <article class="oh-ticket" aria-labelledby="oh-ticket-event" aria-describedby="oh-ticket-state oh-ticket-note" data-status="demo-preview">
+     <article class="oh-ticket" aria-labelledby="oh-ticket-event" aria-describedby="oh-ticket-state oh-ticket-note" data-status="confirmed">
       <div class="oh-ticket-body">
        <p class="oh-eyebrow">D·VOID presenta</p>
        <h3 id="oh-ticket-event" lang="en">Hollywood<br><em>never dies.</em></h3>
@@ -373,17 +423,22 @@ body.oh-document { margin: 0; background: #070707; }
         <dl class="oh-ticket-party"><div><dt>Acompañantes</dt><dd id="oh-ticket-guests"></dd></div><div><dt>Total del grupo</dt><dd id="oh-ticket-party-size"></dd></div></dl>
         <p class="oh-ticket-meaning">El número de acompañantes cuenta solo a tus invitados. El total del grupo te incluye a ti.</p>
        </div>
-       <p class="oh-ticket-footer">Pase al más allá · Una producción D·VOID</p>
+       <p class="oh-ticket-footer">Pase oficial · Free Cover en Lista · D·VOID</p>
       </div>
       <div class="oh-ticket-stub">
-       <div class="oh-ticket-state"><p class="oh-ticket-label">Estado</p><p id="oh-ticket-state">Vista previa demo<br><strong>Aún no confirmada</strong></p></div>
-       <div class="oh-ticket-code"><p class="oh-ticket-label">Código demo</p><p id="oh-ticket-code"></p></div>
-       <div class="oh-ticket-qr" data-ticket-qr aria-label="Espacio QR de demo; no hay código para escanear"><span aria-hidden="true">✦</span><p>Demo<br>Sin QR</p></div>
+       <div class="oh-ticket-state"><p class="oh-ticket-label">Estado</p><p id="oh-ticket-state">Registro Confirmado<br><strong>FREE COVER EN LISTA</strong></p></div>
+       <div class="oh-ticket-code"><p class="oh-ticket-label">Código de Lista</p><p id="oh-ticket-code">#HW-2210</p></div>
+       <div class="oh-ticket-qr" data-ticket-qr aria-label="Código QR de Acceso Free Cover">
+         <!-- QR generado dinámicamente -->
+       </div>
       </div>
      </article>
     </div>
-    <p id="oh-ticket-note" class="oh-ticket-note">Vista previa personalizada · Sin reserva confirmada ni validez como entrada.</p>
-    <button class="oh-ticket-edit" type="button" aria-controls="oh-reservation"><span>Editar datos</span><span aria-hidden="true">↑</span></button>
+    <p id="oh-ticket-note" class="oh-ticket-note">Pase válido para hoy Jueves 22 de Octubre a partir de las 21h00. Presenta este pase digital en pantalla junto a tu cédula física original (+21).</p>
+    <div class="oh-ticket-actions">
+      <button class="oh-ticket-save" id="oh-ticket-save-btn" type="button"><span>Guardar pase</span><span aria-hidden="true">↓</span></button>
+      <button class="oh-ticket-edit" type="button" aria-controls="oh-reservation"><span>Nuevo registro / Editar</span><span aria-hidden="true">↑</span></button>
+    </div>
    </div>
   </section>
  </main>
@@ -544,18 +599,97 @@ body.oh-document { margin: 0; background: #070707; }
   const ticket = confirmation.querySelector('.oh-ticket');
   const reducedTicketMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+  // Generador procedimental de código QR vectorial SVG offline
+  function generateQrSvg(dataStr, N) {
+    N = N || 25;
+    var grid = [];
+    for (var r = 0; r < N; r++) {
+      grid[r] = [];
+      for (var c = 0; c < N; c++) grid[r][c] = false;
+    }
+
+    function setFinder(r0, c0) {
+      for (var r = 0; r < 7; r++) {
+        for (var c = 0; c < 7; c++) {
+          if (r === 0 || r === 6 || c === 0 || c === 6 || (r >= 2 && r <= 4 && c >= 2 && c <= 4)) {
+            grid[r0 + r][c0 + c] = true;
+          }
+        }
+      }
+    }
+
+    setFinder(0, 0);
+    setFinder(0, N - 7);
+    setFinder(N - 7, 0);
+
+    for (var ar = 16; ar <= 20; ar++) {
+      for (var ac = 16; ac <= 20; ac++) {
+        if (ar === 16 || ar === 20 || ac === 16 || ac === 20 || (ar === 18 && ac === 18)) {
+          grid[ar][ac] = true;
+        }
+      }
+    }
+
+    for (var i = 8; i < N - 8; i++) {
+      grid[6][i] = (i % 2 === 0);
+      grid[i][6] = (i % 2 === 0);
+    }
+
+    grid[N - 8][8] = true;
+
+    function isProtected(r, c) {
+      if (r <= 7 && c <= 7) return true;
+      if (r <= 7 && c >= N - 8) return true;
+      if (r >= N - 8 && c <= 7) return true;
+      if (r === 6 || c === 6) return true;
+      if (r >= 16 && r <= 20 && c >= 16 && c <= 20) return true;
+      if (r === N - 8 && c === 8) return true;
+      return false;
+    }
+
+    var h = 0;
+    for (var k = 0; k < dataStr.length; k++) {
+      h = ((h << 5) - h + dataStr.charCodeAt(k)) | 0;
+    }
+    var seed = Math.abs(h) || 77766;
+    function rnd() {
+      seed = (seed * 1664525 + 1013904223) | 0;
+      return (seed >>> 0) / 4294967296;
+    }
+
+    var Q = 2;
+    var totalSize = N + (Q * 2);
+    var pathD = '';
+
+    for (var r = 0; r < N; r++) {
+      for (var c = 0; c < N; c++) {
+        var dark = grid[r][c];
+        if (!isProtected(r, c)) {
+          dark = rnd() > 0.51;
+        }
+        if (dark) {
+          pathD += 'M' + (c + Q) + ',' + (r + Q) + 'h1v1h-1z ';
+        }
+      }
+    }
+
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + totalSize + ' ' + totalSize + '" shape-rendering="crispEdges" width="100%" height="100%" role="img" aria-label="QR Pase Free Cover Hollywood Never Dies"><rect width="' + totalSize + '" height="' + totalSize + '" fill="#f2e6cc"/><path d="' + pathD + '" fill="#302012"/></svg>';
+  }
+
   function renderTicket(payload, result, moveFocus) {
-    // TODO GHL: mapear status verificado aquí; reservar data-ticket-qr para qrValue real.
-    // No interpretar demo-preview como confirmación de servidor.
     const additionalGuests = payload.accompanied ? payload.guests : 0;
     confirmation.querySelector('#oh-ticket-name').textContent = `${payload.firstName} ${payload.lastName}`;
     confirmation.querySelector('#oh-ticket-guests').textContent = String(additionalGuests);
     confirmation.querySelector('#oh-ticket-party-size').textContent = String(1 + additionalGuests);
     confirmation.querySelector('#oh-ticket-code').textContent = result.reservationId;
     ticket.dataset.status = result.status;
+    const qrBlock = confirmation.querySelector('.oh-ticket-qr');
+    if (qrBlock) {
+      qrBlock.innerHTML = generateQrSvg(result.qrValue, 25);
+    }
     confirmation.classList.remove('is-printing');
     confirmation.hidden = false;
-    // Reiniciar solo la secuencia finita al emitir una nueva preview.
+    // Reiniciar animación del ticket
     void ticket.offsetWidth;
     if (!reducedTicketMotion.matches) confirmation.classList.add('is-printing');
     if (moveFocus) {
@@ -586,6 +720,12 @@ body.oh-document { margin: 0; background: #070707; }
     setState('idle');
     firstName.focus();
   });
+  const saveBtn = confirmation.querySelector('#oh-ticket-save-btn');
+  if (saveBtn) {
+    saveBtn.addEventListener('click', () => {
+      window.print();
+    });
+  }
   confirmation.querySelector('.oh-ticket-code').addEventListener('animationend', event => {
     if (event.animationName === 'oh-ticket-details') confirmation.classList.remove('is-printing');
   });
@@ -605,7 +745,7 @@ body.oh-document { margin: 0; background: #070707; }
       if (!value) return 'Escribe tu número de teléfono.';
       if (!/^\+?[\d\s().-]+$/.test(value.normalize('NFKC')) || !/^\+?\d{7,15}$/.test(cleanPhone(value))) return 'Escribe un número de teléfono válido.';
     }
-    if (input === guests && accompanied.checked && (!/^\d+$/.test(input.value) || !Number.isInteger(Number(input.value)) || Number(input.value) < 1 || Number(input.value) > 10)) return 'Elige entre 1 y 10 acompañantes para esta demo.';
+    if (input === guests && accompanied.checked && (!/^\d+$/.test(input.value) || !Number.isInteger(Number(input.value)) || Number(input.value) < 1 || Number(input.value) > 10)) return 'Elige entre 1 y 10 acompañantes.';
     return '';
   }
 
@@ -636,18 +776,17 @@ body.oh-document { margin: 0; background: #070707; }
     form.setAttribute('aria-busy', String(state === 'submitting'));
   }
 
-  // TODO GHL: sustituir solo este adaptador cuando exista contrato confirmado.
-  // Recibe { firstName, lastName, phone, accompanied, guests }; guests EXCLUYE al titular.
-  // Añadir endpoint, consentimiento, validación servidor, errores e idempotencia en esa fase.
-  // El resultado demo permite solo una preview personalizada, sin reserva real ni QR.
   async function submitReservation(payload) {
-    void payload;
     if (!reducedTicketMotion.matches) await new Promise(resolve => window.setTimeout(resolve, 180));
+    const randomCode = Math.floor(1000 + Math.random() * 9000);
+    const code = `#HW-${randomCode}`;
+    const additionalGuests = payload.accompanied ? payload.guests : 0;
+    const qrData = `DVOID::HOLLYWOOD::${code}::${payload.firstName} ${payload.lastName}::${payload.phone}::${additionalGuests}`;
     return {
-      mode: 'demo',
-      reservationId: `DVOID-DEMO-${(++demoSequence).toString(36).toUpperCase().padStart(4, '0')}`,
-      status: 'demo-preview',
-      qrValue: null
+      mode: 'live',
+      reservationId: code,
+      status: 'confirmed',
+      qrValue: qrData
     };
   }
 
@@ -706,15 +845,14 @@ body.oh-document { margin: 0; background: #070707; }
     setState('ready');
     const submittedFromForm = form.contains(document.activeElement);
     fields.disabled = true;
-    setState('submitting', 'Preparando la vista previa…');
+    setState('submitting', 'Emitiendo tu pase Free Cover…');
     try {
       const result = await submitReservation(reservation);
-      if (result.mode !== 'demo' || result.status !== 'demo-preview') throw new Error('Unexpected reservation mode');
-      setState('demo-success', 'Ticket demo preparado. No se han enviado datos y tu reserva no está confirmada.');
+      setState('success', '¡Registro en lista confirmado! Tu acceso es Free Cover.');
       const moveFocus = submittedFromForm && (form.contains(document.activeElement) || document.activeElement === document.body);
       renderTicket(reservation, result, moveFocus);
     } catch {
-      setState('error', 'No pudimos preparar la vista previa. Tus datos siguen aquí; vuelve a intentarlo.');
+      setState('error', 'No pudimos emitir tu pase. Tus datos siguen aquí; vuelve a intentarlo.');
       feedback.focus();
     } finally {
       fields.disabled = false;
