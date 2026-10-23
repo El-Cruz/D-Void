@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#090707">
-  <meta name="description" content="La Última Noche · La Tentación Chapter II. Halloween en D-VOID, sábado 31 de octubre de 2026 desde las 21h30.">
+  <meta name="description" content="La Última Noche · La Tentación Chapter II. Halloween en D-VOID, viernes 30 y sábado 31 de octubre de 2026 desde las 21h30.">
   <title>La Última Noche · D-VOID</title>
   <style>
     @font-face { font-family: 'Bodoni Poster'; src: url('../Resources/events/2026-10-31-la-ultima-noche/assets/bodoni-moda.ttf') format('truetype'); font-weight: 400 900; font-display: swap; }
@@ -149,7 +149,7 @@
       </div>
       <div class="hero-details">
         <p class="tagline">¿Quién se<br>esconde detrás<br>de la máscara?</p>
-        <div class="event-date"><strong>Sábado<br>31 octubre</strong><time datetime="2026-10-31T21:30:00-05:00">21h30</time></div>
+        <div class="event-date"><strong>30 &amp; 31<br>Octubre</strong><time datetime="2026-10-30T21:30:00-05:00">Vie &amp; Sáb · 21h30</time></div>
         <p class="dress"><small>Dress code:</small>Disfraz +<br>antifaz<em>Ambos obligatorios</em></p>
       </div>
       <a class="button hero-cta" href="#reserva">Reserva tu lugar</a>
@@ -189,6 +189,7 @@
               <div class="field"><label for="apellido">Apellido</label><input id="apellido" name="apellido" autocomplete="family-name" required aria-describedby="error-apellido"><p class="error" id="error-apellido"></p></div>
               <div class="field"><label for="whatsapp">Celular / WhatsApp</label><input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="error-whatsapp"><p class="error" id="error-whatsapp"></p></div>
               <div class="field"><label for="correo">Correo</label><input id="correo" name="correo" type="email" autocomplete="email" required aria-describedby="error-correo"><p class="error" id="error-correo"></p></div>
+              <fieldset class="choice field-full" id="fecha-group" aria-describedby="error-fecha"><legend>Fecha de asistencia</legend><div class="choice-items"><label><input type="radio" name="fecha" value="2026-10-30" required> Viernes 30 de octubre</label><label><input type="radio" name="fecha" value="2026-10-31" required> Sábado 31 de octubre</label></div><p class="error" id="error-fecha"></p></fieldset>
               <fieldset class="choice field-full" id="categoria-group" aria-describedby="error-categoria"><legend>Categoría de entrada</legend><div class="choice-items"><label><input type="radio" name="categoria" value="mujer" required> Mujer · $7</label><label><input type="radio" name="categoria" value="hombre" required> Hombre · $10</label></div><p class="error" id="error-categoria"></p></fieldset>
               <div class="field field-full"><label for="acompanantes">Número de acompañantes</label><input id="acompanantes" name="acompanantes" type="number" inputmode="numeric" min="0" step="1" placeholder="0 si vienes sin acompañantes" required aria-describedby="error-acompanantes"><p class="error" id="error-acompanantes"></p></div>
               <fieldset class="choice field-full" id="tipo-group" aria-describedby="error-tipo"><legend>Tipo de reserva</legend><div class="choice-items"><label><input type="radio" name="tipo" value="lista" required> Lista</label><label><input type="radio" name="tipo" value="mesa" required> Mesa</label></div><p class="error" id="error-tipo"></p></fieldset>
@@ -204,7 +205,7 @@
       </div>
     </section>
   </main>
-  <footer><div class="wrap"><span>D-VOID · La Última Noche · Sábado 31 de octubre de 2026</span><a href="#inicio">Volver arriba ↑</a></div></footer>
+  <footer><div class="wrap"><span>D-VOID · La Última Noche · Viernes 30 y Sábado 31 de octubre de 2026</span><a href="#inicio">Volver arriba ↑</a></div></footer>
   <script>
     (() => {
       const form = document.getElementById('reserva-form');
@@ -229,7 +230,7 @@
         document.getElementById(name + '-group').setAttribute('aria-invalid', message ? 'true' : 'false');
       }
       fields.forEach(([id]) => document.getElementById(id).addEventListener('input', () => showError(id, '')));
-      ['categoria', 'tipo'].forEach(name => form.querySelectorAll(`input[name="${name}"]`).forEach(input => input.addEventListener('change', () => showChoiceError(name, ''))));
+      ['fecha', 'categoria', 'tipo'].forEach(name => form.querySelectorAll(`input[name="${name}"]`).forEach(input => input.addEventListener('change', () => showChoiceError(name, ''))));
 
       form.addEventListener('submit', event => {
         event.preventDefault();
@@ -244,7 +245,7 @@
           showError(id, error);
           if (error && !firstInvalid) firstInvalid = input;
         });
-        [['categoria', 'Selecciona una categoría de entrada.'], ['tipo', 'Selecciona lista o mesa.']].forEach(([name, message]) => {
+        [['fecha', 'Selecciona la fecha del evento.'], ['categoria', 'Selecciona una categoría de entrada.'], ['tipo', 'Selecciona lista o mesa.']].forEach(([name, message]) => {
           const checked = form.querySelector(`input[name="${name}"]:checked`);
           showChoiceError(name, checked ? '' : message);
           if (!checked && !firstInvalid) firstInvalid = form.querySelector(`input[name="${name}"]`);
