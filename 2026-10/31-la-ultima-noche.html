@@ -236,6 +236,13 @@
               <fieldset class="choice field-full" id="categoria-group" aria-describedby="error-categoria"><legend id="categoria-legend">Categoría de entrada · Viernes: Cover General $15</legend><div class="choice-items" id="categoria-items"><label id="opt-general"><input type="radio" name="categoria" value="general-15" checked required> Entrada General · $15</label><label id="opt-mujer" style="display:none;"><input type="radio" name="categoria" value="mujer"> Mujer · $7</label><label id="opt-hombre" style="display:none;"><input type="radio" name="categoria" value="hombre"> Hombre · $10</label></div><p class="error" id="error-categoria"></p></fieldset>
               <div class="field field-full"><label for="acompanantes">Número de acompañantes</label><input id="acompanantes" name="acompanantes" type="number" inputmode="numeric" min="0" step="1" placeholder="0 si vienes sin acompañantes" required aria-describedby="error-acompanantes"><p class="error" id="error-acompanantes"></p></div>
               <fieldset class="choice field-full" id="tipo-group" aria-describedby="error-tipo"><legend>Tipo de reserva</legend><div class="choice-items"><label><input type="radio" name="tipo" value="lista" required> Lista</label><label><input type="radio" name="tipo" value="mesa" required> Mesa</label></div><p class="error" id="error-tipo"></p></fieldset>
+              <div class="field field-full price-box" id="price-box" style="margin-top:4px; padding:16px 20px; background:#140e0e; border:2px solid var(--red); display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <span style="display:block; font:400 0.95rem/1.2 var(--display); text-transform:uppercase; color:var(--muted); letter-spacing:.05em;">Total estimado (<span id="total-asistentes-text">1 asistente</span>)</span>
+                  <small id="price-formula" style="display:block; color:var(--muted); font-size:0.82rem; margin-top:3px;">1 entrada × $15</small>
+                </div>
+                <div style="font:400 clamp(1.8rem, 4vw, 2.5rem)/1 var(--display); color:var(--red); text-align:right;" id="price-total">$15</div>
+              </div>
             </div>
             <button class="button form-submit" type="submit" disabled>Ver vista previa de solicitud</button>
             <p class="form-note">No se enviarán datos ni se generará una entrada o código QR.</p>
@@ -278,6 +285,37 @@
       const optMujer = document.getElementById('opt-mujer');
       const optHombre = document.getElementById('opt-hombre');
       const catLegend = document.getElementById('categoria-legend');
+      const acompInput = document.getElementById('acompanantes');
+      const totalAsistentesEl = document.getElementById('total-asistentes-text');
+      const priceFormulaEl = document.getElementById('price-formula');
+      const priceTotalEl = document.getElementById('price-total');
+
+      function calculateTotal() {
+        const catInput = form.querySelector('input[name="categoria"]:checked');
+        const catVal = catInput ? catInput.value : 'general-15';
+        const unitPrice = catVal === 'general-15' ? 15 : (catVal === 'mujer' ? 7 : 10);
+        
+        const rawAcomp = parseInt(acompInput.value, 10);
+        const acomp = (!isNaN(rawAcomp) && rawAcomp >= 0) ? rawAcomp : 0;
+        const totalPersons = 1 + acomp;
+
+        const freePasses = Math.floor(totalPersons / 6);
+        const payablePersons = totalPersons - freePasses;
+        const totalAmount = payablePersons * unitPrice;
+
+        totalAsistentesEl.textContent = totalPersons + (totalPersons === 1 ? ' asistente' : ' asistentes');
+        
+        if (freePasses > 0) {
+          priceFormulaEl.textContent = `${totalPersons} asistentes (${payablePersons} pagados + ${freePasses} Free Cover 5+1) × $${unitPrice}`;
+        } else {
+          priceFormulaEl.textContent = `${totalPersons} ${totalPersons === 1 ? 'entrada' : 'entradas'} × $${unitPrice}`;
+        }
+
+        priceTotalEl.textContent = '$' + totalAmount;
+        return { totalPersons, unitPrice, totalAmount, freePasses };
+      }
+
+      acompInput.addEventListener('input', calculateTotal);
 
       function updateCategoryForDate(dateVal) {
         if (dateVal === '2026-10-30') {
@@ -296,13 +334,17 @@
           catLegend.textContent = 'Categoría de entrada · Sábado: Mujeres $7 / Hombres $10';
         }
         showChoiceError('categoria', '');
+        calculateTotal();
       }
 
       form.querySelectorAll('input[name="fecha"]').forEach(input => {
         input.addEventListener('change', () => updateCategoryForDate(input.value));
       });
 
-      ['fecha', 'categoria', 'tipo'].forEach(name => form.querySelectorAll(`input[name="${name}"]`).forEach(input => input.addEventListener('change', () => showChoiceError(name, ''))));
+      ['fecha', 'categoria', 'tipo'].forEach(name => form.querySelectorAll(`input[name="${name}"]`).forEach(input => input.addEventListener('change', () => {
+        showChoiceError(name, '');
+        if (name === 'categoria') calculateTotal();
+      })));
 
       form.addEventListener('submit', event => {
         event.preventDefault();
@@ -328,7 +370,8 @@
         const catLabel = selCat === 'general-15' ? 'Entrada General · $15' : (selCat === 'mujer' ? 'Mujer · $7' : 'Hombre · $10');
         const fechaLabel = selFecha === '2026-10-30' ? 'Viernes 30 de Octubre (Noche I) · Premios: 1 Viaje, 1 año cover gratis, $200 Beauty Color' : 'Sábado 31 de Octubre (Noche II) · Premio: 1 año cover gratis';
         const detailsEl = document.getElementById('result-event-details');
-        if (detailsEl) detailsEl.textContent = 'Selección: ' + fechaLabel + ' | Tarifa: ' + catLabel;
+        const calc = calculateTotal();
+        if (detailsEl) detailsEl.textContent = 'Selección: ' + fechaLabel + ' | Tarifa: ' + catLabel + ' | Total calculado: $' + calc.totalAmount + ' (' + calc.totalPersons + ' asistentes)';
         result.hidden = false;
         result.focus();
       });
