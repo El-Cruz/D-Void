@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#D90429">
-  <title>AFTER DARK · Inicio de la Semana del Terror · D-VOID</title>
-  <meta name="description" content="AFTER DARK: Inicio de la Semana del Terror en D-VOID. Miércoles 28 de Octubre de 2026. Todo empieza después de oscurecer. Registro y Lista VIP Oficial.">
+  <title>AFTER DARK I &amp; II · Semana del Terror · D-VOID</title>
+  <meta name="description" content="AFTER DARK I &amp; II: Semana del Terror en D-VOID. Miércoles 28 y Jueves 29 de Octubre de 2026. Cover $15 y grandes premios cada noche. Registro y Lista VIP Oficial.">
 
   <!-- Google Fonts: Cinzel & Playfair Display (Serif Dramática Editorial) + Inter & Space Mono (UI Técnica & Datos) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -424,6 +424,26 @@
       max-width: 900px;
     }
 
+    .promo-badges-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .promo-badge-tag {
+      font-family: var(--font-mono);
+      font-size: clamp(10.5px, 2.4vw, 12.5px);
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      background: #000000;
+      color: var(--bone);
+      border: 1px solid rgba(0, 0, 0, 0.5);
+    }
+
     /* ── 3. SECTION: SELECTOR MONOLÍTICO INTERACTIVO ── */
     .selector-section {
       width: 100%;
@@ -773,6 +793,81 @@
       text-transform: uppercase;
       margin-top: 6px;
       display: none;
+    }
+
+    /* Selector de Fecha del Evento */
+    .date-section {
+      background-color: #0f0f0f;
+      border: 1px solid var(--border-gray);
+      padding: 18px 16px;
+      margin-top: 6px;
+    }
+
+    .date-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bone);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .date-toggle-group {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 600px) {
+      .date-toggle-group {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .date-btn {
+      background-color: #181818;
+      border: 1px solid #333333;
+      color: var(--text-silver);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 12px 10px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+      min-height: 52px;
+      text-align: center;
+    }
+
+    .date-btn small {
+      font-size: 9.5px;
+      opacity: 0.85;
+      letter-spacing: 0.08em;
+      font-family: var(--font-ui);
+    }
+
+    .date-btn.is-active {
+      background-color: var(--blood-red);
+      border-color: var(--blood-red);
+      color: #000000;
+      font-weight: 800;
+    }
+
+    .date-btn.is-active small {
+      color: #1a0000;
+      font-weight: 700;
+    }
+
+    .date-btn:active {
+      transform: scale(0.97);
     }
 
     /* Selector de Acompañantes */
@@ -1238,7 +1333,7 @@
         >
       </a>
       <div class="hero-event-tag">
-        MIÉRCOLES 28 DE OCTUBRE · OPEN DOORS 21H00 · <span class="tag-accent">+21</span>
+        MIÉRCOLES 28 &amp; JUEVES 29 DE OCTUBRE · OPEN DOORS 21H00 · <span class="tag-accent">+21</span>
       </div>
     </div>
 
@@ -1257,7 +1352,7 @@
 
       <!-- Titular de Gran Escala "After Dark" en Serif Dramática con Relieve -->
       <div class="hero-title-container">
-        <span class="hero-kicker-small">INICIO DE LA SEMANA DEL TERROR</span>
+        <span class="hero-kicker-small">SEMANA DEL TERROR · AFTER DARK I &amp; II</span>
         <h1 class="hero-title-massive">AFTER DARK</h1>
         <p class="hero-tagline-subtle">"Todo empieza después de oscurecer"</p>
       </div>
@@ -1276,20 +1371,29 @@
   <section class="stacking-section" id="promociones" aria-label="Promociones y Condiciones After Dark">
     <!-- Fila 1: 2X1 EN BOTELLAS & CÓCTELES DE LA CASA -->
     <div class="stacking-row">
-      <span class="stacking-kicker">BARRA LIBRE & PROMOCIÓN EXCLUSIVA</span>
-      <h2 class="stacking-title-white">2X1 EN BOTELLAS & CÓCTELES DE LA CASA</h2>
+      <span class="stacking-kicker">SEMANA DEL TERROR · COVER GENERAL $15</span>
+      <h2 class="stacking-title-white">COVER $15 CADA NOCHE · ACCESO &amp; DERECHO A PREMIOS</h2>
     </div>
 
     <!-- Fila 2: MUJERES EN LISTA: NO COVER HASTA LAS 23H00 -->
     <div class="stacking-row">
-      <span class="stacking-kicker">BENEFICIO FEMENINO EN LISTA</span>
-      <h2 class="stacking-title-red">MUJERES EN LISTA: NO COVER HASTA LAS 23H00</h2>
+      <span class="stacking-kicker">MIÉRCOLES 28 OCT · AFTER DARK I · COVER $15</span>
+      <h2 class="stacking-title-red">PREMIO DE LA NOCHE: $200 EN THE BEAUTY COLOR</h2>
+      <div class="promo-badges-wrap">
+        <span class="promo-badge-tag">[ ✦ PREMIO MIÉRCOLES: $200 CONSUMO EN THE BEAUTY COLOR ]</span>
+      </div>
     </div>
 
     <!-- Fila 3: HOMBRES EN LISTA: COVER $10 (TARIFA PREFERENCIAL) -->
     <div class="stacking-row stacking-row-highlight">
-      <span class="stacking-kicker">INGRESO PREFERENCIAL CABALLEROS</span>
-      <h2 class="stacking-title-black">HOMBRES EN LISTA: COVER $10 (TARIFA PREFERENCIAL)</h2>
+      <span class="stacking-kicker">JUEVES 29 OCT · AFTER DARK II · COVER $15 · GRANDES PREMIOS</span>
+      <h2 class="stacking-title-black">MOTO ELÉCTRICA · NOCHE EN YUA GLAMPING (2 PERS.) · $300 CONSUMO · $200 BEAUTY COLOR</h2>
+      <div class="promo-badges-wrap">
+        <span class="promo-badge-tag">[ ✦ MOTO ELÉCTRICA ]</span>
+        <span class="promo-badge-tag">[ ✦ GLAMPING 2P EN YUA ]</span>
+        <span class="promo-badge-tag">[ ✦ $300 CONSUMO EN D-VOID ]</span>
+        <span class="promo-badge-tag">[ ✦ $200 EN THE BEAUTY COLOR ]</span>
+      </div>
     </div>
   </section>
 
@@ -1325,7 +1429,7 @@
           </div>
           <div>
             <h3 class="card-title">LISTA GENERAL VIP</h3>
-            <p class="card-specs">Acceso individual o grupo · Free ellas hasta 23h00 · Hombres $10</p>
+            <p class="card-specs">Acceso individual o grupo · Cover $15 · Participación en premios</p>
             <p class="card-desc">
               Ingreso preferencial en lista digital. Acceso directo a pista, barras principales y aplicación de promociones 2x1 en cócteles.
             </p>
@@ -1449,6 +1553,36 @@
             <span class="field-error" id="err-email">INGRESA UN CORREO VÁLIDO</span>
           </div>
 
+          <!-- Selector de Fecha del Evento -->
+          <div class="date-section">
+            <span class="date-label">FECHA DE ASISTENCIA · AFTER DARK</span>
+            <div class="date-toggle-group" role="radiogroup" aria-label="Fecha de asistencia">
+              <button 
+                type="button" 
+                class="date-btn is-active" 
+                id="btnFecha28" 
+                role="radio"
+                aria-checked="true"
+                aria-pressed="true"
+              >
+                <strong>MIÉRCOLES 28 OCT</strong>
+                <small>AFTER DARK I · PREMIO $200 BEAUTY COLOR · $15 COVER</small>
+              </button>
+              <button 
+                type="button" 
+                class="date-btn" 
+                id="btnFecha29" 
+                role="radio"
+                aria-checked="false"
+                aria-pressed="false"
+              >
+                <strong>JUEVES 29 OCT</strong>
+                <small>AFTER DARK II · MOTO ELÉCTRICA &amp; GLAMPING · $15 COVER</small>
+              </button>
+            </div>
+            <input type="hidden" name="fecha_evento" id="fechaHiddenInput" value="2026-10-28">
+          </div>
+
           <!-- Selector "¿Vienes acompañado?" -->
           <div class="companion-section">
             <span class="companion-label">¿VIENES ACOMPAÑADO?</span>
@@ -1513,7 +1647,15 @@
             </div>
             <div class="ticket-summary-row">
               <span class="ticket-row-label">FECHA:</span>
-              <span class="ticket-row-value">MIÉRCOLES 28 DE OCTUBRE · 21H00</span>
+              <span class="ticket-row-value" id="ticketDate">MIÉRCOLES 28 DE OCTUBRE · 21H00</span>
+            </div>
+            <div class="ticket-summary-row">
+              <span class="ticket-row-label">COVER:</span>
+              <span class="ticket-row-value">$15 (PAGO EN PUERTA)</span>
+            </div>
+            <div class="ticket-summary-row">
+              <span class="ticket-row-label">PREMIOS EN JUEGO:</span>
+              <span class="ticket-row-value accent-modality" id="ticketPrizes">$200 EN THE BEAUTY COLOR</span>
             </div>
             <div class="ticket-summary-row">
               <span class="ticket-row-label">MODALIDAD:</span>
@@ -1578,12 +1720,20 @@
 
       // Estado de la aplicación
       var state = {
+        fecha: '2026-10-28',
+        fechaTexto: 'MIÉRCOLES 28 DE OCTUBRE · 21H00',
+        premiosTexto: '$200 EN THE BEAUTY COLOR',
         modalidad: 'LISTA GENERAL VIP',
         isGrupal: false,
         acompanantes: 1
       };
 
       // Elementos DOM
+      var btnFecha28 = document.getElementById('btnFecha28');
+      var btnFecha29 = document.getElementById('btnFecha29');
+      var fechaHiddenInput = document.getElementById('fechaHiddenInput');
+      var ticketDate = document.getElementById('ticketDate');
+      var ticketPrizes = document.getElementById('ticketPrizes');
       var cardLista = document.getElementById('cardLista');
       var cardMesa = document.getElementById('cardMesa');
       var badgeLista = document.getElementById('badgeLista');
@@ -1617,6 +1767,44 @@
         { id: 'whatsapp', errId: 'err-whatsapp', validate: function(val) { return val.trim().replace(/\D/g, '').length >= 7; } },
         { id: 'email', errId: 'err-email', validate: function(val) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim()); } }
       ];
+
+      // Selector de Fecha (Miércoles 28 vs Jueves 29)
+      function setFecha(fechaVal) {
+        state.fecha = fechaVal;
+        if (fechaHiddenInput) fechaHiddenInput.value = fechaVal;
+        if (fechaVal === '2026-10-28') {
+          if (btnFecha28) {
+            btnFecha28.classList.add('is-active');
+            btnFecha28.setAttribute('aria-checked', 'true');
+            btnFecha28.setAttribute('aria-pressed', 'true');
+          }
+          if (btnFecha29) {
+            btnFecha29.classList.remove('is-active');
+            btnFecha29.setAttribute('aria-checked', 'false');
+            btnFecha29.setAttribute('aria-pressed', 'false');
+          }
+          state.fechaTexto = 'MIÉRCOLES 28 DE OCTUBRE · 21H00';
+          state.premiosTexto = '$200 EN THE BEAUTY COLOR';
+        } else {
+          if (btnFecha29) {
+            btnFecha29.classList.add('is-active');
+            btnFecha29.setAttribute('aria-checked', 'true');
+            btnFecha29.setAttribute('aria-pressed', 'true');
+          }
+          if (btnFecha28) {
+            btnFecha28.classList.remove('is-active');
+            btnFecha28.setAttribute('aria-checked', 'false');
+            btnFecha28.setAttribute('aria-pressed', 'false');
+          }
+          state.fechaTexto = 'JUEVES 29 DE OCTUBRE · 21H00';
+          state.premiosTexto = 'MOTO ELÉCTRICA · GLAMPING YUA (2P) · $300 CONSUMO · $200 BEAUTY COLOR';
+        }
+      }
+
+      if (btnFecha28 && btnFecha29) {
+        btnFecha28.addEventListener('click', function() { setFecha('2026-10-28'); });
+        btnFecha29.addEventListener('click', function() { setFecha('2026-10-29'); });
+      }
 
       // Sincronizar Modalidad (Lista vs Mesa)
       function setModality(modalityName, shouldScroll) {
@@ -1859,6 +2047,8 @@
             totalPassesText = total + ' PASES (TITULAR + ' + state.acompanantes + ' ACOMPAÑANTES)';
           }
           if (ticketTotalPasses) ticketTotalPasses.textContent = totalPassesText;
+          if (ticketDate) ticketDate.textContent = state.fechaTexto;
+          if (ticketPrizes) ticketPrizes.textContent = state.premiosTexto;
 
           // Renderizar QR
           if (ticketQrFrame) {
@@ -1890,6 +2080,7 @@
         btnNewReg.addEventListener('click', function() {
           form.reset();
           updateCompanionState(false);
+          setFecha('2026-10-28');
           setModality('LISTA GENERAL VIP', false);
           ticketSuccess.classList.remove('visible');
           ticketSuccess.style.display = 'none';

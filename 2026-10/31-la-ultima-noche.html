@@ -50,6 +50,8 @@
     .cover h2 { margin:0; color:var(--red); font:400 1.2rem var(--display); text-transform:uppercase; }
     .cover p { margin:0; font:400 clamp(1.8rem,4vw,3.2rem)/1 var(--display); text-transform:uppercase; }
     .cover b { color:var(--red); font-weight:400; }
+    .cover-item { display:flex; flex-direction:column; gap:3px; }
+    .cover-day-tag { font:400 0.95rem/1.2 var(--display); color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
     .manifesto { padding:90px 0 70px; }
     .manifesto h2 { margin:0; max-width:950px; font-size:clamp(3.3rem,7.3vw,6.5rem); }
     .manifesto h2 span { color:var(--red); }
@@ -67,6 +69,11 @@
     .prize .wrap { display:flex; align-items:center; justify-content:space-between; gap:35px; }
     .prize .eyebrow { color:var(--black); } .prize h2 { margin:0; }
     .prize p:last-child { max-width:260px; font-size:.9rem; }
+    .prize-nights-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; flex:1; max-width:680px; }
+    .prize-night-card { background:#090707; color:var(--bone); padding:20px 22px; border:2px solid #000; box-shadow:4px 4px 0 #000; }
+    .prize-night-kicker { display:block; font:400 1.05rem/1.2 var(--display); color:var(--red); text-transform:uppercase; margin-bottom:10px; }
+    .prize-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
+    .prize-list li { font:400 clamp(1.05rem, 2.2vw, 1.35rem)/1.2 var(--display); text-transform:uppercase; color:var(--bone); }
     .booking { padding:85px 0; }
     .booking-grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:70px; align-items:start; }
     .section-title { margin:0 0 24px; }
@@ -106,6 +113,7 @@
       .event-date { padding-inline:12px; }
       .booking-grid { grid-template-columns:1fr; gap:28px; }
       .booking-intro { position:static; } .booking-intro p:not(.eyebrow) { max-width:none; }
+      .prize .wrap { flex-direction:column; align-items:flex-start; } .prize-nights-grid { grid-template-columns:1fr; width:100%; }
       .promo-grid { gap:24px; } .promo { display:block; } .promo p { margin-top:15px; }
     }
     @media(max-width:480px) {
@@ -145,7 +153,7 @@
     <div class="hero-copy">
       <div class="title-lockup">
         <h1><span class="first">La última</span><span class="last">noche</span></h1>
-        <p class="chapter">La Tentación · Chapter II</p>
+        <p class="chapter">La Tentación · Chapters I &amp; II</p>
       </div>
       <div class="hero-details">
         <p class="tagline">¿Quién se<br>esconde detrás<br>de la máscara?</p>
@@ -157,7 +165,19 @@
     </div>
   </header>
   <main id="contenido">
-    <section class="cover" aria-labelledby="cover-title"><div class="wrap"><h2 id="cover-title">Cover</h2><p>Mujeres <b>$7</b></p><p>Hombres <b>$10</b></p></div></section>
+    <section class="cover" aria-labelledby="cover-title">
+      <div class="wrap">
+        <h2 id="cover-title">Cover</h2>
+        <div class="cover-item">
+          <span class="cover-day-tag">Viernes 30 · Noche I</span>
+          <p>General <b>$15</b></p>
+        </div>
+        <div class="cover-item">
+          <span class="cover-day-tag">Sábado 31 · Noche II</span>
+          <p>Mujeres <b>$7</b> · Hombres <b>$10</b></p>
+        </div>
+      </div>
+    </section>
     <section class="manifesto wrap" aria-labelledby="concepto-title">
       <h2 class="display" id="concepto-title">¿Quién se esconde<br>detrás de <span>la máscara?</span></h2>
       <div class="manifesto-bottom"><p>Elige tu disfraz. Oculta tu identidad. La Tentación continúa este Halloween en D-VOID.</p><strong>Disfraz + antifaz<br>obligatorios.</strong></div>
@@ -170,7 +190,30 @@
       </div>
       <p class="terms">Aplican términos y condiciones. Detalles pendientes de publicación.</p>
     </section>
-    <section class="prize" aria-labelledby="premio-title"><div class="wrap"><div><p class="eyebrow">El premio</p><h2 class="display" id="premio-title">Free Cover<br>durante todo un año.</h2></div><p>La mecánica y las condiciones del premio se comunicarán por los canales oficiales de D-VOID.</p></div></section>
+    <section class="prize" aria-labelledby="premio-title">
+      <div class="wrap">
+        <div>
+          <p class="eyebrow">Grandes Premios</p>
+          <h2 class="display" id="premio-title">Premios oficiales<br>por noche</h2>
+        </div>
+        <div class="prize-nights-grid">
+          <div class="prize-night-card">
+            <span class="prize-night-kicker">Viernes 30 · Noche I ($15 Cover)</span>
+            <ul class="prize-list">
+              <li>✦ 1 Viaje</li>
+              <li>✦ 1 Año de cover gratis</li>
+              <li>✦ $200 en consumo Beauty Color</li>
+            </ul>
+          </div>
+          <div class="prize-night-card">
+            <span class="prize-night-kicker">Sábado 31 · Noche II ($7M / $10H)</span>
+            <ul class="prize-list">
+              <li>✦ 1 Año de cover gratis</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="booking section-pad" id="reserva" aria-labelledby="reserva-title">
       <div class="wrap booking-grid">
@@ -189,8 +232,8 @@
               <div class="field"><label for="apellido">Apellido</label><input id="apellido" name="apellido" autocomplete="family-name" required aria-describedby="error-apellido"><p class="error" id="error-apellido"></p></div>
               <div class="field"><label for="whatsapp">Celular / WhatsApp</label><input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="error-whatsapp"><p class="error" id="error-whatsapp"></p></div>
               <div class="field"><label for="correo">Correo</label><input id="correo" name="correo" type="email" autocomplete="email" required aria-describedby="error-correo"><p class="error" id="error-correo"></p></div>
-              <fieldset class="choice field-full" id="fecha-group" aria-describedby="error-fecha"><legend>Fecha de asistencia</legend><div class="choice-items"><label><input type="radio" name="fecha" value="2026-10-30" required> Viernes 30 de octubre</label><label><input type="radio" name="fecha" value="2026-10-31" required> Sábado 31 de octubre</label></div><p class="error" id="error-fecha"></p></fieldset>
-              <fieldset class="choice field-full" id="categoria-group" aria-describedby="error-categoria"><legend>Categoría de entrada</legend><div class="choice-items"><label><input type="radio" name="categoria" value="mujer" required> Mujer · $7</label><label><input type="radio" name="categoria" value="hombre" required> Hombre · $10</label></div><p class="error" id="error-categoria"></p></fieldset>
+              <fieldset class="choice field-full" id="fecha-group" aria-describedby="error-fecha"><legend>Fecha de asistencia</legend><div class="choice-items"><label><input type="radio" name="fecha" value="2026-10-30" checked required> Viernes 30 de octubre (Noche I · $15 Cover)</label><label><input type="radio" name="fecha" value="2026-10-31" required> Sábado 31 de octubre (Noche II · $7M / $10H)</label></div><p class="error" id="error-fecha"></p></fieldset>
+              <fieldset class="choice field-full" id="categoria-group" aria-describedby="error-categoria"><legend id="categoria-legend">Categoría de entrada · Viernes: Cover General $15</legend><div class="choice-items" id="categoria-items"><label id="opt-general"><input type="radio" name="categoria" value="general-15" checked required> Entrada General · $15</label><label id="opt-mujer" style="display:none;"><input type="radio" name="categoria" value="mujer"> Mujer · $7</label><label id="opt-hombre" style="display:none;"><input type="radio" name="categoria" value="hombre"> Hombre · $10</label></div><p class="error" id="error-categoria"></p></fieldset>
               <div class="field field-full"><label for="acompanantes">Número de acompañantes</label><input id="acompanantes" name="acompanantes" type="number" inputmode="numeric" min="0" step="1" placeholder="0 si vienes sin acompañantes" required aria-describedby="error-acompanantes"><p class="error" id="error-acompanantes"></p></div>
               <fieldset class="choice field-full" id="tipo-group" aria-describedby="error-tipo"><legend>Tipo de reserva</legend><div class="choice-items"><label><input type="radio" name="tipo" value="lista" required> Lista</label><label><input type="radio" name="tipo" value="mesa" required> Mesa</label></div><p class="error" id="error-tipo"></p></fieldset>
             </div>
@@ -200,6 +243,7 @@
           <div class="result" id="resultado" role="status" tabindex="-1" hidden>
             <h4>Vista previa completada</h4>
             <p>El formulario pasó la validación local. No se envió ninguna solicitud y tu reserva no está confirmada.</p>
+            <p id="result-event-details" style="margin-top:8px; font-weight:bold; color:var(--red);"></p>
           </div>
         </div>
       </div>
@@ -230,6 +274,34 @@
         document.getElementById(name + '-group').setAttribute('aria-invalid', message ? 'true' : 'false');
       }
       fields.forEach(([id]) => document.getElementById(id).addEventListener('input', () => showError(id, '')));
+      const optGeneral = document.getElementById('opt-general');
+      const optMujer = document.getElementById('opt-mujer');
+      const optHombre = document.getElementById('opt-hombre');
+      const catLegend = document.getElementById('categoria-legend');
+
+      function updateCategoryForDate(dateVal) {
+        if (dateVal === '2026-10-30') {
+          optGeneral.style.display = 'inline-flex';
+          optMujer.style.display = 'none';
+          optHombre.style.display = 'none';
+          optGeneral.querySelector('input').checked = true;
+          optMujer.querySelector('input').checked = false;
+          optHombre.querySelector('input').checked = false;
+          catLegend.textContent = 'Categoría de entrada · Viernes: Cover General $15';
+        } else {
+          optGeneral.style.display = 'none';
+          optMujer.style.display = 'inline-flex';
+          optHombre.style.display = 'inline-flex';
+          optGeneral.querySelector('input').checked = false;
+          catLegend.textContent = 'Categoría de entrada · Sábado: Mujeres $7 / Hombres $10';
+        }
+        showChoiceError('categoria', '');
+      }
+
+      form.querySelectorAll('input[name="fecha"]').forEach(input => {
+        input.addEventListener('change', () => updateCategoryForDate(input.value));
+      });
+
       ['fecha', 'categoria', 'tipo'].forEach(name => form.querySelectorAll(`input[name="${name}"]`).forEach(input => input.addEventListener('change', () => showChoiceError(name, ''))));
 
       form.addEventListener('submit', event => {
@@ -251,6 +323,12 @@
           if (!checked && !firstInvalid) firstInvalid = form.querySelector(`input[name="${name}"]`);
         });
         if (firstInvalid) { firstInvalid.focus(); return; }
+        const selFecha = form.querySelector('input[name="fecha"]:checked')?.value;
+        const selCat = form.querySelector('input[name="categoria"]:checked')?.value;
+        const catLabel = selCat === 'general-15' ? 'Entrada General · $15' : (selCat === 'mujer' ? 'Mujer · $7' : 'Hombre · $10');
+        const fechaLabel = selFecha === '2026-10-30' ? 'Viernes 30 de Octubre (Noche I) · Premios: 1 Viaje, 1 año cover gratis, $200 Beauty Color' : 'Sábado 31 de Octubre (Noche II) · Premio: 1 año cover gratis';
+        const detailsEl = document.getElementById('result-event-details');
+        if (detailsEl) detailsEl.textContent = 'Selección: ' + fechaLabel + ' | Tarifa: ' + catLabel;
         result.hidden = false;
         result.focus();
       });
