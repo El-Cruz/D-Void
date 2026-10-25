@@ -7,6 +7,9 @@
   "rewrites": [
     { "source": "/criminix", "destination": "/2026-11/07-criminix.html" },
     { "source": "/criminix.html", "destination": "/2026-11/07-criminix.html" },
+    { "source": "/padre-guilherme", "destination": "/2026-11/12-padre-guilherme.html" },
+    { "source": "/padre-guilherme.html", "destination": "/2026-11/12-padre-guilherme.html" },
+    { "source": "/countdown-party", "destination": "/2026-11/12-padre-guilherme.html" },
     { "source": "/hollywood-never-dies", "destination": "/2026-10/22-hollywood-never-dies.html" },
     { "source": "/", "destination": "/index.html" },
     { "source": "/medicine", "destination": "/2026-10/08-medicine.html" },
@@ -20,8 +23,6 @@
     { "source": "/la-ultima-noche", "destination": "/2026-10/31-la-ultima-noche.html" },
     { "source": "/la-tentacion", "destination": "/2026-10/01-la-tentacion.html" },
     { "source": "/after-dark", "destination": "/2026-10/28-after-dark.html" },
-    { "source": "/after-dark.html", "destination": "/2026-10/28-after-dark.html" },
-    { "source": "/padre-guilherme", "destination": "/Resources/events/2026-11-12-padre-guilherme/index.html" },
-    { "source": "/padre-guilherme.html", "destination": "/Resources/events/2026-11-12-padre-guilherme/index.html" }
+    { "source": "/after-dark.html", "destination": "/2026-10/28-after-dark.html" }
   ]
 }
