@@ -20,6 +20,8 @@
     { "source": "/la-ultima-noche", "destination": "/2026-10/31-la-ultima-noche.html" },
     { "source": "/la-tentacion", "destination": "/2026-10/01-la-tentacion.html" },
     { "source": "/after-dark", "destination": "/2026-10/28-after-dark.html" },
-    { "source": "/after-dark.html", "destination": "/2026-10/28-after-dark.html" }
+    { "source": "/after-dark.html", "destination": "/2026-10/28-after-dark.html" },
+    { "source": "/padre-guilherme", "destination": "/Resources/events/2026-11-12-padre-guilherme/index.html" },
+    { "source": "/padre-guilherme.html", "destination": "/Resources/events/2026-11-12-padre-guilherme/index.html" }
   ]
 }

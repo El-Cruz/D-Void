@@ -1,0 +1,54 @@
+/* DJ Padre Guilherme – Pre-Party · 12 Nov 2026
+   Design tokens. Rojo confinado a errores de formulario (el club ya satura #D90429 en otros eventos). */
+:root {
+  /* Color */
+  --pg-black:       #080808;                 /* negro mate base */
+  --pg-chalk:       #F4F4F0;                 /* blanco tiza */
+  --pg-ink-1:       #121212;                 /* superficie elevada */
+  --pg-ink-2:       #1C1C1A;                 /* cards / bordes */
+  --pg-chalk-72:    rgb(244 244 240 / .72);  /* texto secundario */
+  --pg-chalk-40:    rgb(244 244 240 / .40);  /* meta, deshabilitado */
+  --pg-line:        rgb(244 244 240 / .12);  /* divisores 1px */
+  --pg-amber:       #C98A2B;                 /* acento lumínico litúrgico, <=5% de la superficie */
+  --pg-amber-glow:  rgb(201 138 43 / .14);   /* luz cenital */
+  --pg-error:       #D90429;                 /* SOLO estados de error en formularios */
+
+  /* Tipografía */
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --fw-display: 800;
+  --fw-display-sub: 700;
+  --fw-mono: 400;
+  --fw-mono-strong: 700;
+
+  /* Escala */
+  --fs-hero: clamp(3rem, 9vw, 8rem);
+  --fs-h2:   clamp(1.75rem, 4vw, 3rem);
+  --fs-body: 1rem;
+  --fs-mono: .75rem;
+  --ls-display: -.02em;
+  --ls-mono: .12em;
+
+  /* Espaciado / forma */
+  --space-1: .5rem;
+  --space-2: 1rem;
+  --space-3: 2rem;
+  --space-4: 4rem;
+  --space-5: 8rem;
+  --radius: 0;
+  --hairline: 1px solid var(--pg-line);
+}
+
+/* Luz cenital sutil */
+.pg-hero {
+  background:
+    radial-gradient(60% 40% at 50% 0%, var(--pg-amber-glow), transparent 70%),
+    var(--pg-black);
+  color: var(--pg-chalk);
+}
+
+/* Fotos de referencia: monocromo, sin neón */
+.pg-photo-treatment {
+  filter: grayscale(100%) contrast(125%) brightness(85%);
+  mix-blend-mode: luminosity;
+}
