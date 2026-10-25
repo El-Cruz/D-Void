@@ -1,0 +1,1699 @@
+/* ── RESET BRUTALISTA & BASE ARQUITECTÓNICA ── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border-radius: var(--radius) !important;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      background-color: var(--pg-black);
+      color: var(--pg-chalk);
+      font-family: var(--font-mono);
+      font-size: 16px;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      background-color: var(--pg-black);
+      color: var(--pg-chalk);
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      line-height: 1.4;
+      padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ::selection {
+      background: var(--pg-amber);
+      color: var(--pg-black);
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--pg-black);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--pg-ink-2);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--pg-amber);
+    }
+
+    /* ── HERO & ATMÓSFERA: SIMETRÍA AXIAL SACRO-INDUSTRIAL ── */
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
+      width: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      background-color: var(--pg-black);
+      background-image:
+        radial-gradient(52% 44% at 50% 0%, var(--pg-amber-glow), transparent 72%),
+        radial-gradient(38% 36% at 50% 46%, rgb(201 138 43 / .06), transparent 70%);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    /* Textura tenue + retícula litúrgica y eje central vertical */
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background-image:
+        linear-gradient(to right, transparent calc(50% - 0.5px), rgb(201 138 43 / .14) calc(50% - 0.5px), rgb(201 138 43 / .14) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+        linear-gradient(to right, rgb(244 244 240 / .025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgb(244 244 240 / .025) 1px, transparent 1px);
+      background-size: 100% 100%, 72px 72px, 72px 72px;
+      background-position: center top;
+      mask-image: radial-gradient(ellipse 85% 80% at 50% 45%, #000 35%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 85% 80% at 50% 45%, #000 35%, transparent 100%);
+    }
+
+    /* Haz cenital catedralicio y grano sutil */
+    .hero-section::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        conic-gradient(from 162deg at 50% -8%, transparent 0deg, rgb(201 138 43 / .08) 18deg, transparent 36deg),
+        repeating-linear-gradient(0deg, rgb(244 244 240 / .012) 0px, rgb(244 244 240 / .012) 1px, transparent 1px, transparent 3px);
+    }
+
+    /* ── 1. BARRA DE ESTADO SUPERIOR (MONOSPACE) ── */
+    .status-bar {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      border-bottom: var(--hairline);
+      background: rgb(8 8 8 / .84);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 0.75rem clamp(1rem, 3vw, 2.5rem);
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: clamp(0.68rem, 0.8vw, 0.75rem);
+      letter-spacing: var(--ls-mono);
+      text-transform: uppercase;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .status-bar__left {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      justify-self: start;
+      color: var(--pg-chalk);
+      font-weight: var(--fw-mono);
+      white-space: nowrap;
+    }
+
+    .status-bar__dvoid-logo {
+      height: 18px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      /* LOGO DVOID.png trae trazos blancos sobre fondo negro; screen funde el negro con #080808 */
+      mix-blend-mode: screen;
+      opacity: 0.92;
+    }
+
+    .status-bar__sep {
+      color: var(--pg-chalk-40);
+    }
+
+    .status-bar__center {
+      justify-self: center;
+      color: var(--pg-chalk-72);
+      font-weight: var(--fw-mono);
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .status-bar__center::before,
+    .status-bar__center::after {
+      content: "";
+      width: 16px;
+      height: 1px;
+      background: var(--pg-line);
+    }
+
+    .status-bar__right {
+      justify-self: end;
+    }
+
+    .liturgical-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.3rem 0.65rem;
+      border: 1px solid rgb(201 138 43 / .45);
+      background: rgb(201 138 43 / .06);
+      color: var(--pg-amber);
+      font-weight: var(--fw-mono-strong);
+      letter-spacing: 0.14em;
+      white-space: nowrap;
+    }
+
+    .liturgical-badge__dot {
+      width: 6px;
+      height: 6px;
+      background-color: var(--pg-amber);
+      display: inline-block;
+      animation: pulse-amber 2.4s ease-in-out infinite;
+      will-change: opacity, transform;
+    }
+
+    @keyframes pulse-amber {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.82); }
+    }
+
+    /* ── 2. IDENTIDAD CENTRAL (FOCO AXIAL) ── */
+    .hero-stage {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: clamp(2rem, 5vh, 4rem) clamp(1.25rem, 4vw, 3rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: clamp(1.5rem, 3.2vh, 2.5rem);
+    }
+
+    /* Cruz/nexo axial superior */
+    .axial-crest {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--pg-amber);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .axial-crest__cross {
+      position: relative;
+      width: 18px;
+      height: 26px;
+    }
+
+    .axial-crest__cross::before,
+    .axial-crest__cross::after {
+      content: "";
+      position: absolute;
+      background: var(--pg-amber);
+    }
+
+    .axial-crest__cross::before {
+      width: 1px;
+      height: 100%;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+    }
+
+    .axial-crest__cross::after {
+      width: 100%;
+      height: 1px;
+      left: 0;
+      top: 34%;
+    }
+
+    /* Contenedor del wordmark oficial a gran escala */
+    .artist-mark {
+      position: relative;
+      width: min(100%, 760px);
+      padding: clamp(1rem, 2.5vw, 1.75rem) clamp(0.5rem, 2vw, 1.5rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Esquinas técnicas de encuadre axial */
+    .artist-mark::before,
+    .artist-mark::after {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-color: var(--pg-amber);
+      border-style: solid;
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    .artist-mark::before {
+      top: 0;
+      left: 0;
+      border-width: 1px 0 0 1px;
+    }
+
+    .artist-mark::after {
+      bottom: 0;
+      right: 0;
+      border-width: 0 1px 1px 0;
+    }
+
+    .artist-mark__svg {
+      width: 100%;
+      max-width: 700px;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 0 36px rgb(201 138 43 / .14));
+    }
+
+    /* Acento sutil en ámbar bajo el logo */
+    .artist-mark__rule {
+      margin-top: clamp(1rem, 2vh, 1.5rem);
+      width: min(220px, 55%);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--pg-amber), transparent);
+      position: relative;
+    }
+
+    .artist-mark__rule::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 5px;
+      height: 5px;
+      background: var(--pg-amber);
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    /* Bloque de Tagline en Archivo 800 */
+    .tagline-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .tagline-kicker {
+      font-family: var(--font-display);
+      font-weight: var(--fw-display);
+      font-size: clamp(2rem, 5.6vw, 4.75rem);
+      line-height: 0.96;
+      letter-spacing: var(--ls-display);
+      text-transform: uppercase;
+      color: var(--pg-chalk);
+    }
+
+    .tagline-kicker__num {
+      color: var(--pg-amber);
+    }
+
+    .tagline-sub {
+      font-family: var(--font-display);
+      font-weight: var(--fw-display);
+      font-size: clamp(0.95rem, 2.1vw, 1.55rem);
+      line-height: 1.1;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--pg-chalk-72);
+    }
+
+    /* Referencia obligatoria al evento principal (21 NOV) */
+    .main-event-ref {
+      max-width: 780px;
+      padding: 0.65rem 1.1rem;
+      border-top: var(--hairline);
+      border-bottom: var(--hairline);
+      background: rgb(18 18 18 / .72);
+      font-family: var(--font-mono);
+      font-weight: var(--fw-mono);
+      font-size: clamp(0.68rem, 0.9vw, 0.78rem);
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--pg-chalk-72);
+      line-height: 1.55;
+    }
+
+    .main-event-ref strong {
+      color: var(--pg-amber);
+      font-weight: var(--fw-mono-strong);
+    }
+
+    /* ── 3. VISUALIZADOR DE AUDIO (WAVEFORM PARAMÉTRICO · 60FPS) ── */
+    .waveform-module {
+      width: min(100%, 680px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0;
+    }
+
+    .waveform-meta {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      letter-spacing: 0.16em;
+      color: var(--pg-chalk-40);
+      text-transform: uppercase;
+    }
+
+    .waveform-canvas-wrap {
+      position: relative;
+      width: 100%;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top: 1px solid rgb(201 138 43 / .16);
+      border-bottom: 1px solid rgb(201 138 43 / .16);
+      background: linear-gradient(90deg, transparent 0%, rgb(201 138 43 / .04) 50%, transparent 100%);
+    }
+
+    /* Línea de horizonte 0dB */
+    .waveform-canvas-wrap::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 1px;
+      background: rgb(201 138 43 / .18);
+      pointer-events: none;
+    }
+
+    #pg-waveform {
+      width: 100%;
+      height: 100%;
+      display: block;
+      opacity: 0.35; /* Regla estricta: opacity 0.35, color #C98A2B */
+    }
+
+    /* ── 4. CALL TO ACTION PRIMARIO ── */
+    .cta-wrap {
+      margin-top: 0.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .cta-primary {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 1rem 1.85rem;
+      border: 1px solid var(--pg-chalk);
+      background: var(--pg-black);
+      color: var(--pg-chalk);
+      font-family: var(--font-mono);
+      font-weight: var(--fw-mono-strong);
+      font-size: clamp(0.76rem, 0.95vw, 0.86rem);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      touch-action: manipulation;
+      transition: border-color 180ms ease, color 180ms ease, background-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+      will-change: transform;
+    }
+
+    .cta-primary:hover,
+    .cta-primary:focus-visible {
+      border-color: var(--pg-amber);
+      color: var(--pg-amber);
+      background-color: var(--pg-ink-1);
+      box-shadow: 0 0 28px rgb(201 138 43 / .18);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .cta-primary:active {
+      transform: translateY(0);
+    }
+
+    .cta-subnote {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--pg-chalk-40);
+    }
+
+    /* ── PIE TÉCNICO DEL HERO (SELLO INSTITUCIONAL D-VOID) ── */
+    .hero-footer {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      border-top: var(--hairline);
+      padding: 0.75rem clamp(1rem, 3vw, 2.5rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: var(--ls-mono);
+      text-transform: uppercase;
+      color: var(--pg-chalk-40);
+      background: rgb(8 8 8 / .84);
+    }
+
+    .hero-footer__brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      color: var(--pg-chalk-72);
+    }
+
+    .hero-footer__dvoid {
+      height: 15px;
+      width: auto;
+      mix-blend-mode: screen;
+      opacity: 0.85;
+    }
+
+    /* ── RESPONSIVE DESIGN (MOBILE & TABLET) ── */
+    @media (max-width: 900px) {
+      .status-bar {
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+          "left right"
+          "center center";
+        row-gap: 0.5rem;
+        padding: 0.65rem 1rem;
+      }
+
+      .status-bar__left {
+        grid-area: left;
+      }
+
+      .status-bar__right {
+        grid-area: right;
+      }
+
+      .status-bar__center {
+        grid-area: center;
+        width: 100%;
+        justify-content: center;
+        padding-top: 0.45rem;
+        border-top: var(--hairline);
+      }
+    }
+
+    @media (max-width: 540px) {
+      .status-bar {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "left"
+          "center"
+          "right";
+        justify-items: center;
+        text-align: center;
+      }
+
+      .status-bar__left,
+      .status-bar__right {
+        justify-self: center;
+      }
+
+      .status-bar__center::before,
+      .status-bar__center::after {
+        width: 10px;
+      }
+
+      .hero-stage {
+        padding: 1.75rem 1rem 2rem;
+        gap: 1.35rem;
+      }
+
+      .cta-primary {
+        width: 100%;
+        max-width: 360px;
+        padding: 0.95rem 1rem;
+        font-size: 0.74rem;
+      }
+
+      .hero-footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.4rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .liturgical-badge__dot {
+        animation: none;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       SECCIÓN 2: DOSSIER DE INFORMACIÓN, TIERS & RESERVA MONOLÍTICA
+       ═══════════════════════════════════════════════════════════════════════ */
+    .pg-photo-treatment {
+      filter: grayscale(100%) contrast(125%) brightness(85%);
+      mix-blend-mode: luminosity;
+    }
+
+    .dossier-section {
+      position: relative;
+      width: 100%;
+      background-color: var(--pg-black);
+      border-bottom: var(--hairline);
+      padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.25rem, 4vw, 3rem);
+    }
+
+    .section-shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(2.5rem, 5vh, 4rem);
+    }
+
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 0.85rem;
+      border-bottom: var(--hairline);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--pg-chalk-40);
+    }
+
+    .section-eyebrow__index {
+      color: var(--pg-amber);
+      font-weight: var(--fw-mono-strong);
+    }
+
+    /* ── 1. GRID DE INFORMACIÓN Y REGLAS ── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      border: var(--hairline);
+      background-color: var(--pg-ink-1);
+    }
+
+    .info-column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: var(--hairline);
+    }
+
+    .info-card {
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+      border-bottom: var(--hairline);
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .info-card:last-child {
+      border-bottom: none;
+    }
+
+    .info-card--dresscode {
+      background:
+        linear-gradient(135deg, rgb(201 138 43 / .09) 0%, transparent 65%),
+        var(--pg-black);
+      border-left: 3px solid var(--pg-amber);
+    }
+
+    .info-card__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: var(--fw-mono-strong);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--pg-amber);
+    }
+
+    .info-card__title {
+      font-family: var(--font-display);
+      font-weight: var(--fw-display);
+      font-size: clamp(1.45rem, 2.8vw, 2.25rem);
+      line-height: 1.02;
+      letter-spacing: var(--ls-display);
+      text-transform: uppercase;
+      color: var(--pg-chalk);
+    }
+
+    .info-card__desc {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      line-height: 1.65;
+      color: var(--pg-chalk-72);
+      letter-spacing: 0.02em;
+    }
+
+    .info-specs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-top: 0.4rem;
+      padding-top: 0.9rem;
+      border-top: var(--hairline);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--pg-chalk-40);
+    }
+
+    .info-specs strong {
+      display: block;
+      color: var(--pg-chalk);
+      font-weight: var(--fw-mono-strong);
+      margin-top: 0.2rem;
+    }
+
+    /* Columna Fotográfica con tratamiento monocromo estricto (Cero Licor) */
+    .artist-frame {
+      position: relative;
+      min-height: 460px;
+      background-color: var(--pg-black);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      isolation: isolate;
+    }
+
+    /* Resplandor cenital sobre el hábito / cruz para trabajar con mix-blend-mode: luminosity */
+    .artist-frame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        radial-gradient(65% 55% at 50% 28%, rgb(201 138 43 / .18), transparent 70%),
+        linear-gradient(to top, var(--pg-black) 4%, rgb(8 8 8 / .35) 42%, rgb(8 8 8 / .2) 100%);
+      pointer-events: none;
+    }
+
+    .artist-frame__img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+      display: block;
+      z-index: 0;
+    }
+
+    .artist-frame__caption {
+      position: relative;
+      z-index: 2;
+      padding: 1.25rem 1.5rem;
+      border-top: var(--hairline);
+      background: rgb(8 8 8 / .86);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--pg-chalk-72);
+    }
+
+    .artist-frame__caption span:last-child {
+      color: var(--pg-amber);
+      font-weight: var(--fw-mono-strong);
+    }
+
+    /* ── 2. TIERS DE ENTRADA (MONOLITO DE PRECIOS) ── */
+    .booking-section {
+      position: relative;
+      width: 100%;
+      background-color: var(--pg-black);
+      background-image: radial-gradient(50% 45% at 50% 0%, rgb(201 138 43 / .08), transparent 72%);
+      padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1.25rem, 4vw, 3rem);
+    }
+
+    .booking-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.65rem;
+    }
+
+    .booking-header__title {
+      font-family: var(--font-display);
+      font-weight: var(--fw-display);
+      font-size: var(--fs-h2);
+      letter-spacing: var(--ls-display);
+      text-transform: uppercase;
+      color: var(--pg-chalk);
+      line-height: 1.02;
+    }
+
+    .booking-header__sub {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--pg-chalk-72);
+    }
+
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .tier-card {
+      position: relative;
+      text-align: left;
+      padding: clamp(1.35rem, 2.4vw, 2rem);
+      background-color: var(--pg-ink-1);
+      border: 1px solid var(--pg-line);
+      color: var(--pg-chalk);
+      font-family: var(--font-mono);
+      cursor: pointer;
+      touch-action: manipulation;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.35rem;
+      transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    }
+
+    .tier-card:hover {
+      border-color: rgb(201 138 43 / .55);
+      background-color: var(--pg-ink-2);
+    }
+
+    .tier-card:focus-visible {
+      outline: 1px solid var(--pg-amber);
+      outline-offset: 2px;
+    }
+
+    .tier-card.is-selected {
+      border-color: var(--pg-amber);
+      background:
+        linear-gradient(180deg, rgb(201 138 43 / .11) 0%, rgb(18 18 18 / .95) 100%);
+      box-shadow: 0 0 28px rgb(201 138 43 / .14), inset 0 0 0 1px var(--pg-amber);
+    }
+
+    .tier-card__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--pg-chalk-72);
+    }
+
+    .tier-card.is-selected .tier-card__top {
+      color: var(--pg-amber);
+    }
+
+    .tier-card__radio {
+      width: 12px;
+      height: 12px;
+      border: 1px solid var(--pg-chalk-40);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tier-card.is-selected .tier-card__radio {
+      border-color: var(--pg-amber);
+    }
+
+    .tier-card.is-selected .tier-card__radio::after {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background-color: var(--pg-amber);
+    }
+
+    .tier-card__price {
+      font-size: clamp(2.1rem, 4vw, 3.1rem);
+      font-weight: var(--fw-mono-strong);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--pg-chalk);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tier-card__price small {
+      font-size: 0.72rem;
+      font-weight: var(--fw-mono);
+      letter-spacing: 0.14em;
+      color: var(--pg-chalk-40);
+      margin-left: 0.35rem;
+    }
+
+    .tier-card__meta {
+      padding-top: 0.85rem;
+      border-top: var(--hairline);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--pg-chalk-40);
+    }
+
+    .tier-card.is-selected .tier-card__status {
+      color: var(--pg-amber);
+      font-weight: var(--fw-mono-strong);
+    }
+
+    /* ── 3. FORMULARIO MONOLÍTICO ── */
+    .monolith-form-wrap {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      border: var(--hairline);
+      background-color: var(--pg-ink-1);
+      padding: clamp(1.75rem, 4vw, 3rem);
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .monolith-selected-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 0.65rem 0.9rem;
+      border: 1px solid rgb(201 138 43 / .35);
+      background: rgb(201 138 43 / .06);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--pg-chalk-72);
+    }
+
+    .monolith-selected-banner strong {
+      color: var(--pg-amber);
+      font-weight: var(--fw-mono-strong);
+    }
+
+    .monolith-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .field-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: var(--fw-mono-strong);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--pg-chalk-72);
+    }
+
+    .field-label__req {
+      color: var(--pg-amber);
+      font-size: 0.64rem;
+    }
+
+    .monolith-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--pg-line);
+      padding: 0.75rem 0.15rem;
+      color: var(--pg-chalk);
+      font-family: var(--font-mono);
+      font-size: 16px;
+      letter-spacing: 0.04em;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .monolith-input::placeholder {
+      color: var(--pg-chalk-40);
+    }
+
+    .monolith-input:focus {
+      outline: none;
+      border-bottom-color: var(--pg-amber);
+      box-shadow: 0 1px 0 0 var(--pg-amber);
+    }
+
+    .field-group.has-error .monolith-input {
+      border-bottom-color: var(--pg-error);
+      box-shadow: 0 1px 0 0 var(--pg-error);
+    }
+
+    .field-group.is-valid .monolith-input {
+      border-bottom-color: var(--pg-amber);
+    }
+
+    .field-error {
+      min-height: 1.05rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      color: var(--pg-error);
+      text-transform: uppercase;
+    }
+
+    .submit-monolith {
+      margin-top: 0.5rem;
+      width: 100%;
+      padding: 1.15rem 1.5rem;
+      border: 1px solid var(--pg-amber);
+      background-color: var(--pg-black);
+      color: var(--pg-chalk);
+      font-family: var(--font-mono);
+      font-weight: var(--fw-mono-strong);
+      font-size: clamp(0.82rem, 1.05vw, 0.95rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      touch-action: manipulation;
+      transition: background-color 180ms ease, color 180ms ease, box-shadow 180ms ease, transform 160ms ease;
+    }
+
+    .submit-monolith:hover,
+    .submit-monolith:focus-visible {
+      background-color: var(--pg-amber);
+      color: var(--pg-black);
+      box-shadow: 0 0 32px rgb(201 138 43 / .28);
+      outline: none;
+    }
+
+    .submit-monolith:active {
+      transform: translateY(1px);
+    }
+
+    .legal-footnote {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      line-height: 1.55;
+      letter-spacing: 0.08em;
+      text-align: center;
+      color: var(--pg-chalk-40);
+      padding-top: 0.5rem;
+      border-top: var(--hairline);
+    }
+
+    /* Confirmación in-place tras envío válido */
+    .confirmation-panel {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.5rem;
+      border: 1px solid var(--pg-amber);
+      background: rgb(201 138 43 / .07);
+      font-family: var(--font-mono);
+    }
+
+    .confirmation-panel.is-visible {
+      display: flex;
+    }
+
+    .confirmation-panel__title {
+      font-family: var(--font-display);
+      font-weight: var(--fw-display);
+      font-size: 1.35rem;
+      letter-spacing: var(--ls-display);
+      text-transform: uppercase;
+      color: var(--pg-amber);
+    }
+
+    .confirmation-panel__body {
+      font-size: 0.8rem;
+      line-height: 1.65;
+      color: var(--pg-chalk);
+    }
+
+    .confirmation-panel__summary {
+      padding: 0.75rem;
+      border-top: var(--hairline);
+      border-bottom: var(--hairline);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--pg-chalk-72);
+    }
+
+    @media (max-width: 900px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .info-column {
+        border-right: none;
+        border-bottom: var(--hairline);
+      }
+
+      .artist-frame {
+        min-height: 380px;
+      }
+
+      .tiers-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── FILA DOBLE Y SELECTOR DE ACOMPAÑANTES EN FORMULARIO ── */
+    .field-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .monolith-select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, var(--pg-amber) 50%),
+                        linear-gradient(135deg, var(--pg-amber) 50%, transparent 50%);
+      background-position: calc(100% - 14px) 55%, calc(100% - 8px) 55%;
+      background-size: 6px 6px, 6px 6px;
+      background-repeat: no-repeat;
+      padding-right: 2rem;
+      cursor: pointer;
+    }
+
+    .monolith-select option {
+      background-color: var(--pg-black);
+      color: var(--pg-chalk);
+      font-family: var(--font-mono);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       FASE 3: TRANSICIÓN DE CHECKOUT & PASE DIGITAL CONMEMORATIVO ("COUNTDOWN PASS")
+       ═══════════════════════════════════════════════════════════════════════ */
+    .checkout-capture-area {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(2rem, 4vh, 3rem);
+      transition: opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+                  max-height 520ms cubic-bezier(0.22, 1, 0.36, 1);
+      max-height: 2200px;
+      opacity: 1;
+      transform: translateY(0);
+      overflow: hidden;
+    }
+
+    .checkout-capture-area.is-collapsed {
+      opacity: 0;
+      transform: translateY(-14px);
+      max-height: 0;
+      pointer-events: none;
+      margin: 0;
+    }
+
+    #countdownPassContainer {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 0 1.5rem;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 520ms cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    #countdownPassContainer.is-deployed {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes pass-amber-flash {
+      0% {
+        box-shadow: 0 0 0 0 rgb(201 138 43 / 0), 0 0 0 0 rgb(201 138 43 / 0);
+      }
+      30% {
+        box-shadow: 0 0 65px 14px var(--pg-amber-glow), inset 0 0 36px var(--pg-amber-glow);
+      }
+      100% {
+        box-shadow: 0 24px 60px rgb(0 0 0 / .85), 0 0 38px var(--pg-amber-glow);
+      }
+    }
+
+    /* Credencial VIP de Festival (max 440px, #0D0D0D, borde 1px #333333 + 4 esquinas #C98A2B) */
+    .countdown-pass {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+      background-color: #0D0D0D;
+      border: 1px solid #333333;
+      color: var(--pg-chalk);
+      font-family: var(--font-mono);
+      box-shadow: 0 24px 60px rgb(0 0 0 / .85), 0 0 38px var(--pg-amber-glow);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    #countdownPassContainer.is-deployed .countdown-pass {
+      animation: pass-amber-flash 1.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Remates litúrgicos/industriales en las 4 esquinas (#C98A2B) */
+    .pass-corner {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-color: #C98A2B;
+      border-style: solid;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .pass-corner--tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .pass-corner--tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+    .pass-corner--bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+    .pass-corner--br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+    /* Halo cenital interno de la credencial */
+    .countdown-pass::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(75% 32% at 50% 0%, var(--pg-amber-glow), transparent 72%),
+        repeating-linear-gradient(0deg, rgb(244 244 240 / .012) 0px, rgb(244 244 240 / .012) 1px, transparent 1px, transparent 3px);
+    }
+
+    .pass-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Cabecera Litúrgica / Industrial */
+    .pass-header {
+      padding: 1.15rem 1.25rem 1rem;
+      border-bottom: 1px solid #333333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.85rem;
+      background: linear-gradient(180deg, rgb(201 138 43 / .08) 0%, transparent 100%);
+    }
+
+    .pass-header__tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      font-weight: var(--fw-mono-strong);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--pg-amber);
+      padding: 0.22rem 0.55rem;
+      border: 1px solid rgb(201 138 43 / .4);
+      background: rgb(8 8 8 / .75);
+    }
+
+    .pass-header__logos {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.25rem 0;
+    }
+
+    .pass-header__dvoid {
+      height: 18px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      mix-blend-mode: screen;
+      opacity: 0.95;
+    }
+
+    .pass-header__pg {
+      height: 36px;
+      width: auto;
+      max-width: 185px;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* Bloque Central de Datos del Asistente */
+    .pass-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      border-bottom: 1px solid #333333;
+    }
+
+    .pass-holder-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding-bottom: 0.9rem;
+      border-bottom: 1px dashed #2A2A2A;
+    }
+
+    .pass-holder-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      min-width: 0;
+    }
+
+    .pass-field-kicker {
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--pg-chalk-40);
+    }
+
+    .pass-holder-name {
+      font-family: var(--font-display);
+      font-weight: var(--fw-display);
+      font-size: clamp(1.2rem, 4.5vw, 1.55rem);
+      line-height: 1.04;
+      letter-spacing: var(--ls-display);
+      text-transform: uppercase;
+      color: var(--pg-chalk);
+      word-break: break-word;
+    }
+
+    .pass-serial-badge {
+      flex-shrink: 0;
+      padding: 0.35rem 0.6rem;
+      border: 1px solid var(--pg-amber);
+      background: rgb(201 138 43 / .1);
+      color: var(--pg-amber);
+      font-family: var(--font-mono);
+      font-weight: var(--fw-mono-strong);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+    }
+
+    .pass-serial-hash {
+      display: block;
+      font-size: 0.54rem;
+      color: var(--pg-chalk-40);
+      letter-spacing: 0.12em;
+      margin-top: 0.12rem;
+    }
+
+    /* Matriz de metadatos del asistente */
+    .pass-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem 1rem;
+    }
+
+    .pass-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.18rem;
+      min-width: 0;
+    }
+
+    .pass-meta-item--full {
+      grid-column: 1 / -1;
+      padding-top: 0.55rem;
+      border-top: 1px solid #1F1F1F;
+    }
+
+    .pass-meta-val {
+      font-size: 0.74rem;
+      font-weight: var(--fw-mono-strong);
+      letter-spacing: 0.08em;
+      color: var(--pg-chalk);
+      text-transform: uppercase;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pass-meta-val--amber {
+      color: var(--pg-amber);
+    }
+
+    .pass-access-banner {
+      margin-top: 0.15rem;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid rgb(201 138 43 / .45);
+      background: rgb(201 138 43 / .08);
+      font-size: 0.7rem;
+      font-weight: var(--fw-mono-strong);
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--pg-amber);
+      text-align: center;
+    }
+
+    /* Motor de QR Vectorial Procedimental SVG + Escáner Ámbar */
+    .pass-qr-section {
+      padding: 1.25rem;
+      background-color: var(--pg-black);
+      border-bottom: 1px solid #333333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .pass-qr-frame {
+      position: relative;
+      width: 196px;
+      height: 196px;
+      padding: 10px;
+      background-color: #080808;
+      border: 1px solid #333333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .pass-qr-frame svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Hairline ámbar #C98A2B animado simulando escáner de frecuencia en reposo */
+    .pass-qr-scanner {
+      position: absolute;
+      left: 6px;
+      right: 6px;
+      top: 50%;
+      height: 1px;
+      background-color: #C98A2B;
+      box-shadow: 0 0 10px 2px rgb(201 138 43 / .65);
+      pointer-events: none;
+      animation: qr-frequency-scan 3.4s ease-in-out infinite;
+      will-change: transform, opacity;
+    }
+
+    @keyframes qr-frequency-scan {
+      0%, 100% {
+        transform: translateY(-76px);
+        opacity: 0.45;
+      }
+      50% {
+        transform: translateY(76px);
+        opacity: 0.95;
+      }
+    }
+
+    .pass-qr-caption {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--pg-chalk-40);
+      text-align: center;
+    }
+
+    /* Mensaje Oficial de Confirmación (Brief) */
+    .pass-confirm-quote {
+      padding: 1.1rem 1.25rem;
+      border-bottom: 1px solid #333333;
+      background-color: #101010;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      line-height: 1.6;
+      color: var(--pg-chalk-72);
+      border-left: 2px solid var(--pg-amber);
+    }
+
+    .pass-confirm-quote strong {
+      color: var(--pg-chalk);
+      font-weight: var(--fw-mono-strong);
+    }
+
+    /* Pie con referencia institucional obligatoria */
+    .pass-footer-ref {
+      padding: 0.85rem 1.15rem;
+      background-color: #080808;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      line-height: 1.5;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--pg-amber);
+      font-weight: var(--fw-mono-strong);
+    }
+
+    /* Acciones del Pase y Utilidades */
+    .pass-actions {
+      width: 100%;
+      max-width: 440px;
+      margin-top: 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .pass-btn {
+      width: 100%;
+      padding: 0.95rem 1rem;
+      border: 1px solid var(--pg-amber);
+      background-color: var(--pg-black);
+      color: var(--pg-chalk);
+      font-family: var(--font-mono);
+      font-weight: var(--fw-mono-strong);
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-align: center;
+      cursor: pointer;
+      touch-action: manipulation;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .pass-btn:hover,
+    .pass-btn:focus-visible {
+      background-color: var(--pg-amber);
+      color: var(--pg-black);
+      box-shadow: 0 0 24px rgb(201 138 43 / .25);
+      outline: none;
+    }
+
+    .pass-btn--secondary {
+      border-color: #333333;
+      background-color: #0D0D0D;
+      color: var(--pg-chalk-72);
+    }
+
+    .pass-btn--secondary:hover,
+    .pass-btn--secondary:focus-visible {
+      border-color: var(--pg-amber);
+      background-color: var(--pg-ink-1);
+      color: var(--pg-amber);
+      box-shadow: none;
+    }
+
+    .pass-social-row {
+      margin-top: 0.25rem;
+      padding-top: 0.75rem;
+      border-top: var(--hairline);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--pg-chalk-40);
+    }
+
+    .pass-social-link {
+      color: var(--pg-amber);
+      font-weight: var(--fw-mono-strong);
+      border-bottom: 1px solid transparent;
+      transition: border-color 150ms ease;
+    }
+
+    .pass-social-link:hover {
+      border-bottom-color: var(--pg-amber);
+    }
+
+    .pass-reset-btn {
+      background: none;
+      border: none;
+      color: var(--pg-chalk-40);
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      touch-action: manipulation;
+      text-decoration: underline;
+    }
+
+    .pass-reset-btn:hover {
+      color: var(--pg-chalk);
+    }
+
+    /* Responsive estricto para pantallas móviles 360px - 430px y safe-areas */
+    @media (max-width: 540px) {
+      .field-row-2 {
+        grid-template-columns: 1fr;
+        gap: 1.35rem;
+      }
+
+      .booking-section {
+        padding-left: max(0.85rem, env(safe-area-inset-left));
+        padding-right: max(0.85rem, env(safe-area-inset-right));
+        padding-bottom: max(3rem, env(safe-area-inset-bottom));
+      }
+
+      .monolith-form-wrap {
+        padding: 1.35rem 1rem;
+      }
+
+      .countdown-pass {
+        max-width: 100%;
+      }
+
+      .pass-header,
+      .pass-body,
+      .pass-qr-section,
+      .pass-confirm-quote {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .pass-meta-grid {
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
+      }
+
+      .pass-holder-row {
+        flex-direction: column;
+      }
+
+      .pass-serial-badge {
+        align-self: flex-start;
+        text-align: left;
+      }
+
+      .pass-social-row {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* ── ESTILOS @MEDIA PRINT DEDICADOS: AISLAR #countdownPassContainer ── */
+    @media print {
+      @page {
+        margin: 10mm;
+        size: portrait;
+      }
+
+      html, body {
+        background: #080808 !important;
+        color: #F4F4F0 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .hero-section,
+      .status-bar,
+      #pg-waveform,
+      .hero-footer,
+      .dossier-section,
+      .section-eyebrow,
+      .booking-header,
+      .checkout-capture-area,
+      .pass-actions {
+        display: none !important;
+      }
+
+      .booking-section {
+        padding: 0 !important;
+        background: #080808 !important;
+      }
+
+      #countdownPassContainer {
+        display: flex !important;
+        opacity: 1 !important;
+        transform: none !important;
+        padding: 0 !important;
+      }
+
+      .countdown-pass {
+        max-width: 420px !important;
+        background-color: #0D0D0D !important;
+        border: 1px solid #333333 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+      }
+
+      .pass-qr-scanner {
+        display: none !important;
+      }
+    }
