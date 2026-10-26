@@ -5,6 +5,10 @@
   "installCommand": "",
   "cleanUrls": false,
   "rewrites": [
+    { "source": "/greek-odyssey", "destination": "/2026-11/19-greek-odyssey.html" },
+    { "source": "/greek-odyssey.html", "destination": "/2026-11/19-greek-odyssey.html" },
+    { "source": "/santorini-night", "destination": "/2026-11/19-greek-odyssey.html" },
+    { "source": "/santorini-night.html", "destination": "/2026-11/19-greek-odyssey.html" },
     { "source": "/criminix", "destination": "/2026-11/07-criminix.html" },
     { "source": "/criminix.html", "destination": "/2026-11/07-criminix.html" },
     { "source": "/padre-guilherme", "destination": "/2026-11/12-padre-guilherme.html" },
