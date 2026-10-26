@@ -20,12 +20,11 @@
 
   <!-- Design Tokens Oficiales del Evento -->
   <link rel="stylesheet" href="../Resources/events/2026-11-12-padre-guilherme/styles/tokens.css">
-
-    <link rel="stylesheet" href="../Resources/events/2026-11-12-padre-guilherme/styles/padre-guilherme.css">
+  <link rel="stylesheet" href="../Resources/events/2026-11-12-padre-guilherme/styles/padre-guilherme.css">
 </head>
 <body>
 
-  <!-- ═══════════════════════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════════════════════
        SECCIÓN 1: HERO & ATMÓSFERA (SIMETRÍA AXIAL · SACRO-TECHNO)
        ═══════════════════════════════════════════════════════════════════════ -->
   <header class="hero-section" id="top">
@@ -77,26 +76,38 @@
         <div class="artist-mark__rule" aria-hidden="true"></div>
       </figure>
 
-      <!-- Tagline Oficial en Archivo 800 -->
-      <div class="tagline-block">
-        <h1 class="tagline-kicker">
-          <span class="tagline-kicker__num">9 DAYS</span> TO GO
-        </h1>
-        <p class="tagline-sub">THE COUNTDOWN STARTS HERE</p>
+      <!-- 2. Countdown Dinámico y Animado (12.NOV.2026 · 20H00 GMT-5) -->
+      <div class="countdown-block" aria-label="Contador regresivo oficial hacia el evento">
+        <div class="countdown-timer" id="pg-countdown-timer">
+          <div class="countdown-segment">
+            <span class="countdown-digits" id="cd-days">--</span>
+            <span class="countdown-label">DÍAS</span>
+          </div>
+          <span class="countdown-sep" aria-hidden="true">:</span>
+          <div class="countdown-segment">
+            <span class="countdown-digits" id="cd-hours">--</span>
+            <span class="countdown-label">HORAS</span>
+          </div>
+          <span class="countdown-sep" aria-hidden="true">:</span>
+          <div class="countdown-segment">
+            <span class="countdown-digits" id="cd-mins">--</span>
+            <span class="countdown-label">MIN</span>
+          </div>
+          <span class="countdown-sep" aria-hidden="true">:</span>
+          <div class="countdown-segment">
+            <span class="countdown-digits" id="cd-secs">--</span>
+            <span class="countdown-label">SEG</span>
+          </div>
+        </div>
+
+        <!-- Referencia Contextual Limpia -->
+        <p class="main-event-ref">
+          CAMINO AL EVENTO PRINCIPAL · 21 NOV · CENTRO DE EXPOSICIONES QUITO
+        </p>
       </div>
 
-      <!-- Referencia Obligatoria al Evento Principal -->
-      <p class="main-event-ref">
-        CAMINO A <strong>PADRE GUILHERME ECUADOR 2026</strong> · 21 NOV · CENTRO DE EXPOSICIONES QUITO
-      </p>
-
       <!-- 3. Visualizador de Audio (Waveform Paramétrico Simétrico · Sin Audio) -->
-      <div class="waveform-module" aria-label="Señal visual de frecuencia sonora">
-        <div class="waveform-meta" aria-hidden="true">
-          <span>SYS.FREQ // 128 BPM</span>
-          <span>CH.01 — AXIAL OSCILLOSCOPE</span>
-          <span>GAIN // -3.0 dB</span>
-        </div>
+      <div class="waveform-module" aria-label="Se�al de frecuencia sonora">
         <div class="waveform-canvas-wrap">
           <canvas id="pg-waveform" width="680" height="56" aria-hidden="true"></canvas>
         </div>
@@ -143,21 +154,20 @@
       </div>
 
       <div class="info-grid">
-        <!-- Columna de Bloques Técnicos (Dress Code + Experiencia / Cóctel Conmemorativo) -->
+        <!-- Columna de Bloques Editoriales Sintetizados -->
         <div class="info-column">
 
           <!-- Bloque Destacado: Dress Code -->
           <article class="info-card info-card--dresscode">
-            <span class="info-card__tag">[ CÓDIGO DE VESTIMENTA OBLIGATORIO ]</span>
-            <h2 class="info-card__title" id="dossier-heading">SEMIFORMAL / DRESS IN BLACK</h2>
+            <span class="info-card__tag">[ PROTOCOLO DE ACCESO ]</span>
+            <h2 class="info-card__title" id="dossier-heading">DRESS CODE: SEMIFORMAL / TOTAL BLACK</h2>
             <p class="info-card__desc">
-              Estética monocroma rigurosa en consonancia con la liturgia electrónica de D-VOID.
-              Se exige vestimenta negra de corte semiformal o industrial; sin estridencias ni neón.
+              Riguroso control de puerta. Estética monocroma rigurosa en consonancia con la liturgia electrónica de D-VOID.
             </p>
             <div class="info-specs">
               <div>
                 <span>RIGOR ESTÉTICO</span>
-                <strong>MONOCROMO / ALL BLACK</strong>
+                <strong>SEMIFORMAL / TOTAL BLACK</strong>
               </div>
               <div>
                 <span>CONTROL DE PUERTA</span>
@@ -166,25 +176,21 @@
             </div>
           </article>
 
-          <!-- Bloque 2: Experiencia Electrónica Inmersiva -->
+          <!-- Bloque 2: Arquitectura Sonora -->
           <article class="info-card">
-            <span class="info-card__tag">[ ARQUITECTURA SONORA · 9 DAYS TO GO ]</span>
-            <h3 class="info-card__title">EXPERIENCIA ELECTRÓNICA INMERSIVA</h3>
+            <span class="info-card__tag">[ ARQUITECTURA SONORA ]</span>
+            <h3 class="info-card__title">AUDIO VOID</h3>
             <p class="info-card__desc">
-              A nueve días de Padre Guilherme Ecuador 2026 (21 NOV · Centro de Exposiciones Quito),
-              D-VOID congrega a DJs nacionales, creadores e invitados especiales bajo una atmósfera de
-              penumbra catedralicia, presión sonora techno melódico e iluminación cenital ámbar.
+              Calibración sonora de alta presión acústica para clubbing y frecuencias electrónicas profundas.
             </p>
           </article>
 
-          <!-- Bloque 3: Cóctel Conmemorativo D-VOID (aislado de la imagen del artista) -->
+          <!-- Bloque 3: Cóctel de Autor -->
           <article class="info-card">
-            <span class="info-card__tag">[ EDICIÓN ESPECIAL DE AUTOR // D-VOID LAB ]</span>
-            <h3 class="info-card__title">CÓCTEL CONMEMORATIVO D-VOID</h3>
+            <span class="info-card__tag">[ CÓCTEL DE AUTOR ]</span>
+            <h3 class="info-card__title">MIXOLOGÍA CONCEPTUAL</h3>
             <p class="info-card__desc">
-              Creación de autor desarrollada en exclusiva por la barra de D-VOID e inspirada en el
-              concepto de la Countdown Party. Disponible únicamente durante la noche del 12 de noviembre
-              para los 100 asistentes acreditados.
+              Mixología conceptual diseñada exclusivamente por D-VOID para la noche del Countdown.
             </p>
             <div class="info-specs">
               <div>
@@ -209,10 +215,7 @@
             loading="lazy"
             decoding="async"
           >
-          <figcaption class="artist-frame__caption">
-            <span>FIG. 01 — PADRE GUILHERME // LIVE STAGE</span>
-            <span>[ MONOCHROME LUM. 85% ]</span>
-          </figcaption>
+          
         </figure>
       </div>
 
@@ -570,8 +573,8 @@
   <!-- ═══════════════════════════════════════════════════════════════════════
        SCRIPT: OSCILOSCOPIO & BARRAS SIMÉTRICAS PARAMÉTRICAS (60FPS · GPU-FRIENDLY)
        ═══════════════════════════════════════════════════════════════════════ -->
-    <!-- Controlador de audio waveform, selector de tiers, QR procedural y pase -->
+
+  <!-- Controlador de audio waveform, selector de tiers, QR procedural y pase -->
   <script src="../Resources/events/2026-11-12-padre-guilherme/scripts/padre-guilherme.js"></script>
 </body>
 </html>
-

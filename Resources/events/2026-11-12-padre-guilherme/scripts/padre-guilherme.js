@@ -115,6 +115,63 @@
       }
     })();
 
+    /* ── COUNTDOWN REGRESIVO DINÁMICO (12.NOV.2026 · 20H00 GMT-5) ── */
+    (function () {
+      const targetTime = new Date('2026-11-12T20:00:00-05:00').getTime();
+      const elDays = document.getElementById('cd-days');
+      const elHours = document.getElementById('cd-hours');
+      const elMins = document.getElementById('cd-mins');
+      const elSecs = document.getElementById('cd-secs');
+
+      if (!elDays || !elHours || !elMins || !elSecs) return;
+
+      const lastValues = { days: '', hours: '', mins: '', secs: '' };
+
+      function updateDigit(el, val, key) {
+        if (lastValues[key] !== val) {
+          lastValues[key] = val;
+          el.style.opacity = '0.35';
+          el.style.transform = 'translateY(-2px)';
+          setTimeout(function () {
+            el.textContent = val;
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          }, 90);
+        }
+      }
+
+      function updateCountdown() {
+        const now = Date.now();
+        const diff = targetTime - now;
+
+        if (diff <= 0) {
+          elDays.textContent = '00';
+          elHours.textContent = '00';
+          elMins.textContent = '00';
+          elSecs.textContent = '00';
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+        const dStr = String(days).padStart(2, '0');
+        const hStr = String(hours).padStart(2, '0');
+        const mStr = String(mins).padStart(2, '0');
+        const sStr = String(secs).padStart(2, '0');
+
+        updateDigit(elDays, dStr, 'days');
+        updateDigit(elHours, hStr, 'hours');
+        updateDigit(elMins, mStr, 'mins');
+        updateDigit(elSecs, sStr, 'secs');
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    })();
+
     /* ── SELECTOR INTERACTIVO DE TIERS, QR PROCEDIMENTAL SVG & CHECKOUT ("COUNTDOWN PASS") ── */
     (function () {
       const tierCards = Array.from(document.querySelectorAll('.tier-card'));
@@ -609,12 +666,6 @@
               fields[key].group.classList.remove('has-error', 'is-valid');
               fields[key].error.textContent = '';
             });
-            captureArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        });
-      }
-    })();
-            captureArea.classList.remove('is-collapsed');
             captureArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         });

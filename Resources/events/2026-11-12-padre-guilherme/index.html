@@ -336,36 +336,61 @@
       transform: translate(-50%, -50%) rotate(45deg);
     }
 
-    /* Bloque de Tagline en Archivo 800 */
-    .tagline-block {
+    /* Bloque de Countdown Din�mico */
+    .countdown-block {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.75rem;
+      width: 100%;
     }
 
-    .tagline-kicker {
+    .countdown-timer {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(0.5rem, 1.8vw, 1.5rem);
       font-family: var(--font-display);
       font-weight: var(--fw-display);
-      font-size: clamp(2rem, 5.6vw, 4.75rem);
-      line-height: 0.96;
+      font-size: clamp(2.4rem, 6.5vw, 5.2rem);
+      line-height: 1;
       letter-spacing: var(--ls-display);
-      text-transform: uppercase;
       color: var(--pg-chalk);
+      font-variant-numeric: tabular-nums;
     }
 
-    .tagline-kicker__num {
-      color: var(--pg-amber);
+    .countdown-segment {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
     }
 
-    .tagline-sub {
-      font-family: var(--font-display);
-      font-weight: var(--fw-display);
-      font-size: clamp(0.95rem, 2.1vw, 1.55rem);
-      line-height: 1.1;
-      letter-spacing: 0.14em;
+    .countdown-digits {
+      display: block;
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .countdown-label {
+      font-family: var(--font-mono);
+      font-size: clamp(0.6rem, 0.8vw, 0.72rem);
+      letter-spacing: 0.18em;
+      color: var(--pg-chalk-40);
+      font-weight: var(--fw-mono);
       text-transform: uppercase;
-      color: var(--pg-chalk-72);
+    }
+
+    .countdown-sep {
+      color: var(--pg-amber);
+      font-weight: 400;
+      opacity: 0.85;
+      margin-bottom: 1.2rem;
+      animation: sep-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes sep-pulse {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 0.35; }
     }
 
     /* Referencia obligatoria al evento principal (21 NOV) */
@@ -399,18 +424,7 @@
       padding: 0.25rem 0;
     }
 
-    .waveform-meta {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-mono);
-      font-size: 0.64rem;
-      letter-spacing: 0.16em;
-      color: var(--pg-chalk-40);
-      text-transform: uppercase;
-    }
-
+    
     .waveform-canvas-wrap {
       position: relative;
       width: 100%;
@@ -764,30 +778,8 @@
       z-index: 0;
     }
 
-    .artist-frame__caption {
-      position: relative;
-      z-index: 2;
-      padding: 1.25rem 1.5rem;
-      border-top: var(--hairline);
-      background: rgb(8 8 8 / .86);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--pg-chalk-72);
-    }
-
-    .artist-frame__caption span:last-child {
-      color: var(--pg-amber);
-      font-weight: var(--fw-mono-strong);
-    }
-
+    
+    
     /* ── 2. TIERS DE ENTRADA (MONOLITO DE PRECIOS) ── */
     .booking-section {
       position: relative;
@@ -844,7 +836,9 @@
       flex-direction: column;
       justify-content: space-between;
       gap: 1.35rem;
-      transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      box-sizing: border-box;
+      transition: border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease, color 220ms ease;
+      will-change: border-color, background-color, box-shadow;
     }
 
     .tier-card:hover {
@@ -859,9 +853,9 @@
 
     .tier-card.is-selected {
       border-color: var(--pg-amber);
-      background:
-        linear-gradient(180deg, rgb(201 138 43 / .11) 0%, rgb(18 18 18 / .95) 100%);
-      box-shadow: 0 0 28px rgb(201 138 43 / .14), inset 0 0 0 1px var(--pg-amber);
+      background-color: #161411;
+      background-image: linear-gradient(180deg, rgb(201 138 43 / .14) 0%, rgb(18 18 18 / .98) 100%);
+      box-shadow: 0 0 24px rgb(201 138 43 / .18), inset 0 0 0 1px var(--pg-amber);
     }
 
     .tier-card__top {
@@ -1777,26 +1771,38 @@
         <div class="artist-mark__rule" aria-hidden="true"></div>
       </figure>
 
-      <!-- Tagline Oficial en Archivo 800 -->
-      <div class="tagline-block">
-        <h1 class="tagline-kicker">
-          <span class="tagline-kicker__num">9 DAYS</span> TO GO
-        </h1>
-        <p class="tagline-sub">THE COUNTDOWN STARTS HERE</p>
+      <!-- 2. Countdown Dinámico y Animado (12.NOV.2026 · 20H00 GMT-5) -->
+      <div class="countdown-block" aria-label="Contador regresivo oficial hacia el evento">
+        <div class="countdown-timer" id="pg-countdown-timer">
+          <div class="countdown-segment">
+            <span class="countdown-digits" id="cd-days">--</span>
+            <span class="countdown-label">DÍAS</span>
+          </div>
+          <span class="countdown-sep" aria-hidden="true">:</span>
+          <div class="countdown-segment">
+            <span class="countdown-digits" id="cd-hours">--</span>
+            <span class="countdown-label">HORAS</span>
+          </div>
+          <span class="countdown-sep" aria-hidden="true">:</span>
+          <div class="countdown-segment">
+            <span class="countdown-digits" id="cd-mins">--</span>
+            <span class="countdown-label">MIN</span>
+          </div>
+          <span class="countdown-sep" aria-hidden="true">:</span>
+          <div class="countdown-segment">
+            <span class="countdown-digits" id="cd-secs">--</span>
+            <span class="countdown-label">SEG</span>
+          </div>
+        </div>
+
+        <!-- Referencia Contextual Limpia -->
+        <p class="main-event-ref">
+          CAMINO AL EVENTO PRINCIPAL · 21 NOV · CENTRO DE EXPOSICIONES QUITO
+        </p>
       </div>
 
-      <!-- Referencia Obligatoria al Evento Principal -->
-      <p class="main-event-ref">
-        CAMINO A <strong>PADRE GUILHERME ECUADOR 2026</strong> · 21 NOV · CENTRO DE EXPOSICIONES QUITO
-      </p>
-
       <!-- 3. Visualizador de Audio (Waveform Paramétrico Simétrico · Sin Audio) -->
-      <div class="waveform-module" aria-label="Señal visual de frecuencia sonora">
-        <div class="waveform-meta" aria-hidden="true">
-          <span>SYS.FREQ // 128 BPM</span>
-          <span>CH.01 — AXIAL OSCILLOSCOPE</span>
-          <span>GAIN // -3.0 dB</span>
-        </div>
+      <div class="waveform-module" aria-label="Se�al de frecuencia sonora">
         <div class="waveform-canvas-wrap">
           <canvas id="pg-waveform" width="680" height="56" aria-hidden="true"></canvas>
         </div>
@@ -1843,21 +1849,20 @@
       </div>
 
       <div class="info-grid">
-        <!-- Columna de Bloques Técnicos (Dress Code + Experiencia / Cóctel Conmemorativo) -->
+        <!-- Columna de Bloques Editoriales Sintetizados -->
         <div class="info-column">
 
           <!-- Bloque Destacado: Dress Code -->
           <article class="info-card info-card--dresscode">
-            <span class="info-card__tag">[ CÓDIGO DE VESTIMENTA OBLIGATORIO ]</span>
-            <h2 class="info-card__title" id="dossier-heading">SEMIFORMAL / DRESS IN BLACK</h2>
+            <span class="info-card__tag">[ PROTOCOLO DE ACCESO ]</span>
+            <h2 class="info-card__title" id="dossier-heading">DRESS CODE: SEMIFORMAL / TOTAL BLACK</h2>
             <p class="info-card__desc">
-              Estética monocroma rigurosa en consonancia con la liturgia electrónica de D-VOID.
-              Se exige vestimenta negra de corte semiformal o industrial; sin estridencias ni neón.
+              Riguroso control de puerta. Estética monocroma rigurosa en consonancia con la liturgia electrónica de D-VOID.
             </p>
             <div class="info-specs">
               <div>
                 <span>RIGOR ESTÉTICO</span>
-                <strong>MONOCROMO / ALL BLACK</strong>
+                <strong>SEMIFORMAL / TOTAL BLACK</strong>
               </div>
               <div>
                 <span>CONTROL DE PUERTA</span>
@@ -1866,25 +1871,21 @@
             </div>
           </article>
 
-          <!-- Bloque 2: Experiencia Electrónica Inmersiva -->
+          <!-- Bloque 2: Arquitectura Sonora -->
           <article class="info-card">
-            <span class="info-card__tag">[ ARQUITECTURA SONORA · 9 DAYS TO GO ]</span>
-            <h3 class="info-card__title">EXPERIENCIA ELECTRÓNICA INMERSIVA</h3>
+            <span class="info-card__tag">[ ARQUITECTURA SONORA ]</span>
+            <h3 class="info-card__title">AUDIO VOID</h3>
             <p class="info-card__desc">
-              A nueve días de Padre Guilherme Ecuador 2026 (21 NOV · Centro de Exposiciones Quito),
-              D-VOID congrega a DJs nacionales, creadores e invitados especiales bajo una atmósfera de
-              penumbra catedralicia, presión sonora techno melódico e iluminación cenital ámbar.
+              Calibración sonora de alta presión acústica para clubbing y frecuencias electrónicas profundas.
             </p>
           </article>
 
-          <!-- Bloque 3: Cóctel Conmemorativo D-VOID (aislado de la imagen del artista) -->
+          <!-- Bloque 3: Cóctel de Autor -->
           <article class="info-card">
-            <span class="info-card__tag">[ EDICIÓN ESPECIAL DE AUTOR // D-VOID LAB ]</span>
-            <h3 class="info-card__title">CÓCTEL CONMEMORATIVO D-VOID</h3>
+            <span class="info-card__tag">[ CÓCTEL DE AUTOR ]</span>
+            <h3 class="info-card__title">MIXOLOGÍA CONCEPTUAL</h3>
             <p class="info-card__desc">
-              Creación de autor desarrollada en exclusiva por la barra de D-VOID e inspirada en el
-              concepto de la Countdown Party. Disponible únicamente durante la noche del 12 de noviembre
-              para los 100 asistentes acreditados.
+              Mixología conceptual diseñada exclusivamente por D-VOID para la noche del Countdown.
             </p>
             <div class="info-specs">
               <div>
@@ -1909,10 +1910,7 @@
             loading="lazy"
             decoding="async"
           >
-          <figcaption class="artist-frame__caption">
-            <span>FIG. 01 — PADRE GUILHERME // LIVE STAGE</span>
-            <span>[ MONOCHROME LUM. 85% ]</span>
-          </figcaption>
+          
         </figure>
       </div>
 
@@ -2386,6 +2384,63 @@
       } else {
         start();
       }
+    })();
+
+    /* ── COUNTDOWN REGRESIVO DINÁMICO (12.NOV.2026 · 20H00 GMT-5) ── */
+    (function () {
+      const targetTime = new Date('2026-11-12T20:00:00-05:00').getTime();
+      const elDays = document.getElementById('cd-days');
+      const elHours = document.getElementById('cd-hours');
+      const elMins = document.getElementById('cd-mins');
+      const elSecs = document.getElementById('cd-secs');
+
+      if (!elDays || !elHours || !elMins || !elSecs) return;
+
+      const lastValues = { days: '', hours: '', mins: '', secs: '' };
+
+      function updateDigit(el, val, key) {
+        if (lastValues[key] !== val) {
+          lastValues[key] = val;
+          el.style.opacity = '0.35';
+          el.style.transform = 'translateY(-2px)';
+          setTimeout(function () {
+            el.textContent = val;
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          }, 90);
+        }
+      }
+
+      function updateCountdown() {
+        const now = Date.now();
+        const diff = targetTime - now;
+
+        if (diff <= 0) {
+          elDays.textContent = '00';
+          elHours.textContent = '00';
+          elMins.textContent = '00';
+          elSecs.textContent = '00';
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+        const dStr = String(days).padStart(2, '0');
+        const hStr = String(hours).padStart(2, '0');
+        const mStr = String(mins).padStart(2, '0');
+        const sStr = String(secs).padStart(2, '0');
+
+        updateDigit(elDays, dStr, 'days');
+        updateDigit(elHours, hStr, 'hours');
+        updateDigit(elMins, mStr, 'mins');
+        updateDigit(elSecs, sStr, 'secs');
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
     })();
 
     /* ── SELECTOR INTERACTIVO DE TIERS, QR PROCEDIMENTAL SVG & CHECKOUT ("COUNTDOWN PASS") ── */
@@ -2882,12 +2937,6 @@
               fields[key].group.classList.remove('has-error', 'is-valid');
               fields[key].error.textContent = '';
             });
-            captureArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        });
-      }
-    })();
-            captureArea.classList.remove('is-collapsed');
             captureArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         });
