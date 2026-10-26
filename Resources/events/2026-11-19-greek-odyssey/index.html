@@ -1,0 +1,4408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#020611" />
+  <title>GREEK ODYSSEY (SANTORINI NIGHT) — DVOID IN COLORS</title>
+  <meta name="description" content="GREEK ODYSSEY · SANTORINI NIGHT — DVOID IN COLORS. Jueves 19 de Noviembre 2026 · 20H30 · +20." />
+
+  <!-- Google Fonts: Cinzel & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       SISTEMA DE DISEÑO — PALETA ABISAL DE TORMENTA (UI/UX PRO MAX)
+       ========================================================================== */
+    :root {
+      --bg-abyss-deep: #020611;
+      --bg-abyss-mid: #051329;
+      --zeus-cyan: #00F0FF;
+      --zeus-cyan-glow: rgba(0, 240, 255, 0.45);
+      --zeus-cyan-soft: rgba(0, 240, 255, 0.15);
+      --aegean-blue: #0047AB;
+      --aegean-blue-glow: rgba(0, 71, 171, 0.55);
+      --stucco-white: #F8FAFC;
+      --gods-gold: #D4AF37;
+      --gods-gold-soft: rgba(212, 175, 55, 0.28);
+
+      --font-display: 'Cinzel', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      background-color: var(--bg-abyss-deep);
+      color: var(--stucco-white);
+      font-family: var(--font-mono);
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      background: radial-gradient(ellipse at 50% 20%, var(--bg-abyss-mid) 0%, var(--bg-abyss-deep) 75%);
+      color: var(--stucco-white);
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      position: relative;
+      selection-background-color: var(--zeus-cyan);
+    }
+
+    ::selection {
+      background: var(--zeus-cyan);
+      color: var(--bg-abyss-deep);
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-abyss-deep);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--aegean-blue);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--zeus-cyan);
+    }
+
+    /* ==========================================================================
+       DESTELLO AMBIENTAL GLOBAL DE ZEUS (120ms TRANSICIÓN)
+       ========================================================================== */
+    #ambientFlashOverlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 45;
+      background-color: rgba(0, 240, 255, 0);
+      transition: background-color 120ms ease-out;
+      will-change: background-color;
+    }
+
+    #ambientFlashOverlay.flash-active {
+      background-color: rgba(0, 240, 255, 0.15);
+      transition: none;
+    }
+
+    /* ==========================================================================
+       MÁSCARA DE NIEBLA MARINA PARA TRANSICIÓN DE DESCENSO
+       ========================================================================== */
+    #seaMistTransitionMask {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      pointer-events: none;
+      opacity: 0;
+      background:
+        radial-gradient(circle at 50% 60%, rgba(0, 240, 255, 0.22) 0%, rgba(0, 71, 171, 0.42) 45%, rgba(2, 6, 17, 0.96) 100%),
+        linear-gradient(180deg, rgba(2, 6, 17, 0) 0%, rgba(5, 19, 41, 0.92) 50%, rgba(2, 6, 17, 1) 100%);
+      backdrop-filter: blur(0px);
+      transition: opacity 520ms var(--ease-out-expo), backdrop-filter 520ms var(--ease-out-expo);
+      will-change: opacity, backdrop-filter;
+    }
+
+    #seaMistTransitionMask.mist-engaging {
+      opacity: 1;
+      backdrop-filter: blur(8px);
+    }
+
+    /* ==========================================================================
+       HERO SECTION: "THE RAGE OF POSEIDON & ZEUS"
+       ========================================================================== */
+    .hero-storm {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      overflow: hidden;
+      padding: clamp(1.25rem, 3vw, 2.5rem) clamp(1rem, 4vw, 3rem) clamp(2rem, 4vh, 3.25rem);
+      background:
+        radial-gradient(circle at 50% 18%, rgba(0, 71, 171, 0.34) 0%, rgba(5, 19, 41, 0.65) 45%, rgba(2, 6, 17, 0.98) 90%);
+      isolation: isolate;
+    }
+
+    /* Greca Helénica Arquitectónica Sutil en los Bordes */
+    .hero-storm::before {
+      content: "";
+      position: absolute;
+      inset: clamp(10px, 2vw, 22px);
+      border: 1px solid rgba(212, 175, 55, 0.22);
+      box-shadow:
+        inset 0 0 40px rgba(0, 240, 255, 0.05),
+        0 0 30px rgba(2, 6, 17, 0.9);
+      pointer-events: none;
+      z-index: 6;
+    }
+
+    /* Esquinas Doradas de Templo */
+    .temple-corner {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      pointer-events: none;
+      z-index: 7;
+      border-color: var(--gods-gold);
+      border-style: solid;
+      opacity: 0.75;
+    }
+    .temple-corner.tl { top: clamp(10px, 2vw, 22px); left: clamp(10px, 2vw, 22px); border-width: 2px 0 0 2px; }
+    .temple-corner.tr { top: clamp(10px, 2vw, 22px); right: clamp(10px, 2vw, 22px); border-width: 2px 2px 0 0; }
+    .temple-corner.bl { bottom: clamp(10px, 2vw, 22px); left: clamp(10px, 2vw, 22px); border-width: 0 0 2px 2px; }
+    .temple-corner.br { bottom: clamp(10px, 2vw, 22px); right: clamp(10px, 2vw, 22px); border-width: 0 2px 2px 0; }
+
+    /* Canvas Procedural 60fps */
+    #stormCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    /* Viñeta Abisal y Bruma Marina Inferior */
+    .abyss-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 42%, transparent 28%, rgba(2, 6, 17, 0.72) 85%, rgba(2, 6, 17, 0.95) 100%),
+        linear-gradient(180deg, rgba(2, 6, 17, 0.65) 0%, transparent 22%, transparent 72%, rgba(2, 6, 17, 0.98) 100%);
+    }
+
+    /* ==========================================================================
+       HEADER SUPERIOR: LOGO D-VOID + SELLO FLOTANTE
+       ========================================================================== */
+    .hero-top-bar {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 1280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9rem;
+      padding-top: 0.35rem;
+    }
+
+    .dvoid-brand-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .dvoid-logo {
+      height: clamp(32px, 4.8vw, 50px);
+      width: auto;
+      object-fit: contain;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 14px rgba(0, 240, 255, 0.35));
+      transition: transform 0.35s var(--ease-out-expo), filter 0.35s ease;
+    }
+
+    .dvoid-logo:hover {
+      transform: scale(1.04);
+      filter: drop-shadow(0 0 22px rgba(0, 240, 255, 0.75));
+    }
+
+    .floating-seal {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 0.5rem 1.15rem;
+      background: rgba(5, 19, 41, 0.76);
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      box-shadow:
+        0 0 24px rgba(0, 71, 171, 0.45),
+        inset 0 0 12px rgba(0, 240, 255, 0.12);
+      backdrop-filter: blur(8px);
+      font-family: var(--font-mono);
+      font-size: clamp(0.64rem, 1.35vw, 0.82rem);
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--stucco-white);
+      text-align: center;
+      position: relative;
+    }
+
+    .floating-seal::before,
+    .floating-seal::after {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: var(--zeus-cyan);
+      box-shadow: 0 0 10px var(--zeus-cyan);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    .seal-highlight {
+      color: var(--gods-gold);
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       CENTRO MONUMENTAL: POSEIDÓN ILUSTRADO (assets/poseidon-greek.png)
+       Escenario multicapa con máscara abisal, ojos pulsantes y sacudida de trueno
+       ========================================================================== */
+    .hero-storm.thunder-surge {
+      animation: thunderCameraShake 0.36s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    }
+
+    @keyframes thunderCameraShake {
+      0%, 100% { transform: translate3d(0, 0, 0); }
+      15% { transform: translate3d(-4px, 3px, 0) rotate(-0.25deg); }
+      30% { transform: translate3d(5px, -3px, 0) rotate(0.25deg); }
+      45% { transform: translate3d(-3px, -2px, 0); }
+      60% { transform: translate3d(3px, 2px, 0); }
+      75% { transform: translate3d(-2px, 1px, 0); }
+    }
+
+    /* Capa de Ilustración de Poseidón Integrada con el Abismo */
+    .poseidon-illustrated-backdrop {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .poseidon-artwork-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-width: 1680px;
+      margin: 0 auto;
+      -webkit-mask-image: linear-gradient(to bottom, #000000 0%, #000000 62%, transparent 94%);
+      mask-image: linear-gradient(to bottom, #000000 0%, #000000 62%, transparent 94%);
+    }
+
+    .poseidon-artwork-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+      filter: saturate(1.12) contrast(1.08) brightness(0.86);
+      transform: scale(1.02);
+      transition: filter 120ms ease, transform 0.6s ease-out;
+      will-change: filter, transform;
+    }
+
+    /* Destello Cian (#00F0FF) que recorta e ilumina a Poseidón y su tridente en cada trueno */
+    .hero-storm.thunder-surge .poseidon-artwork-img {
+      filter:
+        saturate(1.35)
+        contrast(1.22)
+        brightness(1.22)
+        drop-shadow(0 0 32px rgba(0, 240, 255, 0.75));
+      transform: scale(1.032);
+    }
+
+    /* Fundido Inferior hacia el Azul Abisal (#020611) sin cortes bruscos */
+    .poseidon-abyss-fade {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 34%, rgba(0, 240, 255, 0.12) 0%, transparent 52%),
+        linear-gradient(to bottom, rgba(2, 6, 17, 0.38) 0%, transparent 24%, rgba(2, 6, 17, 0.72) 74%, #020611 92%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Pulso Resplandeciente en los Ojos del Dios y Energía del Tridente */
+    .poseidon-eyes-pulse-layer {
+      position: absolute;
+      top: 31.5%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: clamp(90px, 12vw, 170px);
+      height: clamp(36px, 5vw, 64px);
+      pointer-events: none;
+      z-index: 3;
+      background: radial-gradient(ellipse at center, rgba(0, 240, 255, 0.78) 0%, rgba(0, 240, 255, 0.28) 45%, transparent 75%);
+      mix-blend-mode: screen;
+      filter: blur(8px);
+      animation: eyeGodPulse 2.4s ease-in-out infinite;
+    }
+
+    .poseidon-trident-pulse-layer {
+      position: absolute;
+      top: 24%;
+      left: 31%;
+      transform: translate(-50%, -50%);
+      width: clamp(140px, 22vw, 310px);
+      height: clamp(180px, 28vw, 380px);
+      pointer-events: none;
+      z-index: 3;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.45) 0%, rgba(0, 71, 171, 0.2) 48%, transparent 74%);
+      mix-blend-mode: screen;
+      filter: blur(14px);
+      animation: haloPulse 3.2s ease-in-out infinite;
+    }
+
+    .hero-storm.thunder-surge .poseidon-eyes-pulse-layer,
+    .hero-storm.thunder-surge .poseidon-trident-pulse-layer {
+      opacity: 1;
+      filter: blur(6px) brightness(1.8);
+    }
+
+    /* Canvas Procedural 60fps Superpuesto */
+    #stormCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 4;
+      pointer-events: none;
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    .hero-centerpiece {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 1180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      margin: auto 0 1.25rem 0;
+      padding: clamp(11rem, 32vh, 21rem) 0 0.5rem;
+    }
+
+    /* Bloque Tipográfico Principal */
+    .hero-typography {
+      position: relative;
+      z-index: 11;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0 0.5rem;
+    }
+
+    .hero-kicker-subtitle {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(0.95rem, 2.5vw, 1.55rem);
+      letter-spacing: clamp(0.28em, 1.2vw, 0.52em);
+      color: var(--gods-gold);
+      text-transform: uppercase;
+      text-shadow:
+        0 0 18px rgba(212, 175, 55, 0.45),
+        0 2px 10px rgba(2, 6, 17, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+    }
+
+    .hero-kicker-subtitle::before,
+    .hero-kicker-subtitle::after {
+      content: "";
+      width: clamp(24px, 6vw, 72px);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gods-gold), var(--zeus-cyan));
+    }
+    .hero-kicker-subtitle::after {
+      background: linear-gradient(90deg, var(--zeus-cyan), var(--gods-gold), transparent);
+    }
+
+    .hero-main-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.55rem, 8.6vw, 6.85rem);
+      line-height: 0.96;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--stucco-white);
+      background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 45%, #93E5FA 85%, #00F0FF 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 6px 28px rgba(2, 6, 17, 0.95)) drop-shadow(0 0 26px rgba(0, 71, 171, 0.65));
+      transition: filter 120ms ease;
+    }
+
+    .hero-storm.thunder-surge .hero-main-title {
+      filter:
+        drop-shadow(0 0 24px rgba(0, 240, 255, 0.9))
+        drop-shadow(0 0 55px rgba(0, 71, 171, 0.95));
+    }
+
+    /* ==========================================================================
+       3. TRANSICIÓN DE DESCENSO — BOTÓN MASIVO PULSANTE
+       ========================================================================== */
+    .hero-cta-zone {
+      position: relative;
+      z-index: 12;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 0.85rem;
+      width: 100%;
+    }
+
+    .btn-expedition {
+      position: relative;
+      appearance: none;
+      border: 1px solid var(--zeus-cyan);
+      background: linear-gradient(135deg, rgba(2, 6, 17, 0.92) 0%, rgba(5, 19, 41, 0.95) 50%, rgba(0, 71, 171, 0.45) 100%);
+      color: var(--stucco-white);
+      font-family: var(--font-mono);
+      font-size: clamp(0.78rem, 1.6vw, 1.02rem);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: clamp(1rem, 2.2vh, 1.3rem) clamp(1.35rem, 3.5vw, 2.75rem);
+      cursor: pointer;
+      overflow: hidden;
+      box-shadow:
+        0 0 25px rgba(0, 240, 255, 0.28),
+        0 0 55px rgba(0, 71, 171, 0.45),
+        inset 0 0 18px rgba(0, 240, 255, 0.18);
+      transition:
+        transform 0.28s var(--ease-out-expo),
+        box-shadow 0.28s var(--ease-out-expo),
+        border-color 0.28s ease,
+        background 0.28s ease;
+      animation: ctaStormPulse 2.8s ease-in-out infinite;
+    }
+
+    .btn-expedition::before {
+      content: "";
+      position: absolute;
+      inset: 3px;
+      border: 1px solid rgba(212, 175, 55, 0.42);
+      pointer-events: none;
+      transition: border-color 0.28s ease;
+    }
+
+    .btn-expedition::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 70%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.38), rgba(248, 250, 252, 0.6), transparent);
+      transform: skewX(-25deg);
+      transition: left 0.65s var(--ease-out-expo);
+      pointer-events: none;
+    }
+
+    .btn-expedition:hover,
+    .btn-expedition:focus-visible {
+      transform: translateY(-3px) scale(1.02);
+      border-color: var(--stucco-white);
+      box-shadow:
+        0 0 35px rgba(0, 240, 255, 0.65),
+        0 0 75px rgba(0, 71, 171, 0.8),
+        inset 0 0 28px rgba(0, 240, 255, 0.35);
+      outline: none;
+    }
+
+    .btn-expedition:hover::after {
+      left: 145%;
+    }
+
+    .btn-expedition:active {
+      transform: translateY(1px) scale(0.99);
+    }
+
+    .btn-expedition .btn-text {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-shadow: 0 0 12px rgba(0, 240, 255, 0.7);
+    }
+
+    .btn-expedition .arrow-down {
+      display: inline-block;
+      color: var(--zeus-cyan);
+      animation: arrowBounce 1.6s ease-in-out infinite;
+    }
+
+    /* ==========================================================================
+       SECCIÓN #EXPEDICION: ATARDECER EN LA CALDERA DE SANTORINI
+       Y BITÁCORA FÍSICA DE VIAJE (#travelBook)
+       ========================================================================== */
+    .sea-mist-divider {
+      position: relative;
+      width: 100%;
+      height: 120px;
+      margin-top: -60px;
+      z-index: 15;
+      pointer-events: none;
+      background: linear-gradient(
+        180deg,
+        rgba(2, 6, 17, 0) 0%,
+        rgba(5, 19, 41, 0.85) 45%,
+        rgba(4, 12, 28, 1) 100%
+      );
+    }
+
+    .expedition-section {
+      position: relative;
+      z-index: 16;
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding: clamp(3rem, 6vh, 5.5rem) clamp(1rem, 3.5vw, 2.5rem) clamp(4rem, 8vh, 6.5rem);
+      overflow: hidden;
+      background-color: #030a18;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Fondo Atmosférico: Atardecer en la Caldera de Santorini */
+    .santorini-caldera-backdrop {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    /* Gradiente Crepuscular del Egeo (Azul Noche a Ámbar Crepuscular) */
+    .caldera-sky {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        #020815 0%,
+        #051532 20%,
+        #0D2852 42%,
+        #1E2248 58%,
+        #4A2145 74%,
+        #8A3533 86%,
+        #C76332 94%,
+        #E99742 98%,
+        #FFBD66 100%
+      );
+    }
+
+    /* Estrellas Crepusculares en el Cenit */
+    .caldera-stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 48%;
+      background-image:
+        radial-gradient(1px 1px at 12% 18%, #FFFFFF 100%, transparent),
+        radial-gradient(1.5px 1.5px at 28% 28%, rgba(248, 250, 252, 0.8) 100%, transparent),
+        radial-gradient(1px 1px at 45% 12%, rgba(0, 240, 255, 0.9) 100%, transparent),
+        radial-gradient(2px 2px at 64% 22%, rgba(212, 175, 55, 0.9) 100%, transparent),
+        radial-gradient(1px 1px at 78% 10%, #FFFFFF 100%, transparent),
+        radial-gradient(1.5px 1.5px at 88% 30%, rgba(248, 250, 252, 0.7) 100%, transparent);
+      opacity: 0.65;
+    }
+
+    /* Silueta Escénica SVG de la Caldera y Cúpulas Azules de Santorini */
+    .caldera-landscape-svg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: clamp(260px, 38vh, 460px);
+      object-fit: cover;
+      opacity: 0.96;
+    }
+
+    /* Vaho y Resplandor de Terraza */
+    .caldera-ambient-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 65%, rgba(233, 151, 66, 0.16) 0%, rgba(2, 6, 17, 0.58) 75%, rgba(2, 6, 17, 0.9) 100%);
+      mix-blend-mode: soft-light;
+    }
+
+    /* Encabezado Superior de la Sección */
+    .expedition-header {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      margin-bottom: clamp(1.8rem, 3.5vh, 2.75rem);
+      max-width: 880px;
+    }
+
+    .expedition-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.95rem;
+      background: rgba(5, 19, 41, 0.82);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      box-shadow: 0 0 20px rgba(0, 71, 171, 0.35);
+      font-family: var(--font-mono);
+      font-size: clamp(0.65rem, 1.2vw, 0.78rem);
+      letter-spacing: 0.18em;
+      color: var(--gods-gold);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .expedition-badge::before,
+    .expedition-badge::after {
+      content: "✦";
+      color: var(--zeus-cyan);
+    }
+
+    .expedition-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.9rem);
+      font-weight: 800;
+      color: var(--stucco-white);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.15;
+      text-shadow: 0 4px 25px rgba(2, 6, 17, 0.9), 0 0 35px rgba(0, 71, 171, 0.5);
+    }
+
+    .expedition-desc {
+      font-family: var(--font-mono);
+      font-size: clamp(0.78rem, 1.3vw, 0.92rem);
+      color: rgba(248, 250, 252, 0.82);
+      margin-top: 0.5rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* ==========================================================================
+       EL CUADERNO DE CAMPO ABIERTO DE LUJO (#travelBook)
+       Textura papiro/marfil suave #FAF6EE, greca griega Meandro en azul cobalto
+       #0047AB, costura central y perspectiva 3D
+       ========================================================================== */
+    .travel-book-viewport {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      max-width: 1180px;
+      perspective: 1800px;
+      perspective-origin: center 40%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .travel-book {
+      position: relative;
+      width: 100%;
+      min-height: 740px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: #FAF6EE;
+      color: #111A2E;
+      border-radius: 4px;
+      box-shadow:
+        0 45px 100px -20px rgba(0, 0, 0, 0.92),
+        0 20px 50px -10px rgba(0, 71, 171, 0.45),
+        0 0 0 1px rgba(212, 175, 55, 0.45),
+        0 0 40px rgba(233, 151, 66, 0.15);
+      transform-style: preserve-3d;
+      transition: transform 0.4s var(--ease-out-expo);
+    }
+
+    /* Esquinas Metálicas Doradas en los 4 Extremos del Cuaderno */
+    .book-corner-brass {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      z-index: 10;
+      pointer-events: none;
+      border-color: var(--gods-gold);
+      border-style: solid;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+    }
+    .book-corner-brass.tl { top: 6px; left: 6px; border-width: 3px 0 0 3px; }
+    .book-corner-brass.tr { top: 6px; right: 6px; border-width: 3px 3px 0 0; }
+    .book-corner-brass.bl { bottom: 6px; left: 6px; border-width: 0 0 3px 3px; }
+    .book-corner-brass.br { bottom: 6px; right: 6px; border-width: 0 3px 3px 0; }
+
+    /* Costura Central y Pliegue 3D */
+    .book-spine-crease {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 28px;
+      transform: translateX(-50%);
+      z-index: 8;
+      pointer-events: none;
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.28) 0%,
+        rgba(0, 0, 0, 0.08) 35%,
+        rgba(212, 175, 55, 0.35) 50%,
+        rgba(0, 0, 0, 0.08) 65%,
+        rgba(0, 0, 0, 0.28) 100%
+      );
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      padding: 24px 0;
+    }
+
+    /* Puntos de Costura con Hilo de Oro */
+    .spine-stitch {
+      width: 4px;
+      height: 14px;
+      background: var(--gods-gold);
+      border-radius: 2px;
+      box-shadow: 0 0 4px rgba(212, 175, 55, 0.8), inset 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    /* PÁGINAS INDIVIDUALES (SOLUCIÓN DEFINITIVA DE ESPACIADOS E INTERFERENCIAS) */
+    .book-page,
+    .diary-page {
+      position: relative;
+      padding: 4.5rem 3.5rem 3.5rem 3.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        radial-gradient(circle at 50% 50%, #FAF6EE 0%, #F5EFEB 75%, #EFE8DE 100%);
+      overflow: hidden;
+    }
+
+    .book-page.page-left {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      box-shadow: inset -22px 0 28px -15px rgba(0, 0, 0, 0.22);
+      border-right: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .book-page.page-right {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      box-shadow: inset 22px 0 28px -15px rgba(0, 0, 0, 0.22);
+    }
+
+    /* Greca Perimetral Griega Meandro en SVG Cobalto (#0047AB) */
+    .meander-frame-svg {
+      position: absolute;
+      inset: 14px;
+      width: calc(100% - 28px);
+      height: calc(100% - 28px);
+      pointer-events: none;
+      z-index: 2;
+      stroke: var(--aegean-blue);
+      fill: none;
+      opacity: 0.78;
+    }
+
+    .page-inner-content {
+      position: relative;
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    /* Caligrafía Editorial y Encabezado de Página con Aire Generoso */
+    .page-editorial-heading {
+      margin-bottom: 2.25rem;
+      border-bottom: 2px solid rgba(0, 71, 171, 0.22);
+      padding-bottom: 1.1rem;
+    }
+
+    .page-sub-stamp {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      margin-top: 1rem;
+      letter-spacing: 0.05em;
+      color: var(--aegean-blue);
+      text-transform: uppercase;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 0.55rem;
+      line-height: 1.4;
+    }
+
+    .page-editorial-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+      font-weight: 800;
+      color: #0A192F;
+      letter-spacing: 0.04em;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+
+    /* ==========================================================================
+       PÁGINA IZQUIERDA: FORMULARIO "RESERVA DE EXPERIENCIA"
+       Inputs sobrios con líneas de puntos guía y separación anti-colisión
+       ========================================================================== */
+    .expedition-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      flex: 1;
+    }
+
+    .form-group-dotted {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-bottom: 1.75rem;
+      position: relative;
+    }
+
+    .dotted-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #0047AB;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .dotted-label .req-star {
+      color: #C0392B;
+    }
+
+    .dotted-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 2px dotted #0047AB;
+      padding: 0.65rem 0.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.96rem;
+      font-weight: 500;
+      color: #0A192F;
+      transition: border-bottom-color 0.25s ease, background 0.25s ease;
+      outline: none;
+    }
+
+    .dotted-input::placeholder {
+      color: rgba(10, 25, 47, 0.42);
+      font-style: italic;
+      font-size: 0.85rem;
+    }
+
+    .dotted-input:focus {
+      border-bottom-style: solid;
+      border-bottom-color: #0047AB;
+      background: rgba(0, 71, 171, 0.03);
+    }
+
+    .dotted-input.input-error {
+      border-bottom-color: #C0392B;
+      border-bottom-style: solid;
+      animation: fieldShake 0.4s ease;
+    }
+
+    .input-hint-msg {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.03em;
+      line-height: 1.45;
+      min-height: 1.25rem;
+      margin-top: 0.25rem;
+    }
+
+    .input-hint-msg.status-ok {
+      color: #1E7E34;
+      font-weight: 600;
+    }
+
+    .input-hint-msg.status-error {
+      color: #C0392B;
+      font-weight: 700;
+    }
+
+    /* Toggle Interactivo de Modalidad */
+    .modality-toggle-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .modality-toggle-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .btn-modality {
+      appearance: none;
+      background: #FFFFFF;
+      border: 1.5px solid rgba(0, 71, 171, 0.35);
+      padding: 0.85rem 0.65rem;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0A192F;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      transition: all 0.22s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .btn-modality:hover {
+      border-color: #0047AB;
+      background: #F4F8FD;
+    }
+
+    .btn-modality.active {
+      background: #0047AB;
+      color: #FAF6EE;
+      border-color: #0047AB;
+      box-shadow: 0 4px 14px rgba(0, 71, 171, 0.35);
+    }
+
+    /* Contador Numérico Táctil de Acompañantes */
+    .group-counter-drawer {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(-6px);
+      transition: max-height 0.35s var(--ease-out-expo), opacity 0.3s ease, transform 0.3s ease;
+      background: rgba(0, 71, 171, 0.05);
+      border: 1px dashed rgba(0, 71, 171, 0.35);
+      padding: 0 1rem;
+    }
+
+    .group-counter-drawer.drawer-open {
+      max-height: 120px;
+      opacity: 1;
+      transform: translateY(0);
+      padding: 0.9rem 1rem;
+      margin-top: 0.35rem;
+    }
+
+    .counter-control-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .counter-label-text {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #0047AB;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .counter-stepper {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .btn-step {
+      width: 34px;
+      height: 34px;
+      background: #0047AB;
+      color: #FFFFFF;
+      border: none;
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+
+    .btn-step:hover {
+      background: #002B66;
+      transform: scale(1.05);
+    }
+
+    .btn-step:active {
+      transform: scale(0.95);
+    }
+
+    .counter-display {
+      min-width: 42px;
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #0A192F;
+    }
+
+    /* ==========================================================================
+       PÁGINA DERECHA: SELECCIÓN DE PAQUETES & BUSTO ESCULPIDO ALINEADO
+       ========================================================================== */
+    .page-right-header-wrap {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 1.85rem;
+      border-bottom: 2px solid rgba(0, 71, 171, 0.22);
+      padding-bottom: 1.1rem;
+    }
+
+    /* Busto Miniatura Decorativo en CSS/SVG de Zeus/Poseidón (Sin Obstruir Texto) */
+    .god-bust-cameo {
+      position: relative;
+      width: 62px;
+      height: 62px;
+      flex-shrink: 0;
+      margin-top: 0.5rem;
+      margin-right: 0.35rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, #051A3A 0%, #020914 100%);
+      border: 2px solid var(--gods-gold);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35), 0 0 14px rgba(212, 175, 55, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+    }
+
+    .god-bust-svg {
+      width: 82%;
+      height: 82%;
+    }
+
+    .cameo-lightning {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      width: 22px;
+      height: 22px;
+      filter: drop-shadow(0 0 6px #00F0FF);
+      animation: lightningFlicker 1.8s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    /* Radiogroup de Experiencias Helénicas */
+    .packages-radiogroup {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.65rem;
+    }
+
+    .package-card-option {
+      position: relative;
+      background: #FFFFFF;
+      border: 1.5px solid rgba(0, 71, 171, 0.28);
+      padding: 1.15rem 1.25rem 1.15rem 3.45rem;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+      transition: all 0.24s var(--ease-out-expo);
+    }
+
+    .package-card-option:hover {
+      border-color: #0047AB;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 71, 171, 0.15);
+    }
+
+    .package-card-option.active {
+      border-color: #0047AB;
+      background: #F4F8FD;
+      box-shadow: 0 6px 18px rgba(0, 71, 171, 0.22);
+    }
+
+    /* Checkbox Estilo Manuscrito / Plumilla (Despejado del texto) */
+    .ink-check-circle {
+      position: absolute;
+      top: 1.35rem;
+      left: 1.1rem;
+      width: 22px;
+      height: 22px;
+      border: 2px solid #0047AB;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #FFFFFF;
+      transition: all 0.2s ease;
+    }
+
+    .ink-check-mark {
+      width: 11px;
+      height: 11px;
+      fill: #0047AB;
+      opacity: 0;
+      transform: scale(0.4);
+      transition: all 0.2s var(--ease-out-expo);
+    }
+
+    .package-card-option.active .ink-check-circle {
+      background: #0047AB;
+      border-color: #0047AB;
+    }
+
+    .package-card-option.active .ink-check-mark {
+      fill: #FFFFFF;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .pkg-title-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.45rem;
+      flex-wrap: wrap;
+    }
+
+    .pkg-name {
+      font-family: var(--font-display);
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: #0A192F;
+      letter-spacing: 0.02em;
+      line-height: 1.3;
+    }
+
+    .pkg-price {
+      font-family: var(--font-mono);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0047AB;
+      letter-spacing: -0.02em;
+      background: rgba(0, 71, 171, 0.08);
+      padding: 0.1rem 0.55rem;
+      border: 1px solid rgba(0, 71, 171, 0.22);
+      flex-shrink: 0;
+    }
+
+    .pkg-desc {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      line-height: 1.58;
+      color: #2D3748;
+      margin-bottom: 0.45rem;
+      word-break: break-word;
+    }
+
+    .pkg-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      background: rgba(212, 175, 55, 0.18);
+      color: #8C6D1F;
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      margin-top: 0.2rem;
+    }
+
+    /* Selector de Método de Pago Preferido */
+    .payment-method-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px dashed rgba(0, 71, 171, 0.3);
+    }
+
+    .payment-options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+    }
+
+    .btn-payment-choice {
+      appearance: none;
+      background: #FFFFFF;
+      border: 1.5px solid rgba(0, 71, 171, 0.3);
+      padding: 0.65rem 0.45rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0A192F;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-payment-choice:hover {
+      border-color: #0047AB;
+      background: #F4F8FD;
+    }
+
+    .btn-payment-choice.active {
+      background: #0047AB;
+      color: #FAF6EE;
+      border-color: #0047AB;
+      box-shadow: 0 3px 10px rgba(0, 71, 171, 0.28);
+    }
+
+    /* Caja de Resumen Dinámico */
+    .tribute-summary-bar {
+      margin-top: 0.85rem;
+      background: rgba(0, 71, 171, 0.05);
+      border: 1px solid rgba(0, 71, 171, 0.22);
+      padding: 0.65rem 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+    }
+
+    .tribute-total-val {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #0047AB;
+    }
+
+    /* ==========================================================================
+       3. BOTÓN DE CONFIRMACIÓN: SELLO DE CERA DIGITAL INTERACTIVO
+       ========================================================================== */
+    .wax-seal-container {
+      position: relative;
+      z-index: 12;
+      margin-top: clamp(1.8rem, 3.5vh, 2.75rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-wax-seal {
+      position: relative;
+      appearance: none;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      outline: none;
+      transform: translateZ(0);
+      transition: transform 0.28s var(--ease-out-expo), filter 0.28s ease;
+    }
+
+    .btn-wax-seal:hover {
+      transform: scale(1.03) translateY(-2px);
+      filter: drop-shadow(0 14px 28px rgba(0, 240, 255, 0.45));
+    }
+
+    .btn-wax-seal:active {
+      transform: scale(0.97) translateY(1px);
+    }
+
+    /* Cuerpo del Sello de Cera Esculpido */
+    .wax-seal-body {
+      position: relative;
+      width: clamp(270px, 48vw, 380px);
+      height: 76px;
+      background: radial-gradient(circle at 45% 35%, #0F3A78 0%, #0047AB 45%, #051A3D 95%);
+      border: 2px solid var(--gods-gold);
+      box-shadow:
+        0 14px 35px rgba(2, 6, 17, 0.85),
+        0 0 24px rgba(0, 71, 171, 0.6),
+        inset 0 2px 4px rgba(255, 255, 255, 0.35),
+        inset 0 -3px 8px rgba(0, 0, 0, 0.65);
+      border-radius: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+      padding: 0 1.5rem;
+      overflow: hidden;
+    }
+
+    /* Borde Ondulado / Gotas de Cera Lacrada */
+    .wax-seal-body::before {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border: 1px dashed rgba(212, 175, 55, 0.65);
+      border-radius: 34px;
+      pointer-events: none;
+    }
+
+    .wax-seal-icon {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 8px var(--zeus-cyan));
+    }
+
+    .wax-seal-label {
+      font-family: var(--font-display);
+      font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      color: #FAF6EE;
+      text-transform: uppercase;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85), 0 0 14px rgba(0, 240, 255, 0.6);
+    }
+
+    /* Resplandor de Cera Estampada */
+    .btn-wax-seal.stamped .wax-seal-body {
+      animation: waxStampThump 0.55s var(--ease-out-expo);
+    }
+
+    .seal-micro-disclaimer {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      color: rgba(248, 250, 252, 0.68);
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* ==========================================================================
+       1. NAVEGACIÓN POR PESTAÑAS DEL CUADERNO (TABS LATERALES + GIRO 3D)
+       ========================================================================== */
+    .book-top-utility-bar {
+      width: 100%;
+      max-width: 1180px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+      z-index: 15;
+    }
+
+    .book-swipe-hint {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      color: rgba(248, 250, 252, 0.75);
+      text-transform: uppercase;
+    }
+
+    .btn-paper-sound {
+      appearance: none;
+      background: rgba(5, 19, 41, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      color: var(--stucco-white);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      padding: 0.4rem 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-paper-sound:hover {
+      border-color: var(--zeus-cyan);
+      color: var(--zeus-cyan);
+    }
+
+    .btn-paper-sound[aria-pressed="false"] {
+      opacity: 0.65;
+      border-color: rgba(248, 250, 252, 0.25);
+    }
+
+    /* Pestañas Laterales Sobresalientes en el Borde Derecho del Libro */
+    .book-side-tabs {
+      position: absolute;
+      top: 44px;
+      right: -46px;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .book-tab-btn {
+      appearance: none;
+      position: relative;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      background: linear-gradient(90deg, #E8DFD1 0%, #FAF6EE 35%, #F2EAE0 100%);
+      color: #0A192F;
+      border: 1.5px solid #0047AB;
+      border-left: none;
+      border-radius: 0 6px 6px 0;
+      padding: 1.05rem 0.65rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow:
+        6px 6px 18px rgba(0, 0, 0, 0.55),
+        inset -3px 0 0 var(--gods-gold);
+      transition: transform 0.24s var(--ease-out-expo), background 0.24s ease, color 0.24s ease;
+    }
+
+    .book-tab-btn:hover {
+      transform: translateX(5px);
+      background: #FFFFFF;
+      color: #0047AB;
+    }
+
+    .book-tab-btn.active {
+      background: linear-gradient(90deg, #003380 0%, #0047AB 100%);
+      color: #FAF6EE;
+      border-color: var(--gods-gold);
+      transform: translateX(8px);
+      box-shadow:
+        8px 8px 22px rgba(0, 0, 0, 0.75),
+        0 0 16px rgba(0, 240, 255, 0.35),
+        inset -4px 0 0 var(--gods-gold);
+    }
+
+    /* Spreads del Cuaderno (Pares de Páginas con Transición Fluida) */
+    .book-spread {
+      grid-column: 1 / -1;
+      display: none;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      min-height: 760px;
+      transform: translate3d(0, 0, 0);
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .book-spread.active-spread {
+      display: grid;
+      animation: spreadFlipReveal 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    @keyframes spreadFlipReveal {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 6px, 0) scale(0.992);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+    }
+
+    /* Hoja Física 3D para Animación de Paso de Página (rotateY(-180deg)) */
+    .page-turn-leaf {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      z-index: 30;
+      pointer-events: none;
+      transform-origin: left center;
+      transform-style: preserve-3d;
+      transform: rotateY(0deg);
+      opacity: 0;
+      background: linear-gradient(90deg, #D8CFC0 0%, #FAF6EE 20%, #F5EFEB 100%);
+      border: 1px solid rgba(0, 71, 171, 0.35);
+      box-shadow: -15px 0 35px rgba(0, 0, 0, 0.45);
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .page-turn-leaf.turning-forward {
+      animation: pageTurnForward3D 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes pageTurnForward3D {
+      0% {
+        opacity: 1;
+        transform: perspective(1800px) rotateY(0deg);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+      }
+      50% {
+        opacity: 1;
+        transform: perspective(1800px) rotateY(-90deg);
+        box-shadow: -35px 0 55px rgba(0, 0, 0, 0.55);
+      }
+      100% {
+        opacity: 0;
+        transform: perspective(1800px) rotateY(-180deg);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.15);
+      }
+    }
+
+    /* Transición de Cierre del Libro al Emitir el Odyssey Pass */
+    .travel-book-viewport.book-closing {
+      animation: closeBookToPass 0.62s var(--ease-out-expo) forwards;
+      pointer-events: none;
+    }
+
+    .travel-book-viewport.book-hidden {
+      display: none !important;
+    }
+
+    @keyframes closeBookToPass {
+      0% {
+        opacity: 1;
+        transform: perspective(1800px) rotateX(0deg) scale(1);
+      }
+      55% {
+        opacity: 0.7;
+        transform: perspective(1800px) rotateX(18deg) scale(0.92);
+      }
+      100% {
+        opacity: 0;
+        transform: perspective(1800px) rotateX(32deg) scale(0.84);
+      }
+    }
+
+    /* ==========================================================================
+       2. ESTILOS PÁGINA "DRESS CODE: SANTORINI NIGHTS"
+       ========================================================================== */
+    .dresscode-lead-box {
+      background: rgba(0, 71, 171, 0.06);
+      border-left: 3px solid #0047AB;
+      padding: 0.9rem 1rem;
+      margin-bottom: 1.15rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      line-height: 1.55;
+      color: #1E293B;
+    }
+
+    .dresscode-palette-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .swatch-card {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      background: #FFFFFF;
+      border: 1px solid rgba(0, 71, 171, 0.25);
+      padding: 0.6rem 0.75rem;
+    }
+
+    .swatch-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 1px solid rgba(10, 25, 47, 0.25);
+    }
+
+    .swatch-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .swatch-title {
+      font-family: var(--font-display);
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: #0A192F;
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      color: #475569;
+    }
+
+    .dresscode-warning-badge {
+      margin-top: auto;
+      background: #0A192F;
+      color: #FAF6EE;
+      border: 1.5px solid var(--gods-gold);
+      padding: 0.85rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-align: center;
+      text-transform: uppercase;
+      box-shadow: 0 6px 16px rgba(10, 25, 47, 0.25);
+    }
+
+    .lookbook-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .lookbook-card {
+      background: #FFFFFF;
+      border: 1.5px solid rgba(0, 71, 171, 0.3);
+      padding: 1rem 1.1rem;
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 0.9rem;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .lookbook-icon-box {
+      width: 54px;
+      height: 64px;
+      background: linear-gradient(180deg, #F0F6FF 0%, #E2EEFF 100%);
+      border: 1px solid rgba(0, 71, 171, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lookbook-gender-tag {
+      font-family: var(--font-display);
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #0047AB;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+
+    .lookbook-rules {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      line-height: 1.5;
+      color: #1E293B;
+    }
+
+    .btn-jump-tab {
+      margin-top: auto;
+      appearance: none;
+      width: 100%;
+      background: #0047AB;
+      color: #FAF6EE;
+      border: 1px solid var(--gods-gold);
+      padding: 0.8rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-jump-tab:hover {
+      background: #051A3D;
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       3. ESTILOS PÁGINA "PROMOS DE LA NOCHE"
+       ========================================================================== */
+    .promos-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .promo-item-card {
+      background: #FFFFFF;
+      border: 1.5px solid rgba(0, 71, 171, 0.28);
+      padding: 0.95rem 1.05rem;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .promo-time-pill {
+      display: inline-block;
+      background: #0047AB;
+      color: #FAF6EE;
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      padding: 0.2rem 0.55rem;
+      text-transform: uppercase;
+      margin-bottom: 0.45rem;
+    }
+
+    .promo-item-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #0A192F;
+      margin-bottom: 0.25rem;
+    }
+
+    .promo-item-desc {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      line-height: 1.48;
+      color: #334155;
+    }
+
+    .promo-flash-card {
+      background: linear-gradient(135deg, #051329 0%, #002D6B 100%);
+      color: #FAF6EE;
+      border: 1.5px solid var(--zeus-cyan);
+      padding: 1.05rem 1.15rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 8px 22px rgba(0, 71, 171, 0.28);
+    }
+
+    .promo-flash-card .promo-time-pill {
+      background: var(--zeus-cyan);
+      color: #020611;
+    }
+
+    .promo-flash-card .promo-item-title {
+      color: #FFFFFF;
+    }
+
+    .promo-flash-card .promo-item-desc {
+      color: rgba(248, 250, 252, 0.86);
+    }
+
+    .golden-ticket-relic {
+      background: linear-gradient(135deg, #FFFDF7 0%, #FDF3D0 50%, #F7E199 100%);
+      border: 2px solid #B8860B;
+      padding: 1.05rem 1.15rem;
+      position: relative;
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.28);
+      margin-bottom: 1rem;
+    }
+
+    .golden-ticket-relic::before {
+      content: "★ RELIQUIA OCULTA EN EL TEMPLO ★";
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      color: #7A5805;
+      margin-bottom: 0.35rem;
+    }
+
+    /* ==========================================================================
+       4. TICKET DIGITAL HELÉNICO (ODYSSEY PASS — EMERGE AL CERRAR EL LIBRO)
+       ========================================================================== */
+    .odyssey-pass-wrapper {
+      position: relative;
+      z-index: 18;
+      width: 100%;
+      max-width: 780px;
+      margin: 0 auto;
+      display: none;
+      opacity: 0;
+      transform: translateY(28px) scale(0.94);
+      transition: opacity 0.55s var(--ease-out-expo), transform 0.55s var(--ease-out-expo);
+    }
+
+    .odyssey-pass-wrapper.pass-revealed {
+      display: block;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .odyssey-pass-ticket {
+      position: relative;
+      background: linear-gradient(155deg, #041024 0%, #051633 48%, #020815 100%);
+      color: var(--stucco-white);
+      border: 2px solid var(--gods-gold);
+      box-shadow:
+        0 35px 90px rgba(0, 0, 0, 0.92),
+        0 0 50px rgba(212, 175, 55, 0.28),
+        inset 0 0 40px rgba(0, 71, 171, 0.35);
+      padding: clamp(1.5rem, 4vw, 2.75rem);
+      overflow: hidden;
+    }
+
+    /* Greca Griega Perimetral Dorada Continua */
+    .odyssey-gold-meander {
+      position: absolute;
+      inset: 10px;
+      width: calc(100% - 20px);
+      height: calc(100% - 20px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .odyssey-pass-inner {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      gap: 1.35rem;
+    }
+
+    .odyssey-pass-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.45);
+      padding-bottom: 1rem;
+    }
+
+    .odyssey-pass-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      color: var(--zeus-cyan);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .odyssey-pass-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.45rem, 3.2vw, 2.15rem);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      color: var(--gods-gold);
+      text-transform: uppercase;
+    }
+
+    .odyssey-serial-pill {
+      background: rgba(212, 175, 55, 0.14);
+      border: 1.5px solid var(--gods-gold);
+      padding: 0.45rem 0.95rem;
+      font-family: var(--font-mono);
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      color: #FFFFFF;
+    }
+
+    .odyssey-pass-body {
+      display: grid;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .odyssey-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.95rem 1.15rem;
+    }
+
+    .odyssey-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      border-bottom: 1px dotted rgba(212, 175, 55, 0.3);
+      padding-bottom: 0.45rem;
+    }
+
+    .odyssey-field.full-span {
+      grid-column: 1 / -1;
+    }
+
+    .odyssey-field-label {
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      letter-spacing: 0.16em;
+      color: var(--gods-gold);
+      text-transform: uppercase;
+    }
+
+    .odyssey-field-value {
+      font-family: var(--font-display);
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #FAF6EE;
+    }
+
+    /* Marco Blanco Mármol para QR Vectorial en Azul Profundo */
+    .odyssey-qr-marble-frame {
+      background: #FAF6EE;
+      border: 2px solid var(--gods-gold);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.65);
+    }
+
+    .odyssey-qr-mount {
+      width: 168px;
+      height: 168px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .odyssey-qr-mount svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .odyssey-qr-caption {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      color: #051329;
+      text-transform: uppercase;
+    }
+
+    .odyssey-pass-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      padding-top: 0.5rem;
+    }
+
+    .btn-odyssey-action {
+      flex: 1;
+      min-width: 180px;
+      appearance: none;
+      padding: 0.9rem 1.1rem;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      text-align: center;
+    }
+
+    .btn-odyssey-action.gold-primary {
+      background: linear-gradient(135deg, #D4AF37 0%, #F3E5AB 50%, #AA8010 100%);
+      color: #020611;
+      border: 1px solid #FFFFFF;
+      box-shadow: 0 0 24px rgba(212, 175, 55, 0.45);
+    }
+
+    .btn-odyssey-action.gold-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 34px rgba(212, 175, 55, 0.8);
+    }
+
+    .btn-odyssey-action.cyan-secondary {
+      background: rgba(0, 240, 255, 0.12);
+      color: var(--zeus-cyan);
+      border: 1px solid var(--zeus-cyan);
+    }
+
+    .btn-odyssey-action.cyan-secondary:hover {
+      background: var(--zeus-cyan);
+      color: #020611;
+    }
+
+    .btn-odyssey-action.ghost-return {
+      background: transparent;
+      color: rgba(248, 250, 252, 0.8);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+    }
+
+    .btn-odyssey-action.ghost-return:hover {
+      border-color: #FFFFFF;
+      color: #FFFFFF;
+    }
+
+    /* Pie de Página Monocromático de Patrocinadores (En el Ticket y Footer Global) */
+    .monochrome-sponsors-footer {
+      border-top: 1px solid rgba(212, 175, 55, 0.3);
+      padding-top: 1.1rem;
+      margin-top: 0.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      opacity: 0.88;
+    }
+
+    .sponsor-logo-item {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      filter: grayscale(100%) brightness(1.8);
+      transition: opacity 0.2s ease, filter 0.2s ease;
+    }
+
+    .sponsor-logo-item:hover {
+      opacity: 1;
+      filter: grayscale(100%) brightness(2.2);
+    }
+
+    .sponsor-logo-item img {
+      height: 28px;
+      width: auto;
+      object-fit: contain;
+      mix-blend-mode: screen;
+    }
+
+    .global-monochrome-footer {
+      position: relative;
+      z-index: 20;
+      width: 100%;
+      background: #01040B;
+      border-top: 1px solid rgba(212, 175, 55, 0.25);
+      padding: 2.2rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+      text-align: center;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE MOBILE (< 940px & < 600px SIN DESBORDAMIENTO NI SALTOS DE VIEWPORT)
+       ========================================================================== */
+    @media (max-width: 940px) {
+      .travel-book {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        overflow: hidden;
+      }
+      .book-spine-crease {
+        display: none;
+      }
+      .book-side-tabs {
+        position: static;
+        flex-direction: row;
+        width: 100%;
+        justify-content: stretch;
+        gap: 0.4rem;
+        margin-bottom: 0;
+        padding: 0.65rem 0.65rem 0;
+        background: #081834;
+        border-bottom: 1.5px solid var(--gods-gold);
+      }
+      .book-tab-btn {
+        writing-mode: horizontal-tb;
+        flex: 1;
+        border: 1.5px solid #0047AB;
+        border-bottom: none;
+        border-radius: 6px 6px 0 0;
+        padding: 0.78rem 0.4rem;
+        font-size: 0.68rem;
+        letter-spacing: 0.08em;
+        text-align: center;
+        transform: translate3d(0, 0, 0) !important;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, color 0.3s ease;
+        box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.35);
+      }
+      .book-spread {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .book-page,
+      .diary-page {
+        padding: 3.5rem 2rem 2rem 2rem;
+      }
+      .book-page.page-left {
+        border-top-right-radius: 4px;
+        border-bottom-left-radius: 0;
+        border-right: none;
+        border-bottom: 2px dashed rgba(0, 71, 171, 0.25);
+      }
+      .book-page.page-right {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 4px;
+        box-shadow: none;
+      }
+      .page-turn-leaf {
+        width: 100%;
+      }
+      .wax-seal-body {
+        width: 100%;
+        max-width: 340px;
+        height: 68px;
+      }
+      .odyssey-pass-body {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .expedition-section {
+        padding: 2.2rem 0.65rem 3.5rem;
+      }
+      .book-top-utility-bar {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+      }
+      .book-page,
+      .diary-page {
+        padding: 3.5rem 2rem 2rem 2rem;
+      }
+      .dresscode-palette-grid,
+      .modality-toggle-grid,
+      .payment-options-grid,
+      .odyssey-info-grid {
+        grid-template-columns: 1fr;
+      }
+      .lookbook-card {
+        grid-template-columns: 1fr;
+        text-align: left;
+      }
+      .odyssey-pass-ticket {
+        padding: 1.25rem 0.95rem;
+      }
+      .odyssey-pass-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* ==========================================================================
+       ESTILOS DE IMPRESIÓN (@media print) PARA EL ODYSSEY PASS
+       ========================================================================== */
+    @media print {
+      body {
+        background: #FFFFFF !important;
+        color: #051329 !important;
+      }
+      #heroStormSection,
+      .sea-mist-divider,
+      .santorini-caldera-backdrop,
+      .expedition-header,
+      .travel-book-viewport,
+      .odyssey-pass-actions,
+      .global-monochrome-footer,
+      #ambientFlashOverlay,
+      #seaMistTransitionMask {
+        display: none !important;
+      }
+      .expedition-section {
+        padding: 0 !important;
+        min-height: auto !important;
+        background: #FFFFFF !important;
+      }
+      .odyssey-pass-wrapper {
+        display: block !important;
+        opacity: 1 !important;
+        transform: none !important;
+        max-width: 100% !important;
+      }
+      .odyssey-pass-ticket {
+        background: #FFFFFF !important;
+        color: #051329 !important;
+        border: 3px solid #051329 !important;
+        box-shadow: none !important;
+      }
+      .odyssey-pass-title,
+      .odyssey-field-label,
+      .odyssey-field-value,
+      .odyssey-serial-pill {
+        color: #051329 !important;
+        border-color: #051329 !important;
+      }
+      .sponsor-logo-item {
+        filter: grayscale(100%) invert(1) contrast(2) !important;
+      }
+    }
+
+    /* ==========================================================================
+       KEYFRAMES DE ANIMACIONES
+       ========================================================================== */
+    @keyframes lightningFlicker {
+      0%, 100% { opacity: 0.75; transform: rotate(0deg) scale(1); }
+      50% { opacity: 1; transform: rotate(4deg) scale(1.12); }
+    }
+
+    @keyframes waxStampThump {
+      0% { transform: scale(1); }
+      40% { transform: scale(0.92); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9); }
+      70% { transform: scale(1.06); box-shadow: 0 0 35px #00F0FF; }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes fieldShake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+
+    /* ==========================================================================
+       KEYFRAMES & ANIMACIONES DE ALTA PRECISIÓN
+       ========================================================================== */
+    @keyframes eyeGodPulse {
+      0%, 100% {
+        opacity: 0.82;
+        transform: scale(0.96);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.14);
+      }
+    }
+
+    @keyframes arcFlicker {
+      0%, 100% {
+        opacity: 0.25;
+        stroke-dashoffset: 0;
+      }
+      40% {
+        opacity: 0.92;
+        stroke-dashoffset: -12;
+      }
+      75% {
+        opacity: 0.15;
+        stroke-dashoffset: 8;
+      }
+    }
+
+    @keyframes arcFlickerAlt {
+      0%, 100% {
+        opacity: 0.18;
+        stroke-dashoffset: 6;
+      }
+      50% {
+        opacity: 0.85;
+        stroke-dashoffset: -10;
+      }
+    }
+
+    @keyframes haloPulse {
+      0%, 100% {
+        transform: scale(0.95);
+        opacity: 0.65;
+      }
+      50% {
+        transform: scale(1.08);
+        opacity: 0.95;
+      }
+    }
+
+    @keyframes slowOrbit {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes ctaStormPulse {
+      0%, 100% {
+        box-shadow:
+          0 0 22px rgba(0, 240, 255, 0.24),
+          0 0 48px rgba(0, 71, 171, 0.4),
+          inset 0 0 14px rgba(0, 240, 255, 0.15);
+      }
+      50% {
+        box-shadow:
+          0 0 34px rgba(0, 240, 255, 0.55),
+          0 0 70px rgba(0, 71, 171, 0.7),
+          inset 0 0 24px rgba(0, 240, 255, 0.3);
+      }
+    }
+
+    @keyframes arrowBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(4px); }
+    }
+
+    /* ==========================================================================
+       RESPONSIVE MOBILE & TABLET REFINEMENTS (HERO)
+       ========================================================================== */
+    @media (max-width: 768px) {
+      .hero-storm {
+        padding: 1rem 0.85rem 1.65rem;
+      }
+      .floating-seal {
+        font-size: 0.62rem;
+        letter-spacing: 0.11em;
+        padding: 0.45rem 0.75rem;
+        line-height: 1.4;
+      }
+      .hero-centerpiece {
+        padding-top: clamp(13rem, 44vh, 18rem);
+      }
+      .poseidon-artwork-img {
+        object-position: center 14%;
+      }
+      .hero-main-title {
+        font-size: clamp(2.2rem, 11vw, 3.6rem);
+      }
+      .hero-tagline {
+        font-size: 0.66rem;
+        letter-spacing: 0.15em;
+        padding: 0.35rem 0.65rem;
+      }
+      .btn-expedition {
+        width: 100%;
+        max-width: 370px;
+        padding: 1rem 1rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.11em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Capa Global de Destello Ambiental Zeus (rgba(0, 240, 255, 0.15) -> 0 en 120ms) -->
+  <div id="ambientFlashOverlay" aria-hidden="true"></div>
+
+  <!-- Máscara de Niebla Marina para la Transición de Descenso -->
+  <div id="seaMistTransitionMask" aria-hidden="true"></div>
+
+  <!-- ========================================================================
+       HERO SECTION: "THE RAGE OF POSEIDON & ZEUS"
+       ======================================================================== -->
+  <header class="hero-storm" id="heroStormSection">
+    <!-- Esquinas Arquitectónicas de Templo Helénico -->
+    <span class="temple-corner tl" aria-hidden="true"></span>
+    <span class="temple-corner tr" aria-hidden="true"></span>
+    <span class="temple-corner bl" aria-hidden="true"></span>
+    <span class="temple-corner br" aria-hidden="true"></span>
+
+    <!-- 1. Escenario Multicapa: Poseidón Ilustrado (assets/poseidon-greek.png) + Máscara Abisal -->
+    <div class="poseidon-illustrated-backdrop" aria-hidden="true">
+      <div class="poseidon-artwork-wrapper">
+        <img
+          src="assets/poseidon-greek.png"
+          alt="Poseidón emergiendo de la tormenta en Santorini"
+          class="poseidon-artwork-img"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <!-- Pulso Resplandeciente en los Ojos del Dios (#00F0FF) y Energía del Tridente -->
+        <div class="poseidon-eyes-pulse-layer"></div>
+        <div class="poseidon-trident-pulse-layer"></div>
+      </div>
+      <!-- Máscara de Degradado Abisal (background: linear-gradient(to bottom, transparent, #020611 90%)) -->
+      <div class="poseidon-abyss-fade"></div>
+    </div>
+
+    <!-- 2. Sistema Procedural e Interactivo de Tormenta 60fps Superpuesto -->
+    <canvas id="stormCanvas" aria-hidden="true"></canvas>
+    <div class="abyss-vignette" aria-hidden="true"></div>
+
+    <!-- Barra Superior: Logo D-VOID & Sello Flotante Oficial -->
+    <div class="hero-top-bar">
+      <div class="dvoid-brand-wrap">
+        <img
+          src="../../dvoid/LOGO DVOID.png"
+          alt="D-VOID Logo"
+          class="dvoid-logo"
+          decoding="async"
+        />
+      </div>
+
+      <div class="floating-seal" role="note" aria-label="Información del evento">
+        <span><strong class="seal-highlight">DVOID IN COLORS</strong> // JUEVES 19 DE NOVIEMBRE 2026 · 20H30 · +20</span>
+      </div>
+    </div>
+
+    <!-- 3. Titulares Monumentales en Cinzel -->
+    <div class="hero-centerpiece">
+      <div class="hero-typography">
+        <p class="hero-kicker-subtitle">SANTORINI NIGHT</p>
+        <h1 class="hero-main-title">GREEK ODYSSEY</h1>
+      </div>
+    </div>
+
+    <!-- 4. Transición de Descenso: Botón Masivo Pulsante -->
+    <div class="hero-cta-zone">
+      <button
+        type="button"
+        id="openExpeditionBtn"
+        class="btn-expedition"
+        aria-label="Abrir Bitácora de Expedición y descender al libro de reservas"
+      >
+        <span class="btn-text">
+          ABRIR BITÁCORA DE EXPEDICIÓN <span class="arrow-down">↓</span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Divisor de Niebla Marina -->
+  <div class="sea-mist-divider" aria-hidden="true"></div>
+
+  <!-- ========================================================================
+       DESTINO DEL DESCENSO: SECCIÓN #EXPEDICION (BITÁCORA FÍSICA DE SANTORINI)
+       ======================================================================== -->
+  <main id="expedicion" class="expedition-section" data-section="expeditionLogSection">
+    <!-- Fondo Atmosférico: Atardecer en la Caldera de Santorini -->
+    <div class="santorini-caldera-backdrop" aria-hidden="true">
+      <div class="caldera-sky"></div>
+      <div class="caldera-stars"></div>
+
+      <!-- Silueta Escénica de la Caldera, Cúpulas Azules y Mar Egeo -->
+      <svg
+        class="caldera-landscape-svg"
+        viewBox="0 0 1440 460"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          <!-- Gradiente de Acantilado Volcánico de la Caldera -->
+          <linearGradient id="cliffVolcanicGrad" x1="720" y1="120" x2="720" y2="460" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#1B172E" />
+            <stop offset="35%" stop-color="#0F1122" />
+            <stop offset="75%" stop-color="#080B17" />
+            <stop offset="100%" stop-color="#020611" />
+          </linearGradient>
+
+          <!-- Gradiente del Mar Egeo Calmo al Atardecer -->
+          <linearGradient id="calmSeaGrad" x1="720" y1="360" x2="720" y2="460" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#D97736" stop-opacity="0.45" />
+            <stop offset="25%" stop-color="#1B3260" stop-opacity="0.85" />
+            <stop offset="100%" stop-color="#030918" />
+          </linearGradient>
+
+          <!-- Azul Cobalto de las Cúpulas de Santorini -->
+          <linearGradient id="santoriniDomeGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0066FF" />
+            <stop offset="45%" stop-color="#0047AB" />
+            <stop offset="100%" stop-color="#002255" />
+          </linearGradient>
+        </defs>
+
+        <!-- Cresta y Acantilados de la Caldera -->
+        <path
+          d="M0 240 L110 215 L230 260 L360 220 L510 245 L680 185 L840 230 L980 170 L1140 210 L1310 160 L1440 190 L1440 460 L0 460 Z"
+          fill="url(#cliffVolcanicGrad)"
+        />
+
+        <!-- Arquitectura Encalada de Oia / Fira en la Cumbre del Acantilado -->
+        <g class="santorini-villages" fill="#F8FAFC" opacity="0.92">
+          <!-- Bloques y Terrazas de Casas Blancas (Izquierda) -->
+          <rect x="70" y="195" width="28" height="24" rx="1" fill="#ECEFF4" />
+          <rect x="94" y="185" width="34" height="34" rx="1" fill="#F8FAFC" />
+          <rect x="124" y="200" width="24" height="20" rx="1" fill="#E2E8F0" />
+          <!-- Ventanitas Ámbar Iluminadas -->
+          <rect x="104" y="196" width="5" height="7" fill="#FFB347" />
+          <rect x="116" y="196" width="5" height="7" fill="#FFB347" />
+
+          <!-- Cúpula Azul Izquierda -->
+          <path d="M148 200 A 18 18 0 0 1 184 200 Z" fill="url(#santoriniDomeGrad)" />
+          <line x1="166" y1="178" x2="166" y2="186" stroke="#D4AF37" stroke-width="2" />
+          <line x1="162" y1="181" x2="170" y2="181" stroke="#D4AF37" stroke-width="2" />
+
+          <!-- Bloques Centrales de la Terraza -->
+          <rect x="620" y="165" width="42" height="36" rx="1" fill="#F8FAFC" />
+          <rect x="658" y="152" width="52" height="48" rx="1" fill="#ECEFF4" />
+          <rect x="706" y="168" width="36" height="32" rx="1" fill="#F8FAFC" />
+          <!-- Cúpula Azul Central Emblemática -->
+          <path d="M668 152 A 22 22 0 0 1 712 152 Z" fill="url(#santoriniDomeGrad)" />
+          <line x1="690" y1="126" x2="690" y2="135" stroke="#D4AF37" stroke-width="2.5" />
+          <line x1="685" y1="130" x2="695" y2="130" stroke="#D4AF37" stroke-width="2.5" />
+          <rect x="676" y="168" width="6" height="8" fill="#FFB347" />
+          <rect x="696" y="168" width="6" height="8" fill="#FFB347" />
+
+          <!-- Bloques y Cúpula Derecha -->
+          <rect x="1240" y="145" width="48" height="38" rx="1" fill="#F8FAFC" />
+          <rect x="1284" y="138" width="44" height="45" rx="1" fill="#ECEFF4" />
+          <path d="M1292 138 A 20 20 0 0 1 1332 138 Z" fill="url(#santoriniDomeGrad)" />
+          <line x1="1312" y1="114" x2="1312" y2="123" stroke="#D4AF37" stroke-width="2" />
+          <line x1="1307" y1="118" x2="1317" y2="118" stroke="#D4AF37" stroke-width="2" />
+          <rect x="1254" y="156" width="6" height="8" fill="#FFB347" />
+        </g>
+
+        <!-- Mar Egeo Calmo al Atardecer con Resplandor Ámbar -->
+        <rect x="0" y="375" width="1440" height="85" fill="url(#calmSeaGrad)" />
+        <ellipse cx="720" cy="385" rx="420" ry="8" fill="#FFBD66" opacity="0.32" />
+        <ellipse cx="690" cy="405" rx="260" ry="5" fill="#E99742" opacity="0.28" />
+      </svg>
+
+      <div class="caldera-ambient-glow"></div>
+    </div>
+
+    <!-- Encabezado de la Sección -->
+    <header class="expedition-header">
+      <div class="expedition-badge">TERRAZA DE SANTORINI // BITÁCORA DEL EGEO</div>
+      <h2 class="expedition-title">SOLICITUD DE EXPEDICIÓN</h2>
+      <p class="expedition-desc">
+        Apertura de la bitácora física de navegación. Registra tu plaza en el libro mayor de D-VOID antes del ocaso.
+      </p>
+    </header>
+
+    <!-- ======================================================================
+         CONTENEDOR #travelBook: CUADERNO DE CAMPO ABIERTO DE LUJO
+         Con Pestañas Laterales Sobresalientes, Giro 3D y 3 Spreads Completos
+         ====================================================================== -->
+    <div id="travelBookViewport" class="travel-book-viewport">
+      <!-- Barra de Utilidades del Cuaderno: Gesto Táctil & Toggle de Sonido de Papel -->
+      <div class="book-top-utility-bar">
+        <span class="book-swipe-hint">✦ TOCA LAS PESTAÑAS LATERALES O DESLIZA PARA PASAR PÁGINA ✦</span>
+        <button
+          type="button"
+          id="btnPaperSoundToggle"
+          class="btn-paper-sound"
+          aria-pressed="true"
+        >
+          SONIDO PAPEL: ON
+        </button>
+      </div>
+
+      <div id="travelBook" class="travel-book" role="region" aria-label="Cuaderno de campo de la odisea">
+        <!-- 1. PESTAÑAS LATERALES SOBRESALIENTES EN EL BORDE DERECHO -->
+        <nav class="book-side-tabs" role="tablist" aria-label="Secciones de la bitácora">
+          <button
+            type="button"
+            class="book-tab-btn active"
+            role="tab"
+            aria-selected="true"
+            aria-controls="spread-registro"
+            data-tab-target="registro"
+          >
+            REGISTRO
+          </button>
+          <button
+            type="button"
+            class="book-tab-btn"
+            role="tab"
+            aria-selected="false"
+            aria-controls="spread-dresscode"
+            data-tab-target="dresscode"
+          >
+            DRESS CODE
+          </button>
+          <button
+            type="button"
+            class="book-tab-btn"
+            role="tab"
+            aria-selected="false"
+            aria-controls="spread-promos"
+            data-tab-target="promos"
+          >
+            PROMOS DVOID
+          </button>
+        </nav>
+
+        <!-- Hoja Física 3D para Animación de Paso de Página (transform: rotateY(-180deg)) -->
+        <div id="pageTurnLeaf" class="page-turn-leaf" aria-hidden="true"></div>
+
+        <!-- Esquinas Metálicas Doradas del Cuaderno -->
+        <span class="book-corner-brass tl" aria-hidden="true"></span>
+        <span class="book-corner-brass tr" aria-hidden="true"></span>
+        <span class="book-corner-brass bl" aria-hidden="true"></span>
+        <span class="book-corner-brass br" aria-hidden="true"></span>
+
+        <!-- Costura Central y Pliegue de Encuadernación con Hilo de Oro -->
+        <div class="book-spine-crease" aria-hidden="true">
+          <span class="spine-stitch"></span>
+          <span class="spine-stitch"></span>
+          <span class="spine-stitch"></span>
+          <span class="spine-stitch"></span>
+          <span class="spine-stitch"></span>
+          <span class="spine-stitch"></span>
+          <span class="spine-stitch"></span>
+        </div>
+
+        <!-- ==================================================================
+             SPREAD 1 (TAB 1: REGISTRO): FORMULARIO + PAQUETES
+             ================================================================== -->
+        <div id="spread-registro" class="book-spread active-spread" role="tabpanel">
+          <!-- PÁGINA IZQUIERDA: FORMULARIO "RESERVA DE EXPERIENCIA" -->
+          <article class="book-page diary-page page-left">
+            <svg class="meander-frame-svg" viewBox="0 0 520 680" preserveAspectRatio="none" aria-hidden="true">
+              <rect x="4" y="4" width="512" height="672" stroke="#0047AB" stroke-width="1.8" stroke-dasharray="12 4 4 4" fill="none" />
+              <path
+                d="M12 12 H40 V40 H20 V20 H30 V30
+                   M508 12 H480 V40 H500 V20 H490 V30
+                   M12 668 H40 V640 H20 V660 H30 V650
+                   M508 668 H480 V640 H500 V660 H490 V650"
+                stroke="#0047AB"
+                stroke-width="2"
+                fill="none"
+              />
+            </svg>
+
+            <div class="page-inner-content">
+              <div class="page-editorial-heading">
+                <span class="page-sub-stamp">FOLIO N° 2026-GRK // ACTA DE NAVEGACIÓN</span>
+                <h3 class="page-editorial-title">ISLA DE SANTORINI — SOLICITUD DE INGRESO</h3>
+              </div>
+
+              <form id="expeditionForm" class="expedition-form" novalidate>
+                <!-- Campo: Nombre y Apellido -->
+                <div class="form-group-dotted">
+                  <label for="fieldName" class="dotted-label">
+                    <span>1. Nombre y Apellido del Tripulante</span>
+                    <span class="req-star">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="fieldName"
+                    name="fullName"
+                    class="dotted-input"
+                    placeholder="Ej. Helena de Troya / Nicolás..."
+                    autocomplete="name"
+                    required
+                  />
+                  <span class="input-hint-msg" id="nameHint"></span>
+                </div>
+
+                <!-- Campo: WhatsApp / Teléfono Móvil -->
+                <div class="form-group-dotted">
+                  <label for="fieldPhone" class="dotted-label">
+                    <span>2. WhatsApp / Teléfono Móvil</span>
+                    <span class="req-star">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    id="fieldPhone"
+                    name="phone"
+                    class="dotted-input"
+                    placeholder="+593 99 999 9999 (para envío del pase)"
+                    autocomplete="tel"
+                    required
+                  />
+                  <span class="input-hint-msg" id="phoneHint"></span>
+                </div>
+
+                <!-- Campo: Fecha de Nacimiento (Validación estricta +20) -->
+                <div class="form-group-dotted">
+                  <label for="fieldBirthDate" class="dotted-label">
+                    <span>3. Fecha de Nacimiento (Filtro +20 años)</span>
+                    <span class="req-star">*</span>
+                  </label>
+                  <input
+                    type="date"
+                    id="fieldBirthDate"
+                    name="birthDate"
+                    class="dotted-input"
+                    max="2006-11-19"
+                    required
+                  />
+                  <span class="input-hint-msg" id="ageValidationHint">
+                    * Requisito ineludible: Nacidos el 19 de Noviembre de 2006 o antes (+20).
+                  </span>
+                </div>
+
+                <!-- Campo: Modalidad (Toggle Interactivo) -->
+                <div class="modality-toggle-wrapper">
+                  <span class="dotted-label">
+                    <span>4. Modalidad de Travesía</span>
+                    <span class="req-star">*</span>
+                  </span>
+                  <div class="modality-toggle-grid" role="group" aria-label="Modalidad de expedición">
+                    <button
+                      type="button"
+                      id="btnSolo"
+                      class="btn-modality active"
+                      data-mode="solo"
+                      aria-pressed="true"
+                    >
+                      <span>VOY SOLO/A</span>
+                    </button>
+                    <button
+                      type="button"
+                      id="btnGroup"
+                      class="btn-modality"
+                      data-mode="group"
+                      aria-pressed="false"
+                    >
+                      <span>VAMOS EN GRUPO</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Cajón Desplegable: Contador Numérico Táctil de Acompañantes -->
+                <div id="groupCounterDrawer" class="group-counter-drawer" aria-hidden="true">
+                  <div class="counter-control-bar">
+                    <span class="counter-label-text">TOTAL DE TRIPULANTES EN MESA:</span>
+                    <div class="counter-stepper">
+                      <button type="button" id="btnStepMinus" class="btn-step" aria-label="Restar un acompañante">-</button>
+                      <span id="companionsCountDisplay" class="counter-display">2</span>
+                      <button type="button" id="btnStepPlus" class="btn-step" aria-label="Sumar un acompañante">+</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </article>
+
+          <!-- PÁGINA DERECHA: SELECCIÓN DE PAQUETES & BUSTO ESCULPIDO -->
+          <article class="book-page diary-page page-right">
+            <svg class="meander-frame-svg" viewBox="0 0 520 680" preserveAspectRatio="none" aria-hidden="true">
+              <rect x="4" y="4" width="512" height="672" stroke="#0047AB" stroke-width="1.8" stroke-dasharray="12 4 4 4" fill="none" />
+              <path
+                d="M12 12 H40 V40 H20 V20 H30 V30
+                   M508 12 H480 V40 H500 V20 H490 V30
+                   M12 668 H40 V640 H20 V660 H30 V650
+                   M508 668 H480 V640 H500 V660 H490 V650"
+                stroke="#0047AB"
+                stroke-width="2"
+                fill="none"
+              />
+            </svg>
+
+            <div class="page-inner-content">
+              <div class="page-right-header-wrap">
+                <div>
+                  <span class="page-sub-stamp">TRIBUTO HELÉNICO // SANTORINI NIGHT</span>
+                  <h3 class="page-editorial-title">SELECCIÓN DE EXPERIENCIAS</h3>
+                </div>
+
+                <div class="god-bust-cameo" title="Busto consagrado de Poseidón y Zeus" aria-hidden="true">
+                  <svg class="god-bust-svg" viewBox="0 0 80 80" fill="none">
+                    <circle cx="40" cy="40" r="34" stroke="#D4AF37" stroke-width="2" stroke-dasharray="6 3" />
+                    <path
+                      d="M26 58 C26 50, 32 46, 36 43 C33 41, 31 37, 31 32 C31 24, 38 18, 48 20 C54 21, 57 26, 57 32 C57 39, 52 44, 46 45 C48 49, 52 52, 56 58 Z"
+                      fill="#D4AF37"
+                      opacity="0.85"
+                    />
+                    <path d="M36 21 C41 18, 48 18, 52 23 M34 26 C38 23, 46 24, 49 28" stroke="#FFFFFF" stroke-width="1.5" />
+                  </svg>
+                  <svg class="cameo-lightning" viewBox="0 0 30 30" fill="none">
+                    <path d="M18 2 L6 16 L14 16 L10 28 L24 12 L16 12 Z" fill="#D4AF37" stroke="#00F0FF" stroke-width="1.2" />
+                  </svg>
+                </div>
+              </div>
+
+              <div
+                class="packages-radiogroup"
+                role="radiogroup"
+                aria-label="Selección de experiencia o paquete"
+              >
+                <div
+                  class="package-card-option active"
+                  role="radio"
+                  tabindex="0"
+                  aria-checked="true"
+                  data-pkg-id="pkg-1"
+                  data-pkg-name="Acceso General Egeo — $15"
+                  data-pkg-price="15"
+                  data-pkg-fixed="false"
+                >
+                  <div class="ink-check-circle" aria-hidden="true">
+                    <svg class="ink-check-mark" viewBox="0 0 14 14">
+                      <path d="M2 7 L5.5 11 L12 2" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="pkg-title-row">
+                    <span class="pkg-name">OPCIÓN 01: Acceso General Egeo</span>
+                    <span class="pkg-price">$15</span>
+                  </div>
+                  <p class="pkg-desc">
+                    Incluye <strong>Barra Libre exclusiva de Pitorro de Coco</strong> de 20h30 a 22h00.
+                  </p>
+                  <span class="pkg-badge">ENTRADA INDIVIDUAL // BARRA LIBRE</span>
+                </div>
+
+                <div
+                  class="package-card-option"
+                  role="radio"
+                  tabindex="0"
+                  aria-checked="false"
+                  data-pkg-id="pkg-2"
+                  data-pkg-name="Pack Grupo Olimpo — $150"
+                  data-pkg-price="150"
+                  data-pkg-fixed="true"
+                >
+                  <div class="ink-check-circle" aria-hidden="true">
+                    <svg class="ink-check-mark" viewBox="0 0 14 14">
+                      <path d="M2 7 L5.5 11 L12 2" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="pkg-title-row">
+                    <span class="pkg-name">OPCIÓN 02: Pack Grupo Olimpo</span>
+                    <span class="pkg-price">$150</span>
+                  </div>
+                  <p class="pkg-desc">
+                    Mínimo 10 entradas de $15 + Barra Libre de bienvenida + <strong>1 Botella de regalo espumante/Anthony rodado en mesa</strong>.
+                  </p>
+                  <span class="pkg-badge">RECOMENDADO PARA GRUPOS (+10)</span>
+                </div>
+
+                <div
+                  class="package-card-option"
+                  role="radio"
+                  tabindex="0"
+                  aria-checked="false"
+                  data-pkg-id="pkg-3"
+                  data-pkg-name="Pack Jäger & Red Bull — $150"
+                  data-pkg-price="150"
+                  data-pkg-fixed="true"
+                >
+                  <div class="ink-check-circle" aria-hidden="true">
+                    <svg class="ink-check-mark" viewBox="0 0 14 14">
+                      <path d="M2 7 L5.5 11 L12 2" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="pkg-title-row">
+                    <span class="pkg-name">OPCIÓN 03: Pack Jäger &amp; Red Bull</span>
+                    <span class="pkg-price">$150</span>
+                  </div>
+                  <p class="pkg-desc">
+                    <strong>2 Botellas de Jägermeister + 4 Red Bull</strong> para la mesa.
+                  </p>
+                  <span class="pkg-badge">MESA VIP ENERGIZADA</span>
+                </div>
+              </div>
+
+              <div class="payment-method-section">
+                <span class="dotted-label">5. Método de Pago Preferido:</span>
+                <div class="payment-options-grid" role="group" aria-label="Método de pago">
+                  <button
+                    type="button"
+                    id="payTransfer"
+                    class="btn-payment-choice active"
+                    data-payment="Transferencia Bancaria"
+                    aria-pressed="true"
+                  >
+                    <span>Transferencia Bancaria</span>
+                  </button>
+                  <button
+                    type="button"
+                    id="payDoor"
+                    class="btn-payment-choice"
+                    data-payment="Pago en Puerta"
+                    aria-pressed="false"
+                  >
+                    <span>Pago en Puerta</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="tribute-summary-bar" aria-live="polite">
+                <span>TRIBUTO TOTAL ESTIMADO:</span>
+                <span id="tributeTotalDisplay" class="tribute-total-val">$15 USD</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- ==================================================================
+             SPREAD 2 (TAB 2: DRESS CODE): "DRESS CODE: SANTORINI NIGHTS"
+             ================================================================== -->
+        <div id="spread-dresscode" class="book-spread" role="tabpanel" aria-hidden="true">
+          <!-- Página Izquierda: Código Obligatorio Esencial & Alto Impacto -->
+          <article class="book-page diary-page page-left">
+            <svg class="meander-frame-svg" viewBox="0 0 520 680" preserveAspectRatio="none" aria-hidden="true">
+              <rect x="4" y="4" width="512" height="672" stroke="#0047AB" stroke-width="1.8" stroke-dasharray="12 4 4 4" fill="none" />
+              <path
+                d="M12 12 H40 V40 H20 V20 H30 V30
+                   M508 12 H480 V40 H500 V20 H490 V30
+                   M12 668 H40 V640 H20 V660 H30 V650
+                   M508 668 H480 V640 H500 V660 H490 V650"
+                stroke="#0047AB"
+                stroke-width="2"
+                fill="none"
+              />
+            </svg>
+
+            <div class="page-inner-content">
+              <div class="page-editorial-heading">
+                <span class="page-sub-stamp">PROTOCOLO DE ETIQUETA // SANTORINI NIGHTS</span>
+                <h3 class="page-editorial-title">DRESS CODE OBLIGATORIO: AZUL MARINO &amp; BLANCO</h3>
+              </div>
+
+              <div class="dresscode-lead-box">
+                <strong>DRESS CODE OBLIGATORIO: AZUL MARINO &amp; BLANCO. Riguroso control de acceso.</strong><br />
+                Inspirado en la brisa mediterránea y el lujo informal de Santorini.
+              </div>
+
+              <span class="dotted-label" style="margin-bottom: 0.75rem;">PALETA OFICIAL EN PUERTA:</span>
+              <div class="dresscode-palette-grid">
+                <div class="swatch-card">
+                  <span class="swatch-circle" style="background: #051329;"></span>
+                  <div class="swatch-info">
+                    <span class="swatch-title">AZUL MARINO</span>
+                    <span class="swatch-hex">#051329 · Noche Egea</span>
+                  </div>
+                </div>
+                <div class="swatch-card">
+                  <span class="swatch-circle" style="background: #0047AB;"></span>
+                  <div class="swatch-info">
+                    <span class="swatch-title">AZUL COBALTO</span>
+                    <span class="swatch-hex">#0047AB · Cúpula Santorini</span>
+                  </div>
+                </div>
+                <div class="swatch-card">
+                  <span class="swatch-circle" style="background: #F8FAFC;"></span>
+                  <div class="swatch-info">
+                    <span class="swatch-title">BLANCO LINO</span>
+                    <span class="swatch-hex">#F8FAFC · Estuco Puro</span>
+                  </div>
+                </div>
+                <div class="swatch-card">
+                  <span class="swatch-circle" style="background: #D4AF37;"></span>
+                  <div class="swatch-info">
+                    <span class="swatch-title">ORO OLIMPO</span>
+                    <span class="swatch-hex">#D4AF37 · Solo Accesorios</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dresscode-warning-badge" role="alert">
+                NO SE PERMITIRÁN OTROS COLORES EN PUERTA
+              </div>
+            </div>
+          </article>
+
+          <!-- Página Derecha: Guía Visual Interactiva (Lookbook) -->
+          <article class="book-page diary-page page-right">
+            <svg class="meander-frame-svg" viewBox="0 0 520 680" preserveAspectRatio="none" aria-hidden="true">
+              <rect x="4" y="4" width="512" height="672" stroke="#0047AB" stroke-width="1.8" stroke-dasharray="12 4 4 4" fill="none" />
+              <path
+                d="M12 12 H40 V40 H20 V20 H30 V30
+                   M508 12 H480 V40 H500 V20 H490 V30
+                   M12 668 H40 V640 H20 V660 H30 V650
+                   M508 668 H480 V640 H500 V660 H490 V650"
+                stroke="#0047AB"
+                stroke-width="2"
+                fill="none"
+              />
+            </svg>
+
+            <div class="page-inner-content">
+              <div class="page-editorial-heading">
+                <span class="page-sub-stamp">GUÍA VISUAL INTERACTIVA // LOOKBOOK</span>
+                <h3 class="page-editorial-title">ESTILISMO MEDITERRÁNEO</h3>
+              </div>
+
+              <div class="lookbook-stack">
+                <!-- Lookbook Para Ellas -->
+                <div class="lookbook-card">
+                  <div class="lookbook-icon-box" aria-hidden="true">
+                    <svg width="36" height="48" viewBox="0 0 36 48" fill="none">
+                      <path d="M13 6 L18 14 L23 6 M12 14 L24 14 L30 42 L6 42 Z" stroke="#0047AB" stroke-width="2" fill="rgba(0,71,171,0.12)" />
+                      <circle cx="18" cy="18" r="2.5" fill="#D4AF37" />
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="lookbook-gender-tag">✦ PARA ELLAS</span>
+                    <p class="lookbook-rules">
+                      Vestidos fluidos azul cobalto, lino blanco, conjuntos dos piezas y joyería dorada.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Lookbook Para Ellos -->
+                <div class="lookbook-card">
+                  <div class="lookbook-icon-box" aria-hidden="true">
+                    <svg width="36" height="48" viewBox="0 0 36 48" fill="none">
+                      <path d="M10 8 L18 13 L26 8 L31 18 L26 20 L26 42 L10 42 L10 20 L5 18 Z" stroke="#051329" stroke-width="2" fill="rgba(5,19,41,0.08)" />
+                      <line x1="18" y1="13" x2="18" y2="42" stroke="#0047AB" stroke-width="1.5" />
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="lookbook-gender-tag">✦ PARA ELLOS</span>
+                    <p class="lookbook-rules">
+                      Camisas de lino en azul o blanco, pantalones chinos o sartoriales claros, calzado limpio de noche (Cero bermudas o sandalias deportivas).
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                class="btn-jump-tab"
+                data-jump-to="registro"
+              >
+                IR AL FORMULARIO DE REGISTRO →
+              </button>
+            </div>
+          </article>
+        </div>
+
+        <!-- ==================================================================
+             SPREAD 3 (TAB 3: PROMOS DVOID): "PROMOS DE LA NOCHE"
+             ================================================================== -->
+        <div id="spread-promos" class="book-spread" role="tabpanel" aria-hidden="true">
+          <!-- Página Izquierda: Ritual de Bienvenida y 2x1 -->
+          <article class="book-page diary-page page-left">
+            <svg class="meander-frame-svg" viewBox="0 0 520 680" preserveAspectRatio="none" aria-hidden="true">
+              <rect x="4" y="4" width="512" height="672" stroke="#0047AB" stroke-width="1.8" stroke-dasharray="12 4 4 4" fill="none" />
+              <path
+                d="M12 12 H40 V40 H20 V20 H30 V30
+                   M508 12 H480 V40 H500 V20 H490 V30
+                   M12 668 H40 V640 H20 V660 H30 V650
+                   M508 668 H480 V640 H500 V660 H490 V650"
+                stroke="#0047AB"
+                stroke-width="2"
+                fill="none"
+              />
+            </svg>
+
+            <div class="page-inner-content">
+              <div class="page-editorial-heading">
+                <span class="page-sub-stamp">BANQUETE DEL OLIMPO // PROMOS DVOID</span>
+                <h3 class="page-editorial-title">PROMOS DE LA NOCHE</h3>
+              </div>
+
+              <div class="promos-timeline">
+                <!-- Promo 1: 20H30 - 22H00 -->
+                <div class="promo-item-card">
+                  <span class="promo-time-pill">20H30 - 22H00</span>
+                  <h4 class="promo-item-title">BARRA LIBRE DE BIENVENIDA</h4>
+                  <p class="promo-item-desc">
+                    Barra Libre de bienvenida de <strong>Pitorro de Coco</strong> (con tu cover).
+                  </p>
+                </div>
+
+                <!-- Promo 2: Hasta las 22H30 -->
+                <div class="promo-item-card">
+                  <span class="promo-time-pill">HASTA LAS 22H30</span>
+                  <h4 class="promo-item-title">DOBLE OFRENDA DEL EGEO (2X1)</h4>
+                  <p class="promo-item-desc">
+                    <strong>2x1 en Antioqueño</strong> y <strong>2x1 en Cócteles Temáticos Griegos</strong>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Página Derecha: Medianoche & Ticket Dorado -->
+          <article class="book-page diary-page page-right">
+            <svg class="meander-frame-svg" viewBox="0 0 520 680" preserveAspectRatio="none" aria-hidden="true">
+              <rect x="4" y="4" width="512" height="672" stroke="#0047AB" stroke-width="1.8" stroke-dasharray="12 4 4 4" fill="none" />
+              <path
+                d="M12 12 H40 V40 H20 V20 H30 V30
+                   M508 12 H480 V40 H500 V20 H490 V30
+                   M12 668 H40 V640 H20 V660 H30 V650
+                   M508 668 H480 V640 H500 V660 H490 V650"
+                stroke="#0047AB"
+                stroke-width="2"
+                fill="none"
+              />
+            </svg>
+
+            <div class="page-inner-content">
+              <div class="page-editorial-heading">
+                <span class="page-sub-stamp">CLÍMAX DE MEDIANOCHE &amp; RELIQUIA</span>
+                <h3 class="page-editorial-title">TRIBUTOS ESPECIALES</h3>
+              </div>
+
+              <!-- Medianoche: Promo Flash 5 Minutos -->
+              <div class="promo-flash-card">
+                <span class="promo-time-pill">⚡ MEDIANOCHE · 00H00</span>
+                <h4 class="promo-item-title">PROMO FLASH DE 5 MINUTOS</h4>
+                <p class="promo-item-desc">
+                  "PROMO FLASH DE 5 MINUTOS: 2x1 en botella seleccionada al finalizar el show".
+                </p>
+              </div>
+
+              <!-- Dinámica Especial: Ticket Dorado -->
+              <div class="golden-ticket-relic">
+                <h4 class="promo-item-title" style="color: #5C4002;">EL TICKET DORADO DE POSEIDÓN</h4>
+                <p class="promo-item-desc" style="color: #3D2B02;">
+                  "Busca el Ticket Dorado exclusivo oculto en el club para media de cortesía".
+                </p>
+              </div>
+
+              <button
+                type="button"
+                class="btn-jump-tab"
+                data-jump-to="registro"
+              >
+                ASEGURAR MI LUGAR EN EL REGISTRO →
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           3. BOTÓN DE CONFIRMACIÓN: SELLO DE CERA DIGITAL INTERACTIVO
+           ==================================================================== -->
+      <div id="waxSealContainer" class="wax-seal-container">
+        <button
+          type="button"
+          id="confirmExpeditionWaxSeal"
+          class="btn-wax-seal"
+          aria-label="Confirmar expedición y emitir pase digital"
+        >
+          <div class="wax-seal-body">
+            <svg class="wax-seal-icon" viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="20" r="18" stroke="#D4AF37" stroke-width="1.8" />
+              <path d="M20 7 L20 33 M13 11 L13 22 L20 25 L27 22 L27 11" stroke="#FAF6EE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M20 7 L17 11 M20 7 L23 11" stroke="#FAF6EE" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span class="wax-seal-label">CONFIRMAR EXPEDICIÓN</span>
+          </div>
+        </button>
+        <span class="seal-micro-disclaimer">
+          Sello de lacre digital certificado · Al confirmar se cerrará el libro y emergerá tu Odyssey Pass
+        </span>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         4. TICKET DIGITAL HELÉNICO (ODYSSEY PASS)
+         Emerge en dorado y azul marino cuando el libro se cierra
+         ====================================================================== -->
+    <section
+      id="odysseyPassWrapper"
+      class="odyssey-pass-wrapper"
+      aria-live="polite"
+      aria-label="Ticket Digital Helénico Odyssey Pass"
+    >
+      <article class="odyssey-pass-ticket">
+        <!-- Greca Griega Perimetral Dorada Continua en SVG -->
+        <svg class="odyssey-gold-meander" viewBox="0 0 760 520" preserveAspectRatio="none" aria-hidden="true">
+          <rect x="3" y="3" width="754" height="514" stroke="#D4AF37" stroke-width="2" fill="none" />
+          <rect x="9" y="9" width="742" height="502" stroke="#D4AF37" stroke-width="1.2" stroke-dasharray="16 6 6 6" fill="none" />
+          <path
+            d="M16 16 H48 V48 H26 V26 H38 V38
+               M744 16 H712 V48 H734 V26 H722 V38
+               M16 504 H48 V472 H26 V494 H38 V482
+               M744 504 H712 V472 H734 V494 H722 V482"
+            stroke="#D4AF37"
+            stroke-width="2.2"
+            fill="none"
+          />
+        </svg>
+
+        <div class="odyssey-pass-inner">
+          <header class="odyssey-pass-header">
+            <div>
+              <span class="odyssey-pass-kicker">GREEK ODYSSEY (SANTORINI NIGHT) — DVOID IN COLORS</span>
+              <h3 class="odyssey-pass-title">ODYSSEY PASS // PASE OFICIAL</h3>
+            </div>
+            <div id="passCodeVal" class="odyssey-serial-pill">#ODY-0000</div>
+          </header>
+
+          <div class="odyssey-pass-body">
+            <!-- Datos del Titular y Reserva -->
+            <div class="odyssey-info-grid">
+              <div class="odyssey-field full-span">
+                <span class="odyssey-field-label">Titular de la Expedición</span>
+                <span id="passNameVal" class="odyssey-field-value">HELENA DE TROYA</span>
+              </div>
+              <div class="odyssey-field">
+                <span class="odyssey-field-label">Modo de Travesía</span>
+                <span id="passModeVal" class="odyssey-field-value">Individual (1 Integrante)</span>
+              </div>
+              <div class="odyssey-field">
+                <span class="odyssey-field-label">Reserva Procedimental</span>
+                <span id="passSerialMirror" class="odyssey-field-value" style="color: var(--zeus-cyan);">#ODY-0000</span>
+              </div>
+              <div class="odyssey-field full-span">
+                <span class="odyssey-field-label">Paquete Seleccionado</span>
+                <span id="passPkgVal" class="odyssey-field-value" style="color: var(--gods-gold);">Acceso General Egeo — $15</span>
+              </div>
+              <div class="odyssey-field">
+                <span class="odyssey-field-label">Método de Pago</span>
+                <span id="passPaymentVal" class="odyssey-field-value">Transferencia Bancaria</span>
+              </div>
+              <div class="odyssey-field">
+                <span class="odyssey-field-label">Tributo Total &amp; Dress Code</span>
+                <span id="passTotalVal" class="odyssey-field-value">$15 USD · Azul Marino &amp; Blanco</span>
+              </div>
+            </div>
+
+            <!-- Motor de QR Vectorial Procedimental en SVG (Azul Profundo sobre Blanco Mármol) -->
+            <div class="odyssey-qr-marble-frame">
+              <div id="odysseyQrMount" class="odyssey-qr-mount" aria-label="Código QR de verificación Odyssey Pass"></div>
+              <span id="passQrSerial" class="odyssey-qr-caption">#ODY-0000 · VERIFICADO +20</span>
+            </div>
+          </div>
+
+          <!-- Acciones del Ticket: Imprimir (@media print), WhatsApp y Reabrir Bitácora -->
+          <div class="odyssey-pass-actions">
+            <button type="button" id="btnPrintOdysseyPass" class="btn-odyssey-action gold-primary">
+              GUARDAR PASE / IMPRIMIR
+            </button>
+            <button type="button" id="btnShareWhatsapp" class="btn-odyssey-action cyan-secondary">
+              ENVIAR PASE A WHATSAPP
+            </button>
+            <button type="button" id="btnReopenBook" class="btn-odyssey-action ghost-return">
+              ← VOLVER A LA BITÁCORA
+            </button>
+          </div>
+
+          <!-- Logos en el Pie de Página Monocromático del Ticket: D-VOID, Listobet y Red Bull -->
+          <div class="monochrome-sponsors-footer" aria-label="Patrocinadores Oficiales">
+            <div class="sponsor-logo-item" title="D-VOID">
+              <img src="../../dvoid/LOGO DVOID.png" alt="D-VOID" />
+            </div>
+
+            <!-- Listobet Vector Monocromático -->
+            <div class="sponsor-logo-item" title="Listobet">
+              <svg height="26" viewBox="0 0 150 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Listobet">
+                <path d="M8 6 L16 6 L12 20 L21 20 L19 26 L4 26 Z" fill="#F8FAFC" />
+                <text x="26" y="23" fill="#F8FAFC" font-family="'Cinzel', serif" font-weight="900" font-size="18" letter-spacing="2">LISTOBET</text>
+              </svg>
+            </div>
+
+            <!-- Red Bull Vector Monocromático -->
+            <div class="sponsor-logo-item" title="Red Bull">
+              <svg height="28" viewBox="0 0 155 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Red Bull">
+                <circle cx="28" cy="17" r="8" stroke="#F8FAFC" stroke-width="1.8" fill="none" />
+                <path d="M8 21 C12 14, 19 14, 25 18 L20 22 L10 23 Z" fill="#F8FAFC" />
+                <path d="M48 21 C44 14, 37 14, 31 18 L36 22 L46 23 Z" fill="#F8FAFC" />
+                <text x="56" y="23" fill="#F8FAFC" font-family="'JetBrains Mono', monospace" font-weight="800" font-size="15" letter-spacing="1.5">RED BULL</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- Pie de Página Oficial Monocromático -->
+  <footer class="global-monochrome-footer">
+    <div class="monochrome-sponsors-footer" style="border-top: none; padding-top: 0; width: 100%; max-width: 640px;">
+      <div class="sponsor-logo-item">
+        <img src="../../dvoid/LOGO DVOID.png" alt="D-VOID" />
+      </div>
+      <div class="sponsor-logo-item">
+        <svg height="24" viewBox="0 0 150 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Listobet">
+          <path d="M8 6 L16 6 L12 20 L21 20 L19 26 L4 26 Z" fill="#F8FAFC" />
+          <text x="26" y="23" fill="#F8FAFC" font-family="'Cinzel', serif" font-weight="900" font-size="18" letter-spacing="2">LISTOBET</text>
+        </svg>
+      </div>
+      <div class="sponsor-logo-item">
+        <svg height="26" viewBox="0 0 155 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Red Bull">
+          <circle cx="28" cy="17" r="8" stroke="#F8FAFC" stroke-width="1.8" fill="none" />
+          <path d="M8 21 C12 14, 19 14, 25 18 L20 22 L10 23 Z" fill="#F8FAFC" />
+          <path d="M48 21 C44 14, 37 14, 31 18 L36 22 L46 23 Z" fill="#F8FAFC" />
+          <text x="56" y="23" fill="#F8FAFC" font-family="'JetBrains Mono', monospace" font-weight="800" font-size="15" letter-spacing="1.5">RED BULL</text>
+        </svg>
+      </div>
+    </div>
+    <p style="font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.18em; color: rgba(248, 250, 252, 0.55); text-transform: uppercase;">
+      GREEK ODYSSEY (SANTORINI NIGHT) — DVOID IN COLORS · JUEVES 19 DE NOVIEMBRE 2026 · 20H30 · +20
+    </p>
+  </footer>
+
+  <!-- ========================================================================
+       MOTOR PROCEDURAL DE TORMENTA (L-SYSTEM FRACTAL + BRUMA + INTERSECTION OBSERVER)
+       ======================================================================== -->
+  <script>
+    (() => {
+      'use strict';
+
+      const canvas = document.getElementById('stormCanvas');
+      const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
+      const heroSection = document.getElementById('heroStormSection');
+      const ambientFlash = document.getElementById('ambientFlashOverlay');
+      const seaMistMask = document.getElementById('seaMistTransitionMask');
+      const openExpeditionBtn = document.getElementById('openExpeditionBtn');
+      const expeditionLogSection = document.getElementById('expedicion') || document.getElementById('expeditionLogSection');
+      const tridentArcPrimary = document.getElementById('tridentArcPrimary');
+
+      let width = 0;
+      let height = 0;
+      let dpr = Math.min(window.devicePixelRatio || 1, 2);
+      let isHeroVisible = true;
+      let rafId = null;
+      let lastFrameTime = performance.now();
+      let nextNaturalStrikeTime = performance.now() + 1100;
+      let flashTimeoutId = null;
+      let surgeTimeoutId = null;
+      let isTransitioning = false;
+
+      const activeLightnings = [];
+      const mistParticles = [];
+      const seaWaves = [
+        { amplitude: 14, wavelength: 0.0065, speed: 0.0016, phase: 0, yOffset: 0.89, color: 'rgba(0, 71, 171, 0.24)' },
+        { amplitude: 18, wavelength: 0.0048, speed: -0.0012, phase: 2.1, yOffset: 0.92, color: 'rgba(5, 19, 41, 0.68)' },
+        { amplitude: 11, wavelength: 0.0082, speed: 0.0021, phase: 4.2, yOffset: 0.95, color: 'rgba(2, 6, 17, 0.94)' }
+      ];
+
+      /* ----------------------------------------------------------------------
+         DIMENSIONAMIENTO Y PARTÍCULAS DE BRUMA MARINA EN SUSPENSIÓN ASCENDENTE
+         ---------------------------------------------------------------------- */
+      function resizeCanvas() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = heroSection.clientWidth || window.innerWidth;
+        height = heroSection.clientHeight || window.innerHeight;
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        initMistParticles();
+      }
+
+      function initMistParticles() {
+        const count = width < 768 ? 48 : 85;
+        mistParticles.length = 0;
+        for (let i = 0; i < count; i++) {
+          mistParticles.push(createMistParticle(true));
+        }
+      }
+
+      function createMistParticle(randomY = false) {
+        const isGoldSpark = Math.random() < 0.14;
+        return {
+          x: Math.random() * width,
+          y: randomY ? Math.random() * height : height + Math.random() * 40,
+          radius: isGoldSpark ? (Math.random() * 1.6 + 0.6) : (Math.random() * 2.4 + 0.8),
+          vy: -(Math.random() * 0.65 + 0.22),
+          vx: (Math.random() - 0.5) * 0.38,
+          alpha: Math.random() * 0.55 + 0.12,
+          isGold: isGoldSpark,
+          driftSeed: Math.random() * Math.PI * 2
+        };
+      }
+
+      /* ----------------------------------------------------------------------
+         CÁLCULO L-SYSTEM RECURSIVO ALEATORIO PARA RELÁMPAGOS FRACTALES
+         Impacta desde el cielo hacia el mar con ramificaciones secundarias
+         ---------------------------------------------------------------------- */
+      function buildLSystemLightning(startX, startY, targetX, targetY, intensity = 1) {
+        const segments = [];
+
+        function subdivideBranch(x1, y1, x2, y2, displace, depth, branchThickness, alphaScale) {
+          if (depth <= 0 || Math.hypot(x2 - x1, y2 - y1) < 12) {
+            segments.push({ x1, y1, x2, y2, thickness: branchThickness, alpha: alphaScale });
+            return;
+          }
+
+          const midX = (x1 + x2) * 0.5 + (Math.random() - 0.5) * displace;
+          const midY = (y1 + y2) * 0.5 + (Math.random() - 0.5) * (displace * 0.28);
+
+          subdivideBranch(x1, y1, midX, midY, displace * 0.54, depth - 1, branchThickness, alphaScale);
+          subdivideBranch(midX, midY, x2, y2, displace * 0.54, depth - 1, branchThickness, alphaScale);
+
+          // Regla de producción L-System: bifurcación fractal aleatoria
+          if (depth >= 2 && Math.random() < 0.42) {
+            const angle = Math.atan2(y2 - y1, x2 - x1) + (Math.random() < 0.5 ? -1 : 1) * (0.32 + Math.random() * 0.48);
+            const length = Math.hypot(x2 - x1, y2 - y1) * (0.48 + Math.random() * 0.35);
+            const branchEndX = midX + Math.cos(angle) * length;
+            const branchEndY = Math.min(height * 0.94, midY + Math.sin(angle) * length);
+
+            subdivideBranch(
+              midX,
+              midY,
+              branchEndX,
+              branchEndY,
+              displace * 0.45,
+              depth - 2,
+              Math.max(0.7, branchThickness * 0.55),
+              alphaScale * 0.68
+            );
+          }
+        }
+
+        const initialSpread = Math.min(width * 0.22, 175) * intensity;
+        subdivideBranch(startX, startY, targetX, targetY, initialSpread, 6, 3.2 * intensity, 1);
+
+        return {
+          segments,
+          bornAt: performance.now(),
+          duration: 280 + Math.random() * 180,
+          impactX: targetX,
+          impactY: targetY,
+          intensity
+        };
+      }
+
+      /* ----------------------------------------------------------------------
+         DISPARADOR DE RELÁMPAGO + DESTELLO AMBIENTAL 120ms + TRIDENT SURGE
+         ---------------------------------------------------------------------- */
+      function triggerLightningStrike(options = {}) {
+        const startX = options.startX ?? (width * (0.15 + Math.random() * 0.7));
+        const startY = options.startY ?? -10;
+        const targetX = options.targetX ?? (startX + (Math.random() - 0.5) * (width * 0.28));
+        const targetY = options.targetY ?? (height * (0.84 + Math.random() * 0.08));
+        const intensity = options.intensity ?? (0.85 + Math.random() * 0.45);
+
+        const bolt = buildLSystemLightning(startX, startY, targetX, targetY, intensity);
+        activeLightnings.push(bolt);
+
+        // Destello de luz ambiental en toda la pantalla (rgba(0, 240, 255, 0.15) -> 0 en 120ms)
+        ambientFlash.classList.add('flash-active');
+        if (flashTimeoutId) clearTimeout(flashTimeoutId);
+        flashTimeoutId = setTimeout(() => {
+          ambientFlash.classList.remove('flash-active');
+        }, 24);
+
+        // Sincronía con los ojos de Poseidón y los arcos del tridente SVG
+        heroSection.classList.add('thunder-surge');
+        if (tridentArcPrimary) {
+          const jitter = () => (Math.random() - 0.5) * 8;
+          tridentArcPrimary.setAttribute(
+            'd',
+            `M410 44 L${(424 + jitter()).toFixed(1)} ${(30 + jitter()).toFixed(1)} L${(435 + jitter()).toFixed(1)} 46 L448 ${(18 + jitter()).toFixed(1)} L${(463 + jitter()).toFixed(1)} 45 L${(474 + jitter()).toFixed(1)} ${(28 + jitter()).toFixed(1)} L486 44`
+          );
+        }
+        if (surgeTimeoutId) clearTimeout(surgeTimeoutId);
+        surgeTimeoutId = setTimeout(() => {
+          heroSection.classList.remove('thunder-surge');
+        }, 210);
+      }
+
+      /* ----------------------------------------------------------------------
+         LOOP DE RENDERIZADO 60FPS CON ACELERACIÓN POR HARDWARE
+         ---------------------------------------------------------------------- */
+      function renderStormFrame(now) {
+        if (!isHeroVisible) {
+          rafId = null;
+          return;
+        }
+
+        const dt = Math.min(32, now - lastFrameTime);
+        lastFrameTime = now;
+
+        ctx.clearRect(0, 0, width, height);
+
+        // 1. Disparo periódico de relámpagos fractales
+        if (now >= nextNaturalStrikeTime) {
+          triggerLightningStrike();
+          // Ocasional doble descarga de Zeus
+          if (Math.random() < 0.34) {
+            setTimeout(() => {
+              if (isHeroVisible) triggerLightningStrike({ intensity: 0.75 });
+            }, 95);
+          }
+          nextNaturalStrikeTime = now + (1650 + Math.random() * 2600);
+        }
+
+        // 2. Renderizar relámpagos fractales activos
+        for (let i = activeLightnings.length - 1; i >= 0; i--) {
+          const bolt = activeLightnings[i];
+          const age = now - bolt.bornAt;
+          if (age >= bolt.duration) {
+            activeLightnings.splice(i, 1);
+            continue;
+          }
+
+          const lifeProgress = 1 - age / bolt.duration;
+          const flicker = Math.random() > 0.18 ? 1 : 0.35;
+          const boltAlpha = lifeProgress * flicker;
+
+          ctx.save();
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+
+          for (let j = 0; j < bolt.segments.length; j++) {
+            const seg = bolt.segments[j];
+            const segAlpha = boltAlpha * seg.alpha;
+
+            // Halo exterior Azul Egeo / Cian Zeus
+            ctx.beginPath();
+            ctx.moveTo(seg.x1, seg.y1);
+            ctx.lineTo(seg.x2, seg.y2);
+            ctx.strokeStyle = `rgba(0, 240, 255, ${(segAlpha * 0.45).toFixed(3)})`;
+            ctx.lineWidth = seg.thickness * 3.4;
+            ctx.stroke();
+
+            // Núcleo Blanco Estuco / Relámpago (#F8FAFC)
+            ctx.beginPath();
+            ctx.moveTo(seg.x1, seg.y1);
+            ctx.lineTo(seg.x2, seg.y2);
+            ctx.strokeStyle = `rgba(248, 250, 252, ${Math.min(1, segAlpha * 1.15).toFixed(3)})`;
+            ctx.lineWidth = seg.thickness * 0.95;
+            ctx.stroke();
+          }
+
+          // Destello de impacto sobre el mar Egeo
+          const impactGrad = ctx.createRadialGradient(
+            bolt.impactX, bolt.impactY, 2,
+            bolt.impactX, bolt.impactY, 95 * bolt.intensity
+          );
+          impactGrad.addColorStop(0, `rgba(248, 250, 252, ${(boltAlpha * 0.9).toFixed(3)})`);
+          impactGrad.addColorStop(0.35, `rgba(0, 240, 255, ${(boltAlpha * 0.55).toFixed(3)})`);
+          impactGrad.addColorStop(1, 'rgba(0, 71, 171, 0)');
+          ctx.fillStyle = impactGrad;
+          ctx.beginPath();
+          ctx.arc(bolt.impactX, bolt.impactY, 95 * bolt.intensity, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.restore();
+        }
+
+        // 3. Partículas de agua / bruma marina en suspensión ascendente
+        for (let i = 0; i < mistParticles.length; i++) {
+          const p = mistParticles[i];
+          p.y += p.vy * (dt * 0.06);
+          p.x += p.vx + Math.sin(now * 0.0015 + p.driftSeed) * 0.22;
+
+          if (p.y < -20) {
+            mistParticles[i] = createMistParticle(false);
+            continue;
+          }
+          if (p.x < -10) p.x = width + 10;
+          if (p.x > width + 10) p.x = -10;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          if (p.isGold) {
+            ctx.fillStyle = `rgba(212, 175, 55, ${p.alpha.toFixed(3)})`;
+          } else {
+            ctx.fillStyle = `rgba(0, 240, 255, ${(p.alpha * 0.78).toFixed(3)})`;
+          }
+          ctx.fill();
+        }
+
+        // 4. Oleaje oscuro del Mar Egeo en la base del Hero
+        for (let w = 0; w < seaWaves.length; w++) {
+          const wave = seaWaves[w];
+          wave.phase += wave.speed * dt;
+          const baseY = height * wave.yOffset;
+
+          ctx.beginPath();
+          ctx.moveTo(0, height);
+          for (let x = 0; x <= width; x += 28) {
+            const y =
+              baseY +
+              Math.sin(x * wave.wavelength + wave.phase) * wave.amplitude +
+              Math.cos(x * (wave.wavelength * 1.8) - wave.phase * 0.7) * (wave.amplitude * 0.35);
+            ctx.lineTo(x, y);
+          }
+          ctx.lineTo(width, height);
+          ctx.closePath();
+          ctx.fillStyle = wave.color;
+          ctx.fill();
+
+          // Cresta de espuma bioluminiscente sutil en la primera ola
+          if (w === 0) {
+            ctx.strokeStyle = 'rgba(0, 240, 255, 0.22)';
+            ctx.lineWidth = 1.2;
+            ctx.stroke();
+          }
+        }
+
+        rafId = requestAnimationFrame(renderStormFrame);
+      }
+
+      /* ----------------------------------------------------------------------
+         PAUSA AUTOMÁTICA MEDIANTE INTERSECTIONOBSERVER FUERA DEL VIEWPORT
+         ---------------------------------------------------------------------- */
+      const heroObserver = new IntersectionObserver(
+        (entries) => {
+          const entry = entries[0];
+          isHeroVisible = entry.isIntersecting;
+
+          if (isHeroVisible) {
+            lastFrameTime = performance.now();
+            if (!rafId) {
+              rafId = requestAnimationFrame(renderStormFrame);
+            }
+          } else {
+            if (rafId) {
+              cancelAnimationFrame(rafId);
+              rafId = null;
+            }
+          }
+        },
+        { threshold: 0.05 }
+      );
+
+      heroObserver.observe(heroSection);
+
+      /* ----------------------------------------------------------------------
+         3. TRANSICIÓN DE DESCENSO: RELÁMPAGO FOCALIZADO + NIEBLA MARINA + SCROLL
+         ---------------------------------------------------------------------- */
+      function executeDescentTransition(triggerSource = 'button') {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
+        const btnRect = openExpeditionBtn.getBoundingClientRect();
+        const heroRect = heroSection.getBoundingClientRect();
+        const focalX = btnRect.left - heroRect.left + btnRect.width * 0.5;
+        const focalY = btnRect.top - heroRect.top + btnRect.height * 0.5;
+
+        // Dispara relámpago focalizado directo hacia el botón / base del mar
+        triggerLightningStrike({
+          startX: width * 0.5,
+          startY: 0,
+          targetX: focalX,
+          targetY: Math.min(height * 0.94, focalY),
+          intensity: 1.35
+        });
+
+        // Activa máscara suave de niebla marina
+        seaMistMask.classList.add('mist-engaging');
+
+        setTimeout(() => {
+          if (triggerSource === 'button') {
+            expeditionLogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 160);
+
+        setTimeout(() => {
+          seaMistMask.classList.remove('mist-engaging');
+          isTransitioning = false;
+        }, 880);
+      }
+
+      openExpeditionBtn.addEventListener('click', () => {
+        executeDescentTransition('button');
+      });
+
+      // También al iniciar descenso por rueda o swipe desde el tope del Hero
+      let lastWheelTrigger = 0;
+      window.addEventListener(
+        'wheel',
+        (e) => {
+          if (e.deltaY > 35 && window.scrollY < 80 && performance.now() - lastWheelTrigger > 1800) {
+            lastWheelTrigger = performance.now();
+            executeDescentTransition('scroll');
+          }
+        },
+        { passive: true }
+      );
+
+      /* ======================================================================
+         INTERACTIVIDAD DE LA BITÁCORA FÍSICA (#travelBook, TABS 3D & ODYSSEY PASS)
+         ====================================================================== */
+      const travelBookViewport = document.getElementById('travelBookViewport');
+      const travelBook = document.getElementById('travelBook');
+      const pageTurnLeaf = document.getElementById('pageTurnLeaf');
+      const btnPaperSoundToggle = document.getElementById('btnPaperSoundToggle');
+      const bookTabBtns = document.querySelectorAll('.book-tab-btn');
+      const jumpTabBtns = document.querySelectorAll('[data-jump-to]');
+      const bookSpreads = {
+        registro: document.getElementById('spread-registro'),
+        dresscode: document.getElementById('spread-dresscode'),
+        promos: document.getElementById('spread-promos')
+      };
+      const waxSealContainer = document.getElementById('waxSealContainer');
+
+      const fieldName = document.getElementById('fieldName');
+      const fieldPhone = document.getElementById('fieldPhone');
+      const fieldBirthDate = document.getElementById('fieldBirthDate');
+      const nameHint = document.getElementById('nameHint');
+      const phoneHint = document.getElementById('phoneHint');
+      const ageValidationHint = document.getElementById('ageValidationHint');
+      const btnSolo = document.getElementById('btnSolo');
+      const btnGroup = document.getElementById('btnGroup');
+      const groupCounterDrawer = document.getElementById('groupCounterDrawer');
+      const btnStepMinus = document.getElementById('btnStepMinus');
+      const btnStepPlus = document.getElementById('btnStepPlus');
+      const companionsCountDisplay = document.getElementById('companionsCountDisplay');
+      const packageCards = document.querySelectorAll('.package-card-option');
+      const btnPaymentChoices = document.querySelectorAll('.btn-payment-choice');
+      const tributeTotalDisplay = document.getElementById('tributeTotalDisplay');
+      const confirmExpeditionWaxSeal = document.getElementById('confirmExpeditionWaxSeal');
+
+      // Elementos del Odyssey Pass
+      const odysseyPassWrapper = document.getElementById('odysseyPassWrapper');
+      const passNameVal = document.getElementById('passNameVal');
+      const passCodeVal = document.getElementById('passCodeVal');
+      const passSerialMirror = document.getElementById('passSerialMirror');
+      const passQrSerial = document.getElementById('passQrSerial');
+      const passModeVal = document.getElementById('passModeVal');
+      const passPkgVal = document.getElementById('passPkgVal');
+      const passPaymentVal = document.getElementById('passPaymentVal');
+      const passTotalVal = document.getElementById('passTotalVal');
+      const odysseyQrMount = document.getElementById('odysseyQrMount');
+      const btnPrintOdysseyPass = document.getElementById('btnPrintOdysseyPass');
+      const btnShareWhatsapp = document.getElementById('btnShareWhatsapp');
+      const btnReopenBook = document.getElementById('btnReopenBook');
+
+      // Estado de Navegación y Sonido de Papel
+      let paperSoundEnabled = true;
+      let audioCtx = null;
+      let currentTab = 'registro';
+      let isFlippingPage = false;
+      const tabOrder = ['registro', 'dresscode', 'promos'];
+
+      // Sintetizador Web Audio API para Sonido Físico de Paso de Hoja de Papiro
+      function playPaperTurnSound() {
+        if (!paperSoundEnabled) return;
+        try {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (!AudioContextClass) return;
+          if (!audioCtx) audioCtx = new AudioContextClass();
+          if (audioCtx.state === 'suspended') audioCtx.resume();
+
+          const duration = 0.24;
+          const sampleRate = audioCtx.sampleRate;
+          const bufferSize = Math.floor(sampleRate * duration);
+          const buffer = audioCtx.createBuffer(1, bufferSize, sampleRate);
+          const data = buffer.getChannelData(0);
+
+          for (let i = 0; i < bufferSize; i++) {
+            const t = i / bufferSize;
+            const envelope = Math.sin(t * Math.PI) * Math.pow(1 - t, 0.7);
+            data[i] = (Math.random() * 2 - 1) * envelope * 0.22;
+          }
+
+          const noiseSource = audioCtx.createBufferSource();
+          noiseSource.buffer = buffer;
+
+          const filter = audioCtx.createBiquadFilter();
+          filter.type = 'bandpass';
+          filter.frequency.setValueAtTime(1100, audioCtx.currentTime);
+          filter.frequency.exponentialRampToValueAtTime(2400, audioCtx.currentTime + duration);
+          filter.Q.value = 1.4;
+
+          const gainNode = audioCtx.createGain();
+          gainNode.gain.setValueAtTime(0.01, audioCtx.currentTime);
+          gainNode.gain.linearRampToValueAtTime(0.28, audioCtx.currentTime + 0.06);
+          gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+          noiseSource.connect(filter);
+          filter.connect(gainNode);
+          gainNode.connect(audioCtx.destination);
+          noiseSource.start();
+        } catch (_) {
+          // Ignorar silenciosamente si el navegador bloquea el audio antes de interacción
+        }
+      }
+
+      if (btnPaperSoundToggle) {
+        btnPaperSoundToggle.addEventListener('click', () => {
+          paperSoundEnabled = !paperSoundEnabled;
+          btnPaperSoundToggle.setAttribute('aria-pressed', String(paperSoundEnabled));
+          btnPaperSoundToggle.textContent = paperSoundEnabled
+            ? 'SONIDO PAPEL: ON'
+            : 'SONIDO PAPEL: OFF';
+        });
+      }
+
+      // Función de Cambio de Pestaña con Micro-Animación CSS 3D (rotateY(-180deg))
+      function switchBookTab(targetTab) {
+        if (!bookSpreads[targetTab] || targetTab === currentTab || isFlippingPage) return;
+        isFlippingPage = true;
+        playPaperTurnSound();
+
+        // Actualizar estado de botones de pestaña
+        bookTabBtns.forEach((btn) => {
+          const isMatch = btn.dataset.tabTarget === targetTab;
+          btn.classList.toggle('active', isMatch);
+          btn.setAttribute('aria-selected', String(isMatch));
+        });
+
+        // Disparar giro 3D de la hoja
+        if (pageTurnLeaf) {
+          pageTurnLeaf.classList.remove('turning-forward');
+          void pageTurnLeaf.offsetWidth;
+          pageTurnLeaf.classList.add('turning-forward');
+        }
+
+        // Conmutar el contenido a mitad del giro (90deg)
+        setTimeout(() => {
+          Object.keys(bookSpreads).forEach((key) => {
+            const spreadEl = bookSpreads[key];
+            if (!spreadEl) return;
+            if (key === targetTab) {
+              spreadEl.classList.add('active-spread');
+              spreadEl.setAttribute('aria-hidden', 'false');
+            } else {
+              spreadEl.classList.remove('active-spread');
+              spreadEl.setAttribute('aria-hidden', 'true');
+            }
+          });
+
+          if (waxSealContainer) {
+            waxSealContainer.style.display = targetTab === 'registro' ? 'flex' : 'none';
+          }
+          currentTab = targetTab;
+        }, 250);
+
+        setTimeout(() => {
+          if (pageTurnLeaf) pageTurnLeaf.classList.remove('turning-forward');
+          isFlippingPage = false;
+        }, 570);
+      }
+
+      bookTabBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          switchBookTab(btn.dataset.tabTarget);
+        });
+      });
+
+      jumpTabBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          switchBookTab(btn.dataset.jumpTo);
+        });
+      });
+
+      // Soporte de Gestos Táctiles Suaves (Swipe Horizontal en Mobile)
+      let touchStartX = 0;
+      let touchStartY = 0;
+      if (travelBook) {
+        travelBook.addEventListener(
+          'touchstart',
+          (e) => {
+            if (e.touches.length === 1) {
+              touchStartX = e.touches[0].clientX;
+              touchStartY = e.touches[0].clientY;
+            }
+          },
+          { passive: true }
+        );
+
+        travelBook.addEventListener(
+          'touchend',
+          (e) => {
+            if (e.changedTouches.length === 1) {
+              const dx = e.changedTouches[0].clientX - touchStartX;
+              const dy = e.changedTouches[0].clientY - touchStartY;
+              if (Math.abs(dx) > 65 && Math.abs(dx) > Math.abs(dy) * 1.6) {
+                const curIdx = tabOrder.indexOf(currentTab);
+                if (dx < 0 && curIdx < tabOrder.length - 1) {
+                  switchBookTab(tabOrder[curIdx + 1]);
+                } else if (dx > 0 && curIdx > 0) {
+                  switchBookTab(tabOrder[curIdx - 1]);
+                }
+              }
+            }
+          },
+          { passive: true }
+        );
+      }
+
+      /* ======================================================================
+         MOTOR DE QR VECTORIAL PROCEDIMENTAL EN SVG (OFFLINE, REED-SOLOMON GF256)
+         Renderizado en azul profundo (#051329) sobre blanco mármol (#FAF6EE)
+         ====================================================================== */
+      const gfExp = new Uint8Array(512);
+      const gfLog = new Uint8Array(256);
+      (() => {
+        let v = 1;
+        for (let i = 0; i < 255; i++) {
+          gfExp[i] = v;
+          gfLog[v] = i;
+          v <<= 1;
+          if (v & 256) v ^= 0x11d;
+        }
+        for (let i = 255; i < 512; i++) gfExp[i] = gfExp[i - 255];
+      })();
+
+      function gfMul(a, b) {
+        return a === 0 || b === 0 ? 0 : gfExp[gfLog[a] + gfLog[b]];
+      }
+
+      function buildRsGeneratorPoly(ecLen) {
+        let poly = [1];
+        for (let i = 0; i < ecLen; i++) {
+          const next = new Array(poly.length + 1).fill(0);
+          for (let j = 0; j < poly.length; j++) {
+            next[j] ^= gfMul(poly[j], gfExp[i]);
+            next[j + 1] ^= poly[j];
+          }
+          poly = next;
+        }
+        return poly;
+      }
+
+      function generateOdysseyQrSvg(payloadText) {
+        const rawBytes = new TextEncoder().encode(payloadText);
+        let ver = 2;
+        if (rawBytes.length > 28) ver = 3;
+        if (rawBytes.length > 44) ver = 4;
+
+        const verSpec = {
+          2: { size: 25, dataBytes: 28, ecBytes: 16, align: [6, 18] },
+          3: { size: 29, dataBytes: 44, ecBytes: 26, align: [6, 22] },
+          4: { size: 33, dataBytes: 64, ecBytes: 36, align: [6, 26] }
+        }[ver];
+
+        const trimmedBytes = rawBytes.slice(0, verSpec.dataBytes - 2);
+        const bits = [];
+        const pushBits = (val, len) => {
+          for (let i = len - 1; i >= 0; i--) bits.push((val >> i) & 1);
+        };
+
+        pushBits(4, 4);
+        pushBits(trimmedBytes.length, 8);
+        for (const b of trimmedBytes) pushBits(b, 8);
+
+        const padZeros = Math.min(4, verSpec.dataBytes * 8 - bits.length);
+        pushBits(0, padZeros);
+        while (bits.length % 8 !== 0) bits.push(0);
+
+        const padBytes = [0xec, 0x11];
+        let pIdx = 0;
+        while (bits.length < verSpec.dataBytes * 8) {
+          pushBits(padBytes[pIdx % 2], 8);
+          pIdx++;
+        }
+
+        const dataCodewords = [];
+        for (let i = 0; i < bits.length; i += 8) {
+          let byteVal = 0;
+          for (let j = 0; j < 8; j++) byteVal = (byteVal << 1) | bits[i + j];
+          dataCodewords.push(byteVal);
+        }
+
+        const genPoly = buildRsGeneratorPoly(verSpec.ecBytes);
+        const remainder = new Array(verSpec.ecBytes).fill(0);
+        for (let i = 0; i < dataCodewords.length; i++) {
+          const factor = dataCodewords[i] ^ remainder[0];
+          remainder.shift();
+          remainder.push(0);
+          if (factor !== 0) {
+            for (let j = 0; j < verSpec.ecBytes; j++) {
+              remainder[j] ^= gfMul(genPoly[j + 1], factor);
+            }
+          }
+        }
+
+        const codewords = dataCodewords.concat(remainder);
+        const S = verSpec.size;
+        const matrix = Array.from({ length: S }, () => Array(S).fill(0));
+        const reserved = Array.from({ length: S }, () => Array(S).fill(false));
+
+        const setModule = (r, c, val, isRes = true) => {
+          if (r >= 0 && r < S && c >= 0 && c < S) {
+            matrix[r][c] = val;
+            if (isRes) reserved[r][c] = true;
+          }
+        };
+
+        const placeFinder = (r0, c0) => {
+          for (let r = -1; r <= 7; r++) {
+            for (let c = -1; c <= 7; c++) {
+              if (r === -1 || r === 7 || c === -1 || c === 7) setModule(r0 + r, c0 + c, 0);
+              else if (r === 0 || r === 6 || c === 0 || c === 6 || (r >= 2 && r <= 4 && c >= 2 && c <= 4)) {
+                setModule(r0 + r, c0 + c, 1);
+              } else {
+                setModule(r0 + r, c0 + c, 0);
+              }
+            }
+          }
+        };
+
+        placeFinder(0, 0);
+        placeFinder(0, S - 7);
+        placeFinder(S - 7, 0);
+
+        for (const r of verSpec.align) {
+          for (const c of verSpec.align) {
+            if (reserved[r][c]) continue;
+            for (let dr = -2; dr <= 2; dr++) {
+              for (let dc = -2; dc <= 2; dc++) {
+                const isRing = Math.abs(dr) === 2 || Math.abs(dc) === 2;
+                const isDot = dr === 0 && dc === 0;
+                setModule(r + dr, c + dc, isRing || isDot ? 1 : 0);
+              }
+            }
+          }
+        }
+
+        for (let i = 8; i < S - 8; i++) {
+          if (!reserved[6][i]) setModule(6, i, i % 2 === 0 ? 1 : 0);
+          if (!reserved[i][6]) setModule(i, 6, i % 2 === 0 ? 1 : 0);
+        }
+
+        setModule(4 * ver + 9, 8, 1);
+
+        for (let i = 0; i < 9; i++) {
+          reserved[8][i] = true;
+          reserved[i][8] = true;
+        }
+        for (let i = 0; i < 8; i++) {
+          reserved[8][S - 1 - i] = true;
+          reserved[S - 1 - i][8] = true;
+        }
+
+        const allBits = [];
+        for (const cw of codewords) {
+          for (let i = 7; i >= 0; i--) allBits.push((cw >> i) & 1);
+        }
+
+        let bitCursor = 0;
+        let upward = true;
+        for (let c = S - 1; c > 0; c -= 2) {
+          if (c === 6) c--;
+          for (let idx = 0; idx < S; idx++) {
+            const r = upward ? S - 1 - idx : idx;
+            for (let dc = 0; dc < 2; dc++) {
+              const col = c - dc;
+              if (!reserved[r][col]) {
+                const bit = bitCursor < allBits.length ? allBits[bitCursor++] : 0;
+                const mask = (r + col) % 2 === 0;
+                matrix[r][col] = mask ? bit ^ 1 : bit;
+              }
+            }
+          }
+          upward = !upward;
+        }
+
+        const formatBits = [1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0];
+        for (let i = 0; i < 6; i++) matrix[8][i] = formatBits[i];
+        matrix[8][7] = formatBits[6];
+        matrix[8][8] = formatBits[7];
+        matrix[7][8] = formatBits[8];
+        for (let i = 9; i < 15; i++) matrix[14 - i][8] = formatBits[i];
+        for (let i = 0; i < 7; i++) matrix[S - 1 - i][8] = formatBits[i];
+        for (let i = 7; i < 15; i++) matrix[8][S - 15 + i] = formatBits[i];
+
+        const margin = 2;
+        const dim = S + margin * 2;
+        let pathData = '';
+        for (let r = 0; r < S; r++) {
+          for (let c = 0; c < S; c++) {
+            if (matrix[r][c] === 1) {
+              pathData += `M${c + margin},${r + margin}h1v1h-1z `;
+            }
+          }
+        }
+
+        return `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${dim} ${dim}" shape-rendering="crispEdges" role="img" aria-label="Código QR ${payloadText}">
+            <rect width="${dim}" height="${dim}" fill="#FAF6EE" />
+            <path d="${pathData}" fill="#051329" />
+          </svg>
+        `.trim();
+      }
+
+      // Estado de la reserva
+      let currentModality = 'solo';
+      let groupCount = 2;
+      let selectedPackage = {
+        id: 'pkg-1',
+        name: 'Acceso General Egeo — $15',
+        unitPrice: 15,
+        isFixed: false
+      };
+      let selectedPayment = 'Transferencia Bancaria';
+      let lastGeneratedPass = null;
+
+      function updateTributeCalculation() {
+        let total = 0;
+        if (selectedPackage.isFixed) {
+          total = selectedPackage.unitPrice;
+        } else {
+          const multiplier = currentModality === 'group' ? groupCount : 1;
+          total = selectedPackage.unitPrice * multiplier;
+        }
+
+        if (tributeTotalDisplay) {
+          tributeTotalDisplay.textContent = `$${total} USD`;
+        }
+        return total;
+      }
+
+      // 1. Manejo de Modalidad: Solo vs Grupo
+      if (btnSolo && btnGroup) {
+        btnSolo.addEventListener('click', () => {
+          currentModality = 'solo';
+          btnSolo.classList.add('active');
+          btnSolo.setAttribute('aria-pressed', 'true');
+          btnGroup.classList.remove('active');
+          btnGroup.setAttribute('aria-pressed', 'false');
+
+          if (groupCounterDrawer) {
+            groupCounterDrawer.classList.remove('drawer-open');
+            groupCounterDrawer.setAttribute('aria-hidden', 'true');
+          }
+          updateTributeCalculation();
+        });
+
+        btnGroup.addEventListener('click', () => {
+          currentModality = 'group';
+          btnGroup.classList.add('active');
+          btnGroup.setAttribute('aria-pressed', 'true');
+          btnSolo.classList.remove('active');
+          btnSolo.setAttribute('aria-pressed', 'false');
+
+          if (groupCounterDrawer) {
+            groupCounterDrawer.classList.add('drawer-open');
+            groupCounterDrawer.setAttribute('aria-hidden', 'false');
+          }
+          updateTributeCalculation();
+        });
+      }
+
+      if (btnStepMinus && btnStepPlus && companionsCountDisplay) {
+        btnStepMinus.addEventListener('click', () => {
+          if (groupCount > 2) {
+            groupCount--;
+            companionsCountDisplay.textContent = groupCount;
+            updateTributeCalculation();
+          }
+        });
+
+        btnStepPlus.addEventListener('click', () => {
+          if (groupCount < 20) {
+            groupCount++;
+            companionsCountDisplay.textContent = groupCount;
+            updateTributeCalculation();
+          }
+        });
+      }
+
+      // 2. Validación de Fecha de Nacimiento (+20 Años Estricto)
+      const cutoffDate = new Date('2006-11-19T23:59:59');
+
+      function validateBirthDate(showErrors = false) {
+        if (!fieldBirthDate.value) {
+          if (showErrors) {
+            ageValidationHint.textContent = '⚠️ Fecha de nacimiento requerida para verificar el filtro +20.';
+            ageValidationHint.className = 'input-hint-msg status-error';
+            fieldBirthDate.classList.add('input-error');
+          } else {
+            ageValidationHint.textContent = '* Requisito ineludible: Nacidos el 19 de Noviembre de 2006 o antes (+20).';
+            ageValidationHint.className = 'input-hint-msg';
+            fieldBirthDate.classList.remove('input-error');
+          }
+          return false;
+        }
+
+        const inputDate = new Date(fieldBirthDate.value + 'T00:00:00');
+        if (isNaN(inputDate.getTime())) {
+          ageValidationHint.textContent = '⚠️ Fecha inválida.';
+          ageValidationHint.className = 'input-hint-msg status-error';
+          fieldBirthDate.classList.add('input-error');
+          return false;
+        }
+
+        if (inputDate > cutoffDate) {
+          ageValidationHint.textContent = '⚠️ ACCESO DENEGADO: Evento exclusivo para mayores de 20 años (+20 obligatorio).';
+          ageValidationHint.className = 'input-hint-msg status-error';
+          fieldBirthDate.classList.add('input-error');
+          return false;
+        } else {
+          const ageYears = Math.floor((new Date('2026-11-19').getTime() - inputDate.getTime()) / (365.25 * 24 * 3600 * 1000));
+          ageValidationHint.textContent = `✓ EDAD VERIFICADA: ${ageYears} años (+20 APTO PARA EMBARQUE).`;
+          ageValidationHint.className = 'input-hint-msg status-ok';
+          fieldBirthDate.classList.remove('input-error');
+          return true;
+        }
+      }
+
+      if (fieldBirthDate) {
+        fieldBirthDate.addEventListener('change', () => validateBirthDate(true));
+        fieldBirthDate.addEventListener('input', () => validateBirthDate(false));
+      }
+
+      // 3. Selección de Paquetes
+      packageCards.forEach((card) => {
+        card.addEventListener('click', () => {
+          packageCards.forEach((c) => {
+            c.classList.remove('active');
+            c.setAttribute('aria-checked', 'false');
+          });
+          card.classList.add('active');
+          card.setAttribute('aria-checked', 'true');
+
+          selectedPackage = {
+            id: card.dataset.pkgId,
+            name: card.dataset.pkgName,
+            unitPrice: parseFloat(card.dataset.pkgPrice) || 15,
+            isFixed: card.dataset.pkgFixed === 'true'
+          };
+
+          updateTributeCalculation();
+        });
+
+        card.addEventListener('keydown', (e) => {
+          if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            card.click();
+          }
+        });
+      });
+
+      // 4. Selección de Método de Pago
+      btnPaymentChoices.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          btnPaymentChoices.forEach((b) => {
+            b.classList.remove('active');
+            b.setAttribute('aria-pressed', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-pressed', 'true');
+          selectedPayment = btn.dataset.payment;
+        });
+      });
+
+      // 5. Sello de Cera: Valida, Cierra el Libro y Revela el ODYSSEY PASS (#ODY-XXXX)
+      if (confirmExpeditionWaxSeal) {
+        confirmExpeditionWaxSeal.addEventListener('click', () => {
+          if (currentTab !== 'registro') {
+            switchBookTab('registro');
+            return;
+          }
+
+          let isValid = true;
+          let firstErrorEl = null;
+
+          const nameVal = fieldName ? fieldName.value.trim() : '';
+          if (!nameVal || nameVal.length < 3) {
+            isValid = false;
+            if (fieldName) fieldName.classList.add('input-error');
+            if (nameHint) {
+              nameHint.textContent = '⚠️ Ingresa tu nombre y apellido completo.';
+              nameHint.className = 'input-hint-msg status-error';
+            }
+            if (!firstErrorEl) firstErrorEl = fieldName;
+          } else {
+            if (fieldName) fieldName.classList.remove('input-error');
+            if (nameHint) {
+              nameHint.textContent = '✓ Nombre registrado.';
+              nameHint.className = 'input-hint-msg status-ok';
+            }
+          }
+
+          const phoneVal = fieldPhone ? fieldPhone.value.trim() : '';
+          const phoneDigits = phoneVal.replace(/\D/g, '');
+          if (!phoneVal || phoneDigits.length < 7) {
+            isValid = false;
+            if (fieldPhone) fieldPhone.classList.add('input-error');
+            if (phoneHint) {
+              phoneHint.textContent = '⚠️ Ingresa un número de WhatsApp o móvil válido.';
+              phoneHint.className = 'input-hint-msg status-error';
+            }
+            if (!firstErrorEl) firstErrorEl = fieldPhone;
+          } else {
+            if (fieldPhone) fieldPhone.classList.remove('input-error');
+            if (phoneHint) {
+              phoneHint.textContent = '✓ Contacto verificado.';
+              phoneHint.className = 'input-hint-msg status-ok';
+            }
+          }
+
+          const isAgeOk = validateBirthDate(true);
+          if (!isAgeOk) {
+            isValid = false;
+            if (!firstErrorEl) firstErrorEl = fieldBirthDate;
+          }
+
+          if (!isValid) {
+            if (firstErrorEl) {
+              firstErrorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              firstErrorEl.focus();
+            }
+            return;
+          }
+
+          // Estampa el sello de cera y reproduce sonido
+          confirmExpeditionWaxSeal.classList.add('stamped');
+          playPaperTurnSound();
+
+          // Número de reserva procedimental #ODY-XXXX
+          const randomDigits = Math.floor(1000 + Math.random() * 9000);
+          const odysseyCode = `#ODY-${randomDigits}`;
+          const finalTotal = updateTributeCalculation();
+          const modalityText =
+            currentModality === 'group'
+              ? `Grupo (${groupCount} integrantes)`
+              : 'Individual (1 titular)';
+
+          lastGeneratedPass = {
+            name: nameVal.toUpperCase(),
+            phone: phoneVal,
+            code: odysseyCode,
+            modality: modalityText,
+            package: selectedPackage.name,
+            payment: selectedPayment,
+            total: `$${finalTotal} USD`
+          };
+
+          if (passNameVal) passNameVal.textContent = lastGeneratedPass.name;
+          if (passCodeVal) passCodeVal.textContent = lastGeneratedPass.code;
+          if (passSerialMirror) passSerialMirror.textContent = lastGeneratedPass.code;
+          if (passQrSerial) passQrSerial.textContent = `${lastGeneratedPass.code} · AZUL MARINO & BLANCO`;
+          if (passModeVal) passModeVal.textContent = lastGeneratedPass.modality;
+          if (passPkgVal) passPkgVal.textContent = lastGeneratedPass.package;
+          if (passPaymentVal) passPaymentVal.textContent = lastGeneratedPass.payment;
+          if (passTotalVal) passTotalVal.textContent = `${lastGeneratedPass.total} · +20 VERIFICADO`;
+
+          // Renderizar QR Vectorial Procedimental en SVG (Azul Profundo sobre Blanco Mármol)
+          if (odysseyQrMount) {
+            const qrPayload = `${lastGeneratedPass.code}|${lastGeneratedPass.name}|${ currentModality === 'group' ? groupCount : 1 }PAX`;
+            odysseyQrMount.innerHTML = generateOdysseyQrSvg(qrPayload);
+          }
+
+          // Cerrar el libro en 3D y revelar el Odyssey Pass
+          if (travelBookViewport) {
+            travelBookViewport.classList.add('book-closing');
+          }
+
+          setTimeout(() => {
+            confirmExpeditionWaxSeal.classList.remove('stamped');
+            if (travelBookViewport) {
+              travelBookViewport.classList.add('book-hidden');
+            }
+            if (odysseyPassWrapper) {
+              odysseyPassWrapper.classList.add('pass-revealed');
+              odysseyPassWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          }, 560);
+        });
+      }
+
+      // 6. Imprimir / Guardar Pase (@media print)
+      if (btnPrintOdysseyPass) {
+        btnPrintOdysseyPass.addEventListener('click', () => {
+          window.print();
+        });
+      }
+
+      // 7. Reabrir el Cuaderno de Bitácora
+      if (btnReopenBook) {
+        btnReopenBook.addEventListener('click', () => {
+          playPaperTurnSound();
+          if (odysseyPassWrapper) {
+            odysseyPassWrapper.classList.remove('pass-revealed');
+          }
+          if (travelBookViewport) {
+            travelBookViewport.classList.remove('book-hidden', 'book-closing');
+            travelBookViewport.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      }
+
+      // 8. Compartir Odyssey Pass por WhatsApp
+      if (btnShareWhatsapp) {
+        btnShareWhatsapp.addEventListener('click', () => {
+          if (!lastGeneratedPass) return;
+          const msg =
+            `🏛️ *ODYSSEY PASS — GREEK ODYSSEY (DVOID IN COLORS)*%0A` +
+            `*SANTORINI NIGHT // Jueves 19 Noviembre 2026 · 20H30*%0A%0A` +
+            `🎫 *Reserva:* ${encodeURIComponent(lastGeneratedPass.code)}%0A` +
+            `👤 *Titular:* ${encodeURIComponent(lastGeneratedPass.name)}%0A` +
+            `👥 *Modo:* ${encodeURIComponent(lastGeneratedPass.modality)}%0A` +
+            `✨ *Paquete:* ${encodeURIComponent(lastGeneratedPass.package)}%0A` +
+            `💳 *Pago:* ${encodeURIComponent(lastGeneratedPass.payment)}%0A` +
+            `💰 *Total:* ${encodeURIComponent(lastGeneratedPass.total)}%0A` +
+            `👔 *Dress Code Obligatorio:* Azul Marino & Blanco%0A%0A` +
+            `⚡ *Presentar este Odyssey Pass con QR en puerta.*`;
+
+          window.open(`https://api.whatsapp.com/send?text=${msg}`, '_blank');
+        });
+      }
+
+      updateTributeCalculation();
+
+      window.addEventListener('resize', resizeCanvas, { passive: true });
+
+      // Inicialización inmediata + relámpago inaugural
+      resizeCanvas();
+      rafId = requestAnimationFrame(renderStormFrame);
+      setTimeout(() => {
+        if (isHeroVisible) {
+          triggerLightningStrike({
+            startX: width * 0.52,
+            startY: 0,
+            targetX: width * 0.48,
+            targetY: height * 0.88,
+            intensity: 1.2
+          });
+        }
+      }, 380);
+    })();
+  </script>
+</body>
+</html>
