@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
 
 export const metadata: Metadata = {
   title: "D-VOID // EXPEDIENTES · REGISTRO DE EVENTOS 2026",
@@ -19,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="dark scroll-smooth">
-      <body className="bg-[#080808] text-[#F4F4F0] min-h-screen selection:bg-[#C98A2B]/30 selection:text-white">
+      <body className="bg-[#050505] text-white min-h-screen selection:bg-[#D90429]/30 selection:text-white">
         {children}
       </body>
     </html>

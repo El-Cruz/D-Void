@@ -2,12 +2,10 @@
 
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Autoplay } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Swiper styles
 import "swiper/css";
-import "swiper/css/effect-coverflow";
 
 export interface CarouselEvent {
   id?: string;
@@ -32,16 +30,21 @@ export const EventCarousel: React.FC<EventCarouselProps> = ({
   className = "",
 }) => {
   const [swiperInstance, setSwiperInstance] = useState<any>(null);
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
 
   if (!events || events.length === 0) {
     return null;
   }
 
-  const isLoop = events.length > 2;
+  const syncBounds = (swiper: any) => {
+    setIsBeginning(swiper.isBeginning);
+    setIsEnd(swiper.isEnd);
+  };
 
   return (
     <div
-      className={`w-full py-8 md:py-12 bg-black select-none relative overflow-hidden ${className}`}
+      className={`w-full py-6 md:py-10 bg-black select-none relative overflow-hidden ${className}`}
     >
       {/* Month Header Banner (if provided) */}
       {month && (
@@ -59,50 +62,51 @@ export const EventCarousel: React.FC<EventCarouselProps> = ({
       )}
 
       {/* Swiper Main Container */}
-      <div className="relative w-full px-4 md:px-14">
-        {/* Desktop Navigation Arrows (Centradas verticalmente, solo visibles en PC) */}
+      <div className="relative w-full md:px-12">
+        {/* Desktop Navigation Arrows (Íconos limpios sin fondo, solo visibles en PC) */}
         {events.length > 1 && (
-          <div className="hidden md:flex pointer-events-none absolute inset-y-0 left-0 right-0 items-center justify-between z-30 px-2 lg:px-4">
+          <div className="hidden md:flex pointer-events-none absolute inset-y-0 left-0 right-0 items-center justify-between z-30">
             <button
               type="button"
               onClick={() => swiperInstance?.slidePrev()}
+              disabled={isBeginning}
               aria-label="Anterior evento"
-              className="pointer-events-auto p-3 rounded-full bg-black/70 border border-white/10 text-white hover:text-[#D90429] hover:border-[#D90429]/60 hover:bg-black/95 backdrop-blur-md transition-all duration-200 cursor-pointer shadow-2xl transform hover:scale-110 active:scale-95"
+              className="pointer-events-auto p-1 text-white hover:text-[#D90429] disabled:opacity-20 disabled:hover:text-white disabled:cursor-not-allowed transition-colors duration-200 cursor-pointer focus:outline-none"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-8 h-8 stroke-[1.75]" />
             </button>
             <button
               type="button"
               onClick={() => swiperInstance?.slideNext()}
+              disabled={isEnd}
               aria-label="Siguiente evento"
-              className="pointer-events-auto p-3 rounded-full bg-black/70 border border-white/10 text-white hover:text-[#D90429] hover:border-[#D90429]/60 hover:bg-black/95 backdrop-blur-md transition-all duration-200 cursor-pointer shadow-2xl transform hover:scale-110 active:scale-95"
+              className="pointer-events-auto p-1 text-white hover:text-[#D90429] disabled:opacity-20 disabled:hover:text-white disabled:cursor-not-allowed transition-colors duration-200 cursor-pointer focus:outline-none"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-8 h-8 stroke-[1.75]" />
             </button>
           </div>
         )}
 
         <Swiper
-          modules={[EffectCoverflow, Autoplay]}
-          effect={"coverflow"}
           grabCursor={true}
-          centeredSlides={true}
+          centeredSlides={false}
           slidesPerView={"auto"}
-          onSwiper={setSwiperInstance}
-          coverflowEffect={{
-            rotate: 22,
-            stretch: 0,
-            depth: 180,
-            modifier: 1,
-            slideShadows: false,
+          spaceBetween={24}
+          loop={false}
+          watchOverflow={true}
+          onSwiper={(swiper) => {
+            setSwiperInstance(swiper);
+            syncBounds(swiper);
           }}
-          autoplay={{
-            delay: 4000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
+          onSlideChange={(swiper) => {
+            setIsBeginning(swiper.isBeginning);
+            setIsEnd(swiper.isEnd);
           }}
-          loop={isLoop}
-          className="dvoid-swiper !pb-4 !overflow-visible"
+          onReachBeginning={() => setIsBeginning(true)}
+          onReachEnd={() => setIsEnd(true)}
+          onFromEdge={syncBounds}
+          onResize={syncBounds}
+          className="dvoid-swiper !py-2"
         >
           {events.map((event, index) => {
             const hasImage = Boolean(event.imagePath && event.imagePath.trim().length > 0);
