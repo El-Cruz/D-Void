@@ -18,6 +18,13 @@ body {
   background-size: 24px 24px;
 }
 
+/* Ensure Swiper 3D Coverflow shadows never intercept link clicks */
+.swiper-slide-shadow-left,
+.swiper-slide-shadow-right,
+.swiper-slide-shadow-coverflow {
+  pointer-events: none !important;
+}
+
 /* Custom Scrollbar for dark theme */
 ::-webkit-scrollbar {
   width: 6px;
