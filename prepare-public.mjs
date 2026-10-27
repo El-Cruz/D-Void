@@ -31,4 +31,9 @@ if (existsSync(path.join(root, 'Resources'))) {
   });
 }
 
+// Copy brand assets (OG preview, etc.)
+if (existsSync(path.join(root, 'Resources', 'assets'))) {
+  cpSync(path.join(root, 'Resources', 'assets'), path.join(publicDir, 'assets'), { recursive: true });
+}
+
 console.log('Public assets prepared successfully for Next.js build!');
