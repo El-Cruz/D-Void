@@ -2,10 +2,13 @@
 
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow } from "swiper/modules";
+import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Swiper styles
 import "swiper/css";
+import "swiper/css/effect-coverflow";
 
 export interface CarouselEvent {
   id?: string;
@@ -32,6 +35,8 @@ export const EventCarousel: React.FC<EventCarouselProps> = ({
   const [swiperInstance, setSwiperInstance] = useState<any>(null);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
+  const [shakeLeft, setShakeLeft] = useState(false);
+  const [shakeRight, setShakeRight] = useState(false);
 
   if (!events || events.length === 0) {
     return null;
@@ -40,6 +45,24 @@ export const EventCarousel: React.FC<EventCarouselProps> = ({
   const syncBounds = (swiper: any) => {
     setIsBeginning(swiper.isBeginning);
     setIsEnd(swiper.isEnd);
+  };
+
+  const handlePrev = () => {
+    if (isBeginning) {
+      setShakeLeft(true);
+      setTimeout(() => setShakeLeft(false), 300);
+    } else {
+      swiperInstance?.slidePrev();
+    }
+  };
+
+  const handleNext = () => {
+    if (isEnd) {
+      setShakeRight(true);
+      setTimeout(() => setShakeRight(false), 300);
+    } else {
+      swiperInstance?.slideNext();
+    }
   };
 
   return (
@@ -63,31 +86,42 @@ export const EventCarousel: React.FC<EventCarouselProps> = ({
 
       {/* Swiper Main Container */}
       <div className="relative w-full md:px-12">
-        {/* Desktop Navigation Arrows (Íconos limpios sin fondo, solo visibles en PC) */}
+        {/* Desktop Navigation Arrows (Con rebote en límites, solo visibles en PC) */}
         {events.length > 1 && (
           <div className="hidden md:flex pointer-events-none absolute inset-y-0 left-0 right-0 items-center justify-between z-30">
-            <button
+            <motion.button
               type="button"
-              onClick={() => swiperInstance?.slidePrev()}
-              disabled={isBeginning}
+              onClick={handlePrev}
+              animate={shakeLeft ? { x: [-5, 5, -3, 3, 0] } : {}}
+              transition={{ duration: 0.3 }}
               aria-label="Anterior evento"
-              className="pointer-events-auto p-1 text-white hover:text-[#D90429] disabled:opacity-20 disabled:hover:text-white disabled:cursor-not-allowed transition-colors duration-200 cursor-pointer focus:outline-none"
+              className="pointer-events-auto p-1 text-white hover:text-[#D90429] transition-colors duration-200 cursor-pointer focus:outline-none"
             >
-              <ChevronLeft className="w-8 h-8 stroke-[1.75]" />
-            </button>
-            <button
+              <ChevronLeft size={32} className="w-8 h-8" />
+            </motion.button>
+            <motion.button
               type="button"
-              onClick={() => swiperInstance?.slideNext()}
-              disabled={isEnd}
+              onClick={handleNext}
+              animate={shakeRight ? { x: [-5, 5, -3, 3, 0] } : {}}
+              transition={{ duration: 0.3 }}
               aria-label="Siguiente evento"
-              className="pointer-events-auto p-1 text-white hover:text-[#D90429] disabled:opacity-20 disabled:hover:text-white disabled:cursor-not-allowed transition-colors duration-200 cursor-pointer focus:outline-none"
+              className="pointer-events-auto p-1 text-white hover:text-[#D90429] transition-colors duration-200 cursor-pointer focus:outline-none"
             >
-              <ChevronRight className="w-8 h-8 stroke-[1.75]" />
-            </button>
+              <ChevronRight size={32} className="w-8 h-8" />
+            </motion.button>
           </div>
         )}
 
         <Swiper
+          modules={[EffectCoverflow]}
+          effect="coverflow"
+          coverflowEffect={{
+            rotate: 40,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+          }}
           grabCursor={true}
           centeredSlides={false}
           slidesPerView={"auto"}
@@ -106,7 +140,7 @@ export const EventCarousel: React.FC<EventCarouselProps> = ({
           onReachEnd={() => setIsEnd(true)}
           onFromEdge={syncBounds}
           onResize={syncBounds}
-          className="dvoid-swiper !py-2"
+          className="dvoid-swiper !py-4 !overflow-visible"
         >
           {events.map((event, index) => {
             const hasImage = Boolean(event.imagePath && event.imagePath.trim().length > 0);
@@ -158,7 +192,7 @@ export const EventCarousel: React.FC<EventCarouselProps> = ({
                   )}
 
                   {/* Dark Vignette / Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent flex flex-col justify-end p-5 sm:p-6 z-20 pointer-events-none">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-5 sm:p-6 z-20 pointer-events-none">
                     {/* Category or Theme */}
                     {categoryTag && (
                       <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#D90429] font-semibold mb-1 line-clamp-1">
