@@ -1,13 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
+import { EffectCoverflow, Autoplay } from "swiper/modules";
+import DvoidPagination from "./dvoid-pagination";
 
 // Swiper styles
 import "swiper/css";
 import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
 
 export interface CarouselEvent {
   id?: string;
@@ -31,9 +31,14 @@ export const EventCarousel: React.FC<EventCarouselProps> = ({
   events = [],
   className = "",
 }) => {
+  const [swiperInstance, setSwiperInstance] = useState<any>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
   if (!events || events.length === 0) {
     return null;
   }
+
+  const isLoop = events.length > 2;
 
   return (
     <div
@@ -54,15 +59,19 @@ export const EventCarousel: React.FC<EventCarouselProps> = ({
         </div>
       )}
 
-      {/* Swiper Container */}
-      <div className="w-full relative px-2">
+      {/* Swiper Main Container */}
+      <div className="relative w-full px-4 md:px-12">
         <Swiper
-          modules={[EffectCoverflow, Pagination, Autoplay]}
+          modules={[EffectCoverflow, Autoplay]}
           effect={"coverflow"}
           grabCursor={true}
           centeredSlides={true}
           slidesPerView={"auto"}
-          initialSlide={Math.min(1, Math.floor(events.length / 2))}
+          onSwiper={(swiper) => {
+            setSwiperInstance(swiper);
+            setActiveIndex(swiper.realIndex);
+          }}
+          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
           coverflowEffect={{
             rotate: 22,
             stretch: 0,
@@ -70,17 +79,13 @@ export const EventCarousel: React.FC<EventCarouselProps> = ({
             modifier: 1,
             slideShadows: false,
           }}
-          pagination={{
-            clickable: true,
-            dynamicBullets: true,
-          }}
           autoplay={{
             delay: 4000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
-          loop={events.length > 2}
-          className="dvoid-swiper !pb-14 !overflow-visible"
+          loop={isLoop}
+          className="dvoid-swiper !pb-8 !overflow-visible"
         >
           {events.map((event, index) => {
             const hasImage = Boolean(event.imagePath && event.imagePath.trim().length > 0);
@@ -163,32 +168,22 @@ export const EventCarousel: React.FC<EventCarouselProps> = ({
             );
           })}
         </Swiper>
-      </div>
 
-      {/* D-VOID Custom Swiper Bullet Styling */}
-      <style jsx global>{`
-        .dvoid-swiper .swiper-pagination {
-          bottom: 4px !important;
-        }
-        .dvoid-swiper .swiper-pagination-bullet {
-          background-color: #f4f4f0 !important;
-          opacity: 0.35 !important;
-          width: 8px !important;
-          height: 8px !important;
-          margin: 0 5px !important;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        }
-        .dvoid-swiper .swiper-pagination-bullet:hover {
-          opacity: 0.7 !important;
-        }
-        .dvoid-swiper .swiper-pagination-bullet-active {
-          background-color: #c98a2b !important;
-          opacity: 1 !important;
-          width: 24px !important;
-          border-radius: 9999px !important;
-          box-shadow: 0 0 12px rgba(201, 138, 43, 0.5) !important;
-        }
-      `}</style>
+        {/* Magnetic D-VOID Pagination (Hidden when 1 or fewer events) */}
+        {events.length > 1 && (
+          <DvoidPagination
+            totalPages={events.length}
+            activeIndex={activeIndex}
+            onPrev={() => swiperInstance?.slidePrev()}
+            onNext={() => swiperInstance?.slideNext()}
+            onDotClick={(idx) =>
+              isLoop
+                ? swiperInstance?.slideToLoop(idx)
+                : swiperInstance?.slideTo(idx)
+            }
+          />
+        )}
+      </div>
     </div>
   );
 };
