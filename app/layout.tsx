@@ -17,9 +17,11 @@ export const metadata: Metadata = {
     siteName: "D-VOID",
     images: [
       {
-        url: "/assets/og-preview.jpg",
+        url: "https://dvoid.vercel.app/assets/og-preview.jpg",
+        secureUrl: "https://dvoid.vercel.app/assets/og-preview.jpg",
         width: 1200,
         height: 630,
+        type: "image/jpeg",
         alt: "D-VOID // EVENT PORTFOLIO BY NICOLAS CRUZ",
       },
     ],
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "D-VOID // EVENT PORTFOLIO",
     description: "Event Portfolio by Nicolas Cruz",
-    images: ["/assets/og-preview.jpg"],
+    images: ["https://dvoid.vercel.app/assets/og-preview.jpg"],
   },
 };
 
