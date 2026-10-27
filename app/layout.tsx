@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://dvoid.vercel.app"),
   title: "D-VOID // EVENT PORTFOLIO",
   description: "Event Portfolio by Nicolas Cruz",
+  applicationName: "D-VOID",
+  authors: [{ name: "Nicolas Cruz" }],
+  creator: "Nicolas Cruz",
+  publisher: "Nicolas Cruz",
   icons: {
     icon: "/Resources/dvoid/void-logo.png",
   },
@@ -15,6 +19,8 @@ export const metadata: Metadata = {
     description: "Event Portfolio by Nicolas Cruz",
     url: "https://dvoid.vercel.app",
     siteName: "D-VOID",
+    locale: "es_EC",
+    type: "website",
     images: [
       {
         url: "https://dvoid.vercel.app/assets/og-preview.jpg",
@@ -25,8 +31,6 @@ export const metadata: Metadata = {
         alt: "D-VOID // EVENT PORTFOLIO BY NICOLAS CRUZ",
       },
     ],
-    locale: "es_EC",
-    type: "website",
   },
   twitter: {
     card: "summary_large_image",

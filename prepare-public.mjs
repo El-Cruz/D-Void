@@ -36,4 +36,8 @@ if (existsSync(path.join(root, 'Resources', 'assets'))) {
   cpSync(path.join(root, 'Resources', 'assets'), path.join(publicDir, 'assets'), { recursive: true });
 }
 
+if (existsSync(path.join(root, 'Resources', 'og-preview.jpg'))) {
+  copyFileSync(path.join(root, 'Resources', 'og-preview.jpg'), path.join(publicDir, 'og-preview.jpg'));
+}
+
 console.log('Public assets prepared successfully for Next.js build!');
