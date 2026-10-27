@@ -2151,6 +2151,102 @@
     }
 
     /* ==========================================================================
+       LIBRO DIGITAL POR PÁGINAS: BASE (estabilidad de viewport, stage, nav móvil, deco promos)
+       ========================================================================== */
+    html,
+    body {
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
+    }
+
+    #expedicion {
+      overflow-x: hidden;
+      overflow-x: clip;
+      width: 100%;
+      position: relative;
+    }
+
+    /* Desktop: el stage es transparente y los pliegos siguen en la rejilla del libro abierto */
+    .book-stage {
+      display: contents;
+    }
+
+    .stage-meander-frame {
+      display: none;
+    }
+
+    .btn-mobile-nav {
+      display: none;
+    }
+
+    .travel-book,
+    .book-page,
+    .book-spread {
+      touch-action: pan-y;
+      overscroll-behavior: contain;
+    }
+
+    @keyframes mobileLeafOut {
+      0% {
+        transform: rotateY(0deg);
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+      }
+      100% {
+        transform: rotateY(-100deg);
+        box-shadow: -14px 0 32px rgba(0, 0, 0, 0.45);
+      }
+    }
+
+    @keyframes mobileLeafIn {
+      0% {
+        transform: rotateY(-100deg);
+        box-shadow: -14px 0 32px rgba(0, 0, 0, 0.45);
+      }
+      100% {
+        transform: rotateY(0deg);
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+      }
+    }
+
+    /* Iconos decorativos de contorno en tarjetas de promos */
+    .promo-flash-card,
+    .golden-ticket-relic {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      padding-right: 3.6rem;
+    }
+
+    .promo-deco-icon {
+      position: absolute;
+      z-index: -1;
+      pointer-events: none;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .promo-deco-trident {
+      right: 10px;
+      bottom: 8px;
+      width: 46px;
+      height: 74px;
+      stroke: #003366;
+      opacity: 0.5;
+    }
+
+    .promo-deco-bolt {
+      top: 8px;
+      right: 10px;
+      width: 30px;
+      height: 38px;
+      stroke: #D4AF37;
+      opacity: 0.65;
+    }
+
+    /* ==========================================================================
        RESPONSIVE MOBILE (@media (max-width: 768px)): VISTA DE PÁGINA ÚNICA
        Modo de folio único sin apilamiento vertical, visor viewport con overflow: hidden,
        transición lateral fluida cubic-bezier(0.25, 1, 0.5, 1) y scroll interior suave
@@ -2180,9 +2276,6 @@
         transform: translate3d(0, 0, 0) !important;
         box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.35);
       }
-      .page-turn-leaf {
-        display: none !important;
-      }
       .wax-seal-body {
         width: 100%;
         max-width: 340px;
@@ -2204,58 +2297,106 @@
         overflow: hidden;
         border-radius: 6px;
       }
-      .book-spine-crease {
+      .book-spine-crease,
+      .book-corner-brass,
+      .page-turn-leaf {
         display: none !important;
       }
-      /* Modo Folio Único: el spread se convierte en un carrusel de 1 página a la vez */
+
+      /* STAGE: una sola página visible, marco de grecas fijo y contención 3D */
+      .book-stage {
+        display: block;
+        position: relative;
+        width: 100%;
+        background: #FAF6EE;
+        perspective: 1000px;
+        contain: paint;
+        overflow: hidden;
+      }
+      .stage-meander-frame {
+        display: block;
+        position: absolute;
+        inset: 8px;
+        width: calc(100% - 16px);
+        height: calc(100% - 16px);
+        pointer-events: none;
+        z-index: 6;
+        stroke: var(--aegean-blue);
+        fill: none;
+        opacity: 0.78;
+      }
+      .book-page .meander-frame-svg {
+        display: none;
+      }
+
+      /* Cada pliego es un visor con scroll interior propio (sin apilar páginas) */
       .book-spread {
         display: none;
         grid-template-columns: 1fr !important;
         width: 100%;
-        min-height: auto;
-        overflow: hidden;
+        min-height: 0;
+        max-height: 78vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        background: #FAF6EE;
+        animation: none;
+        backface-visibility: hidden;
       }
       .book-spread.active-spread {
         display: block;
-        animation: pageSlideIn 0.35s cubic-bezier(0.25, 1, 0.5, 1) both;
+        animation: none;
       }
-      @keyframes pageSlideIn {
-        from {
-          opacity: 0.4;
-          transform: translate3d(24px, 0, 0);
-        }
-        to {
-          opacity: 1;
-          transform: translate3d(0, 0, 0);
-        }
+      .book-spread.turn-in-back {
+        position: relative;
+        z-index: 3;
+        transform-origin: left center;
+        animation: mobileLeafIn 0.5s cubic-bezier(0.45, 0.05, 0.25, 1) both;
       }
-      /* PÁGINAS INDIVIDUALES EN MÓVIL: VISTA ÚNICA EN PANTALLA */
+      /* Instantánea de la página saliente que gira sobre su lomo izquierdo */
+      .book-spread.page-turn-clone {
+        display: block !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        max-height: none;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 4;
+        transform-origin: left center;
+        will-change: transform;
+      }
+      .book-spread.page-turn-clone.turn-out {
+        animation: mobileLeafOut 0.5s cubic-bezier(0.45, 0.05, 0.25, 1) forwards;
+      }
+      .book-spread.page-turn-clone.turn-under {
+        z-index: 1;
+        animation: none;
+      }
+
+      /* REGISTRO = 2 páginas consecutivas (datos / paquetes) */
+      #spread-registro[data-sub="0"] .page-right {
+        display: none;
+      }
+      #spread-registro[data-sub="1"] .page-left {
+        display: none;
+      }
+
       .book-page,
       .diary-page {
         width: 100%;
-        padding: 2.6rem 1.4rem 1.6rem 1.4rem !important;
-        max-height: 82vh;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        border-radius: 0;
+        padding: 2.6rem 1.6rem 1.8rem 1.6rem !important;
+        overflow: visible;
         box-shadow: none !important;
-        border-right: none;
-        border-bottom: none;
+        border: none !important;
+        border-radius: 0;
       }
-      .book-page.page-left {
-        display: block;
-      }
-      /* En móviles en spreads de 2 páginas, la página secundaria se accede fluidamente */
-      .book-spread#spread-registro .book-page.page-right,
-      .book-spread#spread-dresscode .book-page.page-right,
-      .book-spread#spread-promos .book-page.page-right {
-        border-top: 2px dashed rgba(0, 71, 171, 0.3);
-        margin-top: 0;
-      }
-      .meander-frame-svg {
-        inset: 8px;
-        width: calc(100% - 16px);
-        height: calc(100% - 16px);
+      /* DRESS CODE y PROMOS: una sola página con ambos bloques fluyendo */
+      #spread-dresscode .page-right,
+      #spread-promos .page-right {
+        padding-top: 0.4rem !important;
       }
       .page-editorial-heading {
         margin-bottom: 1.25rem !important;
@@ -2280,6 +2421,34 @@
       }
       .pkg-price {
         font-size: 1.15rem !important;
+      }
+
+      /* Botones de navegación entre páginas del libro */
+      .btn-mobile-nav {
+        display: block;
+        appearance: none;
+        width: 100%;
+        margin-top: 1.1rem;
+        padding: 0.85rem 1rem;
+        background: #0047AB;
+        color: #FAF6EE;
+        border: 1px solid var(--gods-gold);
+        font-family: var(--font-mono);
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .btn-mobile-nav.back {
+        background: transparent;
+        color: #0047AB;
+        border-color: rgba(0, 71, 171, 0.5);
+      }
+
+      /* El sello de confirmación solo aparece en la página de paquetes */
+      .travel-book-viewport:not([data-page="1"]) #waxSealContainer {
+        display: none !important;
       }
     }
 
@@ -2769,7 +2938,12 @@
         <!-- ==================================================================
              SPREAD 1 (TAB 1: REGISTRO): FORMULARIO + PAQUETES
              ================================================================== -->
-        <div id="spread-registro" class="book-spread active-spread" role="tabpanel">
+        <div id="bookStage" class="book-stage">
+        <svg class="stage-meander-frame" viewBox="0 0 520 680" preserveAspectRatio="none" aria-hidden="true">
+          <rect x="4" y="4" width="512" height="672" stroke="#0047AB" stroke-width="1.8" stroke-dasharray="12 4 4 4" fill="none" />
+          <path d="M12 12 H40 V40 H20 V20 H30 V30 M508 12 H480 V40 H500 V20 H490 V30 M12 668 H40 V640 H20 V660 H30 V650 M508 668 H480 V640 H500 V660 H490 V650" stroke="#0047AB" stroke-width="2" fill="none" />
+        </svg>
+        <div id="spread-registro" class="book-spread active-spread" role="tabpanel" data-sub="0">
           <!-- PÁGINA IZQUIERDA: FORMULARIO "RESERVA DE EXPERIENCIA" -->
           <article class="book-page diary-page page-left">
             <svg class="meander-frame-svg" viewBox="0 0 520 680" preserveAspectRatio="none" aria-hidden="true">
@@ -2886,6 +3060,7 @@
                     </div>
                   </div>
                 </div>
+              <button type="button" class="btn-mobile-nav next" data-page-go="1">CONTINUAR A PAQUETES →</button>
               </form>
             </div>
           </article>
@@ -3037,6 +3212,8 @@
                 <span>TRIBUTO TOTAL ESTIMADO:</span>
                 <span id="tributeTotalDisplay" class="tribute-total-val">$15 USD</span>
               </div>
+
+              <button type="button" class="btn-mobile-nav back" data-page-go="0">← VOLVER A DATOS</button>
             </div>
           </article>
         </div>
@@ -3245,6 +3422,9 @@
 
               <!-- Medianoche: Promo Flash 5 Minutos -->
               <div class="promo-flash-card">
+                <svg class="promo-deco-icon promo-deco-trident" viewBox="0 0 40 64" aria-hidden="true">
+                  <path d="M20 4 V62 M7 6 V16 Q7 25 20 25 M33 6 V16 Q33 25 20 25 M7 6 L4 11 M7 6 L10 11 M33 6 L30 11 M33 6 L36 11 M20 4 L16 10 M20 4 L24 10 M13 34 H27" />
+                </svg>
                 <span class="promo-time-pill">⚡ MEDIANOCHE · 00H00</span>
                 <h4 class="promo-item-title">PROMO FLASH DE 5 MINUTOS</h4>
                 <p class="promo-item-desc">
@@ -3254,6 +3434,9 @@
 
               <!-- Dinámica Especial: Ticket Dorado -->
               <div class="golden-ticket-relic">
+                <svg class="promo-deco-icon promo-deco-bolt" viewBox="0 0 32 40" aria-hidden="true">
+                  <path d="M19 2 L5 23 H15 L11 38 L27 15 H17 Z" />
+                </svg>
                 <h4 class="promo-item-title" style="color: #5C4002;">EL TICKET DORADO DE POSEIDÓN</h4>
                 <p class="promo-item-desc" style="color: #3D2B02;">
                   "Busca el Ticket Dorado exclusivo oculto en el club para media de cortesía".
@@ -3269,6 +3452,7 @@
               </button>
             </div>
           </article>
+        </div>
         </div>
       </div>
 
@@ -3824,11 +4008,6 @@
       const progressFolioCounter = document.getElementById('progressFolioCounter');
       const progressSectionName = document.getElementById('progressSectionName');
 
-      const tabInfo = {
-        registro: { percent: '33.333%', roman: 'I · PÁG. 1 DE 3', name: 'ISLA DE SANTORINI — SOLICITUD DE INGRESO' },
-        dresscode: { percent: '66.666%', roman: 'II · PÁG. 2 DE 3', name: 'DRESS CODE OBLIGATORIO — SANTORINI NIGHTS' },
-        promos: { percent: '100%', roman: 'III · PÁG. 3 DE 3', name: 'BANQUETE DEL OLIMPO — PROMOS DVOID' }
-      };
 
       const fieldName = document.getElementById('fieldName');
       const fieldPhone = document.getElementById('fieldPhone');
@@ -3923,66 +4102,145 @@
         });
       }
 
-      // Función de Cambio de Pestaña con Micro-Animación CSS 3D (rotateY(-180deg)) y Actualización de Progreso
-      function switchBookTab(targetTab) {
-        if (!bookSpreads[targetTab] || targetTab === currentTab || isFlippingPage) return;
-        isFlippingPage = true;
-        playPaperTurnSound();
+      // Modelo de libro: 4 páginas (móvil) / 3 pestañas con pliegos dobles (desktop)
+      const mobileMQ = window.matchMedia('(max-width: 768px)');
+      const bookStage = document.getElementById('bookStage');
+      const pageDefs = [
+        { tab: 'registro', sub: 0, label: 'DATOS', title: 'DATOS DEL TRIPULANTE' },
+        { tab: 'registro', sub: 1, label: 'PAQUETES', title: 'SELECCIÓN DE EXPERIENCIAS' },
+        { tab: 'dresscode', sub: 0, label: 'DRESS CODE', title: 'DRESS CODE: SANTORINI NIGHTS' },
+        { tab: 'promos', sub: 0, label: 'PROMOS', title: 'PROMOS DE LA NOCHE' }
+      ];
+      const firstPageOfTab = { registro: 0, dresscode: 2, promos: 3 };
+      let currentPageIdx = 0;
 
-        // Actualizar barra de progreso helénica
-        const info = tabInfo[targetTab];
-        if (info) {
-          if (progressIndicatorFill) progressIndicatorFill.style.width = info.percent;
-          if (progressFolioCounter) progressFolioCounter.textContent = info.roman;
-          if (progressSectionName) progressSectionName.textContent = info.name;
+      function updateProgress() {
+        const def = pageDefs[currentPageIdx];
+        const mobile = mobileMQ.matches;
+        let pct;
+        let counter;
+        if (mobile) {
+          pct = ((currentPageIdx + 1) / pageDefs.length) * 100;
+          counter = `PÁG. ${currentPageIdx + 1} DE ${pageDefs.length} · ${def.label}`;
+        } else {
+          pct = { registro: 50, dresscode: 75, promos: 100 }[def.tab];
+          counter = def.tab === 'registro'
+            ? `PÁG. 1–2 DE ${pageDefs.length} · DATOS Y PAQUETES`
+            : `PÁG. ${currentPageIdx + 1} DE ${pageDefs.length} · ${def.label}`;
         }
+        if (progressIndicatorFill) progressIndicatorFill.style.width = `${pct}%`;
+        if (progressFolioCounter) progressFolioCounter.textContent = counter;
+        if (progressSectionName) progressSectionName.textContent = mobile ? def.title : 'BITÁCORA DE EXPEDICIÓN';
+        if (travelBookViewport) {
+          travelBookViewport.dataset.page = String(currentPageIdx);
+          const bar = travelBookViewport.querySelector('.hellenic-progress-bar-wrap');
+          if (bar) {
+            bar.setAttribute('aria-valuenow', String(currentPageIdx + 1));
+            bar.setAttribute('aria-valuemax', String(pageDefs.length));
+          }
+        }
+      }
 
-        // Actualizar estado de botones de pestaña
+      function applyPageState(def) {
+        Object.keys(bookSpreads).forEach((key) => {
+          const spreadEl = bookSpreads[key];
+          if (!spreadEl) return;
+          const on = key === def.tab;
+          spreadEl.classList.toggle('active-spread', on);
+          spreadEl.setAttribute('aria-hidden', String(!on));
+          if (on) spreadEl.scrollTop = 0;
+        });
+        if (def.tab === 'registro' && bookSpreads.registro) {
+          bookSpreads.registro.dataset.sub = String(def.sub);
+        }
         bookTabBtns.forEach((btn) => {
-          const isMatch = btn.dataset.tabTarget === targetTab;
+          const isMatch = btn.dataset.tabTarget === def.tab;
           btn.classList.toggle('active', isMatch);
           btn.setAttribute('aria-selected', String(isMatch));
         });
+        if (waxSealContainer) {
+          waxSealContainer.style.display = def.tab === 'registro' ? 'flex' : 'none';
+        }
+        currentTab = def.tab;
+      }
 
-        // Disparar giro 3D de la hoja en desktop
-        if (pageTurnLeaf && window.innerWidth > 768) {
+      // Paso de página: en móvil, la hoja saliente (instantánea) gira sobre el lomo izquierdo
+      function goToPage(idx) {
+        if (idx < 0 || idx >= pageDefs.length || idx === currentPageIdx || isFlippingPage) return;
+        const def = pageDefs[idx];
+        const forward = idx > currentPageIdx;
+        const mobile = mobileMQ.matches;
+        const prevSpread = bookSpreads[currentTab];
+        isFlippingPage = true;
+        playPaperTurnSound();
+
+        let clone = null;
+        if (mobile && bookStage && prevSpread) {
+          clone = prevSpread.cloneNode(true);
+          clone.removeAttribute('id');
+          clone.querySelectorAll('[id]').forEach((n) => n.removeAttribute('id'));
+          const srcInputs = prevSpread.querySelectorAll('input');
+          clone.querySelectorAll('input').forEach((n, i) => {
+            if (srcInputs[i]) n.setAttribute('value', srcInputs[i].value);
+          });
+          clone.setAttribute('inert', '');
+          clone.setAttribute('aria-hidden', 'true');
+          clone.classList.remove('active-spread');
+          clone.classList.add('page-turn-clone', forward ? 'turn-out' : 'turn-under');
+          bookStage.appendChild(clone);
+          clone.scrollTop = prevSpread.scrollTop;
+        } else if (pageTurnLeaf) {
           pageTurnLeaf.classList.remove('turning-forward');
           void pageTurnLeaf.offsetWidth;
           pageTurnLeaf.classList.add('turning-forward');
         }
 
-        // Conmutar el contenido a mitad del giro o inmediatamente en mobile
-        const switchDelay = window.innerWidth <= 768 ? 60 : 250;
-        setTimeout(() => {
-          Object.keys(bookSpreads).forEach((key) => {
-            const spreadEl = bookSpreads[key];
-            if (!spreadEl) return;
-            if (key === targetTab) {
-              spreadEl.classList.add('active-spread');
-              spreadEl.setAttribute('aria-hidden', 'false');
-              // En móvil, asegura que el scroll interno inicie al tope
-              const firstPage = spreadEl.querySelector('.book-page');
-              if (firstPage && window.innerWidth <= 768) {
-                firstPage.scrollTop = 0;
-              }
-            } else {
-              spreadEl.classList.remove('active-spread');
-              spreadEl.setAttribute('aria-hidden', 'true');
-            }
-          });
+        currentPageIdx = idx;
+        updateProgress();
 
-          if (waxSealContainer) {
-            waxSealContainer.style.display = targetTab === 'registro' ? 'flex' : 'none';
+        const commit = () => {
+          applyPageState(def);
+          if (mobile && !forward) {
+            const incoming = bookSpreads[def.tab];
+            incoming.classList.remove('turn-in-back');
+            void incoming.offsetWidth;
+            incoming.classList.add('turn-in-back');
           }
-          currentTab = targetTab;
-        }, switchDelay);
+        };
 
-        const flipEndDelay = window.innerWidth <= 768 ? 320 : 570;
+        if (mobile) {
+          commit();
+        } else {
+          setTimeout(commit, 250);
+        }
+
         setTimeout(() => {
+          if (clone && clone.parentNode) clone.parentNode.removeChild(clone);
+          Object.keys(bookSpreads).forEach((key) => bookSpreads[key] && bookSpreads[key].classList.remove('turn-in-back'));
           if (pageTurnLeaf) pageTurnLeaf.classList.remove('turning-forward');
           isFlippingPage = false;
-        }, flipEndDelay);
+        }, mobile ? 520 : 570);
       }
+
+      function switchBookTab(targetTab) {
+        if (firstPageOfTab[targetTab] === undefined) return;
+        if (!mobileMQ.matches && currentTab === targetTab) return;
+        goToPage(firstPageOfTab[targetTab]);
+      }
+
+      function stepPage(dir) {
+        if (mobileMQ.matches) {
+          goToPage(currentPageIdx + dir);
+          return;
+        }
+        const next = tabOrder.indexOf(currentTab) + dir;
+        if (next >= 0 && next < tabOrder.length) switchBookTab(tabOrder[next]);
+      }
+
+      if (mobileMQ.addEventListener) {
+        mobileMQ.addEventListener('change', updateProgress);
+      }
+      updateProgress();
 
       bookTabBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
@@ -3993,6 +4251,12 @@
       jumpTabBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
           switchBookTab(btn.dataset.jumpTo);
+        });
+      });
+
+      document.querySelectorAll('[data-page-go]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          goToPage(parseInt(btn.dataset.pageGo, 10));
         });
       });
 
@@ -4018,12 +4282,7 @@
               const dx = e.changedTouches[0].clientX - touchStartX;
               const dy = e.changedTouches[0].clientY - touchStartY;
               if (Math.abs(dx) > 65 && Math.abs(dx) > Math.abs(dy) * 1.6) {
-                const curIdx = tabOrder.indexOf(currentTab);
-                if (dx < 0 && curIdx < tabOrder.length - 1) {
-                  switchBookTab(tabOrder[curIdx + 1]);
-                } else if (dx > 0 && curIdx > 0) {
-                  switchBookTab(tabOrder[curIdx - 1]);
-                }
+                stepPage(dx < 0 ? 1 : -1);
               }
             }
           },
@@ -4441,9 +4700,12 @@
           }
 
           if (!isValid) {
+            if (mobileMQ.matches && currentPageIdx !== 0) goToPage(0);
             if (firstErrorEl) {
-              firstErrorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              firstErrorEl.focus();
+              setTimeout(() => {
+                firstErrorEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                firstErrorEl.focus({ preventScroll: true });
+              }, mobileMQ.matches ? 120 : 0);
             }
             return;
           }

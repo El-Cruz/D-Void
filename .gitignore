@@ -7,3 +7,6 @@ AUDIT_REPORT.md
 .env*
 /dist/
 node_modules/
+.next/
+/public/
+*.tsbuildinfo

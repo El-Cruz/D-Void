@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+:root {
+  --background: #080808;
+  --foreground: #f4f4f0;
+}
+
+body {
+  color: var(--foreground);
+  background-color: var(--background);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: hidden;
+}
+
+/* Subtle D-VOID dark noise pattern overlay */
+.bg-grain {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Custom Scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+::-webkit-scrollbar-thumb {
+  background: #222226;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c98a2b;
+}

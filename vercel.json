@@ -1,32 +1,3 @@
 {
-  "framework": null,
-  "buildCommand": "node build-static.mjs",
-  "outputDirectory": "dist",
-  "installCommand": "",
-  "cleanUrls": false,
-  "rewrites": [
-    { "source": "/greek-odyssey", "destination": "/2026-11/19-greek-odyssey.html" },
-    { "source": "/greek-odyssey.html", "destination": "/2026-11/19-greek-odyssey.html" },
-    { "source": "/santorini-night", "destination": "/2026-11/19-greek-odyssey.html" },
-    { "source": "/santorini-night.html", "destination": "/2026-11/19-greek-odyssey.html" },
-    { "source": "/criminix", "destination": "/2026-11/07-criminix.html" },
-    { "source": "/criminix.html", "destination": "/2026-11/07-criminix.html" },
-    { "source": "/padre-guilherme", "destination": "/2026-11/12-padre-guilherme.html" },
-    { "source": "/padre-guilherme.html", "destination": "/2026-11/12-padre-guilherme.html" },
-    { "source": "/countdown-party", "destination": "/2026-11/12-padre-guilherme.html" },
-    { "source": "/hollywood-never-dies", "destination": "/2026-10/22-hollywood-never-dies.html" },
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/medicine", "destination": "/2026-10/08-medicine.html" },
-    { "source": "/home", "destination": "/dvoid-home.html" },
-    { "source": "/casino", "destination": "/2026-09/17-casino.html" },
-    { "source": "/formulario-de-reservas", "destination": "/reservas.html" },
-    { "source": "/menu", "destination": "/menu.html" },
-    { "source": "/ingreso", "destination": "/ingreso.html" },
-    { "source": "/evento-udla", "destination": "/2026-09/25-evento-udla.html" },
-    { "source": "/fashion-week", "destination": "/2026-10/15-fashion-week.html" },
-    { "source": "/la-ultima-noche", "destination": "/2026-10/31-la-ultima-noche.html" },
-    { "source": "/la-tentacion", "destination": "/2026-10/01-la-tentacion.html" },
-    { "source": "/after-dark", "destination": "/2026-10/28-after-dark.html" },
-    { "source": "/after-dark.html", "destination": "/2026-10/28-after-dark.html" }
-  ]
+  "cleanUrls": false
 }
