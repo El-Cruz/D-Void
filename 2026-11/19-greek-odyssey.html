@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -790,7 +790,7 @@
     .book-page,
     .diary-page {
       position: relative;
-      padding: 4.5rem 3.5rem 3.5rem 3.5rem;
+      padding: 4.5rem 3.5rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -1750,15 +1750,20 @@
     .lookbook-illustration {
       width: 40%;
       max-width: 175px;
-      height: 125px;
-      object-fit: contain;
-      object-position: center;
+      height: auto;
+      aspect-ratio: 900 / 570;
+      object-fit: cover;
+      object-position: center 38%;
       border: none !important;
       outline: none !important;
       background: transparent !important;
       box-shadow: none !important;
       flex-shrink: 0;
       filter: drop-shadow(0 4px 8px rgba(0, 34, 85, 0.12));
+    }
+
+    .lookbook-illustration--ellos {
+      object-position: center 93%;
     }
 
     .lookbook-content {
@@ -2203,7 +2208,8 @@
     .book-page,
     .book-spread {
       touch-action: pan-y;
-      overscroll-behavior: contain;
+      overscroll-behavior-x: contain;
+      overscroll-behavior-y: auto;
     }
 
     @keyframes mobileLeafOut {
@@ -2525,7 +2531,7 @@
         flex: 1 1 auto;
         min-height: 0;
         height: 100%;
-        padding: 1.35rem 1.35rem 0.65rem 1.35rem !important;
+        padding: 3rem 2rem 1.5rem !important;
         overflow: hidden !important;
         box-shadow: none !important;
         border: none !important;
@@ -2549,8 +2555,13 @@
         flex: 1 1 auto;
         min-height: 0;
         height: 100%;
-        overflow: hidden !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        scrollbar-gutter: stable;
         animation: leafFadeSlideNext 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      div.page-content.active > * {
+        flex-shrink: 0;
       }
       div.page-content.active.slide-prev {
         animation: leafFadeSlidePrev 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -2710,9 +2721,9 @@
       }
       .lookbook-illustration {
         width: 100% !important;
-        max-width: 220px !important;
-        height: 75px !important;
-        object-fit: contain !important;
+        max-width: 320px !important;
+        height: auto !important;
+        object-fit: cover !important;
         margin: 0 auto !important;
         border: none !important;
         outline: none !important;
@@ -2756,7 +2767,7 @@
 
       /* Pie de navegación de hojas dentro del libro móvil */
       .leaf-pagination-footer {
-        padding: 0.55rem 1rem 0.75rem 1rem;
+        padding: 0.75rem 2rem 2rem;
         background: #F3ECDE;
         border-top: 1px solid rgba(0, 71, 171, 0.22);
         flex-shrink: 0;
@@ -2797,7 +2808,7 @@
       }
       .book-page,
       .diary-page {
-        padding: 1.15rem 1.05rem 0.5rem 1.05rem !important;
+        padding: 3rem 2rem 1.5rem !important;
       }
       .modality-toggle-grid,
       .payment-options-grid {
@@ -3662,7 +3673,7 @@
               <div class="lookbook-stack">
                 <!-- Lookbook Para Ellas -->
                 <div class="lookbook-card">
-                  <img src="/assets/ellas.png" alt="Lookbook Ellas" class="lookbook-illustration" onerror="if(!this.dataset.retried){this.dataset.retried='1';this.src='assets/ellas.png';}" />
+                  <img src="/assets/dresscode.png" alt="Ellas" class="lookbook-illustration" onerror="if(!this.dataset.retried){this.dataset.retried='1';this.src='assets/dresscode.png';}" />
                   <div class="lookbook-content">
                     <span class="lookbook-gender-tag">✦ PARA ELLAS</span>
                     <p class="lookbook-rules">
@@ -3673,7 +3684,7 @@
 
                 <!-- Lookbook Para Ellos -->
                 <div class="lookbook-card">
-                  <img src="/assets/ellos.png" alt="Lookbook Ellos" class="lookbook-illustration" onerror="if(!this.dataset.retried){this.dataset.retried='1';this.src='assets/ellos.png';}" />
+                  <img src="/assets/dresscode.png" alt="Ellos" class="lookbook-illustration lookbook-illustration--ellos" onerror="if(!this.dataset.retried){this.dataset.retried='1';this.src='assets/dresscode.png';}" />
                   <div class="lookbook-content">
                     <span class="lookbook-gender-tag">✦ PARA ELLOS</span>
                     <p class="lookbook-rules">
@@ -4633,11 +4644,18 @@
       // Soporte de Gestos Táctiles Suaves (Swipe Horizontal en Mobile)
       let touchStartX = 0;
       let touchStartY = 0;
+      let activeTouchId = null;
+      let touchAxis = null;
+      const swipeMinDistance = 65;
+      const swipeAxisRatio = 1.6;
       if (travelBook) {
         travelBook.addEventListener(
           'touchstart',
           (e) => {
+            activeTouchId = null;
+            touchAxis = null;
             if (e.touches.length === 1) {
+              activeTouchId = e.touches[0].identifier;
               touchStartX = e.touches[0].clientX;
               touchStartY = e.touches[0].clientY;
             }
@@ -4646,18 +4664,46 @@
         );
 
         travelBook.addEventListener(
-          'touchend',
+          'touchmove',
           (e) => {
-            if (e.changedTouches.length === 1) {
-              const dx = e.changedTouches[0].clientX - touchStartX;
-              const dy = e.changedTouches[0].clientY - touchStartY;
-              if (Math.abs(dx) > 65 && Math.abs(dx) > Math.abs(dy) * 1.6) {
-                stepPage(dx < 0 ? 1 : -1);
-              }
+            if (e.touches.length !== 1) {
+              activeTouchId = null;
+              return;
             }
+            const touch = e.touches[0];
+            if (touch.identifier !== activeTouchId || touchAxis === 'vertical') return;
+            const deltaX = Math.abs(touch.clientX - touchStartX);
+            const deltaY = Math.abs(touch.clientY - touchStartY);
+            if (Math.max(deltaX, deltaY) < 10) return;
+            // Un gesto que empieza como scroll nunca se convierte en cambio de hoja.
+            if (deltaY >= deltaX) touchAxis = 'vertical';
+            else if (deltaX > deltaY * swipeAxisRatio) touchAxis = 'horizontal';
+            // pan-y gestiona el scroll nativo; no es necesario preventDefault().
           },
           { passive: true }
         );
+
+        travelBook.addEventListener(
+          'touchend',
+          (e) => {
+            if (e.touches.length === 0 && e.changedTouches.length === 1 &&
+                e.changedTouches[0].identifier === activeTouchId && touchAxis !== 'vertical') {
+              const dx = e.changedTouches[0].clientX - touchStartX;
+              const deltaX = Math.abs(dx);
+              const deltaY = Math.abs(e.changedTouches[0].clientY - touchStartY);
+              if (deltaX > swipeMinDistance && deltaX > deltaY * swipeAxisRatio) {
+                stepPage(dx < 0 ? 1 : -1);
+              }
+            }
+            activeTouchId = null;
+            touchAxis = null;
+          },
+          { passive: true }
+        );
+        travelBook.addEventListener('touchcancel', () => {
+          activeTouchId = null;
+          touchAxis = null;
+        }, { passive: true });
       }
 
       /* ======================================================================
