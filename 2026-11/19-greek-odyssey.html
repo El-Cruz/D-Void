@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -1724,39 +1724,58 @@
     .lookbook-stack {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.15rem;
       margin-bottom: 1.15rem;
     }
 
     .lookbook-card {
       background: #FFFFFF;
-      border: 1.5px solid rgba(0, 71, 171, 0.3);
-      padding: 1rem 1.1rem;
-      display: grid;
-      grid-template-columns: 54px 1fr;
-      gap: 0.9rem;
+      border: 1.5px solid rgba(0, 71, 171, 0.22);
+      border-radius: 4px;
+      padding: 0.85rem 1.1rem;
+      display: flex;
+      flex-direction: row;
+      gap: 1.25rem;
       align-items: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 14px rgba(0, 71, 171, 0.05);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
     }
 
-    .lookbook-icon-box {
-      width: 54px;
-      height: 64px;
-      background: linear-gradient(180deg, #F0F6FF 0%, #E2EEFF 100%);
-      border: 1px solid rgba(0, 71, 171, 0.3);
+    .lookbook-card:hover {
+      border-color: #0047AB;
+      box-shadow: 0 6px 20px rgba(0, 71, 171, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .lookbook-illustration {
+      width: 40%;
+      max-width: 175px;
+      height: 125px;
+      object-fit: contain;
+      object-position: center;
+      border: none !important;
+      outline: none !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      flex-shrink: 0;
+      filter: drop-shadow(0 4px 8px rgba(0, 34, 85, 0.12));
+    }
+
+    .lookbook-content {
+      flex: 1;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
     }
 
     .lookbook-gender-tag {
       font-family: var(--font-display);
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       font-weight: 800;
       color: #0047AB;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.35rem;
       display: block;
     }
 
@@ -2286,6 +2305,152 @@
       }
     }
 
+    /* Flechas de navegación discretas [ < ] y [ > ] del diario */
+    .travel-book-viewport {
+      position: relative;
+    }
+
+    .book-flank-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 25;
+      appearance: none;
+      background: rgba(5, 19, 41, 0.82);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 4px;
+      color: var(--gods-gold, #D4AF37);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 0.55rem;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.22s ease, background 0.22s ease, color 0.22s ease, border-color 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .book-flank-arrow.prev {
+      left: -22px;
+    }
+
+    .book-flank-arrow.next {
+      right: -22px;
+    }
+
+    .book-flank-arrow:hover:not(:disabled) {
+      opacity: 1;
+      background: #0047AB;
+      color: #FAF6EE;
+      border-color: var(--gods-gold, #D4AF37);
+      transform: translateY(-50%) scale(1.08);
+      box-shadow: 0 0 16px rgba(0, 240, 255, 0.35);
+    }
+
+    .book-flank-arrow:active:not(:disabled) {
+      transform: translateY(-50%) scale(0.96);
+    }
+
+    .book-flank-arrow:disabled {
+      opacity: 0 !important;
+      visibility: hidden;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    @media (max-width: 900px) {
+      .book-flank-arrow {
+        display: none !important;
+      }
+    }
+
+    /* Barra inferior minimalista de navegación de hojas ([ < ] / [ > ]) */
+    .leaf-pagination-footer {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.55rem 1.6rem;
+      background: rgba(243, 236, 222, 0.96);
+      border-top: 1px solid rgba(0, 71, 171, 0.22);
+      z-index: 10;
+    }
+
+    .btn-leaf-nav {
+      appearance: none;
+      background: transparent;
+      color: var(--gods-gold, #D4AF37);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      padding: 0.35rem 0.75rem;
+      border-radius: 3px;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      cursor: pointer;
+      transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    }
+
+    .btn-leaf-nav:hover:not(:disabled) {
+      opacity: 1;
+      background: #0047AB;
+      color: #FAF6EE;
+      border-color: var(--gods-gold, #D4AF37);
+      transform: scale(1.04);
+    }
+
+    .btn-leaf-nav:active:not(:disabled) {
+      transform: scale(0.96);
+    }
+
+    .btn-leaf-nav:disabled {
+      opacity: 0 !important;
+      visibility: hidden;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .leaf-page-indicator {
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #051329;
+      opacity: 0.75;
+      white-space: nowrap;
+    }
+
+    @keyframes leafFadeSlideNext {
+      0% {
+        opacity: 0;
+        transform: translate3d(16px, 0, 0);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes leafFadeSlidePrev {
+      0% {
+        opacity: 0;
+        transform: translate3d(-16px, 0, 0);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
     @media (max-width: 768px) {
       .travel-book-viewport {
         overflow: hidden;
@@ -2293,8 +2458,10 @@
       }
       .travel-book {
         display: block;
-        min-height: auto;
-        overflow: hidden;
+        height: 68vh;
+        min-height: 500px;
+        max-height: 575px;
+        overflow: hidden !important;
         border-radius: 6px;
       }
       .book-spine-crease,
@@ -2303,22 +2470,24 @@
         display: none !important;
       }
 
-      /* STAGE: una sola página visible, marco de grecas fijo y contención 3D */
+      /* STAGE: altura fija en vh anclada a pantalla, CERO scroll vertical */
       .book-stage {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         position: relative;
         width: 100%;
+        height: 100%;
         background: #FAF6EE;
-        perspective: 1000px;
         contain: paint;
-        overflow: hidden;
+        overflow: hidden !important;
       }
       .stage-meander-frame {
         display: block;
         position: absolute;
-        inset: 8px;
-        width: calc(100% - 16px);
-        height: calc(100% - 16px);
+        inset: 7px;
+        width: calc(100% - 14px);
+        height: calc(100% - 14px);
         pointer-events: none;
         z-index: 6;
         stroke: var(--aegean-blue);
@@ -2329,124 +2498,285 @@
         display: none;
       }
 
-      /* Cada pliego es un visor con scroll interior propio (sin apilar páginas) */
+      /* Pliegos sin scroll vertical: solo muestran la hoja .page-content.active */
       .book-spread {
         display: none;
         grid-template-columns: 1fr !important;
         width: 100%;
+        flex: 1 1 auto;
         min-height: 0;
-        max-height: 78vh;
-        overflow-y: auto;
-        overflow-x: hidden;
-        -webkit-overflow-scrolling: touch;
+        height: 100%;
+        overflow: hidden !important;
         background: #FAF6EE;
         animation: none;
-        backface-visibility: hidden;
       }
       .book-spread.active-spread {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow: hidden !important;
         animation: none;
-      }
-      .book-spread.turn-in-back {
-        position: relative;
-        z-index: 3;
-        transform-origin: left center;
-        animation: mobileLeafIn 0.5s cubic-bezier(0.45, 0.05, 0.25, 1) both;
-      }
-      /* Instantánea de la página saliente que gira sobre su lomo izquierdo */
-      .book-spread.page-turn-clone {
-        display: block !important;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        max-height: none;
-        overflow: hidden;
-        pointer-events: none;
-        z-index: 4;
-        transform-origin: left center;
-        will-change: transform;
-      }
-      .book-spread.page-turn-clone.turn-out {
-        animation: mobileLeafOut 0.5s cubic-bezier(0.45, 0.05, 0.25, 1) forwards;
-      }
-      .book-spread.page-turn-clone.turn-under {
-        z-index: 1;
-        animation: none;
-      }
-
-      /* REGISTRO = 2 páginas consecutivas (datos / paquetes) */
-      #spread-registro[data-sub="0"] .page-right {
-        display: none;
-      }
-      #spread-registro[data-sub="1"] .page-left {
-        display: none;
       }
 
       .book-page,
       .diary-page {
         width: 100%;
-        padding: 2.6rem 1.6rem 1.8rem 1.6rem !important;
-        overflow: visible;
+        flex: 1 1 auto;
+        min-height: 0;
+        height: 100%;
+        padding: 1.35rem 1.35rem 0.65rem 1.35rem !important;
+        overflow: hidden !important;
         box-shadow: none !important;
         border: none !important;
         border-radius: 0;
+        display: flex;
+        flex-direction: column;
       }
-      /* DRESS CODE y PROMOS: una sola página con ambos bloques fluyendo */
-      #spread-dresscode .page-right,
-      #spread-promos .page-right {
-        padding-top: 0.4rem !important;
+
+      .book-page.hidden-leaf {
+        display: none !important;
       }
+
+      /* Sistema de paginación interna: div.page-content (.active / .hidden) */
+      div.page-content.hidden {
+        display: none !important;
+      }
+      div.page-content.active {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: flex-start;
+        flex: 1 1 auto;
+        min-height: 0;
+        height: 100%;
+        overflow: hidden !important;
+        animation: leafFadeSlideNext 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      div.page-content.active.slide-prev {
+        animation: leafFadeSlidePrev 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      /* Compactación milimétrica en móvil para que cada hoja encaje sin scroll */
       .page-editorial-heading {
-        margin-bottom: 1.25rem !important;
-        padding-bottom: 0.75rem !important;
+        margin-bottom: 0.45rem !important;
+        padding-bottom: 0.3rem !important;
+      }
+      .page-right-header-wrap {
+        margin-bottom: 0.55rem !important;
+        padding-bottom: 0.45rem !important;
+      }
+      .god-bust-cameo {
+        width: 44px !important;
+        height: 44px !important;
       }
       .page-sub-stamp {
-        margin-top: 0.35rem !important;
-        font-size: 0.64rem !important;
+        margin-top: 0.05rem !important;
+        font-size: 0.52rem !important;
       }
       .page-editorial-title {
-        font-size: 1.18rem !important;
+        font-size: 0.98rem !important;
+        line-height: 1.15 !important;
+      }
+      .expedition-form {
+        gap: 0.2rem !important;
+        overflow: hidden !important;
       }
       .form-group-dotted {
-        margin-bottom: 1.25rem !important;
+        margin-bottom: 0.35rem !important;
+        gap: 0.12rem !important;
+      }
+      .dotted-label {
+        font-size: 0.625rem !important; /* text-[10px] */
+        margin-bottom: 0.08rem !important;
+        line-height: 1.15 !important;
+        letter-spacing: 0.06em !important;
+      }
+      .dotted-input {
+        padding: 0.2rem 0.15rem !important; /* py-0.5 / py-1 */
+        font-size: 0.78rem !important;
+        line-height: 1.2 !important;
+      }
+      .dotted-input::placeholder {
+        font-size: 0.7rem !important;
+      }
+      .input-hint-msg {
+        min-height: 0 !important;
+        font-size: 0.56rem !important; /* text-[9px] */
+        line-height: 1.1 !important;
+        margin-top: 0.04rem !important;
+      }
+      .input-hint-msg:empty {
+        display: none !important;
+      }
+      .input-hint-msg.hint-disclaimer:not(.status-error):not(.status-ok) {
+        display: none !important;
+      }
+      .modality-toggle-wrapper {
+        margin-top: 0.2rem !important;
+        margin-bottom: 0.2rem !important;
+        gap: 0.2rem !important;
+      }
+      .modality-toggle-grid {
+        gap: 0.4rem !important;
+      }
+      .btn-modality {
+        padding: 0.38rem 0.45rem !important; /* py-1.5 */
+        font-size: 0.64rem !important;
+      }
+      .group-counter-drawer.drawer-open {
+        margin-top: 0.3rem !important;
+        padding: 0.3rem 0.55rem !important;
       }
       .packages-radiogroup {
-        gap: 0.75rem !important;
-        margin-bottom: 1.25rem !important;
+        gap: 0.45rem !important;
+        margin-bottom: 0.55rem !important;
       }
       .package-card-option {
-        padding: 0.95rem 1rem 0.95rem 2.95rem !important;
+        padding: 0.55rem 0.7rem 0.55rem 2.35rem !important;
+      }
+      .ink-check-circle {
+        left: 0.65rem !important;
+        top: 0.65rem !important;
+        width: 18px !important;
+        height: 18px !important;
+      }
+      .pkg-name {
+        font-size: 0.76rem !important;
       }
       .pkg-price {
-        font-size: 1.15rem !important;
+        font-size: 0.98rem !important;
+      }
+      .pkg-desc {
+        font-size: 0.68rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 0.25rem !important;
+      }
+      .pkg-badge {
+        font-size: 0.56rem !important;
+        padding: 0.12rem 0.4rem !important;
+      }
+      .payment-method-section {
+        margin-bottom: 0.5rem !important;
+      }
+      .btn-payment-choice {
+        padding: 0.45rem 0.4rem !important;
+        font-size: 0.66rem !important;
+      }
+      .tribute-summary-bar {
+        padding: 0.48rem 0.75rem !important;
+        font-size: 0.72rem !important;
+      }
+      .dresscode-lead-box {
+        padding: 0.55rem 0.75rem !important;
+        margin-bottom: 0.65rem !important;
+        font-size: 0.74rem !important;
+        line-height: 1.35 !important;
+      }
+      .dresscode-palette-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.45rem !important;
+        margin-bottom: 0.65rem !important;
+      }
+      .swatch-card {
+        padding: 0.45rem 0.55rem !important;
+      }
+      .swatch-circle {
+        width: 24px !important;
+        height: 24px !important;
+      }
+      .swatch-title {
+        font-size: 0.66rem !important;
+      }
+      .swatch-hex {
+        font-size: 0.56rem !important;
+      }
+      .dresscode-warning-badge {
+        padding: 0.55rem 0.65rem !important;
+        font-size: 0.66rem !important;
+      }
+      .lookbook-stack {
+        gap: 0.5rem !important;
+        margin-bottom: 0.55rem !important;
+      }
+      .lookbook-card {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        padding: 0.5rem 0.75rem !important;
+        gap: 0.35rem !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        border: 1px solid rgba(0, 71, 171, 0.2) !important;
+      }
+      .lookbook-illustration {
+        width: 100% !important;
+        max-width: 220px !important;
+        height: 75px !important;
+        object-fit: contain !important;
+        margin: 0 auto !important;
+        border: none !important;
+        outline: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
+      }
+      .lookbook-content {
+        width: 100% !important;
+        text-align: center !important;
+      }
+      .lookbook-gender-tag {
+        font-size: 0.76rem !important;
+        margin-bottom: 0.15rem !important;
+      }
+      .lookbook-rules {
+        font-size: 0.66rem !important;
+        line-height: 1.3 !important;
+      }
+      .promos-timeline {
+        gap: 0.6rem !important;
+      }
+      .promo-item-card,
+      .promo-flash-card,
+      .golden-ticket-relic {
+        padding: 0.68rem 2.8rem 0.68rem 0.85rem !important;
+        margin-bottom: 0.55rem !important;
+      }
+      .promo-item-title {
+        font-size: 0.82rem !important;
+        margin-bottom: 0.2rem !important;
+      }
+      .promo-item-desc {
+        font-size: 0.71rem !important;
+        line-height: 1.35 !important;
+      }
+      .btn-jump-tab {
+        margin-top: auto !important;
+        padding: 0.6rem 0.75rem !important;
+        font-size: 0.66rem !important;
       }
 
-      /* Botones de navegación entre páginas del libro */
-      .btn-mobile-nav {
-        display: block;
-        appearance: none;
-        width: 100%;
-        margin-top: 1.1rem;
-        padding: 0.85rem 1rem;
-        background: #0047AB;
-        color: #FAF6EE;
-        border: 1px solid var(--gods-gold);
-        font-family: var(--font-mono);
-        font-size: 0.74rem;
-        font-weight: 700;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        cursor: pointer;
+      /* Pie de navegación de hojas dentro del libro móvil */
+      .leaf-pagination-footer {
+        padding: 0.55rem 1rem 0.75rem 1rem;
+        background: #F3ECDE;
+        border-top: 1px solid rgba(0, 71, 171, 0.22);
+        flex-shrink: 0;
       }
-      .btn-mobile-nav.back {
-        background: transparent;
-        color: #0047AB;
-        border-color: rgba(0, 71, 171, 0.5);
+      .btn-leaf-nav {
+        padding: 0.35rem 0.65rem !important;
+        font-size: 0.72rem !important;
+        color: var(--gods-gold, #D4AF37) !important;
+        opacity: 0.55;
+      }
+      .btn-leaf-nav:disabled {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+      }
+      .leaf-page-indicator {
+        font-size: 0.58rem;
       }
 
-      /* El sello de confirmación solo aparece en la página de paquetes */
+      /* El sello de confirmación solo aparece en la hoja de paquetes (hoja índice 1) */
       .travel-book-viewport:not([data-page="1"]) #waxSealContainer {
         display: none !important;
       }
@@ -2454,27 +2784,33 @@
 
     @media (max-width: 600px) {
       .expedition-section {
-        padding: 1.8rem 0.5rem 3.2rem;
+        padding: 1.4rem 0.5rem 2.6rem;
       }
       .book-top-utility-bar {
-        flex-direction: column;
-        align-items: stretch;
-        text-align: center;
-        gap: 0.45rem;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .book-swipe-hint {
+        font-size: 0.58rem;
       }
       .book-page,
       .diary-page {
-        padding: 2.2rem 1.15rem 1.4rem 1.15rem !important;
+        padding: 1.15rem 1.05rem 0.5rem 1.05rem !important;
       }
-      .dresscode-palette-grid,
       .modality-toggle-grid,
-      .payment-options-grid,
+      .payment-options-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.45rem !important;
+      }
       .odyssey-info-grid {
         grid-template-columns: 1fr;
       }
       .lookbook-card {
-        grid-template-columns: 1fr;
-        text-align: left;
+        display: flex !important;
+        flex-direction: column !important;
+        text-align: center !important;
       }
       .odyssey-pass-ticket {
         padding: 1.25rem 0.95rem;
@@ -2880,6 +3216,25 @@
         </div>
       </div>
 
+      <!-- Flechas de Navegación Discretas Flanqueando el Diario ([ < ] y [ > ]) -->
+      <button
+        type="button"
+        id="btnFlankPrev"
+        class="book-flank-arrow prev"
+        aria-label="Página anterior"
+        disabled
+      >
+        [ &lt; ]
+      </button>
+      <button
+        type="button"
+        id="btnFlankNext"
+        class="book-flank-arrow next"
+        aria-label="Página siguiente"
+      >
+        [ &gt; ]
+      </button>
+
       <div id="travelBook" class="travel-book" role="region" aria-label="Cuaderno de campo de la odisea">
         <!-- 1. PESTAÑAS LATERALES SOBRESALIENTES EN EL BORDE DERECHO -->
         <nav class="book-side-tabs" role="tablist" aria-label="Secciones de la bitácora">
@@ -2944,8 +3299,8 @@
           <path d="M12 12 H40 V40 H20 V20 H30 V30 M508 12 H480 V40 H500 V20 H490 V30 M12 668 H40 V640 H20 V660 H30 V650 M508 668 H480 V640 H500 V660 H490 V650" stroke="#0047AB" stroke-width="2" fill="none" />
         </svg>
         <div id="spread-registro" class="book-spread active-spread" role="tabpanel" data-sub="0">
-          <!-- PÁGINA IZQUIERDA: FORMULARIO "RESERVA DE EXPERIENCIA" -->
-          <article class="book-page diary-page page-left">
+          <!-- PÁGINA IZQUIERDA (HOJA 1): FORMULARIO "RESERVA DE EXPERIENCIA" -->
+          <article class="book-page diary-page page-left" data-leaf-page="0">
             <svg class="meander-frame-svg" viewBox="0 0 520 680" preserveAspectRatio="none" aria-hidden="true">
               <rect x="4" y="4" width="512" height="672" stroke="#0047AB" stroke-width="1.8" stroke-dasharray="12 4 4 4" fill="none" />
               <path
@@ -2959,13 +3314,13 @@
               />
             </svg>
 
-            <div class="page-inner-content">
+            <div class="page-inner-content page-content active overflow-hidden" data-leaf="0">
               <div class="page-editorial-heading">
                 <span class="page-sub-stamp">FOLIO N° 2026-GRK // ACTA DE NAVEGACIÓN</span>
                 <h3 class="page-editorial-title">ISLA DE SANTORINI — SOLICITUD DE INGRESO</h3>
               </div>
 
-              <form id="expeditionForm" class="expedition-form" novalidate>
+              <form id="expeditionForm" class="expedition-form overflow-hidden" novalidate>
                 <!-- Campo: Nombre y Apellido -->
                 <div class="form-group-dotted">
                   <label for="fieldName" class="dotted-label">
@@ -2977,7 +3332,7 @@
                     id="fieldName"
                     name="fullName"
                     class="dotted-input"
-                    placeholder="Ej. Helena de Troya / Nicolás..."
+                    placeholder="Helena de Troya / Nicolás..."
                     autocomplete="name"
                     required
                   />
@@ -2995,7 +3350,7 @@
                     id="fieldPhone"
                     name="phone"
                     class="dotted-input"
-                    placeholder="+593 99 999 9999 (para envío del pase)"
+                    placeholder="+593 99 999 9999"
                     autocomplete="tel"
                     required
                   />
@@ -3016,7 +3371,7 @@
                     max="2006-11-19"
                     required
                   />
-                  <span class="input-hint-msg" id="ageValidationHint">
+                  <span class="input-hint-msg hint-disclaimer" id="ageValidationHint">
                     * Requisito ineludible: Nacidos el 19 de Noviembre de 2006 o antes (+20).
                   </span>
                 </div>
@@ -3060,13 +3415,12 @@
                     </div>
                   </div>
                 </div>
-              <button type="button" class="btn-mobile-nav next" data-page-go="1">CONTINUAR A PAQUETES →</button>
               </form>
             </div>
           </article>
 
-          <!-- PÁGINA DERECHA: SELECCIÓN DE PAQUETES & BUSTO ESCULPIDO -->
-          <article class="book-page diary-page page-right">
+          <!-- PÁGINA DERECHA (HOJA 2): SELECCIÓN DE PAQUETES & BUSTO ESCULPIDO -->
+          <article class="book-page diary-page page-right hidden-leaf" data-leaf-page="1">
             <svg class="meander-frame-svg" viewBox="0 0 520 680" preserveAspectRatio="none" aria-hidden="true">
               <rect x="4" y="4" width="512" height="672" stroke="#0047AB" stroke-width="1.8" stroke-dasharray="12 4 4 4" fill="none" />
               <path
@@ -3080,7 +3434,7 @@
               />
             </svg>
 
-            <div class="page-inner-content">
+            <div class="page-inner-content page-content hidden" data-leaf="1">
               <div class="page-right-header-wrap">
                 <div>
                   <span class="page-sub-stamp">TRIBUTO HELÉNICO // SANTORINI NIGHT</span>
@@ -3212,8 +3566,6 @@
                 <span>TRIBUTO TOTAL ESTIMADO:</span>
                 <span id="tributeTotalDisplay" class="tribute-total-val">$15 USD</span>
               </div>
-
-              <button type="button" class="btn-mobile-nav back" data-page-go="0">← VOLVER A DATOS</button>
             </div>
           </article>
         </div>
@@ -3222,8 +3574,8 @@
              SPREAD 2 (TAB 2: DRESS CODE): "DRESS CODE: SANTORINI NIGHTS"
              ================================================================== -->
         <div id="spread-dresscode" class="book-spread" role="tabpanel" aria-hidden="true">
-          <!-- Página Izquierda: Código Obligatorio Esencial & Alto Impacto -->
-          <article class="book-page diary-page page-left">
+          <!-- Página Izquierda (HOJA 3): Código Obligatorio Esencial & Alto Impacto -->
+          <article class="book-page diary-page page-left hidden-leaf" data-leaf-page="2">
             <svg class="meander-frame-svg" viewBox="0 0 520 680" preserveAspectRatio="none" aria-hidden="true">
               <rect x="4" y="4" width="512" height="672" stroke="#0047AB" stroke-width="1.8" stroke-dasharray="12 4 4 4" fill="none" />
               <path
@@ -3237,7 +3589,7 @@
               />
             </svg>
 
-            <div class="page-inner-content">
+            <div class="page-inner-content page-content hidden" data-leaf="2">
               <div class="page-editorial-heading">
                 <span class="page-sub-stamp">PROTOCOLO DE ETIQUETA // SANTORINI NIGHTS</span>
                 <h3 class="page-editorial-title">DRESS CODE OBLIGATORIO: AZUL MARINO &amp; BLANCO</h3>
@@ -3286,8 +3638,8 @@
             </div>
           </article>
 
-          <!-- Página Derecha: Guía Visual Interactiva (Lookbook) -->
-          <article class="book-page diary-page page-right">
+          <!-- Página Derecha (HOJA 4): Guía Visual Interactiva (Lookbook) -->
+          <article class="book-page diary-page page-right hidden-leaf" data-leaf-page="3">
             <svg class="meander-frame-svg" viewBox="0 0 520 680" preserveAspectRatio="none" aria-hidden="true">
               <rect x="4" y="4" width="512" height="672" stroke="#0047AB" stroke-width="1.8" stroke-dasharray="12 4 4 4" fill="none" />
               <path
@@ -3301,7 +3653,7 @@
               />
             </svg>
 
-            <div class="page-inner-content">
+            <div class="page-inner-content page-content hidden" data-leaf="3">
               <div class="page-editorial-heading">
                 <span class="page-sub-stamp">GUÍA VISUAL INTERACTIVA // LOOKBOOK</span>
                 <h3 class="page-editorial-title">ESTILISMO MEDITERRÁNEO</h3>
@@ -3310,13 +3662,8 @@
               <div class="lookbook-stack">
                 <!-- Lookbook Para Ellas -->
                 <div class="lookbook-card">
-                  <div class="lookbook-icon-box" aria-hidden="true">
-                    <svg width="36" height="48" viewBox="0 0 36 48" fill="none">
-                      <path d="M13 6 L18 14 L23 6 M12 14 L24 14 L30 42 L6 42 Z" stroke="#0047AB" stroke-width="2" fill="rgba(0,71,171,0.12)" />
-                      <circle cx="18" cy="18" r="2.5" fill="#D4AF37" />
-                    </svg>
-                  </div>
-                  <div>
+                  <img src="/assets/ellas.png" alt="Lookbook Ellas" class="lookbook-illustration" onerror="if(!this.dataset.retried){this.dataset.retried='1';this.src='assets/ellas.png';}" />
+                  <div class="lookbook-content">
                     <span class="lookbook-gender-tag">✦ PARA ELLAS</span>
                     <p class="lookbook-rules">
                       Vestidos fluidos azul cobalto, lino blanco, conjuntos dos piezas y joyería dorada.
@@ -3326,13 +3673,8 @@
 
                 <!-- Lookbook Para Ellos -->
                 <div class="lookbook-card">
-                  <div class="lookbook-icon-box" aria-hidden="true">
-                    <svg width="36" height="48" viewBox="0 0 36 48" fill="none">
-                      <path d="M10 8 L18 13 L26 8 L31 18 L26 20 L26 42 L10 42 L10 20 L5 18 Z" stroke="#051329" stroke-width="2" fill="rgba(5,19,41,0.08)" />
-                      <line x1="18" y1="13" x2="18" y2="42" stroke="#0047AB" stroke-width="1.5" />
-                    </svg>
-                  </div>
-                  <div>
+                  <img src="/assets/ellos.png" alt="Lookbook Ellos" class="lookbook-illustration" onerror="if(!this.dataset.retried){this.dataset.retried='1';this.src='assets/ellos.png';}" />
+                  <div class="lookbook-content">
                     <span class="lookbook-gender-tag">✦ PARA ELLOS</span>
                     <p class="lookbook-rules">
                       Camisas de lino en azul o blanco, pantalones chinos o sartoriales claros, calzado limpio de noche (Cero bermudas o sandalias deportivas).
@@ -3356,8 +3698,8 @@
              SPREAD 3 (TAB 3: PROMOS DVOID): "PROMOS DE LA NOCHE"
              ================================================================== -->
         <div id="spread-promos" class="book-spread" role="tabpanel" aria-hidden="true">
-          <!-- Página Izquierda: Ritual de Bienvenida y 2x1 -->
-          <article class="book-page diary-page page-left">
+          <!-- Página Izquierda (HOJA 5): Ritual de Bienvenida y 2x1 -->
+          <article class="book-page diary-page page-left hidden-leaf" data-leaf-page="4">
             <svg class="meander-frame-svg" viewBox="0 0 520 680" preserveAspectRatio="none" aria-hidden="true">
               <rect x="4" y="4" width="512" height="672" stroke="#0047AB" stroke-width="1.8" stroke-dasharray="12 4 4 4" fill="none" />
               <path
@@ -3371,7 +3713,7 @@
               />
             </svg>
 
-            <div class="page-inner-content">
+            <div class="page-inner-content page-content hidden" data-leaf="4">
               <div class="page-editorial-heading">
                 <span class="page-sub-stamp">BANQUETE DEL OLIMPO // PROMOS DVOID</span>
                 <h3 class="page-editorial-title">PROMOS DE LA NOCHE</h3>
@@ -3399,8 +3741,8 @@
             </div>
           </article>
 
-          <!-- Página Derecha: Medianoche & Ticket Dorado -->
-          <article class="book-page diary-page page-right">
+          <!-- Página Derecha (HOJA 6): Medianoche & Ticket Dorado -->
+          <article class="book-page diary-page page-right hidden-leaf" data-leaf-page="5">
             <svg class="meander-frame-svg" viewBox="0 0 520 680" preserveAspectRatio="none" aria-hidden="true">
               <rect x="4" y="4" width="512" height="672" stroke="#0047AB" stroke-width="1.8" stroke-dasharray="12 4 4 4" fill="none" />
               <path
@@ -3414,7 +3756,7 @@
               />
             </svg>
 
-            <div class="page-inner-content">
+            <div class="page-inner-content page-content hidden" data-leaf="5">
               <div class="page-editorial-heading">
                 <span class="page-sub-stamp">CLÍMAX DE MEDIANOCHE &amp; RELIQUIA</span>
                 <h3 class="page-editorial-title">TRIBUTOS ESPECIALES</h3>
@@ -3453,6 +3795,17 @@
             </div>
           </article>
         </div>
+
+        <!-- Navegación Inferior Minimalista de Hojas con Flechas Discretas ([ < ] y [ > ]) -->
+        <footer class="leaf-pagination-footer" aria-label="Navegación de hojas del cuaderno">
+          <button type="button" id="btnPrevLeaf" class="btn-leaf-nav" aria-label="Hoja anterior" disabled>
+            [ &lt; ]
+          </button>
+          <span id="leafPageIndicator" class="leaf-page-indicator">HOJA 1 / 6</span>
+          <button type="button" id="btnNextLeaf" class="btn-leaf-nav" aria-label="Hoja siguiente">
+            [ &gt; ]
+          </button>
+        </footer>
         </div>
       </div>
 
@@ -4102,16 +4455,25 @@
         });
       }
 
-      // Modelo de libro: 4 páginas (móvil) / 3 pestañas con pliegos dobles (desktop)
+      // Sistema de Paginación Interna: 6 hojas reales (div.page-content) en móvil / 3 pliegos dobles en desktop
       const mobileMQ = window.matchMedia('(max-width: 768px)');
-      const bookStage = document.getElementById('bookStage');
+      const pageContentEls = Array.from(document.querySelectorAll('div.page-content[data-leaf]'));
+      const leafPageArticles = Array.from(document.querySelectorAll('article.book-page[data-leaf-page]'));
+      const btnPrevLeaf = document.getElementById('btnPrevLeaf');
+      const btnNextLeaf = document.getElementById('btnNextLeaf');
+      const btnFlankPrev = document.getElementById('btnFlankPrev');
+      const btnFlankNext = document.getElementById('btnFlankNext');
+      const leafPageIndicator = document.getElementById('leafPageIndicator');
+
       const pageDefs = [
-        { tab: 'registro', sub: 0, label: 'DATOS', title: 'DATOS DEL TRIPULANTE' },
-        { tab: 'registro', sub: 1, label: 'PAQUETES', title: 'SELECCIÓN DE EXPERIENCIAS' },
-        { tab: 'dresscode', sub: 0, label: 'DRESS CODE', title: 'DRESS CODE: SANTORINI NIGHTS' },
-        { tab: 'promos', sub: 0, label: 'PROMOS', title: 'PROMOS DE LA NOCHE' }
+        { leaf: 0, tab: 'registro', label: 'DATOS', title: 'ISLA DE SANTORINI — SOLICITUD DE INGRESO' },
+        { leaf: 1, tab: 'registro', label: 'PAQUETES', title: 'SELECCIÓN DE EXPERIENCIAS' },
+        { leaf: 2, tab: 'dresscode', label: 'DRESS CODE I', title: 'DRESS CODE OBLIGATORIO: AZUL MARINO & BLANCO' },
+        { leaf: 3, tab: 'dresscode', label: 'LOOKBOOK', title: 'ESTILISMO MEDITERRÁNEO' },
+        { leaf: 4, tab: 'promos', label: 'PROMOS I', title: 'PROMOS DE LA NOCHE' },
+        { leaf: 5, tab: 'promos', label: 'TRIBUTOS', title: 'TRIBUTOS ESPECIALES & RELIQUIA' }
       ];
-      const firstPageOfTab = { registro: 0, dresscode: 2, promos: 3 };
+      const firstPageOfTab = { registro: 0, dresscode: 2, promos: 4 };
       let currentPageIdx = 0;
 
       function updateProgress() {
@@ -4121,16 +4483,26 @@
         let counter;
         if (mobile) {
           pct = ((currentPageIdx + 1) / pageDefs.length) * 100;
-          counter = `PÁG. ${currentPageIdx + 1} DE ${pageDefs.length} · ${def.label}`;
+          counter = `HOJA ${currentPageIdx + 1} DE ${pageDefs.length} · ${def.label}`;
         } else {
-          pct = { registro: 50, dresscode: 75, promos: 100 }[def.tab];
-          counter = def.tab === 'registro'
-            ? `PÁG. 1–2 DE ${pageDefs.length} · DATOS Y PAQUETES`
-            : `PÁG. ${currentPageIdx + 1} DE ${pageDefs.length} · ${def.label}`;
+          pct = { registro: 33.33, dresscode: 66.66, promos: 100 }[def.tab];
+          const spreadNum = { registro: '1–2', dresscode: '3–4', promos: '5–6' }[def.tab];
+          counter = `HOJAS ${spreadNum} DE ${pageDefs.length} · ${def.tab.toUpperCase()}`;
         }
         if (progressIndicatorFill) progressIndicatorFill.style.width = `${pct}%`;
         if (progressFolioCounter) progressFolioCounter.textContent = counter;
-        if (progressSectionName) progressSectionName.textContent = mobile ? def.title : 'BITÁCORA DE EXPEDICIÓN';
+        if (progressSectionName) progressSectionName.textContent = def.title;
+        if (leafPageIndicator) {
+          leafPageIndicator.textContent = mobile
+            ? `HOJA ${currentPageIdx + 1} / ${pageDefs.length}`
+            : `PLIEGO ${tabOrder.indexOf(def.tab) + 1} / ${tabOrder.length}`;
+        }
+        const isFirst = mobile ? currentPageIdx === 0 : def.tab === 'registro';
+        const isLast = mobile ? currentPageIdx === pageDefs.length - 1 : def.tab === 'promos';
+        if (btnPrevLeaf) btnPrevLeaf.disabled = isFirst;
+        if (btnNextLeaf) btnNextLeaf.disabled = isLast;
+        if (btnFlankPrev) btnFlankPrev.disabled = isFirst;
+        if (btnFlankNext) btnFlankNext.disabled = isLast;
         if (travelBookViewport) {
           travelBookViewport.dataset.page = String(currentPageIdx);
           const bar = travelBookViewport.querySelector('.hellenic-progress-bar-wrap');
@@ -4141,85 +4513,72 @@
         }
       }
 
-      function applyPageState(def) {
+      function applyPageState(def, isPrev = false) {
+        // 1. Activar el spread de la pestaña correspondiente
         Object.keys(bookSpreads).forEach((key) => {
           const spreadEl = bookSpreads[key];
           if (!spreadEl) return;
           const on = key === def.tab;
           spreadEl.classList.toggle('active-spread', on);
           spreadEl.setAttribute('aria-hidden', String(!on));
-          if (on) spreadEl.scrollTop = 0;
         });
-        if (def.tab === 'registro' && bookSpreads.registro) {
-          bookSpreads.registro.dataset.sub = String(def.sub);
-        }
+
+        // 2. Activar únicamente el div.page-content correspondiente (con clases .active y .hidden)
+        pageContentEls.forEach((contentEl) => {
+          const leafIdx = parseInt(contentEl.dataset.leaf, 10);
+          const isActive = leafIdx === def.leaf;
+          contentEl.classList.toggle('active', isActive);
+          contentEl.classList.toggle('hidden', !isActive);
+          contentEl.classList.toggle('slide-prev', isActive && isPrev);
+          if (isActive) {
+            // Reiniciar animación de entrada suave (fade-in + slide horizontal)
+            contentEl.style.animation = 'none';
+            void contentEl.offsetWidth;
+            contentEl.style.animation = '';
+          }
+        });
+
+        leafPageArticles.forEach((articleEl) => {
+          const leafIdx = parseInt(articleEl.dataset.leafPage, 10);
+          const isActive = leafIdx === def.leaf;
+          articleEl.classList.toggle('hidden-leaf', !isActive);
+        });
+
+        // 3. Sincronizar pestañas superiores/laterales
         bookTabBtns.forEach((btn) => {
           const isMatch = btn.dataset.tabTarget === def.tab;
           btn.classList.toggle('active', isMatch);
           btn.setAttribute('aria-selected', String(isMatch));
         });
+
         if (waxSealContainer) {
           waxSealContainer.style.display = def.tab === 'registro' ? 'flex' : 'none';
         }
         currentTab = def.tab;
       }
 
-      // Paso de página: en móvil, la hoja saliente (instantánea) gira sobre el lomo izquierdo
       function goToPage(idx) {
         if (idx < 0 || idx >= pageDefs.length || idx === currentPageIdx || isFlippingPage) return;
         const def = pageDefs[idx];
-        const forward = idx > currentPageIdx;
+        const isPrev = idx < currentPageIdx;
         const mobile = mobileMQ.matches;
-        const prevSpread = bookSpreads[currentTab];
         isFlippingPage = true;
         playPaperTurnSound();
 
-        let clone = null;
-        if (mobile && bookStage && prevSpread) {
-          clone = prevSpread.cloneNode(true);
-          clone.removeAttribute('id');
-          clone.querySelectorAll('[id]').forEach((n) => n.removeAttribute('id'));
-          const srcInputs = prevSpread.querySelectorAll('input');
-          clone.querySelectorAll('input').forEach((n, i) => {
-            if (srcInputs[i]) n.setAttribute('value', srcInputs[i].value);
-          });
-          clone.setAttribute('inert', '');
-          clone.setAttribute('aria-hidden', 'true');
-          clone.classList.remove('active-spread');
-          clone.classList.add('page-turn-clone', forward ? 'turn-out' : 'turn-under');
-          bookStage.appendChild(clone);
-          clone.scrollTop = prevSpread.scrollTop;
-        } else if (pageTurnLeaf) {
+        if (!mobile && pageTurnLeaf && def.tab !== currentTab) {
           pageTurnLeaf.classList.remove('turning-forward');
           void pageTurnLeaf.offsetWidth;
           pageTurnLeaf.classList.add('turning-forward');
         }
 
         currentPageIdx = idx;
+        applyPageState(def, isPrev);
         updateProgress();
 
-        const commit = () => {
-          applyPageState(def);
-          if (mobile && !forward) {
-            const incoming = bookSpreads[def.tab];
-            incoming.classList.remove('turn-in-back');
-            void incoming.offsetWidth;
-            incoming.classList.add('turn-in-back');
-          }
-        };
-
-        if (mobile) {
-          commit();
-        } else {
-          setTimeout(commit, 250);
-        }
-
         setTimeout(() => {
-          if (clone && clone.parentNode) clone.parentNode.removeChild(clone);
-          Object.keys(bookSpreads).forEach((key) => bookSpreads[key] && bookSpreads[key].classList.remove('turn-in-back'));
           if (pageTurnLeaf) pageTurnLeaf.classList.remove('turning-forward');
           isFlippingPage = false;
-        }, mobile ? 520 : 570);
+        }, mobile ? 260 : 520);
       }
 
       function switchBookTab(targetTab) {
@@ -4237,9 +4596,26 @@
         if (next >= 0 && next < tabOrder.length) switchBookTab(tabOrder[next]);
       }
 
-      if (mobileMQ.addEventListener) {
-        mobileMQ.addEventListener('change', updateProgress);
+      if (btnPrevLeaf) {
+        btnPrevLeaf.addEventListener('click', () => stepPage(-1));
       }
+      if (btnNextLeaf) {
+        btnNextLeaf.addEventListener('click', () => stepPage(1));
+      }
+      if (btnFlankPrev) {
+        btnFlankPrev.addEventListener('click', () => stepPage(-1));
+      }
+      if (btnFlankNext) {
+        btnFlankNext.addEventListener('click', () => stepPage(1));
+      }
+
+      if (mobileMQ.addEventListener) {
+        mobileMQ.addEventListener('change', () => {
+          applyPageState(pageDefs[currentPageIdx], false);
+          updateProgress();
+        });
+      }
+      applyPageState(pageDefs[currentPageIdx], false);
       updateProgress();
 
       bookTabBtns.forEach((btn) => {
@@ -4251,12 +4627,6 @@
       jumpTabBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
           switchBookTab(btn.dataset.jumpTo);
-        });
-      });
-
-      document.querySelectorAll('[data-page-go]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          goToPage(parseInt(btn.dataset.pageGo, 10));
         });
       });
 

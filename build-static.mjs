@@ -1,5 +1,5 @@
 // Static publishing only: source pages and GHL bundles remain untouched.
-import { cpSync, copyFileSync, mkdirSync, readdirSync, rmSync, readFileSync } from 'node:fs';
+import { cpSync, copyFileSync, mkdirSync, readdirSync, rmSync, readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
@@ -14,7 +14,7 @@ mkdirSync(output);
 for (const entry of readdirSync(root, { withFileTypes: true })) {
   if (entry.isFile() && entry.name.endsWith('.html')) {
     copyFileSync(path.join(root, entry.name), path.join(output, entry.name));
-  } else if (entry.isDirectory() && /^\d{4}-\d{2}$/.test(entry.name)) {
+  } else if (entry.isDirectory() && (/^\d{4}-\d{2}$/.test(entry.name) || entry.name === 'assets')) {
     cpSync(path.join(root, entry.name), path.join(output, entry.name), { recursive: true });
   }
 }
