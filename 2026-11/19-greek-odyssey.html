@@ -3857,6 +3857,11 @@
                   </p>
                 </div>
               </div>
+
+              <button type="button" id="btnGoSpecialTributes" class="dresscode-warning-badge btn-dresscode-next" style="cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-top: auto;">
+                <span>VER TRIBUTOS ESPECIALES</span>
+                <span aria-hidden="true">→</span>
+              </button>
             </div>
           </article>
 
@@ -5173,6 +5178,12 @@
       const btnGoLookbook = document.getElementById('btnGoLookbook');
       if (btnGoLookbook) {
         btnGoLookbook.addEventListener('click', () => goToPage(3));
+      }
+
+      // Enlace rápido desde Promos hacia Tributos Especiales (Hoja 4 -> Hoja 5)
+      const btnGoSpecialTributes = document.getElementById('btnGoSpecialTributes');
+      if (btnGoSpecialTributes) {
+        btnGoSpecialTributes.addEventListener('click', () => goToPage(5));
       }
 
       // 4. Selección de Método de Pago
