@@ -1337,10 +1337,10 @@
     .payment-method-section {
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
-      margin-top: auto;
-      padding-top: 1rem;
-      border-top: 1px dashed rgba(0, 71, 171, 0.3);
+      gap: 0.45rem;
+      margin-top: 0.45rem;
+      padding-top: 0.45rem;
+      border-top: 1px dashed rgba(0, 71, 171, 0.2);
     }
 
     .payment-options-grid {
@@ -1352,19 +1352,19 @@
     .btn-payment-choice {
       appearance: none;
       background: #FFFFFF;
-      border: 1.5px solid rgba(0, 71, 171, 0.3);
-      padding: 0.65rem 0.45rem;
+      border: 1.5px solid rgba(0, 71, 171, 0.25);
+      padding: 0.42rem 0.45rem;
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: #0A192F;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.4rem;
+      gap: 0.35rem;
       transition: all 0.2s ease;
     }
 
@@ -1380,23 +1380,24 @@
       box-shadow: 0 3px 10px rgba(0, 71, 171, 0.28);
     }
 
-    /* Caja de Resumen Dinámico */
+    /* Caja de Resumen Dinámico Discreta */
     .tribute-summary-bar {
-      margin-top: 0.85rem;
-      background: rgba(0, 71, 171, 0.05);
-      border: 1px solid rgba(0, 71, 171, 0.22);
-      padding: 0.65rem 0.95rem;
+      margin-top: 0.45rem;
+      background: rgba(0, 71, 171, 0.03);
+      border: 1px dashed rgba(0, 71, 171, 0.22);
+      padding: 0.35rem 0.65rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       font-family: var(--font-mono);
-      font-size: 0.75rem;
+      font-size: 0.68rem;
+      color: #475569;
     }
 
     .tribute-total-val {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: 1.05rem;
+      font-size: 0.88rem;
       color: #0047AB;
     }
 
@@ -2723,19 +2724,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.6rem;
+        gap: 0.5rem;
         width: 100%;
-        margin-top: 0.35rem;
-        padding: 0.7rem 1rem;
+        margin-top: 0.25rem;
+        padding: 0.48rem 0.75rem;
         background: #0A192F;
         color: #FFFFFF;
         border: 1.5px solid #D4AF37;
         font-family: var(--font-mono);
-        font-size: 0.72rem;
+        font-size: 0.64rem;
         font-weight: 800;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.12em;
         cursor: pointer;
-        box-shadow: 0 4px 14px rgba(10, 25, 47, 0.25);
+        box-shadow: 0 3px 10px rgba(10, 25, 47, 0.2);
       }
       .btn-continue-leaf:active {
         transform: scale(0.98);
@@ -2792,16 +2793,16 @@
         display: none !important;
       }
       .modality-toggle-wrapper {
-        margin-top: 0.2rem !important;
+        margin-top: 0.3rem !important;
         margin-bottom: 0.2rem !important;
-        gap: 0.2rem !important;
+        gap: 0.15rem !important;
       }
       .modality-toggle-grid {
         gap: 0.4rem !important;
       }
       .btn-modality {
-        padding: 0.38rem 0.45rem !important; /* py-1.5 */
-        font-size: 0.64rem !important;
+        padding: 0.3rem 0.4rem !important;
+        font-size: 0.6rem !important;
       }
       .group-counter-drawer.drawer-open {
         margin-top: 0.3rem !important;
@@ -2836,15 +2837,20 @@
         padding: 0.12rem 0.4rem !important;
       }
       .payment-method-section {
-        margin-bottom: 0.5rem !important;
+        margin-bottom: 0.35rem !important;
       }
       .btn-payment-choice {
-        padding: 0.45rem 0.4rem !important;
-        font-size: 0.66rem !important;
+        padding: 0.32rem 0.35rem !important;
+        font-size: 0.62rem !important;
       }
       .tribute-summary-bar {
-        padding: 0.48rem 0.75rem !important;
-        font-size: 0.72rem !important;
+        margin-top: 0.25rem !important;
+        margin-bottom: 0.3rem !important;
+        padding: 0.28rem 0.55rem !important;
+        font-size: 0.62rem !important;
+      }
+      .tribute-total-val {
+        font-size: 0.82rem !important;
       }
       .dresscode-lead-box {
         padding: 0.55rem 0.75rem !important;
@@ -3566,8 +3572,47 @@
                     </div>
                   </div>
                 </div>
+              </div>
 
-                
+              <!-- Modalidad de Travesía -->
+              <div class="modality-toggle-wrapper">
+                <span class="dotted-label">
+                  <span>Modalidad de Travesía:</span>
+                  <span class="req-star">*</span>
+                </span>
+                <div class="modality-toggle-grid" role="group" aria-label="Modalidad de expedición">
+                  <button
+                    type="button"
+                    id="btnSolo"
+                    class="btn-modality active"
+                    data-mode="solo"
+                    aria-pressed="true"
+                  >
+                    <span>VOY SOLO/A</span>
+                  </button>
+                  <button
+                    type="button"
+                    id="btnGroup"
+                    class="btn-modality"
+                    data-mode="group"
+                    aria-pressed="false"
+                  >
+                    <span>VAMOS EN GRUPO</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Cajón Desplegable: Contador Numérico de Tripulantes -->
+              <div id="groupCounterDrawer" class="group-counter-drawer" aria-hidden="true">
+                <div class="counter-control-bar">
+                  <span class="counter-label-text">TOTAL DE TRIPULANTES EN MESA:</span>
+                  <div class="counter-stepper">
+                    <button type="button" id="btnStepMinus" class="btn-step" aria-label="Restar un acompañante">-</button>
+                    <span id="companionsCountDisplay" class="counter-display">2</span>
+                    <button type="button" id="btnStepPlus" class="btn-step" aria-label="Sumar un acompañante">+</button>
+                  </div>
+                </div>
+              </div>
 
               <!-- Botón de paso a la hoja 2 (solo móvil) -->
               <button type="button" id="btnContinueToData" class="btn-continue-leaf">
@@ -3635,49 +3680,29 @@
                   <span class="input-hint-msg" id="phoneHint"></span>
                 </div>
 
-                <!-- 3. Campo: Modalidad (Toggle Interactivo Solo / Grupo) -->
-                <div class="modality-toggle-wrapper">
+                <!-- Observaciones Especiales (Desplegable) entre WhatsApp y Método de Pago -->
+                <details class="observations-drawer-details">
+                  <summary class="observations-summary">
+                    <span class="observations-summary-title">+ AGREGAR OBSERVACIONES / NOTAS</span>
+                    <span class="observations-summary-sub">(Cumpleaños, requerimientos de mesa, etc.)</span>
+                  </summary>
+                  <div class="observations-body">
+                    <textarea
+                      id="fieldObservations"
+                      name="observations"
+                      class="dotted-input observations-textarea"
+                      placeholder="Ej. Celebramos cumpleaños de Helena / Reservar mesa cercana..."
+                      rows="2"
+                    ></textarea>
+                  </div>
+                </details>
+
+                <!-- 3. Campo: Método de Pago + Tributo Estimado -->
+                <div class="payment-method-section">
                   <span class="dotted-label">
-                    <span>3. Modalidad de Travesía</span>
+                    <span>3. Método de Pago Preferido</span>
                     <span class="req-star">*</span>
                   </span>
-                  <div class="modality-toggle-grid" role="group" aria-label="Modalidad de expedición">
-                    <button
-                      type="button"
-                      id="btnSolo"
-                      class="btn-modality active"
-                      data-mode="solo"
-                      aria-pressed="true"
-                    >
-                      <span>VOY SOLO/A</span>
-                    </button>
-                    <button
-                      type="button"
-                      id="btnGroup"
-                      class="btn-modality"
-                      data-mode="group"
-                      aria-pressed="false"
-                    >
-                      <span>VAMOS EN GRUPO</span>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Cajón Desplegable: Contador Numérico Táctil de Acompañantes -->
-                <div id="groupCounterDrawer" class="group-counter-drawer" aria-hidden="true">
-                  <div class="counter-control-bar">
-                    <span class="counter-label-text">TOTAL DE TRIPULANTES EN MESA:</span>
-                    <div class="counter-stepper">
-                      <button type="button" id="btnStepMinus" class="btn-step" aria-label="Restar un acompañante">-</button>
-                      <span id="companionsCountDisplay" class="counter-display">2</span>
-                      <button type="button" id="btnStepPlus" class="btn-step" aria-label="Sumar un acompañante">+</button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- 4. Campo: Método de Pago + Tributo Estimado -->
-                <div class="payment-method-section">
-                  <span class="dotted-label">4. Método de Pago Preferido</span>
                   <div class="payment-options-grid" role="group" aria-label="Método de pago">
                     <button
                       type="button"
@@ -3701,26 +3726,9 @@
                 </div>
 
                 <div class="tribute-summary-bar" aria-live="polite">
-                  <span>TRIBUTO TOTAL ESTIMADO:</span>
+                  <span>TRIBUTO ESTIMADO:</span>
                   <span id="tributeTotalDisplay" class="tribute-total-val">$15 USD</span>
                 </div>
-
-                <!-- 5. Campo Desplegable: Observaciones Especiales -->
-                <details class="observations-drawer-details">
-                  <summary class="observations-summary">
-                    <span class="observations-summary-title">+ AGREGAR OBSERVACIONES / NOTAS ESPECIALES</span>
-                    <span class="observations-summary-sub">(Cumpleaños, requerimientos de mesa, etc.)</span>
-                  </summary>
-                  <div class="observations-body">
-                    <textarea
-                      id="fieldObservations"
-                      name="observations"
-                      class="dotted-input observations-textarea"
-                      placeholder="Ej. Celebramos cumpleaños de Helena / Reservar mesa cercana..."
-                      rows="2"
-                    ></textarea>
-                  </div>
-                </details>
               </form>
             </div>
           </article>
