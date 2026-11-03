@@ -1754,6 +1754,17 @@
       color: #475569;
     }
 
+    .btn-dresscode-next {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-dresscode-next:hover,
+    .btn-dresscode-next:active {
+      background: #0047AB !important;
+      border-color: #FFFFFF !important;
+      color: #FFFFFF !important;
+      transform: translateY(-1px);
+    }
     .dresscode-warning-badge {
       margin-top: auto;
       background: #0A192F;
@@ -3598,10 +3609,10 @@
                 <!-- Cajón Desplegable: Contador Numérico Táctil de Acompañantes -->
                 <div id="groupCounterDrawer" class="group-counter-drawer" aria-hidden="true">
                   <div class="counter-control-bar">
-                    <span class="counter-label-text">TRIPULANTES × $15 (MÍN. 10):</span>
+                    <span class="counter-label-text">TOTAL DE TRIPULANTES EN MESA:</span>
                     <div class="counter-stepper">
                       <button type="button" id="btnStepMinus" class="btn-step" aria-label="Restar un acompañante">-</button>
-                      <span id="companionsCountDisplay" class="counter-display">10</span>
+                      <span id="companionsCountDisplay" class="counter-display">2</span>
                       <button type="button" id="btnStepPlus" class="btn-step" aria-label="Sumar un acompañante">+</button>
                     </div>
                   </div>
@@ -3739,9 +3750,10 @@
                 </div>
               </div>
 
-              <div class="dresscode-warning-badge" role="alert">
-                NO SE PERMITIRÁN OTROS COLORES EN PUERTA
-              </div>
+              <button type="button" id="btnGoLookbook" class="dresscode-warning-badge btn-dresscode-next" style="cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.6rem;">
+                <span>VER REFERENCIAS VISUALES</span>
+                <span aria-hidden="true">→</span>
+              </button>
             </div>
           </article>
 
@@ -4986,7 +4998,7 @@
       }
 
       // Estado de la reserva (vinculado: modalidad ↔ experienciaSeleccionada)
-      const GROUP_MIN = 10;
+      const GROUP_MIN = 2; // Sin mínimo forzado de 10 personas
       const GROUP_MAX = 50;
       const pkgCardById = (id) => Array.from(packageCards).find((c) => c.dataset.pkgId === id);
       const readPackage = (card) => ({
@@ -4997,7 +5009,7 @@
       });
 
       let modalidad = 'solo'; // 'solo' (VOY SOLO/A) | 'group' (VAMOS EN GRUPO)
-      let groupCount = GROUP_MIN;
+      let groupCount = 2;
       let experienciaSeleccionada = {
         id: 'pkg-1',
         name: 'Acceso General Egeo — $15',
@@ -5007,14 +5019,15 @@
       let selectedPayment = 'Transferencia Bancaria';
       let lastGeneratedPass = null;
 
-      // Total: Solo → $15 fijo · Grupo + Opción 01 → $15 × tripulantes (mín. 10) · Packs → precio fijo
+      // Cálculo del tributo: Solo ($15) | Grupo ($15 x personas, o $150 Pack Jäger)
       function updateTributeCalculation() {
         let total;
-        if (experienciaSeleccionada.isFixed) {
-          total = experienciaSeleccionada.unitPrice;
+        if (experienciaSeleccionada.id === 'pkg-3') {
+          total = 150;
+        } else if (modalidad === 'group') {
+          total = 15 * groupCount;
         } else {
-          const multiplier = modalidad === 'group' ? groupCount : 1;
-          total = experienciaSeleccionada.unitPrice * multiplier;
+          total = 15;
         }
 
         if (tributeTotalDisplay) {
@@ -5033,21 +5046,44 @@
         experienciaSeleccionada = readPackage(card);
       }
 
-      // Sincroniza selector de cantidad y total a partir del estado
+      // Sincroniza selector de cantidad y aplicación automática de promos según el número de asistentes
       function syncPricingState() {
         const isGroup = modalidad === 'group';
 
-        // VOY SOLO/A elegido en la hoja de datos con un pack activo → vuelve a Opción 01
-        if (!isGroup && experienciaSeleccionada.isFixed) {
-          selectPackageCard(pkgCardById('pkg-1'));
+        if (!isGroup) {
+          // Modo VOY SOLO/A: siempre Acceso General
+          if (experienciaSeleccionada.id !== 'pkg-1') {
+            selectPackageCard(pkgCardById('pkg-1'));
+          }
+        } else {
+          // Modo VAMOS EN GRUPO: aplica automáticamente promo Olimpo si son 10 o más
+          if (experienciaSeleccionada.id !== 'pkg-3') {
+            if (groupCount >= 10) {
+              selectPackageCard(pkgCardById('pkg-2')); // Promo Pack Olimpo (+10 entradas + Botella)
+            } else {
+              selectPackageCard(pkgCardById('pkg-1')); // Acceso General ($15 c/u)
+            }
+          }
         }
 
-        // Selector de cantidad solo para Grupo + Opción 01 ($15 × N)
-        const showCounter = isGroup && !experienciaSeleccionada.isFixed;
+        // Mostrar cajón numérico siempre que sea grupo
         if (groupCounterDrawer) {
-          groupCounterDrawer.classList.toggle('drawer-open', showCounter);
-          groupCounterDrawer.setAttribute('aria-hidden', String(!showCounter));
+          groupCounterDrawer.classList.toggle('drawer-open', isGroup);
+          groupCounterDrawer.setAttribute('aria-hidden', String(!isGroup));
         }
+
+        // Indicador visual dinámico de promo en el label del contador
+        const counterLabelEl = groupCounterDrawer ? groupCounterDrawer.querySelector('.counter-label-text') : null;
+        if (counterLabelEl) {
+          if (experienciaSeleccionada.id === 'pkg-3') {
+            counterLabelEl.innerHTML = 'INTEGRANTES EN MESA VIP (PACK JÄGER):';
+          } else if (groupCount >= 10) {
+            counterLabelEl.innerHTML = `TRIPULANTES: ${groupCount} PAX <span style="color:#D4AF37; font-weight:800;">(¡PROMO OLIMPO: BOTELLA INCLUIDA!)</span>`;
+          } else {
+            counterLabelEl.innerHTML = `TRIPULANTES EN MESA (${groupCount} × $15 = $${groupCount * 15} USD):`;
+          }
+        }
+
         if (companionsCountDisplay) companionsCountDisplay.textContent = groupCount;
         if (btnStepMinus) btnStepMinus.disabled = groupCount <= GROUP_MIN;
         if (btnStepPlus) btnStepPlus.disabled = groupCount >= GROUP_MAX;
@@ -5089,16 +5125,31 @@
         });
       }
 
-      // 2. Selección de Paquetes: los packs de grupo activan "VAMOS EN GRUPO" en la hoja 2
+      // 2. Selección de Paquetes
       const btnContinueToData = document.getElementById('btnContinueToData');
       packageCards.forEach((card) => {
         card.addEventListener('click', () => {
           selectPackageCard(card);
-          if (experienciaSeleccionada.isFixed) {
-            setModalidad('group');
-          } else {
-            syncPricingState();
+          if (card.dataset.pkgId === 'pkg-2') {
+            modalidad = 'group';
+            if (groupCount < 10) groupCount = 10;
+            if (btnGroup) {
+              btnGroup.classList.add('active');
+              btnGroup.setAttribute('aria-pressed', 'true');
+              btnSolo.classList.remove('active');
+              btnSolo.setAttribute('aria-pressed', 'false');
+            }
+          } else if (card.dataset.pkgId === 'pkg-3') {
+            modalidad = 'group';
+            if (btnGroup) {
+              btnGroup.classList.add('active');
+              btnGroup.setAttribute('aria-pressed', 'true');
+              btnSolo.classList.remove('active');
+              btnSolo.setAttribute('aria-pressed', 'false');
+            }
           }
+          syncPricingState();
+
           if (btnContinueToData) {
             btnContinueToData.classList.remove('is-ready');
             void btnContinueToData.offsetWidth;
@@ -5116,6 +5167,12 @@
 
       if (btnContinueToData) {
         btnContinueToData.addEventListener('click', () => goToPage(1));
+      }
+
+      // Enlace rápido desde Dress Code hacia Referencias Visuales (Lookbook)
+      const btnGoLookbook = document.getElementById('btnGoLookbook');
+      if (btnGoLookbook) {
+        btnGoLookbook.addEventListener('click', () => goToPage(3));
       }
 
       // 4. Selección de Método de Pago
