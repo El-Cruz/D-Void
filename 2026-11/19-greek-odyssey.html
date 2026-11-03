@@ -1285,6 +1285,55 @@
     }
 
     /* Selector de Método de Pago Preferido */
+    /* Sección de Observaciones Desplegable */
+    .observations-drawer-details {
+      margin-top: 0.35rem;
+      border: 1px dashed rgba(0, 71, 171, 0.3);
+      background: rgba(255, 255, 255, 0.6);
+      padding: 0.35rem 0.65rem;
+      transition: all 0.2s ease;
+    }
+    .observations-drawer-details[open] {
+      background: #FFFFFF;
+      border-color: #0047AB;
+      box-shadow: 0 2px 8px rgba(0, 71, 171, 0.08);
+    }
+    .observations-summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      user-select: none;
+    }
+    .observations-summary::-webkit-details-marker {
+      display: none;
+    }
+    .observations-summary-title {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #0047AB;
+    }
+    .observations-summary-sub {
+      font-family: var(--font-mono);
+      font-size: 0.54rem;
+      color: #64748B;
+    }
+    .observations-body {
+      margin-top: 0.35rem;
+    }
+    .observations-textarea {
+      width: 100%;
+      resize: vertical;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      line-height: 1.35;
+      padding: 0.35rem 0.45rem;
+      min-height: 44px;
+    }
+
     .payment-method-section {
       display: flex;
       flex-direction: column;
@@ -3518,35 +3567,7 @@
                   </div>
                 </div>
 
-                <div
-                  class="package-card-option"
-                  role="radio"
-                  tabindex="0"
-                  aria-checked="false"
-                  data-pkg-id="pkg-3"
-                  data-pkg-name="Pack Jäger & Red Bull — $150"
-                  data-pkg-price="150"
-                  data-pkg-fixed="true"
-                >
-                  <div class="ink-check-circle" aria-hidden="true">
-                    <svg class="ink-check-mark" viewBox="0 0 14 14">
-                      <path d="M2 7 L5.5 11 L12 2" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                  <div class="pkg-title-row">
-                    <span class="pkg-name">OPCIÓN 03: Pack Jäger &amp; Red Bull</span>
-                    <span class="pkg-price">$150</span>
-                  </div>
-                  <div class="pkg-details">
-                    <div class="pkg-details-inner">
-                      <p class="pkg-desc">
-                        <strong>2 Botellas de Jägermeister + 4 Red Bull</strong> para la mesa.
-                      </p>
-                      <span class="pkg-badge">MESA VIP ENERGIZADA</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                
 
               <!-- Botón de paso a la hoja 2 (solo móvil) -->
               <button type="button" id="btnContinueToData" class="btn-continue-leaf">
@@ -3578,10 +3599,46 @@
               </div>
 
               <form id="expeditionForm" class="expedition-form overflow-hidden" novalidate>
-                <!-- Campo: Modalidad (Toggle Interactivo) -->
+                <!-- 1. Campo: Nombre y Apellido -->
+                <div class="form-group-dotted">
+                  <label for="fieldName" class="dotted-label">
+                    <span>1. Nombre y Apellido del Tripulante</span>
+                    <span class="req-star">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="fieldName"
+                    name="fullName"
+                    class="dotted-input"
+                    placeholder="Helena de Troya / Nicolás..."
+                    autocomplete="name"
+                    required
+                  />
+                  <span class="input-hint-msg" id="nameHint"></span>
+                </div>
+
+                <!-- 2. Campo: WhatsApp / Teléfono Móvil -->
+                <div class="form-group-dotted">
+                  <label for="fieldPhone" class="dotted-label">
+                    <span>2. WhatsApp / Teléfono Móvil</span>
+                    <span class="req-star">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    id="fieldPhone"
+                    name="phone"
+                    class="dotted-input"
+                    placeholder="+593 99 999 9999"
+                    autocomplete="tel"
+                    required
+                  />
+                  <span class="input-hint-msg" id="phoneHint"></span>
+                </div>
+
+                <!-- 3. Campo: Modalidad (Toggle Interactivo Solo / Grupo) -->
                 <div class="modality-toggle-wrapper">
                   <span class="dotted-label">
-                    <span>1. Modalidad de Travesía</span>
+                    <span>3. Modalidad de Travesía</span>
                     <span class="req-star">*</span>
                   </span>
                   <div class="modality-toggle-grid" role="group" aria-label="Modalidad de expedición">
@@ -3618,9 +3675,9 @@
                   </div>
                 </div>
 
-                <!-- Campo: Método de Pago + Tributo Estimado -->
+                <!-- 4. Campo: Método de Pago + Tributo Estimado -->
                 <div class="payment-method-section">
-                  <span class="dotted-label">2. Método de Pago Preferido</span>
+                  <span class="dotted-label">4. Método de Pago Preferido</span>
                   <div class="payment-options-grid" role="group" aria-label="Método de pago">
                     <button
                       type="button"
@@ -3648,41 +3705,22 @@
                   <span id="tributeTotalDisplay" class="tribute-total-val">$15 USD</span>
                 </div>
 
-                <!-- Campo: Nombre y Apellido -->
-                <div class="form-group-dotted">
-                  <label for="fieldName" class="dotted-label">
-                    <span>3. Nombre y Apellido del Tripulante</span>
-                    <span class="req-star">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="fieldName"
-                    name="fullName"
-                    class="dotted-input"
-                    placeholder="Helena de Troya / Nicolás..."
-                    autocomplete="name"
-                    required
-                  />
-                  <span class="input-hint-msg" id="nameHint"></span>
-                </div>
-
-                <!-- Campo: WhatsApp / Teléfono Móvil -->
-                <div class="form-group-dotted">
-                  <label for="fieldPhone" class="dotted-label">
-                    <span>4. WhatsApp / Teléfono Móvil</span>
-                    <span class="req-star">*</span>
-                  </label>
-                  <input
-                    type="tel"
-                    id="fieldPhone"
-                    name="phone"
-                    class="dotted-input"
-                    placeholder="+593 99 999 9999"
-                    autocomplete="tel"
-                    required
-                  />
-                  <span class="input-hint-msg" id="phoneHint"></span>
-                </div>
+                <!-- 5. Campo Desplegable: Observaciones Especiales -->
+                <details class="observations-drawer-details">
+                  <summary class="observations-summary">
+                    <span class="observations-summary-title">+ AGREGAR OBSERVACIONES / NOTAS ESPECIALES</span>
+                    <span class="observations-summary-sub">(Cumpleaños, requerimientos de mesa, etc.)</span>
+                  </summary>
+                  <div class="observations-body">
+                    <textarea
+                      id="fieldObservations"
+                      name="observations"
+                      class="dotted-input observations-textarea"
+                      placeholder="Ej. Celebramos cumpleaños de Helena / Reservar mesa cercana..."
+                      rows="2"
+                    ></textarea>
+                  </div>
+                </details>
               </form>
             </div>
           </article>
@@ -3854,6 +3892,15 @@
                   <h4 class="promo-item-title">DOBLE OFRENDA DEL EGEO (2X1)</h4>
                   <p class="promo-item-desc">
                     <strong>2x1 en Antioqueño</strong> y <strong>2x1 en Cócteles Temáticos Griegos</strong>.
+                  </p>
+                </div>
+
+                <!-- Promo 3: Pack Jäger & Red Bull para Mesa VIP -->
+                <div class="promo-item-card" style="border-left: 3px solid #D4AF37;">
+                  <span class="promo-time-pill" style="background: rgba(212, 175, 55, 0.15); color: #8C6D1F; border-color: rgba(212, 175, 55, 0.35);">MESA VIP</span>
+                  <h4 class="promo-item-title">PACK JÄGER &amp; RED BULL — $150</h4>
+                  <p class="promo-item-desc">
+                    <strong>2 Botellas de Jägermeister + 4 Red Bull</strong> para la mesa. Solicítalo en barra o al ingresar.
                   </p>
                 </div>
               </div>
@@ -5003,7 +5050,7 @@
       }
 
       // Estado de la reserva (vinculado: modalidad ↔ experienciaSeleccionada)
-      const GROUP_MIN = 2; // Sin mínimo forzado de 10 personas
+      const GROUP_MIN = 2; // Rango libre para grupo desde 2 personas
       const GROUP_MAX = 50;
       const pkgCardById = (id) => Array.from(packageCards).find((c) => c.dataset.pkgId === id);
       const readPackage = (card) => ({
@@ -5024,17 +5071,9 @@
       let selectedPayment = 'Transferencia Bancaria';
       let lastGeneratedPass = null;
 
-      // Cálculo del tributo: Solo ($15) | Grupo ($15 x personas, o $150 Pack Jäger)
+      // Cálculo del tributo: Solo ($15) | Grupo ($15 x tripulantes)
       function updateTributeCalculation() {
-        let total;
-        if (experienciaSeleccionada.id === 'pkg-3') {
-          total = 150;
-        } else if (modalidad === 'group') {
-          total = 15 * groupCount;
-        } else {
-          total = 15;
-        }
-
+        let total = (modalidad === 'group') ? (15 * groupCount) : 15;
         if (tributeTotalDisplay) {
           tributeTotalDisplay.textContent = `$${total} USD`;
         }
@@ -5056,33 +5095,24 @@
         const isGroup = modalidad === 'group';
 
         if (!isGroup) {
-          // Modo VOY SOLO/A: siempre Acceso General
-          if (experienciaSeleccionada.id !== 'pkg-1') {
-            selectPackageCard(pkgCardById('pkg-1'));
-          }
+          selectPackageCard(pkgCardById('pkg-1'));
         } else {
-          // Modo VAMOS EN GRUPO: aplica automáticamente promo Olimpo si son 10 o más
-          if (experienciaSeleccionada.id !== 'pkg-3') {
-            if (groupCount >= 10) {
-              selectPackageCard(pkgCardById('pkg-2')); // Promo Pack Olimpo (+10 entradas + Botella)
-            } else {
-              selectPackageCard(pkgCardById('pkg-1')); // Acceso General ($15 c/u)
-            }
+          // Si son 10 o más se activa automáticamente la Promo Pack Olimpo (+10 PAX con botella)
+          if (groupCount >= 10) {
+            selectPackageCard(pkgCardById('pkg-2'));
+          } else {
+            selectPackageCard(pkgCardById('pkg-1'));
           }
         }
 
-        // Mostrar cajón numérico siempre que sea grupo
         if (groupCounterDrawer) {
           groupCounterDrawer.classList.toggle('drawer-open', isGroup);
           groupCounterDrawer.setAttribute('aria-hidden', String(!isGroup));
         }
 
-        // Indicador visual dinámico de promo en el label del contador
         const counterLabelEl = groupCounterDrawer ? groupCounterDrawer.querySelector('.counter-label-text') : null;
         if (counterLabelEl) {
-          if (experienciaSeleccionada.id === 'pkg-3') {
-            counterLabelEl.innerHTML = 'INTEGRANTES EN MESA VIP (PACK JÄGER):';
-          } else if (groupCount >= 10) {
+          if (groupCount >= 10) {
             counterLabelEl.innerHTML = `TRIPULANTES: ${groupCount} PAX <span style="color:#D4AF37; font-weight:800;">(¡PROMO OLIMPO: BOTELLA INCLUIDA!)</span>`;
           } else {
             counterLabelEl.innerHTML = `TRIPULANTES EN MESA (${groupCount} × $15 = $${groupCount * 15} USD):`;
@@ -5138,14 +5168,6 @@
           if (card.dataset.pkgId === 'pkg-2') {
             modalidad = 'group';
             if (groupCount < 10) groupCount = 10;
-            if (btnGroup) {
-              btnGroup.classList.add('active');
-              btnGroup.setAttribute('aria-pressed', 'true');
-              btnSolo.classList.remove('active');
-              btnSolo.setAttribute('aria-pressed', 'false');
-            }
-          } else if (card.dataset.pkgId === 'pkg-3') {
-            modalidad = 'group';
             if (btnGroup) {
               btnGroup.classList.add('active');
               btnGroup.setAttribute('aria-pressed', 'true');
@@ -5276,7 +5298,8 @@
             modality: modalityText,
             package: experienciaSeleccionada.name,
             payment: selectedPayment,
-            total: `$${finalTotal} USD`
+            total: `${finalTotal} USD`,
+            observations: (document.getElementById('fieldObservations')?.value || '').trim()
           };
 
           if (passNameVal) passNameVal.textContent = lastGeneratedPass.name;
@@ -5346,6 +5369,7 @@
             `✨ *Paquete:* ${encodeURIComponent(lastGeneratedPass.package)}%0A` +
             `💳 *Pago:* ${encodeURIComponent(lastGeneratedPass.payment)}%0A` +
             `💰 *Total:* ${encodeURIComponent(lastGeneratedPass.total)}%0A` +
+            (lastGeneratedPass.observations ? `📝 *Observaciones:* ${encodeURIComponent(lastGeneratedPass.observations)}%0A` : '') +
             `👔 *Dress Code Obligatorio:* Azul Marino & Blanco%0A%0A` +
             `⚡ *Presentar este Odyssey Pass con QR en puerta.*`;
 
