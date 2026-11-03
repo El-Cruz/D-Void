@@ -1,0 +1,15 @@
+# Ignore heavy non-production assets and references
+Resources/references/
+capturas_octubre_2026/
+docs/
+tests/
+
+# Data sheets and local scripts
+*.xlsx
+*.csv
+adapt_to_google_sheet.mjs
+capturas-octubre.mjs
+generate_events_sheet.mjs
+reencode.mjs
+unpack.mjs
+verify.mjs
