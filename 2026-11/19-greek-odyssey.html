@@ -1236,6 +1236,54 @@
       margin-top: 0.2rem;
     }
 
+    /* Botón "Continuar a mis datos": solo visible en móvil (hoja 1 → hoja 2) */
+    .btn-continue-leaf {
+      display: none;
+    }
+    .btn-step:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    /* Acordeón de paquetes: compacto por defecto, se expande al seleccionar */
+    .package-card-option {
+      padding-top: 0.8rem;
+      padding-bottom: 0.8rem;
+    }
+    .package-card-option .ink-check-circle {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .package-card-option.active .ink-check-circle {
+      top: 0.95rem;
+      transform: none;
+    }
+    .package-card-option .pkg-title-row {
+      flex-wrap: nowrap;
+      align-items: center;
+      margin-bottom: 0;
+    }
+    .package-card-option .pkg-name {
+      min-width: 0;
+    }
+    .pkg-details {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition: grid-template-rows 0.34s var(--ease-out-expo), opacity 0.26s ease;
+    }
+    .pkg-details-inner {
+      min-height: 0;
+      overflow: hidden;
+    }
+    .package-card-option.active .pkg-details {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+    .package-card-option.active .pkg-details-inner {
+      padding-top: 0.45rem;
+    }
+
     /* Selector de Método de Pago Preferido */
     .payment-method-section {
       display: flex;
@@ -2588,6 +2636,67 @@
         font-size: 0.98rem !important;
         line-height: 1.15 !important;
       }
+      .page-editorial-title.exp-title {
+        font-size: 1.125rem !important; /* text-lg */
+        line-height: 1.25 !important; /* leading-tight */
+        white-space: normal !important;
+        overflow-wrap: anywhere;
+      }
+      .page-right-header-wrap > div:first-child {
+        min-width: 0;
+        flex: 1 1 auto;
+      }
+      .package-card-option {
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+      }
+      .package-card-option .ink-check-circle {
+        top: 50% !important;
+      }
+      .package-card-option.active .ink-check-circle {
+        top: 0.6rem !important;
+      }
+      .tribute-summary-bar {
+        margin-bottom: 0.35rem !important;
+      }
+      .btn-continue-leaf {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        width: 100%;
+        margin-top: 0.35rem;
+        padding: 0.7rem 1rem;
+        background: #0A192F;
+        color: #FFFFFF;
+        border: 1.5px solid #D4AF37;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(10, 25, 47, 0.25);
+      }
+      .btn-continue-leaf:active {
+        transform: scale(0.98);
+      }
+      .btn-continue-arrow {
+        color: #D4AF37;
+        font-size: 1rem;
+        animation: continueArrowNudge 1.4s ease-in-out infinite;
+      }
+      .btn-continue-leaf.is-ready {
+        animation: continueReadyPulse 0.6s ease;
+      }
+      @keyframes continueArrowNudge {
+        0%, 100% { translate: 0 0; }
+        50% { translate: 4px 0; }
+      }
+      @keyframes continueReadyPulse {
+        0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+        100% { box-shadow: 0 0 0 12px rgba(212, 175, 55, 0); }
+      }
+
       .expedition-form {
         gap: 0.2rem !important;
         overflow: hidden !important;
@@ -2787,7 +2896,7 @@
         font-size: 0.58rem;
       }
 
-      /* El sello de confirmación solo aparece en la hoja de paquetes (hoja índice 1) */
+      /* El sello de confirmación solo aparece en la hoja de solicitud de ingreso (hoja índice 1) */
       .travel-book-viewport:not([data-page="1"]) #waxSealContainer {
         display: none !important;
       }
@@ -3203,19 +3312,6 @@
          Con Pestañas Laterales Sobresalientes, Giro 3D y 3 Spreads Completos
          ====================================================================== -->
     <div id="travelBookViewport" class="travel-book-viewport">
-      <!-- Barra de Utilidades del Cuaderno: Gesto Táctil & Toggle de Sonido de Papel -->
-      <div class="book-top-utility-bar">
-        <span class="book-swipe-hint">✦ TOCA LAS PESTAÑAS O DESLIZA PARA PASAR PÁGINA ✦</span>
-        <button
-          type="button"
-          id="btnPaperSoundToggle"
-          class="btn-paper-sound"
-          aria-pressed="true"
-        >
-          SONIDO PAPEL: ON
-        </button>
-      </div>
-
       <!-- Barra de Progreso de Navegación Helénica -->
       <div class="hellenic-progress-bar-wrap" role="progressbar" aria-label="Progreso en la bitácora de navegación" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3">
         <div class="progress-meta-row">
@@ -3310,7 +3406,7 @@
           <path d="M12 12 H40 V40 H20 V20 H30 V30 M508 12 H480 V40 H500 V20 H490 V30 M12 668 H40 V640 H20 V660 H30 V650 M508 668 H480 V640 H500 V660 H490 V650" stroke="#0047AB" stroke-width="2" fill="none" />
         </svg>
         <div id="spread-registro" class="book-spread active-spread" role="tabpanel" data-sub="0">
-          <!-- PÁGINA IZQUIERDA (HOJA 1): FORMULARIO "RESERVA DE EXPERIENCIA" -->
+          <!-- PÁGINA IZQUIERDA (HOJA 1): SELECCIÓN DE EXPERIENCIAS (ACORDEÓN) -->
           <article class="book-page diary-page page-left" data-leaf-page="0">
             <svg class="meander-frame-svg" viewBox="0 0 520 680" preserveAspectRatio="none" aria-hidden="true">
               <rect x="4" y="4" width="512" height="672" stroke="#0047AB" stroke-width="1.8" stroke-dasharray="12 4 4 4" fill="none" />
@@ -3326,130 +3422,10 @@
             </svg>
 
             <div class="page-inner-content page-content active overflow-hidden" data-leaf="0">
-              <div class="page-editorial-heading">
-                <span class="page-sub-stamp">FOLIO N° 2026-GRK // ACTA DE NAVEGACIÓN</span>
-                <h3 class="page-editorial-title">ISLA DE SANTORINI — SOLICITUD DE INGRESO</h3>
-              </div>
-
-              <form id="expeditionForm" class="expedition-form overflow-hidden" novalidate>
-                <!-- Campo: Nombre y Apellido -->
-                <div class="form-group-dotted">
-                  <label for="fieldName" class="dotted-label">
-                    <span>1. Nombre y Apellido del Tripulante</span>
-                    <span class="req-star">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="fieldName"
-                    name="fullName"
-                    class="dotted-input"
-                    placeholder="Helena de Troya / Nicolás..."
-                    autocomplete="name"
-                    required
-                  />
-                  <span class="input-hint-msg" id="nameHint"></span>
-                </div>
-
-                <!-- Campo: WhatsApp / Teléfono Móvil -->
-                <div class="form-group-dotted">
-                  <label for="fieldPhone" class="dotted-label">
-                    <span>2. WhatsApp / Teléfono Móvil</span>
-                    <span class="req-star">*</span>
-                  </label>
-                  <input
-                    type="tel"
-                    id="fieldPhone"
-                    name="phone"
-                    class="dotted-input"
-                    placeholder="+593 99 999 9999"
-                    autocomplete="tel"
-                    required
-                  />
-                  <span class="input-hint-msg" id="phoneHint"></span>
-                </div>
-
-                <!-- Campo: Fecha de Nacimiento (Validación estricta +20) -->
-                <div class="form-group-dotted">
-                  <label for="fieldBirthDate" class="dotted-label">
-                    <span>3. Fecha de Nacimiento (Filtro +20 años)</span>
-                    <span class="req-star">*</span>
-                  </label>
-                  <input
-                    type="date"
-                    id="fieldBirthDate"
-                    name="birthDate"
-                    class="dotted-input"
-                    max="2006-11-19"
-                    required
-                  />
-                  <span class="input-hint-msg hint-disclaimer" id="ageValidationHint">
-                    * Requisito ineludible: Nacidos el 19 de Noviembre de 2006 o antes (+20).
-                  </span>
-                </div>
-
-                <!-- Campo: Modalidad (Toggle Interactivo) -->
-                <div class="modality-toggle-wrapper">
-                  <span class="dotted-label">
-                    <span>4. Modalidad de Travesía</span>
-                    <span class="req-star">*</span>
-                  </span>
-                  <div class="modality-toggle-grid" role="group" aria-label="Modalidad de expedición">
-                    <button
-                      type="button"
-                      id="btnSolo"
-                      class="btn-modality active"
-                      data-mode="solo"
-                      aria-pressed="true"
-                    >
-                      <span>VOY SOLO/A</span>
-                    </button>
-                    <button
-                      type="button"
-                      id="btnGroup"
-                      class="btn-modality"
-                      data-mode="group"
-                      aria-pressed="false"
-                    >
-                      <span>VAMOS EN GRUPO</span>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Cajón Desplegable: Contador Numérico Táctil de Acompañantes -->
-                <div id="groupCounterDrawer" class="group-counter-drawer" aria-hidden="true">
-                  <div class="counter-control-bar">
-                    <span class="counter-label-text">TOTAL DE TRIPULANTES EN MESA:</span>
-                    <div class="counter-stepper">
-                      <button type="button" id="btnStepMinus" class="btn-step" aria-label="Restar un acompañante">-</button>
-                      <span id="companionsCountDisplay" class="counter-display">2</span>
-                      <button type="button" id="btnStepPlus" class="btn-step" aria-label="Sumar un acompañante">+</button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </article>
-
-          <!-- PÁGINA DERECHA (HOJA 2): SELECCIÓN DE PAQUETES & BUSTO ESCULPIDO -->
-          <article class="book-page diary-page page-right hidden-leaf" data-leaf-page="1">
-            <svg class="meander-frame-svg" viewBox="0 0 520 680" preserveAspectRatio="none" aria-hidden="true">
-              <rect x="4" y="4" width="512" height="672" stroke="#0047AB" stroke-width="1.8" stroke-dasharray="12 4 4 4" fill="none" />
-              <path
-                d="M12 12 H40 V40 H20 V20 H30 V30
-                   M508 12 H480 V40 H500 V20 H490 V30
-                   M12 668 H40 V640 H20 V660 H30 V650
-                   M508 668 H480 V640 H500 V660 H490 V650"
-                stroke="#0047AB"
-                stroke-width="2"
-                fill="none"
-              />
-            </svg>
-
-            <div class="page-inner-content page-content hidden" data-leaf="1">
               <div class="page-right-header-wrap">
                 <div>
                   <span class="page-sub-stamp">TRIBUTO HELÉNICO // SANTORINI NIGHT</span>
-                  <h3 class="page-editorial-title">SELECCIÓN DE EXPERIENCIAS</h3>
+                  <h3 class="page-editorial-title exp-title">SELECCIÓN DE EXPERIENCIAS</h3>
                 </div>
 
                 <div class="god-bust-cameo" title="Busto consagrado de Poseidón y Zeus" aria-hidden="true">
@@ -3492,10 +3468,14 @@
                     <span class="pkg-name">OPCIÓN 01: Acceso General Egeo</span>
                     <span class="pkg-price">$15</span>
                   </div>
-                  <p class="pkg-desc">
-                    Incluye <strong>Welcome Drink Pitorro de Coco</strong> de 20h30 a 22h00 (8:30 - 10:00 PM).
-                  </p>
-                  <span class="pkg-badge">ENTRADA INDIVIDUAL // WELCOME DRINK</span>
+                  <div class="pkg-details">
+                    <div class="pkg-details-inner">
+                      <p class="pkg-desc">
+                        Incluye <strong>Welcome Drink Pitorro de Coco</strong> de 20h30 a 22h00 (8:30 - 10:00 PM).
+                      </p>
+                      <span class="pkg-badge">ENTRADA INDIVIDUAL // WELCOME DRINK</span>
+                    </div>
+                  </div>
                 </div>
 
                 <div
@@ -3517,10 +3497,14 @@
                     <span class="pkg-name">OPCIÓN 02: Pack Grupo Olimpo</span>
                     <span class="pkg-price">$150</span>
                   </div>
-                  <p class="pkg-desc">
-                    Mínimo 10 entradas de $15 + Welcome Drink de bienvenida + <strong>1 Botella de regalo espumante/Anthony rodado en mesa</strong>.
-                  </p>
-                  <span class="pkg-badge">RECOMENDADO PARA GRUPOS (+10)</span>
+                  <div class="pkg-details">
+                    <div class="pkg-details-inner">
+                      <p class="pkg-desc">
+                        Mínimo 10 entradas de $15 + Welcome Drink de bienvenida + <strong>1 Botella de regalo espumante/Anthony rodado en mesa</strong>.
+                      </p>
+                      <span class="pkg-badge">RECOMENDADO PARA GRUPOS (+10)</span>
+                    </div>
+                  </div>
                 </div>
 
                 <div
@@ -3542,41 +3526,153 @@
                     <span class="pkg-name">OPCIÓN 03: Pack Jäger &amp; Red Bull</span>
                     <span class="pkg-price">$150</span>
                   </div>
-                  <p class="pkg-desc">
-                    <strong>2 Botellas de Jägermeister + 4 Red Bull</strong> para la mesa.
-                  </p>
-                  <span class="pkg-badge">MESA VIP ENERGIZADA</span>
+                  <div class="pkg-details">
+                    <div class="pkg-details-inner">
+                      <p class="pkg-desc">
+                        <strong>2 Botellas de Jägermeister + 4 Red Bull</strong> para la mesa.
+                      </p>
+                      <span class="pkg-badge">MESA VIP ENERGIZADA</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div class="payment-method-section">
-                <span class="dotted-label">5. Método de Pago Preferido:</span>
-                <div class="payment-options-grid" role="group" aria-label="Método de pago">
-                  <button
-                    type="button"
-                    id="payTransfer"
-                    class="btn-payment-choice active"
-                    data-payment="Transferencia Bancaria"
-                    aria-pressed="true"
-                  >
-                    <span>Transferencia Bancaria</span>
-                  </button>
-                  <button
-                    type="button"
-                    id="payDoor"
-                    class="btn-payment-choice"
-                    data-payment="Pago en Puerta"
-                    aria-pressed="false"
-                  >
-                    <span>Pago en Puerta</span>
-                  </button>
-                </div>
+              <!-- Botón de paso a la hoja 2 (solo móvil) -->
+              <button type="button" id="btnContinueToData" class="btn-continue-leaf">
+                <span>CONTINUAR A MIS DATOS</span>
+                <span class="btn-continue-arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- PÁGINA DERECHA (HOJA 2): SOLICITUD DE INGRESO + MÉTODO DE PAGO -->
+          <article class="book-page diary-page page-right hidden-leaf" data-leaf-page="1">
+            <svg class="meander-frame-svg" viewBox="0 0 520 680" preserveAspectRatio="none" aria-hidden="true">
+              <rect x="4" y="4" width="512" height="672" stroke="#0047AB" stroke-width="1.8" stroke-dasharray="12 4 4 4" fill="none" />
+              <path
+                d="M12 12 H40 V40 H20 V20 H30 V30
+                   M508 12 H480 V40 H500 V20 H490 V30
+                   M12 668 H40 V640 H20 V660 H30 V650
+                   M508 668 H480 V640 H500 V660 H490 V650"
+                stroke="#0047AB"
+                stroke-width="2"
+                fill="none"
+              />
+            </svg>
+
+            <div class="page-inner-content page-content hidden overflow-hidden" data-leaf="1">
+              <div class="page-editorial-heading">
+                <span class="page-sub-stamp">FOLIO N° 2026-GRK // ACTA DE NAVEGACIÓN</span>
+                <h3 class="page-editorial-title">ISLA DE SANTORINI — SOLICITUD DE INGRESO</h3>
               </div>
 
-              <div class="tribute-summary-bar" aria-live="polite">
-                <span>TRIBUTO TOTAL ESTIMADO:</span>
-                <span id="tributeTotalDisplay" class="tribute-total-val">$15 USD</span>
-              </div>
+              <form id="expeditionForm" class="expedition-form overflow-hidden" novalidate>
+                <!-- Campo: Modalidad (Toggle Interactivo) -->
+                <div class="modality-toggle-wrapper">
+                  <span class="dotted-label">
+                    <span>1. Modalidad de Travesía</span>
+                    <span class="req-star">*</span>
+                  </span>
+                  <div class="modality-toggle-grid" role="group" aria-label="Modalidad de expedición">
+                    <button
+                      type="button"
+                      id="btnSolo"
+                      class="btn-modality active"
+                      data-mode="solo"
+                      aria-pressed="true"
+                    >
+                      <span>VOY SOLO/A</span>
+                    </button>
+                    <button
+                      type="button"
+                      id="btnGroup"
+                      class="btn-modality"
+                      data-mode="group"
+                      aria-pressed="false"
+                    >
+                      <span>VAMOS EN GRUPO</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Cajón Desplegable: Contador Numérico Táctil de Acompañantes -->
+                <div id="groupCounterDrawer" class="group-counter-drawer" aria-hidden="true">
+                  <div class="counter-control-bar">
+                    <span class="counter-label-text">TRIPULANTES × $15 (MÍN. 10):</span>
+                    <div class="counter-stepper">
+                      <button type="button" id="btnStepMinus" class="btn-step" aria-label="Restar un acompañante">-</button>
+                      <span id="companionsCountDisplay" class="counter-display">10</span>
+                      <button type="button" id="btnStepPlus" class="btn-step" aria-label="Sumar un acompañante">+</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Campo: Método de Pago + Tributo Estimado -->
+                <div class="payment-method-section">
+                  <span class="dotted-label">2. Método de Pago Preferido</span>
+                  <div class="payment-options-grid" role="group" aria-label="Método de pago">
+                    <button
+                      type="button"
+                      id="payTransfer"
+                      class="btn-payment-choice active"
+                      data-payment="Transferencia Bancaria"
+                      aria-pressed="true"
+                    >
+                      <span>Transferencia Bancaria</span>
+                    </button>
+                    <button
+                      type="button"
+                      id="payDoor"
+                      class="btn-payment-choice"
+                      data-payment="Pago en Puerta"
+                      aria-pressed="false"
+                    >
+                      <span>Pago en Puerta</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="tribute-summary-bar" aria-live="polite">
+                  <span>TRIBUTO TOTAL ESTIMADO:</span>
+                  <span id="tributeTotalDisplay" class="tribute-total-val">$15 USD</span>
+                </div>
+
+                <!-- Campo: Nombre y Apellido -->
+                <div class="form-group-dotted">
+                  <label for="fieldName" class="dotted-label">
+                    <span>3. Nombre y Apellido del Tripulante</span>
+                    <span class="req-star">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="fieldName"
+                    name="fullName"
+                    class="dotted-input"
+                    placeholder="Helena de Troya / Nicolás..."
+                    autocomplete="name"
+                    required
+                  />
+                  <span class="input-hint-msg" id="nameHint"></span>
+                </div>
+
+                <!-- Campo: WhatsApp / Teléfono Móvil -->
+                <div class="form-group-dotted">
+                  <label for="fieldPhone" class="dotted-label">
+                    <span>4. WhatsApp / Teléfono Móvil</span>
+                    <span class="req-star">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    id="fieldPhone"
+                    name="phone"
+                    class="dotted-input"
+                    placeholder="+593 99 999 9999"
+                    autocomplete="tel"
+                    required
+                  />
+                  <span class="input-hint-msg" id="phoneHint"></span>
+                </div>
+              </form>
             </div>
           </article>
         </div>
@@ -4359,7 +4455,6 @@
       const travelBookViewport = document.getElementById('travelBookViewport');
       const travelBook = document.getElementById('travelBook');
       const pageTurnLeaf = document.getElementById('pageTurnLeaf');
-      const btnPaperSoundToggle = document.getElementById('btnPaperSoundToggle');
       const bookTabBtns = document.querySelectorAll('.book-tab-btn');
       const jumpTabBtns = document.querySelectorAll('[data-jump-to]');
       const bookSpreads = {
@@ -4375,10 +4470,8 @@
 
       const fieldName = document.getElementById('fieldName');
       const fieldPhone = document.getElementById('fieldPhone');
-      const fieldBirthDate = document.getElementById('fieldBirthDate');
       const nameHint = document.getElementById('nameHint');
       const phoneHint = document.getElementById('phoneHint');
-      const ageValidationHint = document.getElementById('ageValidationHint');
       const btnSolo = document.getElementById('btnSolo');
       const btnGroup = document.getElementById('btnGroup');
       const groupCounterDrawer = document.getElementById('groupCounterDrawer');
@@ -4456,16 +4549,6 @@
         }
       }
 
-      if (btnPaperSoundToggle) {
-        btnPaperSoundToggle.addEventListener('click', () => {
-          paperSoundEnabled = !paperSoundEnabled;
-          btnPaperSoundToggle.setAttribute('aria-pressed', String(paperSoundEnabled));
-          btnPaperSoundToggle.textContent = paperSoundEnabled
-            ? 'SONIDO PAPEL: ON'
-            : 'SONIDO PAPEL: OFF';
-        });
-      }
-
       // Sistema de Paginación Interna: 6 hojas reales (div.page-content) en móvil / 3 pliegos dobles en desktop
       const mobileMQ = window.matchMedia('(max-width: 768px)');
       const pageContentEls = Array.from(document.querySelectorAll('div.page-content[data-leaf]'));
@@ -4477,8 +4560,8 @@
       const leafPageIndicator = document.getElementById('leafPageIndicator');
 
       const pageDefs = [
-        { leaf: 0, tab: 'registro', label: 'DATOS', title: 'ISLA DE SANTORINI — SOLICITUD DE INGRESO' },
-        { leaf: 1, tab: 'registro', label: 'PAQUETES', title: 'SELECCIÓN DE EXPERIENCIAS' },
+        { leaf: 0, tab: 'registro', label: 'PAQUETES', title: 'SELECCIÓN DE EXPERIENCIAS' },
+        { leaf: 1, tab: 'registro', label: 'DATOS', title: 'ISLA DE SANTORINI — SOLICITUD DE INGRESO' },
         { leaf: 2, tab: 'dresscode', label: 'DRESS CODE I', title: 'DRESS CODE OBLIGATORIO: AZUL MARINO & BLANCO' },
         { leaf: 3, tab: 'dresscode', label: 'LOOKBOOK', title: 'ESTILISMO MEDITERRÁNEO' },
         { leaf: 4, tab: 'promos', label: 'PROMOS I', title: 'PROMOS DE LA NOCHE' },
@@ -4902,10 +4985,20 @@
         `.trim();
       }
 
-      // Estado de la reserva
-      let currentModality = 'solo';
-      let groupCount = 2;
-      let selectedPackage = {
+      // Estado de la reserva (vinculado: modalidad ↔ experienciaSeleccionada)
+      const GROUP_MIN = 10;
+      const GROUP_MAX = 50;
+      const pkgCardById = (id) => Array.from(packageCards).find((c) => c.dataset.pkgId === id);
+      const readPackage = (card) => ({
+        id: card.dataset.pkgId,
+        name: card.dataset.pkgName,
+        unitPrice: parseFloat(card.dataset.pkgPrice) || 15,
+        isFixed: card.dataset.pkgFixed === 'true'
+      });
+
+      let modalidad = 'solo'; // 'solo' (VOY SOLO/A) | 'group' (VAMOS EN GRUPO)
+      let groupCount = GROUP_MIN;
+      let experienciaSeleccionada = {
         id: 'pkg-1',
         name: 'Acceso General Egeo — $15',
         unitPrice: 15,
@@ -4914,13 +5007,14 @@
       let selectedPayment = 'Transferencia Bancaria';
       let lastGeneratedPass = null;
 
+      // Total: Solo → $15 fijo · Grupo + Opción 01 → $15 × tripulantes (mín. 10) · Packs → precio fijo
       function updateTributeCalculation() {
-        let total = 0;
-        if (selectedPackage.isFixed) {
-          total = selectedPackage.unitPrice;
+        let total;
+        if (experienciaSeleccionada.isFixed) {
+          total = experienciaSeleccionada.unitPrice;
         } else {
-          const multiplier = currentModality === 'group' ? groupCount : 1;
-          total = selectedPackage.unitPrice * multiplier;
+          const multiplier = modalidad === 'group' ? groupCount : 1;
+          total = experienciaSeleccionada.unitPrice * multiplier;
         }
 
         if (tributeTotalDisplay) {
@@ -4929,117 +5023,87 @@
         return total;
       }
 
+      function selectPackageCard(card) {
+        if (!card) return;
+        packageCards.forEach((c) => {
+          const on = c === card;
+          c.classList.toggle('active', on);
+          c.setAttribute('aria-checked', String(on));
+        });
+        experienciaSeleccionada = readPackage(card);
+      }
+
+      // Sincroniza selector de cantidad y total a partir del estado
+      function syncPricingState() {
+        const isGroup = modalidad === 'group';
+
+        // VOY SOLO/A elegido en la hoja de datos con un pack activo → vuelve a Opción 01
+        if (!isGroup && experienciaSeleccionada.isFixed) {
+          selectPackageCard(pkgCardById('pkg-1'));
+        }
+
+        // Selector de cantidad solo para Grupo + Opción 01 ($15 × N)
+        const showCounter = isGroup && !experienciaSeleccionada.isFixed;
+        if (groupCounterDrawer) {
+          groupCounterDrawer.classList.toggle('drawer-open', showCounter);
+          groupCounterDrawer.setAttribute('aria-hidden', String(!showCounter));
+        }
+        if (companionsCountDisplay) companionsCountDisplay.textContent = groupCount;
+        if (btnStepMinus) btnStepMinus.disabled = groupCount <= GROUP_MIN;
+        if (btnStepPlus) btnStepPlus.disabled = groupCount >= GROUP_MAX;
+
+        updateTributeCalculation();
+      }
+
+      function setModalidad(mode) {
+        modalidad = mode;
+        const isGroup = mode === 'group';
+        if (btnSolo && btnGroup) {
+          btnSolo.classList.toggle('active', !isGroup);
+          btnSolo.setAttribute('aria-pressed', String(!isGroup));
+          btnGroup.classList.toggle('active', isGroup);
+          btnGroup.setAttribute('aria-pressed', String(isGroup));
+        }
+        syncPricingState();
+      }
+
       // 1. Manejo de Modalidad: Solo vs Grupo
       if (btnSolo && btnGroup) {
-        btnSolo.addEventListener('click', () => {
-          currentModality = 'solo';
-          btnSolo.classList.add('active');
-          btnSolo.setAttribute('aria-pressed', 'true');
-          btnGroup.classList.remove('active');
-          btnGroup.setAttribute('aria-pressed', 'false');
-
-          if (groupCounterDrawer) {
-            groupCounterDrawer.classList.remove('drawer-open');
-            groupCounterDrawer.setAttribute('aria-hidden', 'true');
-          }
-          updateTributeCalculation();
-        });
-
-        btnGroup.addEventListener('click', () => {
-          currentModality = 'group';
-          btnGroup.classList.add('active');
-          btnGroup.setAttribute('aria-pressed', 'true');
-          btnSolo.classList.remove('active');
-          btnSolo.setAttribute('aria-pressed', 'false');
-
-          if (groupCounterDrawer) {
-            groupCounterDrawer.classList.add('drawer-open');
-            groupCounterDrawer.setAttribute('aria-hidden', 'false');
-          }
-          updateTributeCalculation();
-        });
+        btnSolo.addEventListener('click', () => setModalidad('solo'));
+        btnGroup.addEventListener('click', () => setModalidad('group'));
       }
 
       if (btnStepMinus && btnStepPlus && companionsCountDisplay) {
         btnStepMinus.addEventListener('click', () => {
-          if (groupCount > 2) {
+          if (groupCount > GROUP_MIN) {
             groupCount--;
-            companionsCountDisplay.textContent = groupCount;
-            updateTributeCalculation();
+            syncPricingState();
           }
         });
 
         btnStepPlus.addEventListener('click', () => {
-          if (groupCount < 20) {
+          if (groupCount < GROUP_MAX) {
             groupCount++;
-            companionsCountDisplay.textContent = groupCount;
-            updateTributeCalculation();
+            syncPricingState();
           }
         });
       }
 
-      // 2. Validación de Fecha de Nacimiento (+20 Años Estricto)
-      const cutoffDate = new Date('2006-11-19T23:59:59');
-
-      function validateBirthDate(showErrors = false) {
-        if (!fieldBirthDate.value) {
-          if (showErrors) {
-            ageValidationHint.textContent = '⚠️ Fecha de nacimiento requerida para verificar el filtro +20.';
-            ageValidationHint.className = 'input-hint-msg status-error';
-            fieldBirthDate.classList.add('input-error');
-          } else {
-            ageValidationHint.textContent = '* Requisito ineludible: Nacidos el 19 de Noviembre de 2006 o antes (+20).';
-            ageValidationHint.className = 'input-hint-msg';
-            fieldBirthDate.classList.remove('input-error');
-          }
-          return false;
-        }
-
-        const inputDate = new Date(fieldBirthDate.value + 'T00:00:00');
-        if (isNaN(inputDate.getTime())) {
-          ageValidationHint.textContent = '⚠️ Fecha inválida.';
-          ageValidationHint.className = 'input-hint-msg status-error';
-          fieldBirthDate.classList.add('input-error');
-          return false;
-        }
-
-        if (inputDate > cutoffDate) {
-          ageValidationHint.textContent = '⚠️ ACCESO DENEGADO: Evento exclusivo para mayores de 20 años (+20 obligatorio).';
-          ageValidationHint.className = 'input-hint-msg status-error';
-          fieldBirthDate.classList.add('input-error');
-          return false;
-        } else {
-          const ageYears = Math.floor((new Date('2026-11-19').getTime() - inputDate.getTime()) / (365.25 * 24 * 3600 * 1000));
-          ageValidationHint.textContent = `✓ EDAD VERIFICADA: ${ageYears} años (+20 APTO PARA EMBARQUE).`;
-          ageValidationHint.className = 'input-hint-msg status-ok';
-          fieldBirthDate.classList.remove('input-error');
-          return true;
-        }
-      }
-
-      if (fieldBirthDate) {
-        fieldBirthDate.addEventListener('change', () => validateBirthDate(true));
-        fieldBirthDate.addEventListener('input', () => validateBirthDate(false));
-      }
-
-      // 3. Selección de Paquetes
+      // 2. Selección de Paquetes: los packs de grupo activan "VAMOS EN GRUPO" en la hoja 2
+      const btnContinueToData = document.getElementById('btnContinueToData');
       packageCards.forEach((card) => {
         card.addEventListener('click', () => {
-          packageCards.forEach((c) => {
-            c.classList.remove('active');
-            c.setAttribute('aria-checked', 'false');
-          });
-          card.classList.add('active');
-          card.setAttribute('aria-checked', 'true');
-
-          selectedPackage = {
-            id: card.dataset.pkgId,
-            name: card.dataset.pkgName,
-            unitPrice: parseFloat(card.dataset.pkgPrice) || 15,
-            isFixed: card.dataset.pkgFixed === 'true'
-          };
-
-          updateTributeCalculation();
+          selectPackageCard(card);
+          if (experienciaSeleccionada.isFixed) {
+            setModalidad('group');
+          } else {
+            syncPricingState();
+          }
+          if (btnContinueToData) {
+            btnContinueToData.classList.remove('is-ready');
+            void btnContinueToData.offsetWidth;
+            btnContinueToData.classList.add('is-ready');
+          }
         });
 
         card.addEventListener('keydown', (e) => {
@@ -5049,6 +5113,10 @@
           }
         });
       });
+
+      if (btnContinueToData) {
+        btnContinueToData.addEventListener('click', () => goToPage(1));
+      }
 
       // 4. Selección de Método de Pago
       btnPaymentChoices.forEach((btn) => {
@@ -5109,14 +5177,8 @@
             }
           }
 
-          const isAgeOk = validateBirthDate(true);
-          if (!isAgeOk) {
-            isValid = false;
-            if (!firstErrorEl) firstErrorEl = fieldBirthDate;
-          }
-
           if (!isValid) {
-            if (mobileMQ.matches && currentPageIdx !== 0) goToPage(0);
+            if (mobileMQ.matches && currentPageIdx !== 1) goToPage(1);
             if (firstErrorEl) {
               setTimeout(() => {
                 firstErrorEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -5135,7 +5197,7 @@
           const odysseyCode = `#ODY-${randomDigits}`;
           const finalTotal = updateTributeCalculation();
           const modalityText =
-            currentModality === 'group'
+            modalidad === 'group'
               ? `Grupo (${groupCount} integrantes)`
               : 'Individual (1 titular)';
 
@@ -5144,7 +5206,7 @@
             phone: phoneVal,
             code: odysseyCode,
             modality: modalityText,
-            package: selectedPackage.name,
+            package: experienciaSeleccionada.name,
             payment: selectedPayment,
             total: `$${finalTotal} USD`
           };
@@ -5156,11 +5218,11 @@
           if (passModeVal) passModeVal.textContent = lastGeneratedPass.modality;
           if (passPkgVal) passPkgVal.textContent = lastGeneratedPass.package;
           if (passPaymentVal) passPaymentVal.textContent = lastGeneratedPass.payment;
-          if (passTotalVal) passTotalVal.textContent = `${lastGeneratedPass.total} · +20 VERIFICADO`;
+          if (passTotalVal) passTotalVal.textContent = `${lastGeneratedPass.total} · CONFIRMADO`;
 
           // Renderizar QR Vectorial Procedimental en SVG (Azul Profundo sobre Blanco Mármol)
           if (odysseyQrMount) {
-            const qrPayload = `${lastGeneratedPass.code}|${lastGeneratedPass.name}|${ currentModality === 'group' ? groupCount : 1 }PAX`;
+            const qrPayload = `${lastGeneratedPass.code}|${lastGeneratedPass.name}|${ modalidad === 'group' ? groupCount : 1 }PAX`;
             odysseyQrMount.innerHTML = generateOdysseyQrSvg(qrPayload);
           }
 
@@ -5223,7 +5285,7 @@
         });
       }
 
-      updateTributeCalculation();
+      syncPricingState();
 
       window.addEventListener('resize', resizeCanvas, { passive: true });
 
